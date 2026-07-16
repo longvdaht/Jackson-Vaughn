@@ -1,0 +1,520 @@
+{% comment %} JV - Reviews {% endcomment %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Dosis:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --cream: #FCFAEF;
+    --cream-alt: #FAF7EF;
+    --cream-warm: #FAE9C9;
+    --dark: #232323;
+    --text: #2D2B27;
+    --btn-green: #36402D;
+    --gold: #B78C47;
+    --gold-bright: #F5B857;
+    --gold-cta: #D6A24C;
+    --gold-light: #EBDEc5;
+    --green-check: #35911E;
+    --white: #FFFFFF;
+    --border: rgba(45,43,39,0.13);
+    --font-heading: 'Petrona', serif;
+    --font-body: 'Dosis', sans-serif;
+  }
+
+  #shopify-section-{{ section.id }} .reviews-section {
+    background: var(--cream);
+    padding: 0 48px 64px;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+
+  #shopify-section-{{ section.id }} .gallery-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-bottom: 44px;
+  }
+
+  #shopify-section-{{ section.id }} .gallery-strip .gs-item {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+  }
+
+  #shopify-section-{{ section.id }} .gallery-strip .gs-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  #shopify-section-{{ section.id }} .gallery-strip .gs-placeholder {
+    width: 100%;
+    height: 100%;
+    background: var(--gold-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    font-family: var(--font-body);
+    font-size: 13px;
+    letter-spacing: 0.05em;
+  }
+
+  #shopify-section-{{ section.id }} .section-head {
+    margin-bottom: 32px;
+  }
+
+  #shopify-section-{{ section.id }} .rating-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 4px;
+  }
+
+  #shopify-section-{{ section.id }} .rating-row .stars {
+    color: var(--gold-bright);
+    font-size: 16px;
+    letter-spacing: 1px;
+  }
+
+  #shopify-section-{{ section.id }} .section-head h2 {
+    font-family: 'Petrona', serif;
+    font-size: 46px;
+    font-weight: 500;
+    color: var(--dark);
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+
+  #shopify-section-{{ section.id }} .reviews-carousel-wrap {
+    overflow: visible;
+  }
+
+  #shopify-section-{{ section.id }} .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+
+  #shopify-section-{{ section.id }} .rev-card {
+    padding: 24px;
+    border: 1px solid rgba(183,140,71,0.22);
+    background: var(--cream);
+    display: flex;
+    flex-direction: column;
+  }
+
+  #shopify-section-{{ section.id }} .rev-card .rr {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: var(--font-body);
+    color: var(--dark);
+  }
+
+  #shopify-section-{{ section.id }} .rev-card .rr .stars {
+    color: var(--gold-bright);
+    letter-spacing: 1px;
+  }
+
+  #shopify-section-{{ section.id }} .rev-card .rtext {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--dark);
+    margin-bottom: 10px;
+    flex: 1;
+  }
+
+  #shopify-section-{{ section.id }} .rev-card .rname {
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--dark);
+  }
+
+  #shopify-section-{{ section.id }} .rev-verified {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: #76912E;
+    margin-top: 6px;
+    font-weight: 500;
+    font-family: var(--font-body);
+  }
+
+  #shopify-section-{{ section.id }} .rev-check {
+    width: 14px;
+    height: 14px;
+    background: #76912E;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  #shopify-section-{{ section.id }} .rev-check::after {
+    content: '✓';
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  #shopify-section-{{ section.id }} .cta-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-top: 8px;
+  }
+
+  #shopify-section-{{ section.id }} .btn-cart {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--btn-green);
+    color: #fff;
+    border: none;
+    width: 553px;
+    max-width: 100%;
+    height: 78px;
+    font-family: 'Dosis', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  #shopify-section-{{ section.id }} .btn-cart:hover {
+    opacity: 0.92;
+  }
+
+  #shopify-section-{{ section.id }} .artisan-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: rgba(45,43,39,0.6);
+  }
+
+  #shopify-section-{{ section.id }} .artisan-line svg {
+    flex-shrink: 0;
+  }
+
+  #shopify-section-{{ section.id }} .reviews-dots {
+    display: none;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  #shopify-section-{{ section.id }} .rdot {
+    height: 3px;
+    border-radius: 2px;
+    cursor: pointer;
+    width: 36px;
+    background: rgba(183,140,71,0.35);
+    border: none;
+    padding: 0;
+  }
+
+  #shopify-section-{{ section.id }} .rdot.active {
+    background: var(--gold);
+    width: 48px;
+  }
+
+  @media (max-width: 768px) {
+    #shopify-section-{{ section.id }} .reviews-section {
+      padding: 0 16px 40px;
+    }
+
+    #shopify-section-{{ section.id }} .section-head h2 {
+      font-size: 34px;
+    }
+
+    #shopify-section-{{ section.id }} .gallery-strip {
+      gap: 4px;
+      margin-bottom: 28px;
+    }
+
+    #shopify-section-{{ section.id }} .reviews-dots {
+      display: flex;
+    }
+
+    #shopify-section-{{ section.id }} .reviews-carousel-wrap {
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      margin-left: -16px;
+      margin-right: -16px;
+    }
+
+    #shopify-section-{{ section.id }} .reviews-carousel-wrap::-webkit-scrollbar {
+      display: none;
+    }
+
+    #shopify-section-{{ section.id }} .reviews-grid {
+      display: flex;
+      gap: 12px;
+      padding-left: calc(50% - 127px);
+      padding-right: calc(50% - 127px);
+      width: max-content;
+      margin-bottom: 0;
+    }
+
+    #shopify-section-{{ section.id }} .rev-card {
+      flex: 0 0 254px;
+      width: 254px;
+      scroll-snap-align: center;
+    }
+  }
+</style>
+
+<section class="reviews-section">
+
+  {%- comment %} Gallery Strip {%- endcomment %}
+  <div class="gallery-strip">
+    {%- assign strip_ids = 'strip_1,strip_2,strip_3' | split: ',' -%}
+    {%- for strip_id in strip_ids -%}
+      <div class="gs-item">
+        {%- assign strip_img = section.settings[strip_id] -%}
+        {%- if strip_img != blank -%}
+          {{ strip_img | image_url: width: 1200 | image_tag: loading: 'lazy', class: '' }}
+        {%- else -%}
+          <div class="gs-placeholder">Gallery Image {{ forloop.index }}</div>
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+  </div>
+
+  {%- comment %} Section Header {%- endcomment %}
+  <div class="section-head">
+    <div class="rating-row">
+      <span class="stars">★★★★★</span>
+      <span>{{ section.settings.rating_text }}</span>
+    </div>
+    <h2>{{ section.settings.heading }}</h2>
+  </div>
+
+  {%- comment %} Reviews Carousel {%- endcomment %}
+  <div class="reviews-carousel-wrap">
+    <div class="reviews-grid">
+      {%- for block in section.blocks -%}
+        {%- assign star_count = block.settings.stars | times: 1 -%}
+        <div class="rev-card" {{ block.shopify_attributes }}>
+          <div class="rr">
+            <span class="stars">
+              {%- for i in (1..star_count) -%}★{%- endfor -%}
+              {%- if star_count < 5 -%}
+                {%- assign empty_stars = 5 | minus: star_count -%}
+                {%- for i in (1..empty_stars) -%}☆{%- endfor -%}
+              {%- endif -%}
+            </span>
+            <span>{{ star_count }}.0</span>
+          </div>
+          <p class="rtext">"{{ block.settings.quote }}"</p>
+          <div class="rname">{{ block.settings.author }}</div>
+          {%- if block.settings.verified -%}
+            <div class="rev-verified">
+              <div class="rev-check"></div>
+              Verified Customer
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+
+  {%- comment %} Mobile Carousel Dots {%- endcomment %}
+  <div class="reviews-dots" id="jv-reviews-dots-{{ section.id }}">
+    {%- for block in section.blocks -%}
+      <button class="rdot{% if forloop.first %} active{% endif %}" data-index="{{ forloop.index0 }}" aria-label="Go to review {{ forloop.index }}"></button>
+    {%- endfor -%}
+  </div>
+
+  {%- comment %} CTA Block {%- endcomment %}
+  <div class="cta-block">
+    <a href="{{ section.settings.cta_url }}" class="btn-cart">{{ section.settings.cta_text }}</a>
+    <div class="artisan-line">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M8 1L9.5 5.5H14.5L10.5 8.5L12 13L8 10L4 13L5.5 8.5L1.5 5.5H6.5L8 1Z" fill="#B78C47" opacity="0.7"/>
+      </svg>
+      {{ section.settings.artisan_text }}
+    </div>
+  </div>
+
+</section>
+
+<script>
+  (function() {
+    var wrap = document.querySelector('#shopify-section-{{ section.id }} .reviews-carousel-wrap');
+    var dots = document.querySelectorAll('#jv-reviews-dots-{{ section.id }} .rdot');
+    if (!wrap || !dots.length) return;
+
+    wrap.addEventListener('scroll', function() {
+      var cards = wrap.querySelectorAll('.rev-card');
+      if (!cards.length) return;
+      var cardWidth = cards[0].offsetWidth + 12;
+      var scrollLeft = wrap.scrollLeft;
+      var centerX = scrollLeft + wrap.offsetWidth / 2;
+      var activeIndex = Math.round((centerX - wrap.offsetWidth / 2) / cardWidth);
+      activeIndex = Math.max(0, Math.min(activeIndex, dots.length - 1));
+      dots.forEach(function(d, i) {
+        d.classList.toggle('active', i === activeIndex);
+      });
+    }, { passive: true });
+
+    dots.forEach(function(dot) {
+      dot.addEventListener('click', function() {
+        var idx = parseInt(this.getAttribute('data-index'));
+        var cards = wrap.querySelectorAll('.rev-card');
+        if (cards[idx]) {
+          var card = cards[idx];
+          var scrollTo = card.offsetLeft - (wrap.offsetWidth / 2) + (card.offsetWidth / 2);
+          wrap.scrollTo({ left: scrollTo, behavior: 'smooth' });
+        }
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "JV - Reviews",
+  "tag": "section",
+  "class": "jv-section-reviews",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "strip_1",
+      "label": "Gallery Strip Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "strip_2",
+      "label": "Gallery Strip Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "strip_3",
+      "label": "Gallery Strip Image 3"
+    },
+    {
+      "type": "text",
+      "id": "rating_text",
+      "label": "Rating Text",
+      "default": "4.9 Stars · 2,400+ Happy Homes"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What Our Customers Are Saying"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Button Text",
+      "default": "ADD TO CART"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA Button URL"
+    },
+    {
+      "type": "text",
+      "id": "artisan_text",
+      "label": "Artisan Trust Line",
+      "default": "25 Years of Hand-Poured Quality"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Review Quote"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author Name"
+        },
+        {
+          "type": "select",
+          "id": "stars",
+          "label": "Stars",
+          "options": [
+            { "value": "5", "label": "5 Stars" },
+            { "value": "4", "label": "4 Stars" },
+            { "value": "3", "label": "3 Stars" },
+            { "value": "2", "label": "2 Stars" },
+            { "value": "1", "label": "1 Star" }
+          ],
+          "default": "5"
+        },
+        {
+          "type": "checkbox",
+          "id": "verified",
+          "label": "Verified Customer",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "JV - Reviews",
+      "blocks": [
+        {
+          "type": "review",
+          "settings": {
+            "quote": "I've tried dozens of candles over the years and nothing comes close to Jackson Vaughn. The scent lasts for days after burning and the throw is incredible — my whole downstairs smells amazing.",
+            "author": "Katherine L.",
+            "stars": "5",
+            "verified": true
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "quote": "Bought this as a gift and ended up ordering one for myself. The packaging is beautiful and the candle burns so cleanly. You can tell real care went into making it.",
+            "author": "Katherine L.",
+            "stars": "5",
+            "verified": true
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "quote": "This is my third order and it won't be my last. The warm vanilla scent is perfectly balanced — not too sweet, not too subtle. My house has never smelled better.",
+            "author": "Megan T.",
+            "stars": "5",
+            "verified": true
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,335 @@
+{% comment %} JV - Brand Story {% endcomment %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Dosis:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --cream: #FCFAEF;
+    --cream-alt: #FAF7EF;
+    --cream-warm: #FAE9C9;
+    --dark: #232323;
+    --text: #2D2B27;
+    --btn-green: #36402D;
+    --gold: #B78C47;
+    --gold-bright: #F5B857;
+    --gold-cta: #D6A24C;
+    --gold-light: #EBDEc5;
+    --green-check: #35911E;
+    --white: #FFFFFF;
+    --border: rgba(45,43,39,0.13);
+    --font-heading: 'Petrona', serif;
+    --font-body: 'Dosis', sans-serif;
+  }
+
+  #shopify-section-{{ section.id }} .jv-brand-story {
+    padding: 48px 0;
+    max-width: 1600px;
+    margin: 0 auto;
+    background: var(--cream);
+    font-family: var(--font-body);
+    color: var(--text);
+  }
+
+  /* ── Desktop box ── */
+  #shopify-section-{{ section.id }} .jv-bs-box {
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: stretch;
+    min-height: 380px;
+  }
+
+  #shopify-section-{{ section.id }} .jv-bs-bg-ph {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: #C8C0B4;
+  }
+
+  #shopify-section-{{ section.id }} .jv-bs-bg-ph img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ── Left panel ── */
+  #shopify-section-{{ section.id }} .jv-bs-left {
+    position: relative;
+    z-index: 1;
+    width: 48%;
+    flex-shrink: 0;
+    padding: 48px 44px;
+    background: var(--cream);
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Rating */
+  #shopify-section-{{ section.id }} .jv-bs-rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 18px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--text);
+  }
+
+  #shopify-section-{{ section.id }} .jv-bs-stars {
+    color: var(--gold-bright);
+    font-size: 15px;
+    letter-spacing: 1px;
+  }
+
+  /* Heading */
+  #shopify-section-{{ section.id }} .jv-bs-left h2 {
+    font-family: var(--font-heading);
+    font-size: 46px;
+    font-weight: 500;
+    color: var(--dark);
+    margin: 0 0 16px;
+    line-height: 1.15;
+  }
+
+  #shopify-section-{{ section.id }} .jv-bs-left h2 .jv-bs-heading-line2 {
+    display: block;
+  }
+
+  /* Body */
+  #shopify-section-{{ section.id }} .jv-bs-body {
+    font-size: 16px;
+    line-height: 1.65;
+    color: rgba(45,43,39,0.72);
+    margin-bottom: 28px;
+    flex: 1;
+  }
+
+  #shopify-section-{{ section.id }} .jv-bs-body p {
+    margin: 0 0 10px;
+  }
+
+  /* CTA */
+  #shopify-section-{{ section.id }} .jv-bs-cta-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--btn-green);
+    color: #fff;
+    width: 553px;
+    max-width: 100%;
+    height: 78px;
+    font-family: var(--font-body);
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 14px;
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+
+  #shopify-section-{{ section.id }} .jv-bs-cta-btn:hover {
+    opacity: 0.9;
+  }
+
+  /* Years line */
+  #shopify-section-{{ section.id }} .jv-bs-years {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: rgba(45,43,39,0.55);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  #shopify-section-{{ section.id }} .jv-bs-years::before,
+  #shopify-section-{{ section.id }} .jv-bs-years::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    max-width: 48px;
+  }
+
+  /* Mobile full-width image — hidden on desktop */
+  #shopify-section-{{ section.id }} .jv-bs-full-mobile-ph {
+    display: none;
+    width: 100%;
+    aspect-ratio: 2/3;
+    background: var(--cream-alt);
+    overflow: hidden;
+  }
+
+  #shopify-section-{{ section.id }} .jv-bs-full-mobile-ph img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 768px) {
+    #shopify-section-{{ section.id }} .jv-brand-story {
+      padding: 0;
+    }
+
+    #shopify-section-{{ section.id }} .jv-bs-box {
+      display: none !important;
+    }
+
+    #shopify-section-{{ section.id }} .jv-bs-full-mobile-ph {
+      display: block;
+    }
+  }
+</style>
+
+<div class="jv-brand-story">
+
+  {%- comment -%} ── Desktop box ── {%- endcomment -%}
+  <div class="jv-bs-box">
+
+    {%- comment -%} Background image (right side) {%- endcomment -%}
+    <div class="jv-bs-bg-ph">
+      {%- if section.settings.bg_image != blank -%}
+        {{ section.settings.bg_image | image_url: width: 1200 | image_tag: loading: 'lazy' }}
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Left content panel {%- endcomment -%}
+    <div class="jv-bs-left">
+
+      {%- if section.settings.rating_text != blank -%}
+        <div class="jv-bs-rating">
+          <span class="jv-bs-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span>{{ section.settings.rating_text }}</span>
+        </div>
+      {%- endif -%}
+
+      <h2>
+        {%- if section.settings.heading_line1 != blank -%}
+          {{ section.settings.heading_line1 }}
+        {%- endif -%}
+        {%- if section.settings.heading_line2 != blank -%}
+          <span class="jv-bs-heading-line2">{{ section.settings.heading_line2 }}</span>
+        {%- endif -%}
+      </h2>
+
+      {%- if section.settings.body != blank -%}
+        <div class="jv-bs-body">{{ section.settings.body }}</div>
+      {%- endif -%}
+
+      {%- if section.settings.cta_url != blank -%}
+        <a href="{{ section.settings.cta_url }}" class="jv-bs-cta-btn">
+          {{ section.settings.cta_text }}
+        </a>
+      {%- else -%}
+        <button class="jv-bs-cta-btn">{{ section.settings.cta_text }}</button>
+      {%- endif -%}
+
+      {%- if section.settings.years_text != blank -%}
+        <div class="jv-bs-years">{{ section.settings.years_text }}</div>
+      {%- endif -%}
+
+    </div>{%- comment -%} /.jv-bs-left {%- endcomment -%}
+
+  </div>{%- comment -%} /.jv-bs-box {%- endcomment -%}
+
+  {%- comment -%} ── Mobile full-width image ── {%- endcomment -%}
+  <div class="jv-bs-full-mobile-ph">
+    {%- if section.settings.mobile_image != blank -%}
+      {{ section.settings.mobile_image | image_url: width: 1200 | image_tag: loading: 'lazy' }}
+    {%- endif -%}
+  </div>
+
+</div>{%- comment -%} /.jv-brand-story {%- endcomment -%}
+
+{% schema %}
+{
+  "name": "JV - Brand Story",
+  "tag": "section",
+  "class": "jv-section-brand-story",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image (right side, desktop)"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Mobile Full Image (replaces entire section on mobile)"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "rating_text",
+      "label": "Rating Text",
+      "default": "4.9 Stars · 2,400+ Happy Homes"
+    },
+    {
+      "type": "text",
+      "id": "heading_line1",
+      "label": "Heading Line 1",
+      "default": "Skip the flowers."
+    },
+    {
+      "type": "text",
+      "id": "heading_line2",
+      "label": "Heading Line 2",
+      "default": "Give the gift that lasts."
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body Text"
+    },
+    {
+      "type": "header",
+      "content": "CTA Button"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Button Text",
+      "default": "ADD TO CART"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Button URL"
+    },
+    {
+      "type": "header",
+      "content": "Footer Line"
+    },
+    {
+      "type": "text",
+      "id": "years_text",
+      "label": "Years Line",
+      "default": "25 Years of Hand-Poured Quality"
+    }
+  ],
+  "presets": [
+    {
+      "name": "JV - Brand Story"
+    }
+  ]
+}
+{% endschema %}

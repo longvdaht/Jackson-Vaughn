@@ -1,0 +1,113 @@
+{% comment %} JV - Announcement Bar {% endcomment %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Dosis:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --cream: #FCFAEF;
+    --cream-alt: #FAF7EF;
+    --cream-warm: #FAE9C9;
+    --dark: #232323;
+    --text: #2D2B27;
+    --btn-green: #36402D;
+    --gold: #B78C47;
+    --gold-bright: #F5B857;
+    --gold-cta: #D6A24C;
+    --gold-light: #EBDEc5;
+    --green-check: #35911E;
+    --white: #FFFFFF;
+    --border: rgba(45,43,39,0.13);
+    --font-heading: 'Petrona', serif;
+    --font-body: 'Dosis', sans-serif;
+    --ticker-speed: {{ section.settings.speed }}s;
+  }
+
+  #shopify-section-{{ section.id }} .jv-announcement-bar {
+    background: {{ section.settings.bg_color }};
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    padding: 9px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  #shopify-section-{{ section.id }} .jv-ticker-inner {
+    display: inline-flex;
+    animation: jv-scroll-ticker-{{ section.id }} var(--ticker-speed) linear infinite;
+  }
+
+  #shopify-section-{{ section.id }} .jv-ticker-text {
+    padding: 0 48px;
+  }
+
+  #shopify-section-{{ section.id }} .jv-ticker-gold {
+    color: var(--gold-bright);
+  }
+
+  #shopify-section-{{ section.id }} .jv-ticker-white {
+    color: #ffffff;
+  }
+
+  @keyframes jv-scroll-ticker-{{ section.id }} {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+</style>
+
+<div class="jv-announcement-bar">
+  <div class="jv-ticker-inner">
+    <span class="jv-ticker-text">
+      <span class="jv-ticker-gold">{{ section.settings.gold_text }}</span>
+      <span class="jv-ticker-white"> {{ section.settings.white_text }} </span>
+    </span>
+    <span class="jv-ticker-text">
+      <span class="jv-ticker-gold">{{ section.settings.gold_text }}</span>
+      <span class="jv-ticker-white"> {{ section.settings.white_text }} </span>
+    </span>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "JV - Announcement Bar",
+  "tag": "section",
+  "class": "jv-section-announcement-bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "gold_text",
+      "label": "Gold Text",
+      "default": "HAND-POURED IN TEXAS"
+    },
+    {
+      "type": "text",
+      "id": "white_text",
+      "label": "White Text",
+      "default": "· CRAFT CANDLES SINCE 2000 · READY TO BURN ·"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#232323"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "Scroll Speed (seconds)",
+      "min": 10,
+      "max": 60,
+      "step": 1,
+      "default": 22
+    }
+  ],
+  "presets": [
+    {
+      "name": "JV - Announcement Bar"
+    }
+  ]
+}
+{% endschema %}

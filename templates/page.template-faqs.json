@@ -1,0 +1,113 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-faqs-page",
+      "blocks": {
+        "15d9d2f4-1bdd-49c8-9a99-58246020f05c": {
+          "type": "paragraph",
+          "settings": {
+            "title": "ORDERING AND PRODUCTS",
+            "question_1": "Q: “Where are Jackson Vaughn candles made?”",
+            "answer_1": "<p>Jackson Vaughn candles are hand poured and packaged in TX, USA.\n</p>",
+            "question_2": "Q: “What are the ingredients in a Jackson Vaughn candle?”",
+            "answer_2": "<p> Our candle formulas are crafted with care to ensure the best experience for our customers. We offer two wax blends: one is a blend of soy wax and a small amount of paraffin wax to enhance the fragrance throw, and the other is a luxurious soy and coconut wax blend. Both use a combination of natural and perfume-grade synthetic oils, paired with 100% natural cotton wicks for a clean and consistent burn. All of our candles are free of Phthalates and Parabens, reflecting our commitment to quality and safety. You can find the wax formula for each candle listed on its product page.</p>",
+            "question_3": "Q: “Why is my candle Tunneling?”",
+            "answer_3": "<p>When you burn, allow the candle wax to melt to the edges of the glass every time to prevent tunneling. This is especially important during your first burn!</p>",
+            "question_4": "Q: “Do you offer Gift Cards?”",
+            "answer_4": "<p>Yes! You can find them on our website under Give A Gift &gt; Gift Cards</p>",
+            "question_5": "Q: “Can I send my order as a gift?”",
+            "answer_5": "<p>Yes, in your shopping cart, select “Add A Gift Message”. Then add recipient, sender, and  gift message.\n</p>",
+            "question_6": "",
+            "answer_6": "",
+            "question_7": "",
+            "answer_7": "",
+            "question_8": "",
+            "answer_8": "",
+            "question_9": "",
+            "answer_9": "",
+            "question_10": "",
+            "answer_10": ""
+          }
+        },
+        "f4d12560-a07c-4bd4-a934-2a8eddeaccc9": {
+          "type": "paragraph",
+          "settings": {
+            "title": "SHIPPING AND RETURNS",
+            "question_1": "Q: “How long will it take to get my order?”",
+            "answer_1": "<p> All of our orders are handpicked and packaged, so we'll let you know as soon as your order ships, which is normally within 1-2 business days. Once your package is picked up by our carrier, transit times typically range between 1-5 business days, depending on delivery destination. You will receive a confirmation email when your label is created. </p>",
+            "question_2": "Q: “Do you ship internationally?”",
+            "answer_2": "<p>Unfortunately, we do not ship internationally at this time.</p>",
+            "question_3": "Q: “Do we offer expedited shipping options?”",
+            "answer_3": "<p>Yes, at checkout you can select an expedited shipping option from the dropdown menu.</p>",
+            "question_4": "Q: “What if my tracking info doesn't show any updates?”",
+            "answer_4": "<p>The tracking status may take 48 hours to update once the order has been processed and the shipping label created. If you haven't received an update after 48 hours, please reach out to our Support team at <a href=\"mailto:orders@jacksonvaughn.com\" style=\"text-decoration: underline;\">orders@jacksonvaughn.com</a> and we'll be happy to look into it.</p>",
+            "question_5": "Q: “What is your return policy?”",
+            "answer_5": "<p>All returns must be processed within 30 days of receiving the order. If you are not 100% satisfied with your Jackson Vaughn order, please contact our Support team at orders@jacksonvaughn.com with your order number (found on your order confirmation email) and we’ll help to initiate the return. </p>",
+            "question_6": "",
+            "answer_6": "",
+            "question_7": "",
+            "answer_7": "",
+            "question_8": "",
+            "answer_8": "",
+            "question_9": "",
+            "answer_9": "",
+            "question_10": "",
+            "answer_10": ""
+          }
+        }
+      },
+      "block_order": [
+        "15d9d2f4-1bdd-49c8-9a99-58246020f05c",
+        "f4d12560-a07c-4bd4-a934-2a8eddeaccc9"
+      ],
+      "settings": {
+        "show_breadcrumb": true,
+        "breadcrumb_alignment": "left",
+        "breadcrumb_bg": "",
+        "breadcrumb_gradient": "",
+        "breadcrumb_bg_mb": "#f6f6f6",
+        "breadcrumb_gradient_mb": "",
+        "show_page_title": true,
+        "page_title_alignment": "left",
+        "container": "1170",
+        "mg_top_desktop": 0,
+        "mg_top_tablet": 0,
+        "mg_top_mobile": 0,
+        "mg_bottom_desktop": 0,
+        "mg_bottom_tablet": 0,
+        "mg_bottom_mobile": 0,
+        "show_faqs_filter": false,
+        "faqs_text": "<p>Below FAQ are some common concerns of our customers before purchasing a Jackson Vaughn Candle.\n<br> If you have other questions, please just send it to <a href=\"mailto:orders@jacksonvaughn.com\" style=\"text-decoration: underline;\">orders@jacksonvaughn.com</a>.</p>",
+        "faqs_message_heading": "Need Help?",
+        "faqs_message_text": "<span>If you have an issue or question that requires immediate assistance, please email a Customer Service representative at <a href=\"mailto:orders@jacksonvaughn.com\" style=\"text-decoration: underline;\">orders@jacksonvaughn.com</a>.   \n</span>",
+        "message_method_link_1": "https://facebook.com",
+        "message_method_text_1": "Message Us",
+        "message_method_link_2": "https://gmail.com",
+        "message_method_text_2": "Contact Us",
+        "contact_content_text": "Unable to find an answer?",
+        "contact_text": "Contact Support",
+        "contact_link": "shopify://pages/contact-us",
+        "contact_color": "#ffffff",
+        "contact_color_border": "#284734",
+        "contact_color_bg": "#284734",
+        "contact_color_bg_gradient": "",
+        "contact_color_hover": "#ffffff",
+        "contact_color_border_hover": "#26292d",
+        "contact_color_bg_hover": "#26292d",
+        "contact_color_bg_gradient_hover": ""
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

@@ -1,0 +1,445 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Dosis:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --cream: #FCFAEF;
+    --cream-alt: #FAF7EF;
+    --cream-warm: #FAE9C9;
+    --dark: #232323;
+    --text: #2D2B27;
+    --btn-green: #36402D;
+    --gold: #B78C47;
+    --gold-bright: #F5B857;
+    --gold-cta: #D6A24C;
+    --gold-light: #EBDEc5;
+    --green-check: #35911E;
+    --white: #FFFFFF;
+    --border: rgba(45,43,39,0.13);
+    --font-heading: 'Petrona', serif;
+    --font-body: 'Dosis', sans-serif;
+  }
+
+  #shopify-section-{{ section.id }} .video-section {
+    background: var(--cream);
+    padding: 64px 48px;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+
+  #shopify-section-{{ section.id }} .video-section h2 {
+    font-family: 'Petrona', serif;
+    font-size: 46px;
+    font-weight: 500;
+    color: var(--dark);
+    margin-bottom: 32px;
+    margin-top: 0;
+  }
+
+  #shopify-section-{{ section.id }} .video-carousel-wrap {
+    width: fit-content;
+    margin: 0 auto;
+  }
+
+  #shopify-section-{{ section.id }} .video-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 310px);
+    gap: 12px;
+  }
+
+  #shopify-section-{{ section.id }} .video-item {
+    width: 310px;
+    height: 477px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #shopify-section-{{ section.id }} .video-cta-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 32px;
+  }
+
+  #shopify-section-{{ section.id }} .btn-cart {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--btn-green);
+    color: #fff;
+    border: none;
+    width: 553px;
+    max-width: 100%;
+    height: 78px;
+    padding: 0 24px;
+    font-family: 'Dosis', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  #shopify-section-{{ section.id }} .cta-artisan {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Dosis', sans-serif;
+    font-size: 13px;
+    color: rgba(45, 43, 39, 0.5);
+    margin-top: 10px;
+  }
+
+  #shopify-section-{{ section.id }} .vid-section-imgs {
+    display: flex;
+    gap: 0;
+    margin-top: 36px;
+    margin-left: -48px;
+    margin-right: -48px;
+  }
+
+  #shopify-section-{{ section.id }} .vid-img-ph {
+    flex: 1;
+    height: 192px;
+    overflow: hidden;
+    background: var(--cream-warm);
+  }
+
+  #shopify-section-{{ section.id }} .vid-img-ph img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  #shopify-section-{{ section.id }} .vid-img-ph + .vid-img-ph {
+    border-left: 1px solid var(--border);
+  }
+
+  #shopify-section-{{ section.id }} .video-dots {
+    display: none;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  #shopify-section-{{ section.id }} .vdot {
+    height: 3px;
+    border-radius: 2px;
+    cursor: pointer;
+    width: 36px;
+    background: rgba(183, 140, 71, 0.35);
+    border: none;
+    padding: 0;
+  }
+
+  #shopify-section-{{ section.id }} .vdot.active {
+    background: var(--gold);
+    width: 48px;
+  }
+
+  @media (max-width: 768px) {
+    #shopify-section-{{ section.id }} .video-section {
+      padding: 40px 16px;
+    }
+
+    #shopify-section-{{ section.id }} .video-section h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    #shopify-section-{{ section.id }} .video-carousel-wrap {
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      margin-left: -16px;
+      margin-right: -16px;
+      width: auto;
+    }
+
+    #shopify-section-{{ section.id }} .video-carousel-wrap::-webkit-scrollbar {
+      display: none;
+    }
+
+    #shopify-section-{{ section.id }} .video-grid {
+      display: flex;
+      gap: 8px;
+      padding-left: calc(50% - 92.5px);
+      padding-right: calc(50% - 92.5px);
+      width: max-content;
+    }
+
+    #shopify-section-{{ section.id }} .video-item {
+      flex: 0 0 185px;
+      width: 185px;
+      height: 303px;
+      scroll-snap-align: center;
+    }
+
+    #shopify-section-{{ section.id }} .video-dots {
+      display: flex;
+    }
+
+    #shopify-section-{{ section.id }} .vid-section-imgs {
+      gap: 8px;
+      margin-left: -16px;
+      margin-right: -16px;
+      margin-top: 20px;
+      justify-content: center;
+    }
+
+    #shopify-section-{{ section.id }} .vid-img-ph {
+      flex: 0 0 105px;
+      height: 148px;
+    }
+
+    #shopify-section-{{ section.id }} .vid-img-ph + .vid-img-ph {
+      border-left: none;
+    }
+  }
+</style>
+
+<div class="video-section">
+
+  <h2>{{ section.settings.heading }}</h2>
+
+  <div class="video-carousel-wrap" id="jv-video-wrap-{{ section.id }}">
+    <div class="video-grid" id="jv-video-grid-{{ section.id }}">
+      {% for block in section.blocks %}
+        <div
+          class="video-item"
+          {{ block.shopify_attributes }}
+          {% if block.settings.video_url != blank %}
+            data-video-url="{{ block.settings.video_url }}"
+          {% endif %}
+        >
+          {% if block.settings.poster != blank %}
+            <div style="position:absolute;inset:0;">
+              {{ block.settings.poster | image_url: width: 600 | image_tag: loading: 'lazy', style: 'width:100%;height:100%;object-fit:cover;' }}
+            </div>
+          {% else %}
+            <div style="position:absolute;inset:0;background:#1E1A16;"></div>
+          {% endif %}
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+            <div style="width:52px;height:52px;border-radius:50%;border:2px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;">
+              <svg width="16" height="18" viewBox="0 0 16 18" fill="none"><path d="M2 1L14 9L2 17V1Z" fill="rgba(255,255,255,0.85)"/></svg>
+            </div>
+          </div>
+        </div>
+      {% else %}
+        {% comment %} Fallback placeholder cards when no blocks configured {% endcomment %}
+        {% for i in (1..4) %}
+          <div class="video-item">
+            <div style="position:absolute;inset:0;background:#1E1A16;"></div>
+            <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+              <div style="width:52px;height:52px;border-radius:50%;border:2px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;">
+                <svg width="16" height="18" viewBox="0 0 16 18" fill="none"><path d="M2 1L14 9L2 17V1Z" fill="rgba(255,255,255,0.85)"/></svg>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="video-dots" id="jv-video-dots-{{ section.id }}">
+    {% for block in section.blocks %}
+      <button class="vdot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}"></button>
+    {% endfor %}
+  </div>
+
+  <div class="video-cta-block">
+    <a
+      class="btn-cart"
+      href="{{ section.settings.cta_url | default: '#' }}"
+    >
+      {{ section.settings.cta_text }}
+    </a>
+    {% if section.settings.artisan_text != blank %}
+      <div class="cta-artisan">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="7" cy="7" r="6.5" stroke="rgba(45,43,39,0.4)"/>
+          <path d="M4 7L6.2 9.2L10 5" stroke="rgba(45,43,39,0.4)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        {{ section.settings.artisan_text }}
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="vid-section-imgs">
+    {% if section.settings.strip_image_1 != blank %}
+      <div class="vid-img-ph">
+        {{ section.settings.strip_image_1 | image_url: width: 1200 | image_tag: loading: 'lazy', style: 'width:100%;height:100%;object-fit:cover;' }}
+      </div>
+    {% else %}
+      <div class="vid-img-ph"></div>
+    {% endif %}
+    {% if section.settings.strip_image_2 != blank %}
+      <div class="vid-img-ph">
+        {{ section.settings.strip_image_2 | image_url: width: 1200 | image_tag: loading: 'lazy', style: 'width:100%;height:100%;object-fit:cover;' }}
+      </div>
+    {% else %}
+      <div class="vid-img-ph"></div>
+    {% endif %}
+    {% if section.settings.strip_image_3 != blank %}
+      <div class="vid-img-ph">
+        {{ section.settings.strip_image_3 | image_url: width: 1200 | image_tag: loading: 'lazy', style: 'width:100%;height:100%;object-fit:cover;' }}
+      </div>
+    {% else %}
+      <div class="vid-img-ph"></div>
+    {% endif %}
+  </div>
+
+</div>
+
+<script>
+(function() {
+  var sectionId = '{{ section.id }}';
+  var el = document.getElementById('shopify-section-' + sectionId);
+  if (!el) return;
+
+  var wrap = el.querySelector('.video-carousel-wrap');
+  var dots = el.querySelectorAll('.vdot');
+  var items = el.querySelectorAll('.video-item');
+  var activeIdx = 0;
+
+  function setActiveDot(idx) {
+    activeIdx = idx;
+    dots.forEach(function(d, i) {
+      d.classList.toggle('active', i === idx);
+    });
+  }
+
+  // Dot click nav
+  dots.forEach(function(dot) {
+    dot.addEventListener('click', function() {
+      var idx = parseInt(dot.dataset.index, 10);
+      setActiveDot(idx);
+      if (items[idx]) {
+        items[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    });
+  });
+
+  // Scroll listener to update active dot on mobile swipe
+  if (wrap) {
+    wrap.addEventListener('scroll', function() {
+      var wrapRect = wrap.getBoundingClientRect();
+      var wrapCenter = wrapRect.left + wrapRect.width / 2;
+      var closest = 0;
+      var closestDist = Infinity;
+      items.forEach(function(item, i) {
+        var rect = item.getBoundingClientRect();
+        var itemCenter = rect.left + rect.width / 2;
+        var dist = Math.abs(wrapCenter - itemCenter);
+        if (dist < closestDist) {
+          closestDist = dist;
+          closest = i;
+        }
+      });
+      if (closest !== activeIdx) setActiveDot(closest);
+    }, { passive: true });
+  }
+
+  // Touch swipe gesture for non-scroll environments
+  var touchStartX = 0;
+  var touchEndX = 0;
+
+  if (wrap) {
+    wrap.addEventListener('touchstart', function(e) {
+      touchStartX = e.changedTouches[0].clientX;
+    }, { passive: true });
+
+    wrap.addEventListener('touchend', function(e) {
+      touchEndX = e.changedTouches[0].clientX;
+      var diff = touchStartX - touchEndX;
+      if (Math.abs(diff) > 40) {
+        var newIdx = diff > 0
+          ? Math.min(activeIdx + 1, items.length - 1)
+          : Math.max(activeIdx - 1, 0);
+        setActiveDot(newIdx);
+      }
+    }, { passive: true });
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "JV - Video Showcase",
+  "tag": "section",
+  "class": "jv-video-showcase",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "See It in Action"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Button Text",
+      "default": "ADD TO CART"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA Button URL"
+    },
+    {
+      "type": "text",
+      "id": "artisan_text",
+      "label": "Artisan Badge Text",
+      "default": "25 Years of Hand-Poured Quality"
+    },
+    {
+      "type": "image_picker",
+      "id": "strip_image_1",
+      "label": "Bottom Strip Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "strip_image_2",
+      "label": "Bottom Strip Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "strip_image_3",
+      "label": "Bottom Strip Image 3"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "Video",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "poster",
+          "label": "Video Poster / Thumbnail Image"
+        },
+        {
+          "type": "url",
+          "id": "video_url",
+          "label": "Video URL (optional)"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "JV - Video Showcase",
+      "blocks": [
+        { "type": "video" },
+        { "type": "video" },
+        { "type": "video" },
+        { "type": "video" }
+      ]
+    }
+  ]
+}
+{% endschema %}

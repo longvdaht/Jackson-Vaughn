@@ -1,0 +1,998 @@
+{% comment %} TS - Hero Product {% endcomment %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Dosis:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --cream: #fcf9ef;
+    --cream-mid: #faf7ef;
+    --text: #232323;
+    --body-color: #2d2b27;
+    --green: #36402d;
+    --gold: #c29b62;
+    --gold-dk: #b78c47;
+    --star: #f5b857;
+    --verified: #76913e;
+    --border: #d8d5ce;
+    --font-h: 'Petrona', serif;
+    --font-b: 'Dosis', sans-serif;
+  }
+
+  #shopify-section-{{ section.id }} .hero {
+    background: var(--cream);
+    padding: 0 16px;
+  }
+
+  #shopify-section-{{ section.id }} .hero__inner {
+    max-width: 1408px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 602px;
+    gap: 20px;
+    padding: 18px 0 32px;
+    align-items: start;
+  }
+
+  /* Gallery */
+  #shopify-section-{{ section.id }} .gallery {
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 20px;
+  }
+
+  #shopify-section-{{ section.id }} .gallery__row {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  #shopify-section-{{ section.id }} .gallery__main {
+    width: 600px;
+    height: 600px;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #shopify-section-{{ section.id }} .gallery__main img,
+  #shopify-section-{{ section.id }} .gallery__main .img-placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #shopify-section-{{ section.id }} .gallery__badge {
+    position: absolute;
+    top: 20px;
+    right: 0;
+    background: var(--gold);
+    color: #fff;
+    font-family: var(--font-b);
+    font-size: 20px;
+    font-weight: 700;
+    padding: 6px 18px;
+    text-transform: uppercase;
+    z-index: 2;
+  }
+
+  #shopify-section-{{ section.id }} .gallery__col {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 135px;
+  }
+
+  #shopify-section-{{ section.id }} .gallery__thumbs {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  #shopify-section-{{ section.id }} .gallery__thumb {
+    width: 135px;
+    height: 135px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+  }
+
+  #shopify-section-{{ section.id }} .gallery__thumb img,
+  #shopify-section-{{ section.id }} .gallery__thumb .img-placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #shopify-section-{{ section.id }} .gallery__thumb.active {
+    border-color: var(--gold);
+  }
+
+  #shopify-section-{{ section.id }} .gallery__controls {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+    padding-left: 143px;
+  }
+
+  #shopify-section-{{ section.id }} .gallery__arrow {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+  }
+
+  #shopify-section-{{ section.id }} .gallery__arrow.prev {
+    background: transparent;
+    border: 1.5px solid #c0bbb3;
+  }
+
+  #shopify-section-{{ section.id }} .gallery__arrow.next {
+    background: var(--gold);
+    border: none;
+  }
+
+  /* Info box (mobile only) */
+  #shopify-section-{{ section.id }} .info-box {
+    border: 1px solid var(--border);
+    display: flex;
+  }
+
+  #shopify-section-{{ section.id }} .info-box__left {
+    flex: 1;
+    padding: 14px;
+  }
+
+  #shopify-section-{{ section.id }} .info-box__rating {
+    font-family: var(--font-b);
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 8px;
+  }
+
+  #shopify-section-{{ section.id }} .info-box__stars {
+    color: var(--star);
+    font-size: 14px;
+    margin-right: 4px;
+  }
+
+  #shopify-section-{{ section.id }} .info-box__title {
+    font-family: var(--font-h);
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  #shopify-section-{{ section.id }} .info-box__subtitle {
+    font-family: var(--font-b);
+    font-size: 14px;
+    color: rgba(45,43,39,0.7);
+    line-height: 1.45;
+    margin-bottom: 10px;
+  }
+
+  #shopify-section-{{ section.id }} .info-box__desc {
+    font-family: var(--font-b);
+    font-size: 14px;
+    color: rgba(45,43,39,0.7);
+    line-height: 1.55;
+  }
+
+  #shopify-section-{{ section.id }} .info-box__right {
+    width: 90px;
+    border-left: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+  }
+
+  #shopify-section-{{ section.id }} .trust-badge {
+    flex: 1;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 8px;
+    text-align: center;
+    gap: 5px;
+    font-family: var(--font-b);
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--text);
+  }
+
+  #shopify-section-{{ section.id }} .trust-badge:last-child {
+    border-bottom: none;
+  }
+
+  #shopify-section-{{ section.id }} .trust-badge svg {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+  }
+
+  /* Product column */
+  #shopify-section-{{ section.id }} .product-col {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Hero info image (desktop only) */
+  #shopify-section-{{ section.id }} .product-hero-image {
+    display: none;
+    width: 602px;
+    height: 341px;
+    overflow: hidden;
+  }
+
+  #shopify-section-{{ section.id }} .product-hero-image img,
+  #shopify-section-{{ section.id }} .product-hero-image .img-placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Form box */
+  #shopify-section-{{ section.id }} .form-box {
+    border: 1px solid var(--border);
+    border-top: none;
+    padding: 16px 16px 0;
+  }
+
+  #shopify-section-{{ section.id }} .form-label {
+    font-family: var(--font-b);
+    font-size: 18px;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+
+  #shopify-section-{{ section.id }} .size-grid {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  #shopify-section-{{ section.id }} .size-btn {
+    flex: 1;
+    border: 1px solid var(--border);
+    padding: 12px 10px;
+    text-align: center;
+    cursor: pointer;
+    background: var(--cream);
+    font-family: var(--font-b);
+    font-size: 15px;
+    color: var(--text);
+  }
+
+  #shopify-section-{{ section.id }} .size-btn .size-note {
+    display: block;
+    font-size: 12px;
+    color: rgba(45,43,39,0.5);
+    margin-top: 2px;
+  }
+
+  #shopify-section-{{ section.id }} .size-btn.active {
+    border-color: var(--gold-dk);
+    border-width: 2px;
+    background: #f5ead8;
+  }
+
+  #shopify-section-{{ section.id }} .purchase-options {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+
+  #shopify-section-{{ section.id }} .purchase-opt {
+    border: 1px solid var(--border);
+    padding: 13px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    background: var(--cream);
+    height: 66px;
+    font-family: var(--font-b);
+  }
+
+  #shopify-section-{{ section.id }} .purchase-opt__title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  #shopify-section-{{ section.id }} .purchase-opt__sub {
+    font-size: 13px;
+    color: rgba(45,43,39,0.6);
+    margin-top: 2px;
+  }
+
+  #shopify-section-{{ section.id }} .purchase-opt__price {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    text-align: right;
+  }
+
+  #shopify-section-{{ section.id }} .purchase-opt__old {
+    font-size: 13px;
+    color: #999;
+    text-decoration: line-through;
+    display: block;
+    text-align: right;
+  }
+
+  #shopify-section-{{ section.id }} .purchase-opt.gold-opt {
+    border-color: var(--gold-dk);
+    border-width: 2px;
+    background: #f5ead8;
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    padding: 10px 14px 14px;
+  }
+
+  #shopify-section-{{ section.id }} .gold-opt__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+
+  #shopify-section-{{ section.id }} .gold-opt__badge {
+    display: inline-block;
+    background: var(--gold);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 6px;
+  }
+
+  #shopify-section-{{ section.id }} .gold-opt__img {
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  #shopify-section-{{ section.id }} .gold-opt__img img,
+  #shopify-section-{{ section.id }} .gold-opt__img .img-placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  #shopify-section-{{ section.id }} .gold-opt__items {
+    font-family: var(--font-b);
+    font-size: 13px;
+    color: rgba(45,43,39,0.65);
+    margin-top: 6px;
+  }
+
+  #shopify-section-{{ section.id }} .stock-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    font-family: var(--font-b);
+    font-size: 13px;
+    margin-bottom: 12px;
+    color: var(--text);
+  }
+
+  #shopify-section-{{ section.id }} .stock-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #5aab2e;
+    flex-shrink: 0;
+  }
+
+  #shopify-section-{{ section.id }} .btn-atc {
+    display: block;
+    width: 100%;
+    background: var(--green);
+    color: #fff;
+    font-family: var(--font-b);
+    font-size: 19px;
+    font-weight: 500;
+    padding: 18px 24px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .trust-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-b);
+    font-size: 14px;
+    margin: 12px 0 14px;
+    color: var(--text);
+  }
+
+  #shopify-section-{{ section.id }} .trust-line span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 20px;
+  }
+
+  #shopify-section-{{ section.id }} .trust-line__sep {
+    width: 1px;
+    height: 22px;
+    background: #d0ccc6;
+  }
+
+  #shopify-section-{{ section.id }} .inline-review {
+    border: 1px solid var(--border);
+    padding: 16px;
+    position: relative;
+    background: var(--cream);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  #shopify-section-{{ section.id }} .inline-review__body {
+    flex: 1;
+  }
+
+  #shopify-section-{{ section.id }} .inline-review__stars {
+    color: var(--star);
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  #shopify-section-{{ section.id }} .inline-review__quote {
+    font-family: var(--font-b);
+    font-size: 14px;
+    color: rgba(45,43,39,0.8);
+    line-height: 1.6;
+    margin-bottom: 10px;
+    font-style: italic;
+  }
+
+  #shopify-section-{{ section.id }} .inline-review__author {
+    font-family: var(--font-b);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  #shopify-section-{{ section.id }} .inline-review__verified {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--font-b);
+    font-size: 13px;
+    color: var(--verified);
+    font-weight: 500;
+  }
+
+  #shopify-section-{{ section.id }} .inline-review__img {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  #shopify-section-{{ section.id }} .inline-review__img img,
+  #shopify-section-{{ section.id }} .inline-review__img .img-placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  #shopify-section-{{ section.id }} .accordion {
+    margin: 12px -16px 0;
+  }
+
+  #shopify-section-{{ section.id }} .accordion-item {
+    border-top: 1px solid var(--border);
+  }
+
+  #shopify-section-{{ section.id }} .accordion-toggle {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-b);
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+
+  #shopify-section-{{ section.id }} .accordion-icon {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 1.5px solid #b8b4ae;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6b6860;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+
+  #shopify-section-{{ section.id }} .accordion-body {
+    display: none;
+    padding: 0 16px 16px;
+    font-size: 14px;
+    color: rgba(45,43,39,0.7);
+    line-height: 1.6;
+    font-family: var(--font-b);
+  }
+
+  #shopify-section-{{ section.id }} .accordion-body.open {
+    display: block;
+  }
+
+  /* Desktop overrides */
+  @media (min-width: 769px) {
+    #shopify-section-{{ section.id }} .product-hero-image {
+      display: block;
+    }
+
+    #shopify-section-{{ section.id }} .info-box {
+      display: none;
+    }
+
+    #shopify-section-{{ section.id }} .form-box {
+      border-top: 1px solid var(--border);
+    }
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    #shopify-section-{{ section.id }} .hero__inner {
+      grid-template-columns: 1fr;
+      gap: 0;
+      padding: 8px 0 0;
+    }
+
+    #shopify-section-{{ section.id }} .gallery {
+      position: static;
+      width: fit-content;
+      margin: 0 auto;
+    }
+
+    #shopify-section-{{ section.id }} .gallery__row {
+      flex-direction: row-reverse;
+      gap: 8px;
+    }
+
+    #shopify-section-{{ section.id }} .gallery__main {
+      width: 270px !important;
+      height: 270px !important;
+    }
+
+    #shopify-section-{{ section.id }} .gallery__col {
+      width: 52px !important;
+      height: 270px !important;
+      position: relative;
+    }
+
+    #shopify-section-{{ section.id }} .gallery__thumbs {
+      width: 52px !important;
+      height: 270px !important;
+      overflow-y: scroll;
+      scrollbar-width: none;
+    }
+
+    #shopify-section-{{ section.id }} .gallery__thumb {
+      width: 52px !important;
+      height: 52px !important;
+    }
+
+    #shopify-section-{{ section.id }} .gallery__controls {
+      position: absolute;
+      bottom: 12px;
+      right: -266px;
+      gap: 8px;
+      padding-left: 0;
+    }
+
+    #shopify-section-{{ section.id }} .gallery__arrow.prev,
+    #shopify-section-{{ section.id }} .gallery__arrow.next {
+      background: rgba(255,255,255,0.6) !important;
+      border: 1.5px solid rgba(255,255,255,0.5) !important;
+    }
+
+    #shopify-section-{{ section.id }} .form-box {
+      border-top: none;
+    }
+  }
+
+  #shopify-section-{{ section.id }} .img-placeholder {
+    background: #d0cdc4;
+    color: #888;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    text-transform: uppercase;
+    font-family: var(--font-b);
+    width: 100%;
+    height: 100%;
+  }
+</style>
+
+<section class="hero" id="ts-hero-{{ section.id }}">
+  <div class="hero__inner">
+
+    <!-- Gallery Column -->
+    <div class="gallery">
+      <div class="gallery__row">
+        <!-- Thumbnails -->
+        <div class="gallery__col">
+          <div class="gallery__thumbs" id="gallery-thumbs-{{ section.id }}">
+            {% assign thumb_ids = 'thumb_1,thumb_2,thumb_3,thumb_4' | split: ',' %}
+            {% for thumb_id in thumb_ids %}
+              {% assign thumb_img = section.settings[thumb_id] %}
+              <div class="gallery__thumb {% if forloop.first %}active{% endif %}" data-thumb="{{ forloop.index0 }}">
+                {% if thumb_img %}
+                  {{ thumb_img | image_url: width: 270 | image_tag: loading: 'lazy' }}
+                {% else %}
+                  <div class="img-placeholder">Thumb {{ forloop.index }}</div>
+                {% endif %}
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+        <!-- Main Image -->
+        <div class="gallery__main" id="gallery-main-{{ section.id }}">
+          {% if section.settings.main_image %}
+            {{ section.settings.main_image | image_url: width: 1200 | image_tag: loading: 'lazy' }}
+          {% else %}
+            <div class="img-placeholder">Main Product Image</div>
+          {% endif %}
+          {% if section.settings.badge_text != blank %}
+            <div class="gallery__badge">{{ section.settings.badge_text }}</div>
+          {% endif %}
+        </div>
+      </div>
+      <!-- Arrow controls -->
+      <div class="gallery__controls" style="display:flex;">
+        <button class="gallery__arrow prev" id="gallery-prev-{{ section.id }}" aria-label="Previous image">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7L9 12" stroke="#6b6860" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="gallery__arrow next" id="gallery-next-{{ section.id }}" aria-label="Next image">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 2L10 7L5 12" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Product Column -->
+    <div class="product-col">
+
+      <!-- Mobile: Info Box -->
+      <div class="info-box">
+        <div class="info-box__left">
+          <div class="info-box__rating">
+            <span class="info-box__stars">★★★★★</span>
+            {{ section.settings.rating_text }}
+          </div>
+          <h1 class="info-box__title">{{ section.settings.title }}</h1>
+          <div class="info-box__subtitle">{{ section.settings.subtitle }}</div>
+          {% if section.settings.description != blank %}
+            <div class="info-box__desc">{{ section.settings.description }}</div>
+          {% endif %}
+        </div>
+        <div class="info-box__right">
+          <div class="trust-badge">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 2L3 6V11C3 15.4 6.4 19.5 11 20.5C15.6 19.5 19 15.4 19 11V6L11 2Z" fill="none" stroke="#c29b62" stroke-width="1.5"/></svg>
+            <span>{{ section.settings.trust_1 }}</span>
+          </div>
+          <div class="trust-badge">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 2C11 2 4 6 4 12C4 16 7.1 19 11 19C14.9 19 18 16 18 12C18 6 11 2 11 2Z" stroke="#c29b62" stroke-width="1.5" fill="none"/></svg>
+            <span>{{ section.settings.trust_2 }}</span>
+          </div>
+          <div class="trust-badge">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8" stroke="#c29b62" stroke-width="1.5"/><path d="M11 7v4l2.5 2.5" stroke="#c29b62" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span>{{ section.settings.trust_3 }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Desktop: Hero Info Image -->
+      <div class="product-hero-image">
+        {% if section.settings.hero_info_image %}
+          {{ section.settings.hero_info_image | image_url: width: 1200 | image_tag: loading: 'lazy' }}
+        {% else %}
+          <div class="img-placeholder">Hero Info Image (602×341)</div>
+        {% endif %}
+      </div>
+
+      <!-- Form Box -->
+      <div class="form-box">
+
+        <!-- Size Selector -->
+        <div class="form-label">Select Size</div>
+        <div class="size-grid" id="size-grid-{{ section.id }}">
+          <button class="size-btn active" data-size="1">
+            {{ section.settings.size_1_label }}
+            {% if section.settings.size_1_note != blank %}
+              <span class="size-note">{{ section.settings.size_1_note }}</span>
+            {% endif %}
+          </button>
+          <button class="size-btn" data-size="2">
+            {{ section.settings.size_2_label }}
+            {% if section.settings.size_2_note != blank %}
+              <span class="size-note">{{ section.settings.size_2_note }}</span>
+            {% endif %}
+          </button>
+        </div>
+
+        <!-- Purchase Options -->
+        <div class="form-label">Purchase Options</div>
+        <div class="purchase-options" id="purchase-opts-{{ section.id }}">
+          <!-- Option 1 -->
+          <div class="purchase-opt" data-opt="1">
+            <div>
+              <div class="purchase-opt__title">{{ section.settings.opt1_title }}</div>
+            </div>
+            <div class="purchase-opt__price">{{ section.settings.opt1_price }}</div>
+          </div>
+
+          <!-- Option 2 -->
+          <div class="purchase-opt" data-opt="2">
+            <div>
+              <div class="purchase-opt__title">{{ section.settings.opt2_title }}</div>
+              <div class="purchase-opt__sub">{{ section.settings.opt2_sub }}</div>
+            </div>
+            <div>
+              <div class="purchase-opt__price">{{ section.settings.opt2_price }}</div>
+              <span class="purchase-opt__old">{{ section.settings.opt2_old }}</span>
+            </div>
+          </div>
+
+          <!-- Option 3: Gold (Starter Kit) -->
+          <div class="purchase-opt gold-opt" data-opt="3">
+            <div class="gold-opt__top">
+              <div>
+                <span class="gold-opt__badge">Most Popular</span>
+                <div class="purchase-opt__title">{{ section.settings.kit_title }}</div>
+                <div class="purchase-opt__sub">{{ section.settings.kit_sub }}</div>
+              </div>
+              <div class="gold-opt__img">
+                {% if section.settings.kit_image %}
+                  {{ section.settings.kit_image | image_url: width: 120 | image_tag: loading: 'lazy' }}
+                {% else %}
+                  <div class="img-placeholder">Kit</div>
+                {% endif %}
+              </div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <div class="gold-opt__items">{{ section.settings.kit_items }}</div>
+              <div>
+                <div class="purchase-opt__price">{{ section.settings.kit_price }}</div>
+                <span class="purchase-opt__old">{{ section.settings.kit_old }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- In Stock -->
+        <div class="stock-line">
+          <span class="stock-dot"></span>
+          {{ section.settings.instock_text }}
+        </div>
+
+        <!-- ATC Button -->
+        <button class="btn-atc">{{ section.settings.cta_text }}</button>
+
+        <!-- Trust Line -->
+        <div class="trust-line">
+          <span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1L2 4V8C2 11.3 4.7 14.4 8 15C11.3 14.4 14 11.3 14 8V4L8 1Z" stroke="#888" stroke-width="1.2" fill="none"/></svg>
+            Easy Returns
+          </span>
+          <div class="trust-line__sep"></div>
+          <span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="5" width="12" height="9" rx="1" stroke="#888" stroke-width="1.2"/><path d="M5 5V4a3 3 0 016 0v1" stroke="#888" stroke-width="1.2"/></svg>
+            Secure Checkout
+          </span>
+        </div>
+
+        <!-- Inline Review -->
+        <div class="inline-review">
+          <div class="inline-review__body">
+            <div class="inline-review__stars">★★★★★</div>
+            <div class="inline-review__quote">"{{ section.settings.review_quote }}"</div>
+            <div class="inline-review__author">{{ section.settings.review_author }}</div>
+            <div class="inline-review__verified">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7L5.5 10.5L12 4" stroke="#76913e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Verified Buyer
+            </div>
+          </div>
+          <div class="inline-review__img">
+            {% if section.settings.review_image %}
+              {{ section.settings.review_image | image_url: width: 128 | image_tag: loading: 'lazy' }}
+            {% else %}
+              <div class="img-placeholder">Product</div>
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- Accordions -->
+        <div class="accordion" id="accordion-{{ section.id }}">
+          {% for block in section.blocks %}
+            <div class="accordion-item" {{ block.shopify_attributes }}>
+              <button class="accordion-toggle" aria-expanded="false">
+                {{ block.settings.title }}
+                <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">
+                {{ block.settings.body }}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+
+      </div><!-- /form-box -->
+    </div><!-- /product-col -->
+  </div><!-- /hero__inner -->
+</section>
+
+<script>
+(function() {
+  var sid = '{{ section.id }}';
+
+  // Gallery data
+  var thumbImages = [];
+  document.querySelectorAll('#gallery-thumbs-' + sid + ' .gallery__thumb').forEach(function(thumb, i) {
+    var img = thumb.querySelector('img');
+    thumbImages.push(img ? img.src : null);
+  });
+  var currentIndex = 0;
+
+  function setActiveImage(index) {
+    var thumbs = document.querySelectorAll('#gallery-thumbs-' + sid + ' .gallery__thumb');
+    thumbs.forEach(function(t) { t.classList.remove('active'); });
+    if (thumbs[index]) thumbs[index].classList.add('active');
+
+    var mainWrap = document.querySelector('#gallery-main-' + sid);
+    if (mainWrap && thumbImages[index]) {
+      var mainImg = mainWrap.querySelector('img');
+      if (mainImg) mainImg.src = thumbImages[index];
+    }
+    currentIndex = index;
+  }
+
+  document.querySelectorAll('#gallery-thumbs-' + sid + ' .gallery__thumb').forEach(function(thumb, i) {
+    thumb.addEventListener('click', function() { setActiveImage(i); });
+  });
+
+  var prevBtn = document.getElementById('gallery-prev-' + sid);
+  var nextBtn = document.getElementById('gallery-next-' + sid);
+  if (prevBtn) prevBtn.addEventListener('click', function() {
+    var newIdx = (currentIndex - 1 + thumbImages.length) % thumbImages.length;
+    setActiveImage(newIdx);
+  });
+  if (nextBtn) nextBtn.addEventListener('click', function() {
+    var newIdx = (currentIndex + 1) % thumbImages.length;
+    setActiveImage(newIdx);
+  });
+
+  // Size buttons
+  document.querySelectorAll('#size-grid-' + sid + ' .size-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('#size-grid-' + sid + ' .size-btn').forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+    });
+  });
+
+  // Purchase options
+  document.querySelectorAll('#purchase-opts-' + sid + ' .purchase-opt').forEach(function(opt) {
+    opt.addEventListener('click', function() {
+      document.querySelectorAll('#purchase-opts-' + sid + ' .purchase-opt').forEach(function(o) {
+        if (!o.classList.contains('gold-opt')) o.style.borderColor = '';
+      });
+      opt.style.borderColor = 'var(--gold-dk)';
+    });
+  });
+
+  // Accordion
+  document.querySelectorAll('#accordion-' + sid + ' .accordion-toggle').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var body = btn.nextElementSibling;
+      var icon = btn.querySelector('.accordion-icon');
+      var isOpen = body.classList.contains('open');
+      body.classList.toggle('open', !isOpen);
+      if (icon) icon.textContent = isOpen ? '+' : '−';
+      btn.setAttribute('aria-expanded', !isOpen);
+    });
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "TS - Hero Product",
+  "tag": "section",
+  "class": "ts-hero-product",
+  "settings": [
+    { "type": "text", "id": "badge_text", "label": "Badge Text", "default": "Best Seller" },
+    { "type": "image_picker", "id": "main_image", "label": "Main Product Image" },
+    { "type": "image_picker", "id": "thumb_1", "label": "Thumbnail 1" },
+    { "type": "image_picker", "id": "thumb_2", "label": "Thumbnail 2" },
+    { "type": "image_picker", "id": "thumb_3", "label": "Thumbnail 3" },
+    { "type": "image_picker", "id": "thumb_4", "label": "Thumbnail 4" },
+    { "type": "image_picker", "id": "hero_info_image", "label": "Hero Info Image (desktop, 602×341)" },
+    { "type": "text", "id": "rating_text", "label": "Rating Text", "default": "Rated 4.8 / 5.0 Excellent" },
+    { "type": "text", "id": "title", "label": "Product Title", "default": "Texas Spring" },
+    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "Poured from Texas Soil. Ready to Burn the Moment it Arrives." },
+    { "type": "textarea", "id": "description", "label": "Product Description" },
+    { "type": "text", "id": "trust_1", "label": "Trust Badge 1", "default": "Made in Texas" },
+    { "type": "text", "id": "trust_2", "label": "Trust Badge 2", "default": "Hand-Poured Soy Wax" },
+    { "type": "text", "id": "trust_3", "label": "Trust Badge 3", "default": "Up To 60hr Burn Time" },
+    { "type": "text", "id": "size_1_label", "label": "Size 1 Label", "default": "16OZ JAR – $38" },
+    { "type": "text", "id": "size_1_note", "label": "Size 1 Note", "default": "Hour Burn Time" },
+    { "type": "text", "id": "size_2_label", "label": "Size 2 Label", "default": "9OZ JAR – $28" },
+    { "type": "text", "id": "size_2_note", "label": "Size 2 Note", "default": "Hour Burn Time" },
+    { "type": "text", "id": "opt1_title", "label": "Option 1 Title", "default": "Buy 1 Candle" },
+    { "type": "text", "id": "opt1_price", "label": "Option 1 Price", "default": "$38.00" },
+    { "type": "text", "id": "opt2_title", "label": "Option 2 Title", "default": "Buy 3 Candles" },
+    { "type": "text", "id": "opt2_sub", "label": "Option 2 Subtitle", "default": "$32.67 per candle + FREE shipping" },
+    { "type": "text", "id": "opt2_price", "label": "Option 2 Price", "default": "$98.00" },
+    { "type": "text", "id": "opt2_old", "label": "Option 2 Old Price", "default": "$114.00" },
+    { "type": "text", "id": "kit_title", "label": "Starter Kit Title", "default": "Buy the Starter Kit" },
+    { "type": "text", "id": "kit_sub", "label": "Starter Kit Subtitle", "default": "Save 28% + FREE shipping" },
+    { "type": "text", "id": "kit_price", "label": "Starter Kit Price", "default": "$98.00" },
+    { "type": "text", "id": "kit_old", "label": "Starter Kit Old Price", "default": "$114.00" },
+    { "type": "textarea", "id": "kit_items", "label": "Starter Kit Items", "default": "Includes: 3 Candles + Wick Trimmer + Candle Tray" },
+    { "type": "image_picker", "id": "kit_image", "label": "Starter Kit Image" },
+    { "type": "text", "id": "instock_text", "label": "In-Stock Text", "default": "In stock – Ready for next day dispatch" },
+    { "type": "text", "id": "cta_text", "label": "CTA Button Text", "default": "Add to Cart" },
+    { "type": "text", "id": "review_quote", "label": "Review Quote", "default": "The scent throw on this candle is unreal — my whole living room smells like a spring garden within minutes." },
+    { "type": "text", "id": "review_author", "label": "Review Author", "default": "Megan T." },
+    { "type": "image_picker", "id": "review_image", "label": "Review Product Image" }
+  ],
+  "blocks": [
+    {
+      "type": "accordion",
+      "name": "Accordion",
+      "limit": 4,
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Accordion Title" },
+        { "type": "richtext", "id": "body", "label": "Content", "default": "<p>Accordion content goes here.</p>" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TS - Hero Product",
+      "blocks": [
+        { "type": "accordion", "settings": { "title": "Candle Care 101", "body": "<p>Trim your wick to 1/4 inch before each burn. Allow the wax to melt to the edges on the first burn. Keep away from drafts and flammable materials.</p>" } },
+        { "type": "accordion", "settings": { "title": "Shipping & Returns", "body": "<p>Orders ship within 1 business day. Free shipping on orders over $60. Easy 30-day returns on unopened items.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

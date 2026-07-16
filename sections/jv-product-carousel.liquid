@@ -1,0 +1,404 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Dosis:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --cream: #FCFAEF;
+    --cream-alt: #FAF7EF;
+    --cream-warm: #FAE9C9;
+    --dark: #232323;
+    --text: #2D2B27;
+    --btn-green: #36402D;
+    --gold: #B78C47;
+    --gold-bright: #F5B857;
+    --gold-cta: #D6A24C;
+    --gold-light: #EBDEc5;
+    --green-check: #35911E;
+    --white: #FFFFFF;
+    --border: rgba(45,43,39,0.13);
+    --font-heading: 'Petrona', serif;
+    --font-body: 'Dosis', sans-serif;
+  }
+
+  #shopify-section-{{ section.id }} .product-carousel-section {
+    background: var(--cream);
+    padding: 64px 48px;
+    max-width: 1600px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--border);
+  }
+
+  #shopify-section-{{ section.id }} .section-head {
+    margin-bottom: 36px;
+  }
+
+  #shopify-section-{{ section.id }} .section-head h2 {
+    font-family: 'Petrona', serif;
+    font-size: 60px;
+    font-weight: 500;
+    color: var(--dark);
+    white-space: nowrap;
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .gold-rule {
+    width: 48px;
+    height: 2px;
+    background: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  #shopify-section-{{ section.id }} .carousel-wrap {
+    overflow: hidden;
+    cursor: grab;
+    max-width: 1280px;
+  }
+
+  #shopify-section-{{ section.id }} .carousel-wrap.is-grabbing {
+    cursor: grabbing;
+  }
+
+  #shopify-section-{{ section.id }} .carousel-track {
+    display: flex;
+    gap: 16px;
+    transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  #shopify-section-{{ section.id }} .c-card {
+    flex: 0 0 416px;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  #shopify-section-{{ section.id }} .c-card-img {
+    width: 416px;
+    height: 441px;
+    overflow: hidden;
+    background: var(--cream-warm);
+  }
+
+  #shopify-section-{{ section.id }} .c-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  #shopify-section-{{ section.id }} .c-card-name {
+    font-family: 'Dosis', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-top: 12px;
+  }
+
+  #shopify-section-{{ section.id }} .carousel-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  #shopify-section-{{ section.id }} .carousel-dots {
+    display: flex;
+    gap: 6px;
+  }
+
+  #shopify-section-{{ section.id }} .cdot {
+    height: 3px;
+    border-radius: 2px;
+    cursor: pointer;
+    background: var(--gold-light);
+    width: 30px;
+    transition: width 0.3s, background 0.3s;
+    border: none;
+    padding: 0;
+  }
+
+  #shopify-section-{{ section.id }} .cdot.active {
+    width: 48px;
+    background: var(--gold);
+  }
+
+  #shopify-section-{{ section.id }} .c-arr {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(45, 43, 39, 0.35);
+    background: transparent;
+    color: var(--dark);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+
+  #shopify-section-{{ section.id }} .c-arr.c-arr-next {
+    background: var(--dark);
+    color: #fff;
+    border-color: var(--dark);
+  }
+
+  #shopify-section-{{ section.id }} .cta-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+  }
+
+  #shopify-section-{{ section.id }} .btn-cart {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--btn-green);
+    color: #fff;
+    border: none;
+    width: 553px;
+    max-width: 100%;
+    height: 78px;
+    padding: 0 24px;
+    font-family: 'Dosis', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  #shopify-section-{{ section.id }} .cta-artisan {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Dosis', sans-serif;
+    font-size: 13px;
+    color: rgba(45, 43, 39, 0.5);
+    margin-top: 10px;
+  }
+
+  @media (max-width: 768px) {
+    #shopify-section-{{ section.id }} .product-carousel-section {
+      padding: 40px 16px;
+    }
+
+    #shopify-section-{{ section.id }} .section-head h2 {
+      font-size: 28px;
+      white-space: normal;
+    }
+
+    #shopify-section-{{ section.id }} .c-card {
+      flex: 0 0 261px;
+    }
+
+    #shopify-section-{{ section.id }} .c-card-img {
+      width: 261px;
+      height: 339px;
+    }
+  }
+</style>
+
+<div class="product-carousel-section">
+
+  <div class="section-head">
+    <div class="gold-rule"></div>
+    <h2>{{ section.settings.heading }}</h2>
+  </div>
+
+  <div class="carousel-wrap" id="jv-carousel-wrap-{{ section.id }}">
+    <div class="carousel-track" id="jv-carousel-track-{{ section.id }}">
+      {% for block in section.blocks %}
+        <a
+          class="c-card"
+          href="{{ block.settings.product_url | default: '#' }}"
+          {{ block.shopify_attributes }}
+        >
+          <div class="c-card-img">
+            {% if block.settings.image != blank %}
+              {{ block.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', style: 'width:100%;height:100%;object-fit:cover;' }}
+            {% else %}
+              <div style="width:100%;height:100%;background:var(--cream-warm);"></div>
+            {% endif %}
+          </div>
+          {% if block.settings.product_name != blank %}
+            <div class="c-card-name">{{ block.settings.product_name }}</div>
+          {% endif %}
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="carousel-nav">
+    <button class="c-arr c-arr-prev" id="jv-prev-{{ section.id }}" aria-label="Previous">&#8592;</button>
+    <div class="carousel-dots" id="jv-dots-{{ section.id }}">
+      {% assign desktop_pages = section.blocks.size | minus: 2 %}
+      {% assign mobile_pages = section.blocks.size | minus: 0 %}
+      {% for i in (0..3) %}
+        <button class="cdot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}"></button>
+      {% endfor %}
+    </div>
+    <button class="c-arr c-arr-next" id="jv-next-{{ section.id }}" aria-label="Next">&#8594;</button>
+  </div>
+
+  <div class="cta-block">
+    <a
+      class="btn-cart"
+      href="{{ section.settings.cta_url | default: '#' }}"
+    >
+      {{ section.settings.cta_text }}
+    </a>
+    {% if section.settings.artisan_text != blank %}
+      <div class="cta-artisan">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="7" cy="7" r="6.5" stroke="rgba(45,43,39,0.4)"/>
+          <path d="M4 7L6.2 9.2L10 5" stroke="rgba(45,43,39,0.4)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        {{ section.settings.artisan_text }}
+      </div>
+    {% endif %}
+  </div>
+
+</div>
+
+<script>
+(function() {
+  var sectionId = '{{ section.id }}';
+  var el = document.getElementById('shopify-section-' + sectionId);
+  if (!el) return;
+
+  var carouselIdx = 0;
+
+  function carouselGo(idx) {
+    var total = window.innerWidth > 768 ? 2 : 4;
+    carouselIdx = ((idx % total) + total) % total;
+    var track = el.querySelector('.carousel-track');
+    var cards = track.querySelectorAll('.c-card');
+    if (!cards.length) return;
+    var w = cards[0].offsetWidth + 16;
+    track.style.transform = 'translateX(-' + (carouselIdx * w) + 'px)';
+    el.querySelectorAll('.cdot').forEach(function(d, i) {
+      d.classList.toggle('active', i === carouselIdx);
+    });
+  }
+
+  var prevBtn = el.querySelector('.c-arr-prev');
+  var nextBtn = el.querySelector('.c-arr-next');
+  if (prevBtn) prevBtn.addEventListener('click', function() { carouselGo(carouselIdx - 1); });
+  if (nextBtn) nextBtn.addEventListener('click', function() { carouselGo(carouselIdx + 1); });
+
+  el.querySelectorAll('.cdot').forEach(function(dot) {
+    dot.addEventListener('click', function() {
+      carouselGo(parseInt(dot.dataset.index, 10));
+    });
+  });
+
+  // Touch / drag support
+  var wrap = el.querySelector('.carousel-wrap');
+  var touchStartX = 0;
+  var touchEndX = 0;
+
+  wrap.addEventListener('touchstart', function(e) {
+    touchStartX = e.changedTouches[0].clientX;
+  }, { passive: true });
+
+  wrap.addEventListener('touchend', function(e) {
+    touchEndX = e.changedTouches[0].clientX;
+    var diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 40) {
+      carouselGo(diff > 0 ? carouselIdx + 1 : carouselIdx - 1);
+    }
+  }, { passive: true });
+
+  // Mouse drag support
+  var isDragging = false;
+  var dragStartX = 0;
+
+  wrap.addEventListener('mousedown', function(e) {
+    isDragging = true;
+    dragStartX = e.clientX;
+    wrap.classList.add('is-grabbing');
+  });
+
+  document.addEventListener('mouseup', function(e) {
+    if (!isDragging) return;
+    isDragging = false;
+    wrap.classList.remove('is-grabbing');
+    var diff = dragStartX - e.clientX;
+    if (Math.abs(diff) > 40) {
+      carouselGo(diff > 0 ? carouselIdx + 1 : carouselIdx - 1);
+    }
+  });
+
+  window.addEventListener('resize', function() { carouselGo(0); });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "JV - Product Carousel",
+  "tag": "section",
+  "class": "jv-product-carousel",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Crafted for Rooms That Deserve Better"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Button Text",
+      "default": "ADD TO CART"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA Button URL"
+    },
+    {
+      "type": "text",
+      "id": "artisan_text",
+      "label": "Artisan Badge Text",
+      "default": "25 Years of Hand-Poured Quality"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_card",
+      "name": "Product Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Card Image"
+        },
+        {
+          "type": "text",
+          "id": "product_name",
+          "label": "Product Name"
+        },
+        {
+          "type": "url",
+          "id": "product_url",
+          "label": "Product Link"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "JV - Product Carousel",
+      "blocks": [
+        { "type": "product_card", "settings": { "product_name": "Signature Candle" } },
+        { "type": "product_card", "settings": { "product_name": "Luxury Collection" } },
+        { "type": "product_card", "settings": { "product_name": "Gift Set" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

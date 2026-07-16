@@ -1,0 +1,25 @@
+{%- liquid 
+    assign fontsize_text = block.settings.fontsize_text
+    assign fontsize_text_mb = block.settings.fontsize_text_mb
+    assign color_title = block.settings.color_title
+-%}
+{%- if check_show_share == '3' -%}
+    <div class="halo-share-3">
+        <h1 class="productView-title" style="--color-title: {{ color_title }};--fontsize-text: {{ fontsize_text | append: 'px' }};--fontsize-mb-text: {{ fontsize_text_mb | append: 'px' }};"><span>{{ product.title | escape }}</span></h1>
+        <!-- Start of Judge.me code --> 
+  <div style='{{ jm_style }}' class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}' data-auto-install='false'> 
+ {{ product.metafields.judgeme.badge }} 
+ </div> 
+<!-- End of Judge.me code -->
+
+        {% render 'halo-share', product: product, share_layout: check_show_share %}
+    </div>
+{%- else -%}
+    <h1 class="productView-title" style="--color-title: {{ color_title }};--fontsize-text: {{ fontsize_text | append: 'px' }};--fontsize-mb-text: {{ fontsize_text_mb | append: 'px' }};"><span>{{ product.title | escape }}</span></h1>
+    <!-- Start of Judge.me code --> 
+  <div style='{{ jm_style }}' class='jdgm-widget jdgm-preview-badge' data-id='{{ product.id }}' data-auto-install='false'> 
+ {{ product.metafields.judgeme.badge }} 
+ </div> 
+<!-- End of Judge.me code -->
+
+{%- endif -%}

@@ -1,0 +1,369 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Dosis:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --cream: #FCFAEF;
+    --cream-alt: #FAF7EF;
+    --cream-warm: #FAE9C9;
+    --dark: #232323;
+    --text: #2D2B27;
+    --btn-green: #36402D;
+    --gold: #B78C47;
+    --gold-bright: #F5B857;
+    --gold-cta: #D6A24C;
+    --gold-light: #EBDEc5;
+    --green-check: #35911E;
+    --white: #FFFFFF;
+    --border: rgba(45,43,39,0.13);
+    --font-heading: 'Petrona', serif;
+    --font-body: 'Dosis', sans-serif;
+  }
+
+  #shopify-section-{{ section.id }} .occasions-section {
+    background: var(--cream);
+    padding: 64px 48px;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+
+  #shopify-section-{{ section.id }} .occ-head h2 {
+    font-family: 'Petrona', serif;
+    font-size: 42px;
+    font-weight: 500;
+    color: var(--dark);
+    line-height: 1.1;
+    white-space: nowrap;
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .occ-images {
+    display: flex;
+    gap: 12px;
+  }
+
+  #shopify-section-{{ section.id }} .occ-img {
+    flex: 0 0 178px;
+    height: 362px;
+    overflow: hidden;
+    background: var(--cream-warm);
+  }
+
+  #shopify-section-{{ section.id }} .occ-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  #shopify-section-{{ section.id }} .occ-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  #shopify-section-{{ section.id }} .btn-cart {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--btn-green);
+    color: #fff;
+    border: none;
+    width: 553px;
+    max-width: 100%;
+    height: 78px;
+    padding: 0 24px;
+    font-family: 'Dosis', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  #shopify-section-{{ section.id }} .cta-artisan {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Dosis', sans-serif;
+    font-size: 13px;
+    color: rgba(45, 43, 39, 0.5);
+  }
+
+  #shopify-section-{{ section.id }} .occasions-content {
+    /* right column */
+  }
+
+  #shopify-section-{{ section.id }} .occ-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  #shopify-section-{{ section.id }} .occ-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--border);
+    font-family: 'Dosis', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--dark);
+  }
+
+  #shopify-section-{{ section.id }} .occ-list li:first-child {
+    border-top: 1px solid var(--border);
+  }
+
+  #shopify-section-{{ section.id }} .check {
+    width: 20px;
+    height: 20px;
+    background: var(--green-check);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  #shopify-section-{{ section.id }} .check::after {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 4px;
+    border-left: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    transform: rotate(-45deg) translate(0px, -1px);
+  }
+
+  @media (min-width: 769px) {
+    #shopify-section-{{ section.id }} .occasions-section {
+      display: grid;
+      grid-template-columns: 1fr 657px;
+      grid-template-areas:
+        "head list"
+        "imgs list"
+        "cta  list";
+      column-gap: 40px;
+    }
+
+    #shopify-section-{{ section.id }} .occ-head {
+      grid-area: head;
+    }
+
+    #shopify-section-{{ section.id }} .occ-images {
+      grid-area: imgs;
+      margin-top: 28px;
+    }
+
+    #shopify-section-{{ section.id }} .occ-cta {
+      grid-area: cta;
+      margin-top: 28px;
+    }
+
+    #shopify-section-{{ section.id }} .occasions-content {
+      grid-area: list;
+      padding-top: 4px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    #shopify-section-{{ section.id }} .occasions-section {
+      display: flex;
+      flex-direction: column;
+      padding: 40px 16px;
+      gap: 0;
+    }
+
+    #shopify-section-{{ section.id }} .occ-head {
+      order: 1;
+      margin-bottom: 20px;
+    }
+
+    #shopify-section-{{ section.id }} .occasions-content {
+      order: 2;
+      margin-bottom: 20px;
+    }
+
+    #shopify-section-{{ section.id }} .occ-cta {
+      order: 3;
+      width: 100%;
+    }
+
+    #shopify-section-{{ section.id }} .occ-images {
+      order: 4;
+      margin-top: 28px;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    #shopify-section-{{ section.id }} .occ-head h2 {
+      font-size: 40px;
+      line-height: 1.08;
+      white-space: normal;
+    }
+
+    #shopify-section-{{ section.id }} .occ-list li {
+      font-size: 15px;
+      padding: 11px 0;
+    }
+
+    #shopify-section-{{ section.id }} .occ-img {
+      flex: 0 0 105px;
+      height: 148px;
+    }
+
+    #shopify-section-{{ section.id }} .btn-cart {
+      width: 100%;
+    }
+  }
+</style>
+
+<div class="occasions-section">
+
+  <div class="occ-head">
+    <h2>{{ section.settings.heading }}</h2>
+  </div>
+
+  <div class="occasions-content">
+    <ul class="occ-list">
+      {% for block in section.blocks %}
+        <li {{ block.shopify_attributes }}>
+          {{ block.settings.label }}
+          <div class="check"></div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="occ-cta">
+    <a
+      class="btn-cart"
+      href="{{ section.settings.cta_url | default: '#' }}"
+    >
+      {{ section.settings.cta_text }}
+    </a>
+    {% if section.settings.artisan_text != blank %}
+      <div class="cta-artisan">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="7" cy="7" r="6.5" stroke="rgba(45,43,39,0.4)"/>
+          <path d="M4 7L6.2 9.2L10 5" stroke="rgba(45,43,39,0.4)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        {{ section.settings.artisan_text }}
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="occ-images">
+    {% if section.settings.image_1 != blank %}
+      <div class="occ-img">
+        {{ section.settings.image_1 | image_url: width: 1200 | image_tag: loading: 'lazy', style: 'width:100%;height:100%;object-fit:cover;' }}
+      </div>
+    {% else %}
+      <div class="occ-img"></div>
+    {% endif %}
+    {% if section.settings.image_2 != blank %}
+      <div class="occ-img">
+        {{ section.settings.image_2 | image_url: width: 1200 | image_tag: loading: 'lazy', style: 'width:100%;height:100%;object-fit:cover;' }}
+      </div>
+    {% else %}
+      <div class="occ-img"></div>
+    {% endif %}
+    {% if section.settings.image_3 != blank %}
+      <div class="occ-img">
+        {{ section.settings.image_3 | image_url: width: 1200 | image_tag: loading: 'lazy', style: 'width:100%;height:100%;object-fit:cover;' }}
+      </div>
+    {% else %}
+      <div class="occ-img"></div>
+    {% endif %}
+  </div>
+
+</div>
+
+{% schema %}
+{
+  "name": "JV - Occasions",
+  "tag": "section",
+  "class": "jv-occasions",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "It's The Perfect Gift For...."
+    },
+    {
+      "type": "image_picker",
+      "id": "image_1",
+      "label": "Image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_2",
+      "label": "Image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_3",
+      "label": "Image 3"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Button Text",
+      "default": "ADD TO CART"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA Button URL"
+    },
+    {
+      "type": "text",
+      "id": "artisan_text",
+      "label": "Artisan Badge Text",
+      "default": "25 Years of Hand-Poured Quality"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "occasion",
+      "name": "Occasion",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Occasion Label",
+          "default": "Mother's Day"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 20,
+  "presets": [
+    {
+      "name": "JV - Occasions",
+      "blocks": [
+        { "type": "occasion", "settings": { "label": "Mother's Day" } },
+        { "type": "occasion", "settings": { "label": "Bridesmaid proposals" } },
+        { "type": "occasion", "settings": { "label": "Birthdays" } },
+        { "type": "occasion", "settings": { "label": "Teacher appreciation" } },
+        { "type": "occasion", "settings": { "label": "Housewarmings" } },
+        { "type": "occasion", "settings": { "label": "Anniversaries" } },
+        { "type": "occasion", "settings": { "label": "Engagement parties" } },
+        { "type": "occasion", "settings": { "label": "Bridal showers" } },
+        { "type": "occasion", "settings": { "label": "New moms" } },
+        { "type": "occasion", "settings": { "label": "Graduation" } },
+        { "type": "occasion", "settings": { "label": "Promposals" } },
+        { "type": "occasion", "settings": { "label": "Hostess gifts" } },
+        { "type": "occasion", "settings": { "label": "Valentine's Day" } },
+        { "type": "occasion", "settings": { "label": "....or just because!" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

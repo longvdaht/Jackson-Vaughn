@@ -1,0 +1,337 @@
+{% comment %} TS - Product Description {% endcomment %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Dosis:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --cream: #fcf9ef;
+    --cream-mid: #faf7ef;
+    --text: #232323;
+    --body-color: #2d2b27;
+    --green: #36402d;
+    --gold: #c29b62;
+    --gold-dk: #b78c47;
+    --star: #f5b857;
+    --verified: #76913e;
+    --border: #d8d5ce;
+    --font-h: 'Petrona', serif;
+    --font-b: 'Dosis', sans-serif;
+  }
+
+  #shopify-section-{{ section.id }} .desc {
+    background: var(--cream);
+    padding: 40px 16px 0;
+  }
+
+  #shopify-section-{{ section.id }} .desc__box {
+    max-width: 1408px;
+    margin: 0 auto;
+    border: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 46fr 54fr;
+  }
+
+  #shopify-section-{{ section.id }} .desc__left {
+    padding: 36px 32px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #shopify-section-{{ section.id }} .desc__rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-b);
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 14px;
+  }
+
+  #shopify-section-{{ section.id }} .desc__stars {
+    color: var(--star);
+    font-size: 15px;
+  }
+
+  #shopify-section-{{ section.id }} .desc__heading {
+    font-family: var(--font-h);
+    font-size: 40px;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+
+  #shopify-section-{{ section.id }} .desc__body {
+    font-family: var(--font-b);
+    font-size: 15.5px;
+    color: rgba(45,43,39,0.7);
+    line-height: 1.25;
+    margin-bottom: 20px;
+    flex: 1;
+  }
+
+  #shopify-section-{{ section.id }} .desc__body p {
+    margin: 0 0 12px;
+  }
+
+  #shopify-section-{{ section.id }} .desc__cta-trust {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #shopify-section-{{ section.id }} .btn-atc {
+    display: block;
+    width: 555px;
+    max-width: 100%;
+    height: 78px;
+    background: var(--green);
+    color: #fff;
+    font-family: var(--font-b);
+    font-size: 28.6px;
+    font-weight: 500;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .desc__shield-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-b);
+    font-size: 13px;
+    color: #555;
+    margin-top: 12px;
+    font-weight: 500;
+  }
+
+  #shopify-section-{{ section.id }} .desc__right {
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid var(--border);
+  }
+
+  #shopify-section-{{ section.id }} .desc__right-top {
+    display: grid;
+    grid-template-columns: 112px 1fr;
+    border-bottom: 1px solid var(--border);
+    justify-content: end;
+  }
+
+  #shopify-section-{{ section.id }} .desc__stats {
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    width: 112px;
+    order: 2;
+  }
+
+  #shopify-section-{{ section.id }} .desc__stat {
+    height: 104px;
+    padding: 14px 10px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-family: var(--font-b);
+    font-size: 14px;
+    color: var(--text);
+  }
+
+  #shopify-section-{{ section.id }} .desc__stat:last-child {
+    border-bottom: none;
+  }
+
+  #shopify-section-{{ section.id }} .desc__stat svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  #shopify-section-{{ section.id }} .desc__text-block {
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    font-family: var(--font-b);
+    font-size: 16px;
+    color: rgba(45,43,39,0.7);
+    line-height: 1.25;
+    order: 1;
+  }
+
+  #shopify-section-{{ section.id }} .desc__text-block p {
+    margin: 0 0 10px;
+  }
+
+  #shopify-section-{{ section.id }} .desc__image-area {
+    flex: 1;
+    min-height: 160px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  #shopify-section-{{ section.id }} .desc__image-area img,
+  #shopify-section-{{ section.id }} .desc__image-area .img-placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: absolute;
+    inset: 0;
+  }
+
+  #shopify-section-{{ section.id }} .img-placeholder {
+    background: #d0cdc4;
+    color: #888;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    text-transform: uppercase;
+    font-family: var(--font-b);
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    #shopify-section-{{ section.id }} .desc {
+      padding: 0 16px 0;
+    }
+
+    #shopify-section-{{ section.id }} .desc__box {
+      display: flex;
+      flex-direction: column;
+      border-top: none;
+    }
+
+    #shopify-section-{{ section.id }} .desc__left {
+      padding: 16px 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    #shopify-section-{{ section.id }} .desc__heading {
+      font-size: 30px;
+    }
+
+    #shopify-section-{{ section.id }} .desc__cta-trust {
+      display: none;
+    }
+
+    #shopify-section-{{ section.id }} .desc__right {
+      border-left: none;
+    }
+
+    #shopify-section-{{ section.id }} .desc__right-top {
+      grid-template-columns: 1fr 86px;
+      justify-content: start;
+    }
+
+    #shopify-section-{{ section.id }} .desc__stats {
+      order: 2;
+      width: 86px;
+      border-left: 1px solid var(--border);
+      border-right: none;
+    }
+
+    #shopify-section-{{ section.id }} .desc__text-block {
+      order: 1;
+      padding: 14px 10px;
+      font-size: 16px;
+    }
+
+    #shopify-section-{{ section.id }} .desc__image-area {
+      display: none;
+    }
+  }
+</style>
+
+<section class="desc" id="ts-desc-{{ section.id }}">
+  <div class="desc__box">
+
+    <!-- Left Column -->
+    <div class="desc__left">
+      <div class="desc__rating">
+        <span class="desc__stars">★★★★★</span>
+        {{ section.settings.rating_text }}
+      </div>
+      <h2 class="desc__heading">{{ section.settings.heading }}</h2>
+      <div class="desc__body">{{ section.settings.body }}</div>
+      <div class="desc__cta-trust">
+        {% if section.settings.cta_url != blank %}
+          <a href="{{ section.settings.cta_url }}" class="btn-atc">{{ section.settings.cta_text }}</a>
+        {% else %}
+          <button class="btn-atc">{{ section.settings.cta_text }}</button>
+        {% endif %}
+        <div class="desc__shield-line">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1L2 4V8C2 11.3 4.7 14.4 8 15C11.3 14.4 14 11.3 14 8V4L8 1Z" stroke="#555" stroke-width="1.2" fill="none"/></svg>
+          Easy Returns &nbsp;·&nbsp; Secure Checkout &nbsp;·&nbsp; Free Shipping Over $60
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column -->
+    <div class="desc__right">
+
+      <!-- Top: Stats + Text Block -->
+      <div class="desc__right-top">
+        <!-- Text Block -->
+        <div class="desc__text-block">
+          {{ section.settings.text_block }}
+        </div>
+        <!-- Stat Boxes -->
+        <div class="desc__stats">
+          <div class="desc__stat">
+            <svg viewBox="0 0 26 26" fill="none"><path d="M13 2L3 7V13C3 18.5 7.4 23.5 13 24.5C18.6 23.5 23 18.5 23 13V7L13 2Z" fill="none" stroke="#c29b62" stroke-width="1.5"/></svg>
+            <span>{{ section.settings.stat_1_label }}</span>
+          </div>
+          <div class="desc__stat">
+            <svg viewBox="0 0 26 26" fill="none"><circle cx="13" cy="13" r="10" stroke="#c29b62" stroke-width="1.5"/><path d="M13 8v5l3 3" stroke="#c29b62" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span>{{ section.settings.stat_2_label }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image area -->
+      <div class="desc__image-area">
+        {% if section.settings.desc_image %}
+          {{ section.settings.desc_image | image_url: width: 1200 | image_tag: loading: 'lazy' }}
+        {% else %}
+          <div class="img-placeholder">Right Column Image</div>
+        {% endif %}
+      </div>
+
+    </div><!-- /desc__right -->
+  </div><!-- /desc__box -->
+</section>
+
+{% schema %}
+{
+  "name": "TS - Product Description",
+  "tag": "section",
+  "class": "ts-product-description",
+  "settings": [
+    { "type": "text", "id": "rating_text", "label": "Rating Text", "default": "4.9 Stars · 2,400+ Happy Homes" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Most Candles Smell Synthetic. This One Smells Like a Garden." },
+    { "type": "richtext", "id": "body", "label": "Body Text", "default": "<p>Hand-poured in small batches using premium soy wax, Texas Spring captures the essence of a Texas wildflower garden in bloom. Every candle is crafted with care and ready to burn the moment it arrives.</p>" },
+    { "type": "text", "id": "stat_1_label", "label": "Stat 1 Label", "default": "5 Texas Retail Locations" },
+    { "type": "text", "id": "stat_2_label", "label": "Stat 2 Label", "default": "Hand-Poured Since 2000" },
+    { "type": "richtext", "id": "text_block", "label": "Right Side Text Block", "default": "<p>From our family to your home — every candle is poured with intention, tested for scent throw, and shipped with care.</p>" },
+    { "type": "image_picker", "id": "desc_image", "label": "Bottom of Right Column Image" },
+    { "type": "image_picker", "id": "mobile_cta_image", "label": "Mobile CTA Break Image" },
+    { "type": "text", "id": "cta_text", "label": "CTA Button Text", "default": "Add to Cart" },
+    { "type": "url", "id": "cta_url", "label": "CTA URL" }
+  ],
+  "presets": [
+    {
+      "name": "TS - Product Description"
+    }
+  ]
+}
+{% endschema %}

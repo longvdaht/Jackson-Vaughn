@@ -1,0 +1,47 @@
+/*// =============================================================================
+// Ella Custom CSS - Customize The Style For Layout
+// =============================================================================
+
+// =============================================================================
+//
+// IMPORTANT DISCLAIMER
+// Shopify is notifying shop owners about the need to convert scss files to css files.
+// Please use only CSS to style the layout.
+//
+// =============================================================================*/
+
+.header-navigation .header__icon svg {
+  fill: #FCF9EF !important;
+}
+
+.faqs .faqs-title:after {
+  background-color: #36402D !important;
+}
+
+.faqs .faqs-item .card-header .title,
+.faqs-item {
+  background-color: #f2ecd9 !important;
+}
+
+
+.toolbar .toolbar-item .toolbar-icon.icon-filter {
+  width: auto !important;
+}
+
+.faqs .faqs-title:after {
+  background-color: #36402d;
+}
+
+.sticky-search-menu-open .header-nav-basic .search-modal__content {
+  background-color:#FCF9EF !important;
+}
+
+
+.sticky-search-menu-open .header-nav-basic .search-modal__form  {
+background-color: transparent !important; 
+}
+.quickSearchResultsBlock .list-item .link,
+.quickSearchResultsBlock .search-block-title .text,
+.quickSearchResultsWrap {
+   background-color:#FCF9EF !important;
+}

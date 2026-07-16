@@ -1,0 +1,119 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-contact-us-1",
+      "disabled": true,
+      "settings": {
+        "show_breadcrumb": true,
+        "breadcrumb_alignment": "right",
+        "breadcrumb_bg": "",
+        "breadcrumb_gradient": "",
+        "breadcrumb_bg_mb": "#f6f6f6",
+        "breadcrumb_gradient_mb": "",
+        "show_page_title": true,
+        "page_title_alignment": "left",
+        "container": "1170",
+        "mg_top_desktop": 40,
+        "mg_top_tablet": 0,
+        "mg_top_mobile": 0,
+        "mg_bottom_desktop": 0,
+        "mg_bottom_tablet": 0,
+        "mg_bottom_mobile": 0,
+        "contact_form_text": "<span>Have a question or comment?\n<br>\nUse the form below to send us a message or contact us by mail at:</span>",
+        "show_contact_info": true,
+        "contact_info_title": "Get In Touch!",
+        "contact_info_text": "We'd love to hear from you - please use the form to send us your message or ideas.",
+        "contact_info_address": "<p style=\"line-height: 26px;margin-bottom: 9px\">\n1608 S Congress Ave<br>Austin, TX 78704\n<br>United States\n</p>",
+        "contact_info_content_1": "<p style=\"line-height: 30px; margin-bottom: 0px;margin-top: 5px;\">\n</p>\n<p style=\"line-height:30px; margin-top: 0\">\n<span class=\"icon\">\n<svg style=\"width: 20px;height: 20px\" aria-hidden=\"true\" focusable=\"false\" data-prefix=\"fas\" data-icon=\"envelope\" role=\"img\" xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 512 512\" class=\"svg-inline--fa fa-envelope fa-w-16 fa-7x\"><path fill=\"currentColor\" d=\"M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z\" class=\"\"></path></svg></span>\n<span style=\"margin-left: 7px\"><a href=\"mailto:orders@jacksonvaughn.com\">orders@jacksonvaughn.com</a></span>\n</p>",
+        "contact_info_content_2": "<p>Online Support Hours:\n<br>\nMON to FRI: \n9:00AM - 5:00PM</p>",
+        "enable_border_top": true
+      }
+    },
+    "rich_text_mgifbc": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_cR8qKH": {
+          "type": "heading",
+          "settings": {
+            "heading": "WHOLESALE INQUIRIES",
+            "heading_size": 30,
+            "heading_size_mb": 30,
+            "heading_line_height": 1,
+            "heading_color": "#000000"
+          }
+        },
+        "text_XRAWUn": {
+          "type": "text",
+          "settings": {
+            "text": "<p> <br>CONTACT US: <a href=\"mailto:wholesale@jacksonvaughn.com\" style=\"text-decoration: underline;\">wholesale@jacksonvaughn.com</a>.</p>",
+            "text_size": 16,
+            "text_size_mb": 12,
+            "text_line_height": 1.1,
+            "margin_top_text": 20,
+            "text_color": "#000000",
+            "text_width": "800px"
+          }
+        },
+        "social_media_ndyaLR": {
+          "type": "social_media",
+          "settings": {
+            "social_spacing_top": 18,
+            "social_spacing_bottom": 0,
+            "social_icon_color": "",
+            "social_icon_background_color": "",
+            "social_icon_background_gradient": "",
+            "social_icon_hover_color": "",
+            "social_icon_background_hover_color": "",
+            "social_icon_background_hover_gradient": "",
+            "social_icon_ring_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_cR8qKH",
+        "text_XRAWUn",
+        "social_media_ndyaLR"
+      ],
+      "settings": {
+        "container": "container",
+        "padding_full_width": 0,
+        "enable_border_top": false,
+        "enable_border_bottom": false,
+        "color_border_bottom": "#e8e8e8",
+        "enable_minus_mg_top": false,
+        "minus_spacing_top": -100,
+        "rich_text_bg": "rgba(0,0,0,0)",
+        "rich_text_bg_gradient": "",
+        "enable_column": false,
+        "content_align": "center",
+        "mg_top_desktop": 50,
+        "mg_top_tablet": 50,
+        "mg_top_mobile": 50,
+        "mg_bottom_desktop": 50,
+        "mg_bottom_tablet": 50,
+        "mg_bottom_mobile": 50
+      }
+    },
+    "custom_liquid_DPmHEQ": {
+      "type": "custom-liquid",
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<div id=\"evm-form\"></div>\n          <script src=\"https://evmforms.expertvillagemedia.com/embed.js\" data-shop-id=\"society-by-jackson-vaughn.myshopify.com\" data-form-id=\"7246\" type=\"text/javascript\"></script>"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "rich_text_mgifbc",
+    "custom_liquid_DPmHEQ"
+  ]
+}

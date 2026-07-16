@@ -1,0 +1,290 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "ts-hero-product": {
+      "type": "ts-hero-product",
+      "blocks": {
+        "acc-1": {
+          "type": "accordion",
+          "settings": {
+            "title": "Candle Care 101",
+            "body": "<p>Trim your wick to 1/4 inch before each burn. Allow the wax to melt to the edges on the first burn. Keep away from drafts and flammable materials. Never burn for more than 4 hours at a time.</p>"
+          }
+        },
+        "acc-2": {
+          "type": "accordion",
+          "settings": {
+            "title": "What's in the Wax",
+            "body": "<p>100% premium soy wax sourced from American farmers. Phthalate-free fragrance oils. Cotton-core wicks. No paraffin, no toxins, no compromises.</p>"
+          }
+        },
+        "acc-3": {
+          "type": "accordion",
+          "settings": {
+            "title": "Shipping & Returns",
+            "body": "<p>Orders ship within 1 business day. Free shipping on orders over $60. Easy 30-day returns on unopened items. If your candle arrives damaged, contact us and we'll replace it immediately.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "acc-1",
+        "acc-2",
+        "acc-3"
+      ],
+      "settings": {
+        "badge_text": "Best Seller",
+        "main_image": "shopify://shop_images/Frame_2147241073.png",
+        "thumb_1": "shopify://shop_images/Frame_2147241683.png",
+        "thumb_2": "shopify://shop_images/Frame_2147241685.png",
+        "thumb_3": "shopify://shop_images/Frame_2147241686.png",
+        "thumb_4": "shopify://shop_images/Frame_2147241687.png",
+        "hero_info_image": "shopify://shop_images/Screenshot_2026-05-26_at_7.14.55_PM.png",
+        "rating_text": "Rated 4.8 / 5.0 Excellent",
+        "title": "Texas Spring",
+        "subtitle": "Poured from Texas Soil. Ready to Burn the Moment it Arrives.",
+        "description": "",
+        "trust_1": "Made in Texas",
+        "trust_2": "Hand-Poured Soy Wax",
+        "trust_3": "Up To 60hr Burn Time",
+        "size_1_label": "16OZ JAR – $38",
+        "size_1_note": "60hr Burn Time",
+        "size_2_label": "9OZ JAR – $28",
+        "size_2_note": "40hr Burn Time",
+        "opt1_title": "Buy 1 Candle",
+        "opt1_price": "$38.00",
+        "opt2_title": "Buy 3 Candles",
+        "opt2_sub": "$32.67 per candle + FREE shipping",
+        "opt2_price": "$98.00",
+        "opt2_old": "$114.00",
+        "kit_title": "Buy the Starter Kit",
+        "kit_sub": "Save 28% + FREE shipping",
+        "kit_price": "$98.00",
+        "kit_old": "$114.00",
+        "kit_items": "Includes: 3 Candles + Wick Trimmer + Candle Tray",
+        "kit_image": "shopify://shop_images/Screenshot_2026-05-26_at_7.28.10_PM.png",
+        "instock_text": "In stock – Ready for next day dispatch",
+        "cta_text": "Add to Cart",
+        "review_quote": "The scent throw on this candle is unreal — my whole living room smells like a spring garden within minutes.",
+        "review_author": "Megan T.",
+        "review_image": "shopify://shop_images/image_26305.png"
+      }
+    },
+    "ts-product-description": {
+      "type": "ts-product-description",
+      "settings": {
+        "rating_text": "4.9 Stars · 2,400+ Happy Homes",
+        "heading": "The Scent of Texas in Every Pour",
+        "body": "<p>Texas Spring captures the feeling of bluebonnets blooming along a country road in early April — fresh, floral, and unmistakably Texan. Hand-poured in small batches with premium soy wax and fine fragrance oils that have been refined over 25 years of craft.</p>",
+        "stat_1_label": "Soy Wax",
+        "stat_2_label": "Burn Time",
+        "text_block": "<p>From our family to your home — every candle is poured with intention, tested for scent throw, and shipped with care.</p>",
+        "desc_image": "shopify://shop_images/Screenshot_2026-05-26_at_7.30.20_PM.png",
+        "cta_text": "Add to Cart",
+        "cta_url": "/cart"
+      }
+    },
+    "ts-features-carousel": {
+      "type": "ts-features-carousel",
+      "blocks": {
+        "feat-1": {
+          "type": "feature_card",
+          "settings": {
+            "image": "shopify://shop_images/Frame_2147242157_2.png",
+            "title": "",
+            "body": ""
+          }
+        },
+        "feat-2": {
+          "type": "feature_card",
+          "settings": {
+            "image": "shopify://shop_images/Frame_2147242157_1.png",
+            "title": "",
+            "body": ""
+          }
+        },
+        "feat-3": {
+          "type": "feature_card",
+          "settings": {
+            "image": "shopify://shop_images/Frame_2147242155_1.png",
+            "title": "",
+            "body": ""
+          }
+        }
+      },
+      "block_order": [
+        "feat-1",
+        "feat-2",
+        "feat-3"
+      ],
+      "settings": {
+        "heading": "Why Texas Spring",
+        "cta_text": "Add to Cart",
+        "cta_url": ""
+      }
+    },
+    "ts-lifestyle-gallery": {
+      "type": "ts-lifestyle-gallery",
+      "settings": {
+        "heading": "See It in Action",
+        "lifestyle_image_1": "shopify://shop_images/Frame_2147242558.png",
+        "lifestyle_image_2": "shopify://shop_images/Frame_2147242558.png",
+        "lifestyle_image_3": "shopify://shop_images/Frame_2147242558.png",
+        "lifestyle_image_4": "shopify://shop_images/Frame_2147242558.png",
+        "btn_text": "Add to Cart",
+        "btn_url": "/cart",
+        "shield_text": "25 Years of Hand-Poured Quality"
+      }
+    },
+    "ts-reviews": {
+      "type": "ts-reviews",
+      "blocks": {
+        "rev-1": {
+          "type": "review",
+          "settings": {
+            "quote": "The scent throw on this candle is unreal — my whole living room smells like a spring garden within minutes of lighting it.",
+            "author": "Megan T.",
+            "stars": "5",
+            "verified": true
+          }
+        },
+        "rev-2": {
+          "type": "review",
+          "settings": {
+            "quote": "I've burned through 4 of these. Nothing else comes close. The first burn alone is enough to make you a loyal customer for life.",
+            "author": "Katherine L.",
+            "stars": "5",
+            "verified": true
+          }
+        },
+        "rev-3": {
+          "type": "review",
+          "settings": {
+            "quote": "Bought as a gift and immediately ordered two more for myself. The packaging is beautiful and the scent is exactly as described.",
+            "author": "Sarah R.",
+            "stars": "5",
+            "verified": true
+          }
+        }
+      },
+      "block_order": [
+        "rev-1",
+        "rev-2",
+        "rev-3"
+      ],
+      "settings": {
+        "strip_1": "shopify://shop_images/Frame_2147241766.png",
+        "strip_2": "shopify://shop_images/Frame_2147241766.png",
+        "strip_3": "shopify://shop_images/Frame_2147241767.png",
+        "rating_text": "Rated 4.8 / 5.0 · Excellent",
+        "heading": "What Our Customers Say",
+        "cta_text": "Add to Cart",
+        "cta_url": "/cart"
+      }
+    },
+    "ts-comparison": {
+      "type": "ts-comparison",
+      "settings": {
+        "heading_line1": "Jackson Vaughn vs.",
+        "heading_line2": "Mass-Market Candles",
+        "img_1": "shopify://shop_images/Frame_2147241766_copy.png",
+        "img_2": "shopify://shop_images/Frame_2147241767_copy.png",
+        "img_3": "shopify://shop_images/Frame_2147241768_copy.png",
+        "chart_image": "shopify://shop_images/Group_2087329381.png",
+        "cta_text": "Add to Cart",
+        "cta_url": ""
+      }
+    },
+    "ts-faq": {
+      "type": "ts-faq",
+      "blocks": {
+        "faq-1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How do I get the most out of my candle?",
+            "answer": "<p>Trim your wick to 1/4 inch before every burn. On the first burn, let the wax melt all the way to the edges — this prevents tunneling and maximizes scent throw for every subsequent burn.</p>"
+          }
+        },
+        "faq-2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What wax and fragrance do you use?",
+            "answer": "<p>100% premium soy wax from American farms, and phthalate-free fragrance oils refined over 25 years. No paraffin, no synthetic additives, no compromise.</p>"
+          }
+        },
+        "faq-3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How long does it burn?",
+            "answer": "<p>Our 16oz Texas Spring candle burns for up to 60 hours when properly cared for. The 9oz version burns for up to 40 hours.</p>"
+          }
+        },
+        "faq-4": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is it safe to burn around pets?",
+            "answer": "<p>Our soy wax and phthalate-free fragrance oils are much safer than paraffin candles. That said, we recommend keeping candles out of reach of pets and ensuring proper ventilation in small spaces.</p>"
+          }
+        },
+        "faq-5": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How fast will my order ship?",
+            "answer": "<p>Orders placed before 2pm CST ship same day. Standard delivery is 3-5 business days. Expedited options are available at checkout. Free shipping on all orders over $60.</p>"
+          }
+        },
+        "faq-6": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What's your return policy?",
+            "answer": "<p>We stand behind every candle we make. Returns are accepted within 30 days on unopened items. If your candle arrives damaged, contact us within 48 hours and we'll ship a replacement at no cost.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq-1",
+        "faq-2",
+        "faq-3",
+        "faq-4",
+        "faq-5",
+        "faq-6"
+      ],
+      "settings": {
+        "heading": "Frequently Asked Questions",
+        "cta_text": "Add to Cart",
+        "cta_url": "/cart"
+      }
+    },
+    "ts-cta-banner": {
+      "type": "ts-cta-banner",
+      "settings": {
+        "bg_image": "shopify://shop_images/Society_Texas_Cropped-4_1880x_1.png",
+        "rating_text": "4.9 Stars · 2,400+ Happy Homes",
+        "heading": "Ready to Fill Your Home with Texas Spring?",
+        "body": "Hand-poured in small batches. Ships same day. Backed by 25 years of craft.",
+        "cta_text": "Add to Cart",
+        "cta_url": "/cart",
+        "stat_1_label": "Burn Time",
+        "stat_2_label": "Soy Wax",
+        "stat_3_label": "1,800+ Reviews"
+      }
+    }
+  },
+  "order": [
+    "ts-hero-product",
+    "ts-product-description",
+    "ts-features-carousel",
+    "ts-lifestyle-gallery",
+    "ts-reviews",
+    "ts-comparison",
+    "ts-faq",
+    "ts-cta-banner"
+  ]
+}

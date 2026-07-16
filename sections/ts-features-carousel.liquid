@@ -1,0 +1,398 @@
+{% comment %} TS - Features Carousel {% endcomment %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Dosis:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --cream: #fcf9ef;
+    --cream-mid: #faf7ef;
+    --text: #232323;
+    --body-color: #2d2b27;
+    --green: #36402d;
+    --gold: #c29b62;
+    --gold-dk: #b78c47;
+    --star: #f5b857;
+    --verified: #76913e;
+    --border: #d8d5ce;
+    --font-h: 'Petrona', serif;
+    --font-b: 'Dosis', sans-serif;
+  }
+
+  #shopify-section-{{ section.id }} .features {
+    background: var(--cream);
+    padding: 0 16px 0;
+  }
+
+  #shopify-section-{{ section.id }} .features__box {
+    max-width: 1408px;
+    margin: 0 auto;
+    border: 1px solid var(--border);
+    border-top: none;
+    padding: 32px;
+  }
+
+  #shopify-section-{{ section.id }} .features__heading {
+    font-family: var(--font-h);
+    font-size: 40px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 24px;
+  }
+
+  #shopify-section-{{ section.id }} .feat-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  #shopify-section-{{ section.id }} .feat-card {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 416/441;
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }} .feat-card.visible {
+    display: block;
+  }
+
+  #shopify-section-{{ section.id }} .feat-card__bg {
+    position: absolute;
+    inset: 0;
+  }
+
+  #shopify-section-{{ section.id }} .feat-card__bg img,
+  #shopify-section-{{ section.id }} .feat-card__bg .img-placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  #shopify-section-{{ section.id }} .feat-card__gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,.92) 0%, rgba(0,0,0,.55) 45%, rgba(0,0,0,.08) 100%);
+  }
+
+  #shopify-section-{{ section.id }} .feat-card__overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 24px 20px;
+  }
+
+  #shopify-section-{{ section.id }} .feat-card__title {
+    font-family: var(--font-b);
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .07em;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+
+  #shopify-section-{{ section.id }} .feat-card__body {
+    font-family: var(--font-b);
+    font-size: 15px;
+    color: rgba(255,255,255,.88);
+    line-height: 1.55;
+  }
+
+  #shopify-section-{{ section.id }} .feat-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  #shopify-section-{{ section.id }} .feat-dots {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+
+  #shopify-section-{{ section.id }} .feat-dot {
+    display: block;
+    width: 30px;
+    height: 2px;
+    border-radius: 1px;
+    background: var(--gold-dk);
+    opacity: 0.25;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    transition: width 0.2s, opacity 0.2s;
+  }
+
+  #shopify-section-{{ section.id }} .feat-dot.active {
+    width: 48px;
+    opacity: 1;
+  }
+
+  #shopify-section-{{ section.id }} .feat-arrow {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    border: 1.5px solid #c0bbb3;
+  }
+
+  #shopify-section-{{ section.id }} .feat-arrow.next-arr {
+    background: var(--gold);
+    border-color: var(--gold);
+  }
+
+  #shopify-section-{{ section.id }} .features__cta {
+    max-width: 555px;
+    margin: 0 auto;
+  }
+
+  #shopify-section-{{ section.id }} .btn-atc {
+    display: block;
+    width: 100%;
+    background: var(--green);
+    color: #fff;
+    font-family: var(--font-b);
+    font-size: 19px;
+    font-weight: 500;
+    padding: 18px 24px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .img-placeholder {
+    background: #d0cdc4;
+    color: #888;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    text-transform: uppercase;
+    font-family: var(--font-b);
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    #shopify-section-{{ section.id }} .features__box {
+      padding: 20px 16px 24px;
+    }
+
+    #shopify-section-{{ section.id }} .features__heading {
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
+
+    #shopify-section-{{ section.id }} .feat-cards {
+      display: flex;
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      gap: 12px;
+      width: 100%;
+      margin: 0 0 20px;
+    }
+
+    #shopify-section-{{ section.id }} .feat-cards::-webkit-scrollbar {
+      display: none;
+    }
+
+    #shopify-section-{{ section.id }} .feat-card {
+      display: block !important;
+      flex: none;
+      width: 261px;
+      height: 339px;
+      aspect-ratio: unset;
+      scroll-snap-align: start;
+    }
+
+    #shopify-section-{{ section.id }} .feat-nav {
+      justify-content: flex-start;
+    }
+  }
+</style>
+
+<section class="features" id="ts-features-{{ section.id }}">
+  <div class="features__box">
+
+    <h2 class="features__heading">{{ section.settings.heading }}</h2>
+
+    <!-- Cards -->
+    <div class="feat-cards" id="feat-cards-{{ section.id }}">
+      {% for block in section.blocks %}
+        <div class="feat-card {% if forloop.index <= 3 %}visible{% endif %}" data-card="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+          <div class="feat-card__bg">
+            {% if block.settings.image %}
+              {{ block.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy' }}
+            {% else %}
+              <div class="img-placeholder">Card {{ forloop.index }} Image</div>
+            {% endif %}
+          </div>
+          <div class="feat-card__gradient"></div>
+          <div class="feat-card__overlay">
+            <div class="feat-card__title">{{ block.settings.title }}</div>
+            <div class="feat-card__body">{{ block.settings.body }}</div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Nav -->
+    {% assign total_cards = section.blocks.size %}
+    {% assign total_pages = total_cards | minus: 2 %}
+    {% if total_pages < 1 %}{% assign total_pages = 1 %}{% endif %}
+
+    <div class="feat-nav" id="feat-nav-{{ section.id }}">
+      <button class="feat-arrow prev-arr" id="feat-prev-{{ section.id }}" aria-label="Previous">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7L9 12" stroke="#6b6860" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="feat-dots" id="feat-dots-{{ section.id }}">
+        {% for i in (1..total_pages) %}
+          <button class="feat-dot {% if forloop.first %}active{% endif %}" data-page="{{ forloop.index0 }}" aria-label="Page {{ forloop.index }}"></button>
+        {% endfor %}
+      </div>
+      <button class="feat-arrow next-arr" id="feat-next-{{ section.id }}" aria-label="Next">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 2L10 7L5 12" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+
+    <!-- CTA -->
+    <div class="features__cta">
+      {% if section.settings.cta_url != blank %}
+        <a href="{{ section.settings.cta_url }}" class="btn-atc">{{ section.settings.cta_text }}</a>
+      {% else %}
+        <button class="btn-atc">{{ section.settings.cta_text }}</button>
+      {% endif %}
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function() {
+  var sid = '{{ section.id }}';
+  var cards = Array.from(document.querySelectorAll('#feat-cards-' + sid + ' .feat-card'));
+  var dots = Array.from(document.querySelectorAll('#feat-dots-' + sid + ' .feat-dot'));
+  var isMobile = window.innerWidth <= 768;
+  var currentPage = 0;
+  var perPage = 3;
+
+  function getTotal() {
+    return Math.max(1, cards.length - 2);
+  }
+
+  function showPage(page) {
+    if (isMobile) return;
+    page = Math.max(0, Math.min(page, getTotal() - 1));
+    currentPage = page;
+    cards.forEach(function(card, i) {
+      card.classList.toggle('visible', i >= page && i < page + perPage);
+    });
+    dots.forEach(function(dot, i) {
+      dot.classList.toggle('active', i === page);
+    });
+  }
+
+  var prevBtn = document.getElementById('feat-prev-' + sid);
+  var nextBtn = document.getElementById('feat-next-' + sid);
+  if (prevBtn) prevBtn.addEventListener('click', function() { showPage(currentPage - 1); });
+  if (nextBtn) nextBtn.addEventListener('click', function() { showPage(currentPage + 1); });
+  dots.forEach(function(dot, i) {
+    dot.addEventListener('click', function() { showPage(i); });
+  });
+
+  // Mobile: update dots on scroll
+  var cardsContainer = document.getElementById('feat-cards-' + sid);
+  if (cardsContainer) {
+    cardsContainer.addEventListener('scroll', function() {
+      if (!isMobile) return;
+      var scrollLeft = cardsContainer.scrollLeft;
+      var cardWidth = 261 + 12;
+      var idx = Math.round(scrollLeft / cardWidth);
+      dots.forEach(function(dot, i) {
+        dot.classList.toggle('active', i === idx);
+      });
+    });
+  }
+
+  window.addEventListener('resize', function() {
+    isMobile = window.innerWidth <= 768;
+    if (!isMobile) showPage(currentPage);
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "TS - Features Carousel",
+  "tag": "section",
+  "class": "ts-features-carousel",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Section Heading", "default": "Crafted for Rooms That Deserve Better" },
+    { "type": "text", "id": "cta_text", "label": "CTA Button Text", "default": "Add to Cart" },
+    { "type": "url", "id": "cta_url", "label": "CTA URL" }
+  ],
+  "blocks": [
+    {
+      "type": "feature_card",
+      "name": "Feature Card",
+      "limit": 4,
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Card Background Image" },
+        { "type": "text", "id": "title", "label": "Card Title", "default": "Feature Title" },
+        { "type": "textarea", "id": "body", "label": "Card Description", "default": "Feature description goes here." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TS - Features Carousel",
+      "blocks": [
+        {
+          "type": "feature_card",
+          "settings": {
+            "title": "Family-Owned",
+            "body": "Crafted in small batches by the Jackson Vaughn family since 2000. Every candle carries the care of a home-grown tradition."
+          }
+        },
+        {
+          "type": "feature_card",
+          "settings": {
+            "title": "60-Hour Burn",
+            "body": "Our 16oz jar burns up to 60 hours — so you get more evenings, more ambiance, and more value from every pour."
+          }
+        },
+        {
+          "type": "feature_card",
+          "settings": {
+            "title": "Room-Filling Throw",
+            "body": "Texas Spring fills your entire space within minutes. Not a whisper of scent — a full, garden-fresh presence."
+          }
+        },
+        {
+          "type": "feature_card",
+          "settings": {
+            "title": "Ready to Burn",
+            "body": "No curing needed. Your candle arrives ready to light. Just unwrap, trim the wick, and enjoy."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

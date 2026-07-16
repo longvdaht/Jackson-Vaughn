@@ -1,0 +1,306 @@
+{% comment %} TS - Comparison Table {% endcomment %}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Dosis:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --cream: #fcf9ef;
+    --cream-mid: #faf7ef;
+    --text: #232323;
+    --body-color: #2d2b27;
+    --green: #36402d;
+    --gold: #c29b62;
+    --gold-dk: #b78c47;
+    --star: #f5b857;
+    --verified: #76913e;
+    --border: #d8d5ce;
+    --font-h: 'Petrona', serif;
+    --font-b: 'Dosis', sans-serif;
+  }
+
+  #shopify-section-{{ section.id }} .comparison {
+    background: var(--cream);
+    padding: 0 16px 0;
+  }
+
+  #shopify-section-{{ section.id }} .comparison__box {
+    max-width: 1408px;
+    margin: 0 auto;
+    border: 1px solid var(--border);
+    border-top: none;
+    display: grid;
+    grid-template-columns: 44fr 56fr;
+  }
+
+  #shopify-section-{{ section.id }} .comparison__left {
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--border);
+  }
+
+  #shopify-section-{{ section.id }} .comparison__eyebrow {
+    font-family: var(--font-b);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gold-dk);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  #shopify-section-{{ section.id }} .comparison__eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 2px;
+    background: var(--gold-dk);
+    border-radius: 1px;
+  }
+
+  #shopify-section-{{ section.id }} .comparison__heading {
+    font-family: var(--font-h);
+    font-size: 38px;
+    font-weight: 500;
+    line-height: 1.15;
+    margin-bottom: 20px;
+    color: var(--text);
+  }
+
+  #shopify-section-{{ section.id }} .comparison__imgs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+
+  #shopify-section-{{ section.id }} .comparison__img {
+    aspect-ratio: 178/193;
+    overflow: hidden;
+  }
+
+  #shopify-section-{{ section.id }} .comparison__img img,
+  #shopify-section-{{ section.id }} .comparison__img .img-placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  #shopify-section-{{ section.id }} .comparison__cta-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-top: auto;
+  }
+
+  #shopify-section-{{ section.id }} .btn-atc {
+    display: block;
+    width: 100%;
+    max-width: 420px;
+    background: var(--green);
+    color: #fff;
+    font-family: var(--font-b);
+    font-size: 19px;
+    font-weight: 500;
+    padding: 18px 24px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .comparison__shield {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-family: var(--font-b);
+    font-size: 13px;
+    color: #555;
+    margin-top: 4px;
+  }
+
+  #shopify-section-{{ section.id }} .comparison__right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 28px 32px 28px 0;
+  }
+
+  #shopify-section-{{ section.id }} .comp-image {
+    width: 652px;
+    height: 518.7px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  #shopify-section-{{ section.id }} .comp-image img,
+  #shopify-section-{{ section.id }} .comp-image .img-placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  #shopify-section-{{ section.id }} .img-placeholder {
+    background: #d0cdc4;
+    color: #888;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    text-transform: uppercase;
+    font-family: var(--font-b);
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    #shopify-section-{{ section.id }} .comparison__box {
+      display: flex !important;
+      flex-direction: column;
+      padding: 24px 16px;
+    }
+
+    #shopify-section-{{ section.id }} .comparison__left {
+      display: contents;
+      border-right: none;
+      padding: 0;
+    }
+
+    #shopify-section-{{ section.id }} .comparison__eyebrow {
+      order: 0;
+    }
+
+    #shopify-section-{{ section.id }} .comparison__heading {
+      order: 1;
+      font-size: 28px;
+      margin-bottom: 16px;
+    }
+
+    #shopify-section-{{ section.id }} .comparison__right {
+      order: 2;
+      padding: 0;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    #shopify-section-{{ section.id }} .comparison__cta-wrap {
+      order: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      margin-top: 0;
+    }
+
+    #shopify-section-{{ section.id }} .comparison__imgs {
+      order: 4;
+      margin-top: 20px;
+      grid-template-columns: repeat(3, 105px);
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 0;
+    }
+
+    #shopify-section-{{ section.id }} .comparison__img {
+      width: 105px;
+      height: 148px;
+      aspect-ratio: unset;
+    }
+
+    #shopify-section-{{ section.id }} .comp-image {
+      width: 328px;
+      height: 400px;
+    }
+
+    #shopify-section-{{ section.id }} .btn-atc {
+      max-width: 100%;
+    }
+  }
+</style>
+
+<section class="comparison" id="ts-comparison-{{ section.id }}">
+  <div class="comparison__box">
+
+    <!-- Left Column -->
+    <div class="comparison__left">
+      <div class="comparison__eyebrow">The Honest Difference</div>
+      <h2 class="comparison__heading">{{ section.settings.heading_line1 }}<br>{{ section.settings.heading_line2 }}</h2>
+
+      <!-- Product Images -->
+      <div class="comparison__imgs">
+        {% assign img_ids = 'img_1,img_2,img_3' | split: ',' %}
+        {% for img_id in img_ids %}
+          <div class="comparison__img">
+            {% assign prod_img = section.settings[img_id] %}
+            {% if prod_img %}
+              {{ prod_img | image_url: width: 400 | image_tag: loading: 'lazy' }}
+            {% else %}
+              <div class="img-placeholder">Product {{ forloop.index }}</div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+
+      <!-- CTA -->
+      <div class="comparison__cta-wrap">
+        {% if section.settings.cta_url != blank %}
+          <a href="{{ section.settings.cta_url }}" class="btn-atc">{{ section.settings.cta_text }}</a>
+        {% else %}
+          <button class="btn-atc">{{ section.settings.cta_text }}</button>
+        {% endif %}
+        <div class="comparison__shield">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M7.5 1L2 4V7.5C2 10.5 4.5 13.2 7.5 14C10.5 13.2 13 10.5 13 7.5V4L7.5 1Z" stroke="#555" stroke-width="1.2" fill="none"/></svg>
+          Easy Returns &nbsp;·&nbsp; Free Shipping Over $60
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Comparison Chart -->
+    <div class="comparison__right">
+      <div class="comp-image">
+        {% if section.settings.chart_image %}
+          {{ section.settings.chart_image | image_url: width: 1200 | image_tag: loading: 'lazy' }}
+        {% else %}
+          <div class="img-placeholder">Comparison Chart Image</div>
+        {% endif %}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "TS - Comparison Table",
+  "tag": "section",
+  "class": "ts-comparison",
+  "settings": [
+    { "type": "text", "id": "heading_line1", "label": "Heading Line 1", "default": "Jackson Vaughn vs." },
+    { "type": "text", "id": "heading_line2", "label": "Heading Line 2", "default": "Mass-Market Candles" },
+    { "type": "image_picker", "id": "img_1", "label": "Product Image 1" },
+    { "type": "image_picker", "id": "img_2", "label": "Product Image 2" },
+    { "type": "image_picker", "id": "img_3", "label": "Product Image 3" },
+    { "type": "image_picker", "id": "chart_image", "label": "Comparison Chart Image (right side)" },
+    { "type": "text", "id": "cta_text", "label": "CTA Button Text", "default": "Add to Cart" },
+    { "type": "url", "id": "cta_url", "label": "CTA URL" }
+  ],
+  "presets": [
+    {
+      "name": "TS - Comparison Table"
+    }
+  ]
+}
+{% endschema %}

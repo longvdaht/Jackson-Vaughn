@@ -1,0 +1,26 @@
+<cart-gift-attributes class="cart-gift-attributes">
+  <div class="form-field">
+    <label class="form-label" style="display: flex; align-items: center; cursor: pointer;">
+      <input type="checkbox"
+             name="attributes[Gift Wrap]"
+             id="gift-wrap-checkbox"
+             value="Yes"
+             {% if cart.attributes["Gift Wrap"] == "Yes" %}checked{% endif %}
+             style="margin-right: 10px;">
+      <label class="form-label--checkbox" for="gift-wrap-checkbox">Add a Gift Message</label>
+    </label>
+  </div>
+
+  <div class="cart-gift-attributes__fields"
+       style="{% unless cart.attributes["Gift Wrap"] == "Yes" %}display: none;{% endunless %} margin-top: 15px;">
+    <div class="form-field" style="margin-bottom: 10px;">
+      <input class="form-input" type="text" placeholder="Recipient:" name="attributes[Gift Receiver]" value="{{ cart.attributes["Gift Receiver"] }}">
+    </div>
+    <div class="form-field" style="margin-bottom: 10px;">
+      <input class="form-input" type="text" placeholder="Sender:" name="attributes[Gift Sender]" value="{{ cart.attributes["Gift Sender"] }}">
+    </div>
+    <div class="form-field">
+      <textarea class="form-input" placeholder="Add a personalized gift message:" maxlength="255" name="attributes[Gift Message]">{{ cart.attributes["Gift Message"] }}</textarea>
+    </div>
+  </div>
+</cart-gift-attributes>

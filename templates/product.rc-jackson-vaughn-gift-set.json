@@ -1,0 +1,426 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "jv-announcement-bar": {
+      "type": "jv-announcement-bar",
+      "settings": {
+        "gold_text": "Free Shipping on Orders Over $75",
+        "white_text": "Handcrafted in Texas · Small Batch · Burn Clean",
+        "bg_color": "#232323",
+        "speed": 30
+      }
+    },
+    "jv-hero-gift-set": {
+      "type": "jv-hero-gift-set",
+      "blocks": {
+        "purchase-1": {
+          "type": "purchase_option",
+          "settings": {
+            "name": "Classic",
+            "price": "$89.00",
+            "old_price": "",
+            "save_badge": "",
+            "whats_in_it": "What's in it?",
+            "includes": ""
+          }
+        },
+        "purchase-2": {
+          "type": "purchase_option",
+          "settings": {
+            "name": "Classic",
+            "price": "$129.00",
+            "old_price": "$155.00",
+            "save_badge": "",
+            "whats_in_it": "What's in it?",
+            "includes": ""
+          }
+        },
+        "accordion-1": {
+          "type": "accordion",
+          "settings": {
+            "title": "What's Included",
+            "body": "<p>Each gift set includes hand-selected Jackson Vaughn candles, elegantly packaged in our signature gift box with ribbon and care card.</p>"
+          }
+        },
+        "accordion-2": {
+          "type": "accordion",
+          "settings": {
+            "title": "Shipping & Returns",
+            "body": "<p>Orders ship within 1 business day. Free shipping on orders over $75. Gift wrapping available at checkout. Easy 30-day returns on unopened items.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "purchase-1",
+        "purchase-2",
+        "accordion-1",
+        "accordion-2"
+      ],
+      "settings": {
+        "rating_text": "Rated 4.9 / 5.0 — Excellent",
+        "product_title": "The Perfect Gift For Her",
+        "subhead": "Beautifully packaged, thoughtful...give the gift that lasts!",
+        "description": "<p>Skip the flowers...introducing the easiest gift you'll ever give! The Perfect Gift For Her is great for any occasion, featuring hand-picked scents and curated extras she'll love. Crafted by interior designers, this beautiful pink floral packaging — complete with a hand-written note — is the gift she'll never forget.</p>",
+        "feature_image": "shopify://shop_images/Group_2087329383.png",
+        "thumb_1": "shopify://shop_images/Frame_2147241073_0b3c3944-e7cb-46ca-99f7-2a0a4d6351e4.png",
+        "thumb_2": "shopify://shop_images/Frame_2147241687_7c9b5c3c-550a-4bd4-a323-4972782fc9b9.png",
+        "thumb_3": "shopify://shop_images/Frame_2147241686_c66c2bf0-0572-484f-8636-043d49a0d864.png",
+        "thumb_4": "shopify://shop_images/Frame_2147241685_5282b686-0190-4311-8526-5ca1aa755d1d.png",
+        "thumb_5": "shopify://shop_images/Frame_2147241683_c24ace6d-13c4-43cf-b413-f0a656e91a0f.png",
+        "size_1_label": "16OZ JAR — $38",
+        "size_1_note": "120hr Burn Time",
+        "size_2_label": "9OZ JAR — $28",
+        "size_2_note": "60hr Burn Time",
+        "cta_text": "Add to Cart",
+        "instock_text": "In stock — Ready for next day dispatch"
+      }
+    },
+    "jv-brand-story": {
+      "type": "jv-brand-story",
+      "settings": {
+        "mobile_image": "shopify://shop_images/Screenshot_2026-05-26_at_7.52.38_PM.png",
+        "rating_text": "4.9 Stars · 2,400+ Happy Homes",
+        "heading_line1": "Skip the flowers.",
+        "heading_line2": "Give the gift that lasts.",
+        "body": "<p>Every detail considered makes every burn elevated. We make candles the way they should be made, using a premium soy wax blend, 100% cotton wicks, and high-quality fragrance oils for a clean, even burn and a scent that actually fills the room. </p>",
+        "cta_text": "Add to Cart",
+        "cta_url": "/collections/all",
+        "years_text": "25 Years of Hand-Poured Quality"
+      }
+    },
+    "jv-product-carousel": {
+      "type": "jv-product-carousel",
+      "blocks": {
+        "card-1": {
+          "type": "product_card",
+          "settings": {
+            "product_name": "Texas Spring",
+            "product_url": "/products/texas-spring"
+          }
+        },
+        "card-2": {
+          "type": "product_card",
+          "settings": {
+            "product_name": "Hill Country Sunrise",
+            "product_url": "/products/hill-country-sunrise"
+          }
+        },
+        "card-3": {
+          "type": "product_card",
+          "settings": {
+            "product_name": "Cedar & Sage",
+            "product_url": "/products/cedar-sage"
+          }
+        },
+        "card-4": {
+          "type": "product_card",
+          "settings": {
+            "product_name": "Bluebonnet Fields",
+            "product_url": "/products/bluebonnet-fields"
+          }
+        }
+      },
+      "block_order": [
+        "card-1",
+        "card-2",
+        "card-3",
+        "card-4"
+      ],
+      "settings": {
+        "heading": "You Might Also Love",
+        "cta_text": "Shop All",
+        "cta_url": "/collections/all",
+        "artisan_text": "25 Years of Hand-Poured Quality"
+      }
+    },
+    "jv-video-showcase": {
+      "type": "jv-video-showcase",
+      "blocks": {
+        "video-1": {
+          "type": "video",
+          "settings": {
+            "video_url": ""
+          }
+        },
+        "video-2": {
+          "type": "video",
+          "settings": {
+            "video_url": ""
+          }
+        },
+        "video-3": {
+          "type": "video",
+          "settings": {
+            "video_url": ""
+          }
+        },
+        "video-4": {
+          "type": "video",
+          "settings": {
+            "video_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "video-1",
+        "video-2",
+        "video-3",
+        "video-4"
+      ],
+      "settings": {
+        "heading": "The Craft Behind Every Candle",
+        "cta_text": "Shop the Collection",
+        "cta_url": "/collections/all",
+        "artisan_text": "Small Batch · Hand-Poured · Texas Made"
+      }
+    },
+    "jv-occasions": {
+      "type": "jv-occasions",
+      "blocks": {
+        "occ-1": {
+          "type": "occasion",
+          "settings": {
+            "label": "Birthdays"
+          }
+        },
+        "occ-2": {
+          "type": "occasion",
+          "settings": {
+            "label": "Mother's Day"
+          }
+        },
+        "occ-3": {
+          "type": "occasion",
+          "settings": {
+            "label": "Valentine's Day"
+          }
+        },
+        "occ-4": {
+          "type": "occasion",
+          "settings": {
+            "label": "Anniversaries"
+          }
+        },
+        "occ-5": {
+          "type": "occasion",
+          "settings": {
+            "label": "Housewarming"
+          }
+        },
+        "occ-6": {
+          "type": "occasion",
+          "settings": {
+            "label": "Baby Shower"
+          }
+        },
+        "occ-7": {
+          "type": "occasion",
+          "settings": {
+            "label": "Bridal Shower"
+          }
+        },
+        "occ-8": {
+          "type": "occasion",
+          "settings": {
+            "label": "Thank You"
+          }
+        },
+        "occ-9": {
+          "type": "occasion",
+          "settings": {
+            "label": "Christmas"
+          }
+        },
+        "occ-10": {
+          "type": "occasion",
+          "settings": {
+            "label": "Graduation"
+          }
+        },
+        "occ-11": {
+          "type": "occasion",
+          "settings": {
+            "label": "Just Because"
+          }
+        },
+        "occ-12": {
+          "type": "occasion",
+          "settings": {
+            "label": "Self Care"
+          }
+        },
+        "occ-13": {
+          "type": "occasion",
+          "settings": {
+            "label": "New Home"
+          }
+        },
+        "occ-14": {
+          "type": "occasion",
+          "settings": {
+            "label": "Sympathy"
+          }
+        }
+      },
+      "block_order": [
+        "occ-1",
+        "occ-2",
+        "occ-3",
+        "occ-4",
+        "occ-5",
+        "occ-6",
+        "occ-7",
+        "occ-8",
+        "occ-9",
+        "occ-10",
+        "occ-11",
+        "occ-12",
+        "occ-13",
+        "occ-14"
+      ],
+      "settings": {
+        "heading": "A Gift for Every Occasion",
+        "cta_text": "Shop Gift Sets",
+        "cta_url": "/collections/gift-sets",
+        "artisan_text": "25 Years of Hand-Poured Quality"
+      }
+    },
+    "jv-reviews": {
+      "type": "jv-reviews",
+      "blocks": {
+        "rev-1": {
+          "type": "review",
+          "settings": {
+            "quote": "I ordered this as a birthday gift and she absolutely loved it. The packaging is beautiful and the scent fills the whole room.",
+            "author": "Katherine L.",
+            "stars": "5",
+            "verified": true
+          }
+        },
+        "rev-2": {
+          "type": "review",
+          "settings": {
+            "quote": "Best candle gift set I've ever purchased. The presentation is stunning and every candle smells incredible.",
+            "author": "Megan T.",
+            "stars": "5",
+            "verified": true
+          }
+        },
+        "rev-3": {
+          "type": "review",
+          "settings": {
+            "quote": "My mother cried when she opened this. The quality is unreal — these are heirloom-level candles.",
+            "author": "Sarah R.",
+            "stars": "5",
+            "verified": true
+          }
+        }
+      },
+      "block_order": [
+        "rev-1",
+        "rev-2",
+        "rev-3"
+      ],
+      "settings": {
+        "rating_text": "Rated 4.9 / 5.0 · Excellent",
+        "heading": "What Our Customers Say",
+        "cta_text": "Add to Cart",
+        "cta_url": "/cart",
+        "artisan_text": "25 Years of Hand-Poured Quality"
+      }
+    },
+    "jv-faq": {
+      "type": "jv-faq",
+      "blocks": {
+        "faq-1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Is gift wrapping included?",
+            "answer": "<p>Yes — every gift set ships in our signature kraft box with ribbon, tissue paper, and a handwritten-style care card. Gift wrapping is included at no extra charge.</p>"
+          }
+        },
+        "faq-2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How long do the candles burn?",
+            "answer": "<p>Our 16oz candles burn for up to 60 hours and our 9oz candles burn for up to 40 hours when properly cared for. Always trim your wick to 1/4 inch before each burn.</p>"
+          }
+        },
+        "faq-3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What wax do you use?",
+            "answer": "<p>We use 100% premium soy wax sourced from American farmers. Soy wax burns cleaner, longer, and holds fragrance better than paraffin.</p>"
+          }
+        },
+        "faq-4": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I add a personal message?",
+            "answer": "<p>Yes! Add your message in the order notes at checkout and we'll include it on a card inside the gift box.</p>"
+          }
+        },
+        "faq-5": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How fast will it arrive?",
+            "answer": "<p>Orders placed before 2pm CST ship same day. Standard delivery is 3-5 business days. Expedited options available at checkout.</p>"
+          }
+        },
+        "faq-6": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What's your return policy?",
+            "answer": "<p>We offer easy 30-day returns on unopened items. If your order arrives damaged, contact us within 48 hours and we'll make it right immediately.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq-1",
+        "faq-2",
+        "faq-3",
+        "faq-4",
+        "faq-5",
+        "faq-6"
+      ],
+      "settings": {
+        "heading": "Frequently Asked Questions",
+        "cta_text": "Add to Cart",
+        "cta_url": "/cart"
+      }
+    },
+    "jv-dark-cta": {
+      "type": "jv-dark-cta",
+      "settings": {
+        "rating_text": "Rated 4.9 / 5.0 · 2,400+ Reviews",
+        "heading": "Give Her the Gift She'll Actually Use",
+        "body": "Handcrafted in Texas. Beautifully packaged. Ready to ship today.",
+        "cta_text": "Shop the Gift Set",
+        "cta_url": "/products/the-perfect-gift-for-her",
+        "artisan_text": "25 Years of Hand-Poured Quality",
+        "badge_1_text": "Rated 4.9/5\nBy 2,400+",
+        "badge_2_text": "5 Texas Retail Locations",
+        "badge_3_text": "Hand-Poured Since 2000"
+      }
+    }
+  },
+  "order": [
+    "jv-announcement-bar",
+    "jv-hero-gift-set",
+    "jv-brand-story",
+    "jv-product-carousel",
+    "jv-video-showcase",
+    "jv-occasions",
+    "jv-reviews",
+    "jv-faq",
+    "jv-dark-cta"
+  ]
+}

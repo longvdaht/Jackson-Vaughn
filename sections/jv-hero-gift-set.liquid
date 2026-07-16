@@ -1,0 +1,1049 @@
+{% comment %} JV - Hero Gift Set {% endcomment %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Dosis:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --cream: #FCFAEF;
+    --cream-alt: #FAF7EF;
+    --cream-warm: #FAE9C9;
+    --dark: #232323;
+    --text: #2D2B27;
+    --btn-green: #36402D;
+    --gold: #B78C47;
+    --gold-bright: #F5B857;
+    --gold-cta: #D6A24C;
+    --gold-light: #EBDEc5;
+    --green-check: #35911E;
+    --white: #FFFFFF;
+    --border: rgba(45,43,39,0.13);
+    --font-heading: 'Petrona', serif;
+    --font-body: 'Dosis', sans-serif;
+  }
+
+  /* ── Layout ── */
+  #shopify-section-{{ section.id }} .jv-hero {
+    display: flex;
+    gap: 36px;
+    padding: 40px 48px 56px;
+    background: var(--cream);
+    max-width: 1600px;
+    margin: 0 auto;
+    align-items: flex-start;
+    font-family: var(--font-body);
+    color: var(--text);
+  }
+
+  /* ── Gallery ── */
+  #shopify-section-{{ section.id }} .jv-hero-gallery {
+    display: flex;
+    gap: 10px;
+    flex: 0 0 50%;
+    align-items: flex-start;
+  }
+
+  @media (min-width: 769px) {
+    #shopify-section-{{ section.id }} .jv-hero-gallery {
+      position: sticky;
+      top: 72px;
+    }
+    #shopify-section-{{ section.id }} .jv-hero-main {
+      order: -1;
+    }
+  }
+
+  #shopify-section-{{ section.id }} .jv-hero-thumb-col {
+    width: 88px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  #shopify-section-{{ section.id }} .jv-hero-thumbs {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  #shopify-section-{{ section.id }} .jv-hero-thumb {
+    width: 88px;
+    height: 88px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    overflow: hidden;
+    display: block;
+    background: var(--cream-alt);
+  }
+
+  #shopify-section-{{ section.id }} .jv-hero-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  #shopify-section-{{ section.id }} .jv-hero-thumb.active {
+    border-color: var(--gold);
+  }
+
+  #shopify-section-{{ section.id }} .jv-thumb-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 88px;
+    height: 32px;
+    background: var(--cream);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    font-size: 16px;
+    color: var(--text);
+    flex-shrink: 0;
+  }
+
+  #shopify-section-{{ section.id }} .jv-hero-main {
+    flex: 1;
+    aspect-ratio: 1/1;
+    position: relative;
+    min-width: 0;
+    background: var(--cream-alt);
+    overflow: hidden;
+  }
+
+  #shopify-section-{{ section.id }} .jv-hero-main img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  #shopify-section-{{ section.id }} .jv-hero-main-placeholder {
+    width: 100%;
+    height: 100%;
+    background: var(--cream-alt);
+  }
+
+  /* ── Purchase column ── */
+  #shopify-section-{{ section.id }} .jv-hero-purchase {
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* hero-top grid */
+  #shopify-section-{{ section.id }} .jv-hero-top {
+    display: grid;
+    grid-template-columns: 1fr 149px;
+    grid-template-rows: auto 1fr;
+  }
+
+  #shopify-section-{{ section.id }} .jv-hero-title-section {
+    grid-column: 1;
+    grid-row: 1;
+    border: 1px solid var(--border);
+    padding: 24px 26px 22px;
+  }
+
+  #shopify-section-{{ section.id }} .jv-hero-copy-section {
+    grid-column: 1;
+    grid-row: 2;
+    border: 1px solid var(--border);
+    border-top: none;
+    padding: 22px 26px 28px;
+  }
+
+  #shopify-section-{{ section.id }} .jv-hero-features {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    border-left: 1px solid var(--border);
+    min-height: 479px;
+    overflow: hidden;
+    background: var(--cream-alt);
+  }
+
+  #shopify-section-{{ section.id }} .jv-hero-features img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  #shopify-section-{{ section.id }} .jv-hero-features-placeholder {
+    width: 100%;
+    height: 100%;
+    background: var(--cream-alt);
+  }
+
+  /* Rating */
+  #shopify-section-{{ section.id }} .jv-hero-rating {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--text);
+  }
+
+  #shopify-section-{{ section.id }} .jv-stars {
+    color: var(--gold-bright);
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+
+  /* Heading */
+  #shopify-section-{{ section.id }} .jv-hero-title-section h1 {
+    font-family: var(--font-heading);
+    font-size: 34px;
+    font-weight: 500;
+    color: var(--dark);
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  /* Subhead + body */
+  #shopify-section-{{ section.id }} .jv-hero-subhead {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 10px;
+    letter-spacing: 0.02em;
+  }
+
+  #shopify-section-{{ section.id }} .jv-hero-body {
+    font-size: 15px;
+    line-height: 1.65;
+    color: rgba(45,43,39,0.75);
+  }
+
+  #shopify-section-{{ section.id }} .jv-hero-body p {
+    margin: 0 0 8px;
+  }
+
+  /* Size block */
+  #shopify-section-{{ section.id }} .jv-size-block {
+    border: 1px solid var(--border);
+    border-top: none;
+    padding: 18px 26px;
+  }
+
+  #shopify-section-{{ section.id }} .jv-size-block-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  #shopify-section-{{ section.id }} .jv-size-btns {
+    display: flex;
+    gap: 8px;
+  }
+
+  #shopify-section-{{ section.id }} .jv-size-btn {
+    flex: 1;
+    padding: 14px 8px;
+    border: 1px solid var(--border);
+    background: var(--cream);
+    cursor: pointer;
+    text-align: center;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--text);
+    transition: border-color 0.15s, background 0.15s;
+  }
+
+  #shopify-section-{{ section.id }} .jv-size-btn.active {
+    border-color: var(--gold);
+    background: var(--cream-warm);
+  }
+
+  #shopify-section-{{ section.id }} .jv-size-btn-note {
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    margin-top: 4px;
+    opacity: 0.7;
+  }
+
+  /* Purchase block */
+  #shopify-section-{{ section.id }} .jv-purchase-block {
+    border: 1px solid var(--border);
+    border-top: none;
+    padding: 18px 26px;
+  }
+
+  #shopify-section-{{ section.id }} .jv-purchase-block-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  #shopify-section-{{ section.id }} .jv-popts {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  #shopify-section-{{ section.id }} .jv-popt {
+    border: 1px solid var(--border);
+    padding: 12px 14px;
+    background: var(--cream);
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text);
+    transition: border-color 0.15s, background 0.15s;
+  }
+
+  #shopify-section-{{ section.id }} .jv-popt.active {
+    border-color: var(--gold);
+    background: var(--cream-warm);
+  }
+
+  #shopify-section-{{ section.id }} .jv-popt-radio {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    flex-shrink: 0;
+    margin-top: 2px;
+    position: relative;
+    transition: border-color 0.15s;
+  }
+
+  #shopify-section-{{ section.id }} .jv-popt.active .jv-popt-radio {
+    border-color: var(--gold);
+  }
+
+  #shopify-section-{{ section.id }} .jv-popt.active .jv-popt-radio::after {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  #shopify-section-{{ section.id }} .jv-popt-details {
+    flex: 1;
+  }
+
+  #shopify-section-{{ section.id }} .jv-popt-name {
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  #shopify-section-{{ section.id }} .jv-popt-price {
+    font-weight: 700;
+    font-size: 15px;
+    margin-top: 2px;
+  }
+
+  #shopify-section-{{ section.id }} .jv-popt-old-price {
+    text-decoration: line-through;
+    opacity: 0.5;
+    margin-left: 6px;
+    font-size: 13px;
+  }
+
+  #shopify-section-{{ section.id }} .jv-popt-save {
+    display: inline-block;
+    background: var(--gold-bright);
+    color: var(--dark);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    margin-top: 4px;
+  }
+
+  #shopify-section-{{ section.id }} .jv-popt-includes {
+    font-size: 12px;
+    opacity: 0.7;
+    margin-top: 4px;
+  }
+
+  #shopify-section-{{ section.id }} .jv-popt-includes-toggle {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-top: 4px;
+    display: inline-block;
+    color: var(--btn-green);
+  }
+
+  /* Instock block */
+  #shopify-section-{{ section.id }} .jv-instock-block {
+    border: 1px solid var(--border);
+    border-top: none;
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  #shopify-section-{{ section.id }} .jv-instock-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--green-check);
+    flex-shrink: 0;
+  }
+
+  /* ATC button */
+  #shopify-section-{{ section.id }} .jv-btn-atc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: none;
+    width: 100%;
+    height: 78px;
+    margin: 0 auto;
+    background: var(--btn-green);
+    color: #fff;
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+
+  #shopify-section-{{ section.id }} .jv-btn-atc:hover {
+    opacity: 0.9;
+  }
+
+  /* Review image placeholder (desktop) */
+  #shopify-section-{{ section.id }} .jv-hero-review-ph {
+    border: 1px solid var(--border);
+    border-top: none;
+    overflow: hidden;
+    background: var(--cream-alt);
+  }
+
+  #shopify-section-{{ section.id }} .jv-hero-review-ph img {
+    width: 100%;
+    display: block;
+  }
+
+  #shopify-section-{{ section.id }} .jv-hero-review-ph-placeholder {
+    width: 100%;
+    aspect-ratio: 16/7;
+    background: var(--cream-alt);
+  }
+
+  /* Mobile review card (hidden desktop) */
+  #shopify-section-{{ section.id }} .jv-hero-review {
+    display: none;
+    border: 1px solid var(--border);
+    border-top: none;
+    padding: 18px 20px;
+    background: var(--cream);
+  }
+
+  /* Accordion */
+  #shopify-section-{{ section.id }} .jv-acc-list {
+    border: 1px solid var(--border);
+    border-top: none;
+  }
+
+  #shopify-section-{{ section.id }} .jv-acc-item + .jv-acc-item {
+    border-top: 1px solid var(--border);
+  }
+
+  #shopify-section-{{ section.id }} .jv-acc-item details summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    list-style: none;
+    color: var(--text);
+  }
+
+  #shopify-section-{{ section.id }} .jv-acc-item details summary::-webkit-details-marker {
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }} .jv-acc-icon {
+    font-size: 20px;
+    line-height: 1;
+    transition: transform 0.2s;
+    color: var(--gold);
+  }
+
+  #shopify-section-{{ section.id }} .jv-acc-item details[open] .jv-acc-icon {
+    transform: rotate(45deg);
+  }
+
+  #shopify-section-{{ section.id }} .jv-acc-body {
+    padding: 0 18px 16px;
+    font-size: 14px;
+    line-height: 1.65;
+    color: rgba(45,43,39,0.75);
+  }
+
+  #shopify-section-{{ section.id }} .jv-acc-body p {
+    margin: 0 0 8px;
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 768px) {
+    #shopify-section-{{ section.id }} .jv-hero {
+      flex-direction: column;
+      padding: 0;
+      gap: 0;
+    }
+
+    #shopify-section-{{ section.id }} .jv-hero-gallery {
+      flex: none;
+      width: 100%;
+      gap: 6px;
+    }
+
+    #shopify-section-{{ section.id }} .jv-hero-thumb-col {
+      width: 50px;
+    }
+
+    #shopify-section-{{ section.id }} .jv-hero-thumb {
+      width: 50px;
+      height: 50px;
+    }
+
+    #shopify-section-{{ section.id }} .jv-thumb-arrow {
+      width: 50px;
+    }
+
+    #shopify-section-{{ section.id }} .jv-hero-purchase {
+      width: 100%;
+    }
+
+    #shopify-section-{{ section.id }} .jv-hero-top {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+    }
+
+    #shopify-section-{{ section.id }} .jv-hero-title-section {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    #shopify-section-{{ section.id }} .jv-hero-copy-section {
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    #shopify-section-{{ section.id }} .jv-hero-features {
+      display: none;
+    }
+
+    #shopify-section-{{ section.id }} .jv-hero-review-ph {
+      display: none !important;
+    }
+
+    #shopify-section-{{ section.id }} .jv-hero-review {
+      display: block;
+    }
+  }
+</style>
+
+{% assign purchase_blocks = section.blocks | where: 'type', 'purchase_option' %}
+{% assign accordion_blocks = section.blocks | where: 'type', 'accordion' %}
+
+<div class="jv-hero">
+
+  {%- comment -%} ── Gallery ── {%- endcomment -%}
+  <div class="jv-hero-gallery">
+    <div class="jv-hero-thumb-col">
+      <button class="jv-thumb-arrow" id="jv-thumb-prev-{{ section.id }}" aria-label="Previous image">&#8593;</button>
+      <div class="jv-hero-thumbs" id="jv-thumbs-{{ section.id }}">
+        {%- assign thumb_ids = 'thumb_1,thumb_2,thumb_3,thumb_4,thumb_5' | split: ',' -%}
+        {%- for thumb_id in thumb_ids -%}
+          {%- assign thumb_img = section.settings[thumb_id] -%}
+          {%- assign loop_index0 = forloop.index0 -%}
+          <button class="jv-hero-thumb{% if forloop.first %} active{% endif %}" data-index="{{ loop_index0 }}" aria-label="Thumbnail {{ forloop.index }}">
+            {%- if thumb_img != blank -%}
+              {{ thumb_img | image_url: width: 200 | image_tag: loading: 'lazy', class: '' }}
+            {%- else -%}
+              <div style="width:100%;height:100%;background:var(--cream-alt);"></div>
+            {%- endif -%}
+          </button>
+        {%- endfor -%}
+      </div>
+      <button class="jv-thumb-arrow" id="jv-thumb-next-{{ section.id }}" aria-label="Next image">&#8595;</button>
+    </div>
+
+    <div class="jv-hero-main" id="jv-main-image-{{ section.id }}">
+      {%- assign first_thumb = section.settings.thumb_1 -%}
+      {%- if first_thumb != blank -%}
+        {{ first_thumb | image_url: width: 1200 | image_tag: loading: 'lazy', class: 'jv-main-img', id: 'jv-main-img-' | append: section.id }}
+      {%- else -%}
+        <div class="jv-hero-main-placeholder" id="jv-main-img-{{ section.id }}"></div>
+      {%- endif -%}
+    </div>
+  </div>
+
+  {%- comment -%} ── Purchase Column ── {%- endcomment -%}
+  <div class="jv-hero-purchase">
+
+    {%- comment -%} hero-top {%- endcomment -%}
+    <div class="jv-hero-top">
+
+      <div class="jv-hero-title-section">
+        <div class="jv-hero-rating">
+          <span class="jv-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span>{{ section.settings.rating_text }}</span>
+        </div>
+        <h1>{{ section.settings.product_title }}</h1>
+      </div>
+
+      <div class="jv-hero-copy-section">
+        {%- if section.settings.subhead != blank -%}
+          <div class="jv-hero-subhead">{{ section.settings.subhead }}</div>
+        {%- endif -%}
+        {%- if section.settings.description != blank -%}
+          <div class="jv-hero-body">{{ section.settings.description }}</div>
+        {%- endif -%}
+      </div>
+
+      <div class="jv-hero-features">
+        {%- if section.settings.feature_image != blank -%}
+          {{ section.settings.feature_image | image_url: width: 400 | image_tag: loading: 'lazy' }}
+        {%- else -%}
+          <div class="jv-hero-features-placeholder"></div>
+        {%- endif -%}
+      </div>
+
+    </div>{%- comment -%} /.jv-hero-top {%- endcomment -%}
+
+    {%- comment -%} Size selector {%- endcomment -%}
+    <div class="jv-size-block">
+      <div class="jv-size-block-label">Select Your Size</div>
+      <div class="jv-size-btns" id="jv-size-btns-{{ section.id }}">
+        {%- if section.settings.size_1_label != blank -%}
+          <button class="jv-size-btn active" data-size="1">
+            {{ section.settings.size_1_label }}
+            {%- if section.settings.size_1_note != blank -%}
+              <span class="jv-size-btn-note">{{ section.settings.size_1_note }}</span>
+            {%- endif -%}
+          </button>
+        {%- endif -%}
+        {%- if section.settings.size_2_label != blank -%}
+          <button class="jv-size-btn" data-size="2">
+            {{ section.settings.size_2_label }}
+            {%- if section.settings.size_2_note != blank -%}
+              <span class="jv-size-btn-note">{{ section.settings.size_2_note }}</span>
+            {%- endif -%}
+          </button>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- comment -%} Purchase type {%- endcomment -%}
+    {%- if purchase_blocks.size > 0 -%}
+      <div class="jv-purchase-block">
+        <div class="jv-purchase-block-label">Purchase Type</div>
+        <div class="jv-popts" id="jv-popts-{{ section.id }}">
+          {%- for block in purchase_blocks -%}
+            <div class="jv-popt{% if forloop.first %} active{% endif %}" data-popt="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+              <div class="jv-popt-radio"></div>
+              <div class="jv-popt-details">
+                {%- if block.settings.name != blank -%}
+                  <div class="jv-popt-name">{{ block.settings.name }}</div>
+                {%- endif -%}
+                <div>
+                  {%- if block.settings.price != blank -%}
+                    <span class="jv-popt-price">{{ block.settings.price }}</span>
+                  {%- endif -%}
+                  {%- if block.settings.old_price != blank -%}
+                    <span class="jv-popt-old-price">{{ block.settings.old_price }}</span>
+                  {%- endif -%}
+                </div>
+                {%- if block.settings.save_badge != blank -%}
+                  <span class="jv-popt-save">{{ block.settings.save_badge }}</span>
+                {%- endif -%}
+                {%- if block.settings.includes != blank -%}
+                  <div class="jv-popt-includes">{{ block.settings.includes }}</div>
+                {%- endif -%}
+                {%- if block.settings.whats_in_it != blank -%}
+                  <span class="jv-popt-includes-toggle">{{ block.settings.whats_in_it }}</span>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} In-stock {%- endcomment -%}
+    <div class="jv-instock-block">
+      <span class="jv-instock-dot"></span>
+      <span>{{ section.settings.instock_text }}</span>
+    </div>
+
+    {%- comment -%} ATC {%- endcomment -%}
+    <button class="jv-btn-atc">
+      <span>{{ section.settings.cta_text }}</span>
+    </button>
+
+    {%- comment -%} Review image — desktop {%- endcomment -%}
+    <div class="jv-hero-review-ph">
+      {%- if section.settings.review_image != blank -%}
+        {{ section.settings.review_image | image_url: width: 1200 | image_tag: loading: 'lazy' }}
+      {%- else -%}
+        <div class="jv-hero-review-ph-placeholder"></div>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Review card — mobile only {%- endcomment -%}
+    <div class="jv-hero-review">
+      <p style="font-size:13px;font-style:italic;line-height:1.6;margin:0 0 8px;">"Beautiful candle — the scent fills the whole room. Perfect gift!"</p>
+      <p style="font-size:12px;font-weight:700;margin:0;">— Verified Buyer</p>
+    </div>
+
+    {%- comment -%} Accordions {%- endcomment -%}
+    {%- if accordion_blocks.size > 0 -%}
+      <div class="jv-acc-list">
+        {%- for block in accordion_blocks -%}
+          <div class="jv-acc-item" {{ block.shopify_attributes }}>
+            <details>
+              <summary>
+                <span>{{ block.settings.title }}</span>
+                <span class="jv-acc-icon">+</span>
+              </summary>
+              {%- if block.settings.body != blank -%}
+                <div class="jv-acc-body">{{ block.settings.body }}</div>
+              {%- endif -%}
+            </details>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+  </div>{%- comment -%} /.jv-hero-purchase {%- endcomment -%}
+</div>{%- comment -%} /.jv-hero {%- endcomment -%}
+
+<script>
+(function() {
+  var sectionId = '{{ section.id }}';
+
+  // ── Thumbnails ──
+  var thumbsEl = document.getElementById('jv-thumbs-' + sectionId);
+  var mainImgEl = document.getElementById('jv-main-image-' + sectionId);
+
+  if (thumbsEl && mainImgEl) {
+    var thumbBtns = thumbsEl.querySelectorAll('.jv-hero-thumb');
+    var currentIndex = 0;
+    var totalThumbs = thumbBtns.length;
+
+    // Build list of full-size image URLs from thumbnail src
+    function activateThumb(index) {
+      thumbBtns.forEach(function(t, i) {
+        t.classList.toggle('active', i === index);
+      });
+      currentIndex = index;
+      var activeThumb = thumbBtns[index];
+      var img = activeThumb ? activeThumb.querySelector('img') : null;
+      if (img) {
+        var mainImg = mainImgEl.querySelector('img');
+        if (!mainImg) {
+          mainImg = document.createElement('img');
+          mainImg.style.width = '100%';
+          mainImg.style.height = '100%';
+          mainImg.style.objectFit = 'cover';
+          mainImg.style.display = 'block';
+          mainImgEl.innerHTML = '';
+          mainImgEl.appendChild(mainImg);
+        }
+        // Replace _200x with _1200x in the src to get full-size image
+        mainImg.src = img.src.replace(/_\d+x(\.\w+\?)/, '_1200x$1').replace(/_\d+x(\.\w+)$/, '_1200x$1');
+        mainImg.alt = img.alt;
+      }
+    }
+
+    thumbBtns.forEach(function(btn, i) {
+      btn.addEventListener('click', function() { activateThumb(i); });
+    });
+
+    var prevBtn = document.getElementById('jv-thumb-prev-' + sectionId);
+    var nextBtn = document.getElementById('jv-thumb-next-' + sectionId);
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function() {
+        activateThumb((currentIndex - 1 + totalThumbs) % totalThumbs);
+      });
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function() {
+        activateThumb((currentIndex + 1) % totalThumbs);
+      });
+    }
+  }
+
+  // ── Size buttons ──
+  var sizeBtns = document.getElementById('jv-size-btns-' + sectionId);
+  if (sizeBtns) {
+    sizeBtns.querySelectorAll('.jv-size-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        sizeBtns.querySelectorAll('.jv-size-btn').forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+      });
+    });
+  }
+
+  // ── Purchase options ──
+  var poptsEl = document.getElementById('jv-popts-' + sectionId);
+  if (poptsEl) {
+    poptsEl.querySelectorAll('.jv-popt').forEach(function(popt) {
+      popt.addEventListener('click', function() {
+        poptsEl.querySelectorAll('.jv-popt').forEach(function(p) { p.classList.remove('active'); });
+        popt.classList.add('active');
+      });
+    });
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "JV - Hero Gift Set",
+  "tag": "section",
+  "class": "jv-section-hero-gift-set",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Ratings & Title"
+    },
+    {
+      "type": "text",
+      "id": "rating_text",
+      "label": "Rating Text",
+      "default": "Rated 4.8 / 5.0 | Excellent"
+    },
+    {
+      "type": "text",
+      "id": "product_title",
+      "label": "Product Title",
+      "default": "The Perfect Gift For Her"
+    },
+    {
+      "type": "header",
+      "content": "Copy"
+    },
+    {
+      "type": "text",
+      "id": "subhead",
+      "label": "Subheadline",
+      "default": "Beautifully packaged, thoughtful...give the gift that lasts!"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Body Copy"
+    },
+    {
+      "type": "header",
+      "content": "Images"
+    },
+    {
+      "type": "image_picker",
+      "id": "feature_image",
+      "label": "Feature Image (right column)"
+    },
+    {
+      "type": "image_picker",
+      "id": "review_image",
+      "label": "Returns + Testimonial Image (desktop)"
+    },
+    {
+      "type": "image_picker",
+      "id": "thumb_1",
+      "label": "Thumbnail 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "thumb_2",
+      "label": "Thumbnail 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "thumb_3",
+      "label": "Thumbnail 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "thumb_4",
+      "label": "Thumbnail 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "thumb_5",
+      "label": "Thumbnail 5"
+    },
+    {
+      "type": "header",
+      "content": "Sizes"
+    },
+    {
+      "type": "text",
+      "id": "size_1_label",
+      "label": "Size 1 Label",
+      "default": "16OZ JAR — $38"
+    },
+    {
+      "type": "text",
+      "id": "size_1_note",
+      "label": "Size 1 Note",
+      "default": "120hr Burn Time"
+    },
+    {
+      "type": "text",
+      "id": "size_2_label",
+      "label": "Size 2 Label",
+      "default": "9OZ JAR — $28"
+    },
+    {
+      "type": "text",
+      "id": "size_2_note",
+      "label": "Size 2 Note",
+      "default": "60hr Burn Time"
+    },
+    {
+      "type": "header",
+      "content": "CTA & Stock"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Button Text",
+      "default": "Add to Cart"
+    },
+    {
+      "type": "text",
+      "id": "instock_text",
+      "label": "In Stock Text",
+      "default": "In stock — Ready for next day dispatch"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "purchase_option",
+      "name": "Purchase Option",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Option Name",
+          "default": "Classic"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Price",
+          "default": "$58.00"
+        },
+        {
+          "type": "text",
+          "id": "old_price",
+          "label": "Original Price (optional)"
+        },
+        {
+          "type": "text",
+          "id": "save_badge",
+          "label": "Save Badge (optional)",
+          "info": "e.g. Save 20% + FREE shipping"
+        },
+        {
+          "type": "text",
+          "id": "whats_in_it",
+          "label": "What's In It Label",
+          "default": "What's in it?"
+        },
+        {
+          "type": "textarea",
+          "id": "includes",
+          "label": "Includes Text"
+        }
+      ]
+    },
+    {
+      "type": "accordion",
+      "name": "Accordion",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Candle Care 101"
+        },
+        {
+          "type": "richtext",
+          "id": "body",
+          "label": "Body"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "JV - Hero Gift Set",
+      "blocks": [
+        {
+          "type": "purchase_option",
+          "settings": {
+            "name": "Classic",
+            "price": "$58.00"
+          }
+        },
+        {
+          "type": "purchase_option",
+          "settings": {
+            "name": "Signature",
+            "price": "$72.00",
+            "save_badge": "Save 20% + FREE shipping"
+          }
+        },
+        {
+          "type": "accordion",
+          "settings": {
+            "title": "Candle Care 101"
+          }
+        },
+        {
+          "type": "accordion",
+          "settings": {
+            "title": "Shipping & Returns"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
