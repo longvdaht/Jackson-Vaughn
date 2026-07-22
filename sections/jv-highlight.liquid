@@ -1,0 +1,406 @@
+{% comment %} JV - Highlight {% endcomment %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Dosis:wght@400;500;600;700&display=swap"
+  rel="stylesheet"
+>
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --hl-bg: var(--dominant_color, {{ section.settings.panel_bg | default: '#B0563B' }});
+    --hl-text: {{ section.settings.text_color | default: '#FBF3EC' }};
+    --hl-rule: {{ section.settings.text_color | default: '#FBF3EC' }}40;
+    --font-heading: 'Petrona', serif;
+    --font-body: 'Dosis', sans-serif;
+  }
+
+  #shopify-section-{{ section.id }} .jv-hl {
+    display: flex;
+    align-items: stretch;
+    margin: 0 auto;
+    background: var(--hl-bg);
+    color: var(--hl-text);
+    font-family: var(--font-body);
+  }
+
+  /* Image position (right) */
+  #shopify-section-{{ section.id }} .jv-hl--image-right {
+    flex-direction: row-reverse;
+  }
+
+  /* ── Image ── */
+  #shopify-section-{{ section.id }} .jv-hl-media {
+    position: relative;
+    width: 50%;
+    flex-shrink: 0;
+    overflow: hidden;
+    background: #9C4E36;
+    min-height: 460px;
+  }
+
+  #shopify-section-{{ section.id }} .jv-hl-media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Placeholder (no image configured) */
+  #shopify-section-{{ section.id }} .jv-hl-media--placeholder {
+    background: #9C4E36;
+  }
+
+  #shopify-section-{{ section.id }} .jv-hl-media .placeholder-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    fill: {{ section.settings.text_color | default: '#FBF3EC' }};
+    opacity: 0.35;
+  }
+
+  /* ── Content (right) ── */
+  #shopify-section-{{ section.id }} .jv-hl-content {
+    width: 50%;
+    flex-shrink: 0;
+    padding: 72px 88px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #shopify-section-{{ section.id }} .jv-hl-content-inner {
+    max-width: 440px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  #shopify-section-{{ section.id }} .jv-hl-content-header {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  #shopify-section-{{ section.id }} .jv-hl-eyebrow {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: normal;
+    letter-spacing: 0.9px;
+    text-transform: uppercase;
+    margin: 0
+  }
+
+  #shopify-section-{{ section.id }} .jv-hl-heading {
+    font-family: var(--font-heading);
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 48px;
+    margin: 0;
+    color: var(--hl-text);
+  }
+
+  /* ── Accordion list ── */
+  #shopify-section-{{ section.id }} .jv-hl-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #shopify-section-{{ section.id }} .jv-hl-item {
+    border-bottom: 1px solid var(--hl-rule);
+  }
+
+  #shopify-section-{{ section.id }} .jv-hl-item summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 15px 0;
+  }
+
+  #shopify-section-{{ section.id }} .jv-hl-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  #shopify-section-{{ section.id }} .jv-hl-icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #shopify-section-{{ section.id }} .jv-hl-icon img,
+  #shopify-section-{{ section.id }} .jv-hl-icon svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  #shopify-section-{{ section.id }} .jv-hl-icon svg {
+    stroke: currentColor;
+    fill: none;
+  }
+
+  #shopify-section-{{ section.id }} .jv-hl-label {
+    flex: 1;
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 600;
+    letter-spacing: 0.72px;
+  }
+
+  #shopify-section-{{ section.id }} .jv-hl-chevron {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    transition: transform 0.25s ease;
+  }
+
+  #shopify-section-{{ section.id }} .jv-hl-item[open] .jv-hl-chevron {
+    transform: rotate(180deg);
+  }
+
+  #shopify-section-{{ section.id }} .jv-hl-body {
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    padding: 0 0 20px;
+    opacity: 0.9;
+  }
+
+  #shopify-section-{{ section.id }} .jv-hl-body p {
+    margin: 0 0 8px;
+  }
+
+  #shopify-section-{{ section.id }} .jv-hl-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Hide accordion body if empty (no content given) */
+  #shopify-section-{{ section.id }} .jv-hl-item--nobody summary {
+    cursor: default;
+  }
+  #shopify-section-{{ section.id }} .jv-hl-item--nobody .jv-hl-chevron {
+    opacity: 0.55;
+  }
+
+  @media (min-width: 1024px) {
+    #shopify-section-{{ section.id }} .jv-hl-media {
+      min-height: 700px;
+    }
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 768px) {
+    #shopify-section-{{ section.id }} .jv-hl {
+      flex-direction: column;
+    }
+
+    #shopify-section-{{ section.id }} .jv-hl-media {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+    }
+
+    #shopify-section-{{ section.id }} .jv-hl-media img {
+      position: static;
+      height: 100%;
+    }
+
+    #shopify-section-{{ section.id }} .jv-hl-content {
+      width: 100%;
+      padding: 96px 24px 96px;
+    }
+
+  }
+</style>
+
+<div class="jv-hl{% if section.settings.image_position == 'right' %} jv-hl--image-right{% endif %}">
+  {%- comment -%} ── Image ── {%- endcomment -%}
+  <div class="jv-hl-media{% if section.settings.image == blank %} jv-hl-media--placeholder{% endif %}">
+    {%- if section.settings.image != blank -%}
+      {{ section.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', alt: section.settings.heading }}
+    {%- else -%}
+      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+    {%- endif -%}
+  </div>
+
+  {%- comment -%} ── Content ── {%- endcomment -%}
+  <div class="jv-hl-content">
+    <div class="jv-hl-content-inner">
+      <div class="jv-hl-content-header">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="jv-hl-eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+
+        {%- if section.settings.heading != blank -%}
+          <h2 class="jv-hl-heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+      </div>
+
+      {%- if section.blocks.size > 0 -%}
+        <div class="jv-hl-list">
+          {%- for block in section.blocks -%}
+            {%- assign has_body = false -%}
+            {%- if block.settings.content != blank -%}{%- assign has_body = true -%}{%- endif -%}
+            <details
+              class="jv-hl-item{% unless has_body %} jv-hl-item--nobody{% endunless %}"
+              {{ block.shopify_attributes }}
+            >
+              <summary>
+                <span class="jv-hl-icon">
+                  {%- if block.settings.icon_image != blank -%}
+                    {{
+                      block.settings.icon_image
+                      | image_url: width: 80
+                      | image_tag: loading: 'lazy', alt: block.settings.label
+                    }}
+                  {%- endif -%}
+                </span>
+                <span class="jv-hl-label">{{ block.settings.label }}</span>
+                <svg
+                  class="jv-hl-chevron"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </summary>
+              {%- if has_body -%}
+                <div class="jv-hl-body rte">{{ block.settings.content }}</div>
+              {%- endif -%}
+            </details>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+  {%- comment -%} /.jv-hl-content {%- endcomment -%}
+</div>
+{%- comment -%} /.jv-hl {%- endcomment -%}
+
+{% schema %}
+{
+  "name": "JV - Highlight",
+  "tag": "section",
+  "class": "jv-section-highlight",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image (top on mobile)"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position (desktop)",
+      "default": "left",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow / Label",
+      "default": "TEXAS SUMMER"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Fragrance Notes"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "panel_bg",
+      "label": "Panel background",
+      "default": "#B0563B"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#FBF3EC"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "note",
+      "name": "Note",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Icon (line icon, PNG/SVG with transparent background)"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Fresh Texas Peaches"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Expanded content (optional)",
+          "info": "Leave empty to show the row without an expandable panel."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "JV - Highlight",
+      "blocks": [
+        {
+          "type": "note",
+          "settings": {
+            "label": "Fresh Texas Peaches",
+            "content": "<p>Top notes of juicy, sun-warmed peaches picked at peak ripeness.</p>"
+          }
+        },
+        {
+          "type": "note",
+          "settings": {
+            "label": "Sun Ripened Apricot",
+            "content": "<p>A soft, golden heart of sweet apricot rounds out the fruit.</p>"
+          }
+        },
+        {
+          "type": "note",
+          "settings": {
+            "label": "Warm Patchouli",
+            "content": "<p>Grounded by an earthy base of warm patchouli for lasting depth.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
