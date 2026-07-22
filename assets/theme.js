@@ -4733,7 +4733,7 @@
                     });
                     checkNav = sliderNav2;
                 } else {
-                    if (!sliderNav.is('.style-2, .style-3') || window.innerWidth < 768) {
+                    if (sliderNav.length && !sliderNav.is('.style-2, .style-3') || window.innerWidth < 768) {
                         mainSwiper = new Swiper(sliderNav[0], {
                             effect: 'fade',
                             fadeEffect: {
@@ -4847,7 +4847,8 @@
                     //         }
                     //     ]
                     // });
-                    // Trong nhánh layout-3, sau khi tạo xong thumbSwiper:
+                    // 
+                    if (!sliderFor.length) return;
                     const thumbSwiper = new Swiper(sliderFor[0], {
                         slidesPerView: thumbnailToShow,
                         spaceBetween: 6,

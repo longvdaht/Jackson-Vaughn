@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{
+ {
   "sections": {
     "main": {
       "type": "main-product",
@@ -30,11 +30,11 @@
         "b0ea69b7-8a54-4a3c-9abd-0fcceeabaaa0": {
           "type": "title",
           "settings": {
-            "fontsize_text": 25,
-            "fontsize_text_mb": 18,
+            "fontsize_text": 40,
+            "fontsize_text_mb": 36,
             "color_title": "#232323",
             "spacing_top": 0,
-            "spacing_bottom": 10
+            "spacing_bottom": 6
           }
         },
         "product_text_nWQ6Vw": {

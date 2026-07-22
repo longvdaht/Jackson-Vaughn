@@ -3,7 +3,6 @@
   if block.settings.show_gift_card_recipient and product.gift_card?
     assign gift_card_recipient_feature_active = true
   endif
-  assign dominant_color = product.metafields.custom.dominant_color
   assign container = section.settings.container
   assign padding_full_width = section.settings.padding_full_width
   assign show_sticky_info = section.settings.show_sticky_info
@@ -493,7 +492,7 @@
   id="ProductSection-{{ section.id }}"
   data-has-combo="{{ has_product_combo }}"
   data-image-opo
-  style="--dominant_color: {{ dominant_color }};">
+>
   {% if has_breadcrumb %}
     {%- liquid
       if breadcrumb_gradient != 'rgba(0,0,0,0)' or breadcrumb_bg != 'rgba(0,0,0,0)' or breadcrumb_gradient_mb != 'rgba(0,0,0,0)' or breadcrumb_bg_mb != 'rgba(0,0,0,0)'
@@ -1433,7 +1432,7 @@
                             {%- if complementary_product_layout == "1" -%}
                               {%- for product in recommendations.products limit: limit -%}
                                 <div class="product{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
-                                  {% render 'product-grid-layout'
+                                  {% render 'product-pair-with'
                                     , product_card_product: product
                                     , media_size: image_ratio
                                     , portrait_aspect_ratio: portrait_aspect_ratio
@@ -1442,6 +1441,7 @@
                                     , show_list: true
                                     , loading: true
                                     , show_action_button: true
+                                    , show_quick_view: true
                                   %}
                                 </div>
                               {%- endfor -%}

@@ -184,16 +184,16 @@
             , product: product_card_product -%}
         {%- endif -%}
       </div>
-      {%- if settings.show_action or show_action_button -%}
-        <div class="card-action card-grid__hidden{% if settings.show_compare and settings.product_compare_type == 'default' %} has-compare{% endif %}" data-cart-action-for-quickshop-2>
-          {% render 'add-to-cart-form'
-            , product: product_card_product
-            , id: 'form'
-            , position: position
-            , sectionId: sectionId %}
-        </div>
-      {%- endif -%}
     </div>
+    {%- if settings.show_action or show_action_button -%}
+      <div class="card-action card-grid__hidden{% if settings.show_compare and settings.product_compare_type == 'default' %} has-compare{% endif %}" data-cart-action-for-quickshop-2>
+        {% render 'add-to-cart-form'
+          , product: product_card_product
+          , id: 'form'
+          , position: position
+          , sectionId: sectionId %}
+      </div>
+    {%- endif -%}
     <div class="card-information">
       <div class="card-information__wrapper text-{{ settings.product_content_text_align }}">
         {%- if settings.show_vendor -%}

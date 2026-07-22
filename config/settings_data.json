@@ -159,7 +159,7 @@
     "sale_badge_type": "text",
     "show_custom_badge": false,
     "point_product_swatch_custom": "30px",
-    "show_action": false,
+    "show_action": true,
     "quick_shop_type": "1",
     "product_marquee_text_color": "#ffffff",
     "product_marquee_text_size": 14,

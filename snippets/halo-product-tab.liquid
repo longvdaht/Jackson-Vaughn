@@ -132,7 +132,7 @@
 				endif
 			-%}
 			{%- if has_tab and title != blank -%}
-				<div class="tab-content{% if block.type == 'description' %}{% if tab_layout == 'vertical' or tab_layout == 'horizontal' %} is-active{% endif %}{% endif %} {{ block.settings.tab_display }}-style" id="tab-{{ title | escape | handleize }}">
+				<div class="tab-content {{ block.settings.tab_display }}-style" id="tab-{{ title | escape | handleize }}">
 					<div class="toggle-title{% if settings.product_page_layout == 'full_width_2' or template.suffix == 'template-full-width-2' %} title-content-full{% endif %}">
 		                <a class="toggleLink{% if style_mobile %} {{ style_mobile }}{% endif %}{% if block.type == 'description' and tab_layout == 'vertical' %} is-open{% endif %}" data-collapsible href="#tab-{{ title | escape | handleize }}-mobile">
 		                    <span class="text">
@@ -151,7 +151,7 @@
 		                    {% endif %}
 		                </a>
 		            </div>
-		            <div class="toggle-content{% if block.type == 'description' %}{% if tab_layout == 'vertical' or tab_layout == 'horizontal' %} is-active{% endif %}{% endif %}{% if style_mobile %} {{ style_mobile }}{% endif %}{% if block.settings.enable_btn_show_more %} toggle-content--height{% endif %}" id="tab-{{ title | escape | handleize }}-mobile"{% if block.settings.enable_btn_show_more %} style="--maximum-des-to-show: {{ block.settings.maximum_des_to_show | append: 'px'}}"{% endif %}{% if block.type == 'description' %} product-description-tab data-product-description-{{ product.id }}{% endif %}>
+		            <div class="toggle-content{% if style_mobile %} {{ style_mobile }}{% endif %}{% if block.settings.enable_btn_show_more %} toggle-content--height{% endif %}" id="tab-{{ title | escape | handleize }}-mobile"{% if block.settings.enable_btn_show_more %} style="--maximum-des-to-show: {{ block.settings.maximum_des_to_show | append: 'px'}}"{% endif %}{% if block.type == 'description' %} product-description-tab data-product-description-{{ product.id }}{% endif %}>
 						{%- if tab_layout == 'vertical_sidebar' or style_mobile == 'sidebar-mobile' or style_mobile == 'popup-mobile' -%}
 							<div class="tab-popup-header">
 								<h5>

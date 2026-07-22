@@ -45,9 +45,12 @@
                                     assign variants_option1_arr = product.variants | map: 'option1'
                                     assign variants_option2_arr = product.variants | map: 'option2'
                                     assign variants_option3_arr = product.variants | map: 'option3'
+                                    
                                 -%}
                                 {%- for variant in product.variants -%}
                                     {%- assign value = variant.options[option_index] -%}
+                                    {%- assign assign burn_time = variant.metafields.custom.variant_burn_time_data.value -%}
+                                    
                                     {%- unless values contains value -%}
                                         {%- liquid
                                             assign values = values | join: ';'
@@ -75,6 +78,7 @@
                                         <input class="product-form__radio" type="radio" id="option-{{ product.id }}-{{ option.name }}-{{ forloop.index0 }}"
                                             name="{{ option.name }}"
                                             value="{{ value | escape }}"
+                                            data-burn-time ="{{ burn_time.burn_time }}"
                                             {% if option.selected_value == value %}checked{% endif %}
                                             {% if is_swatch and show_variant_image_group %}
                                                 data-filter=".filter-{{ value | handle }}"
