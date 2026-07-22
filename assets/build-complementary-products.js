@@ -115,7 +115,7 @@ if (typeof complementaryProductsComponent === 'undefined')
         calculateCard06Padding() {
             if (!document.body.classList.contains('product-card-layout-06')) return;
 
-            const selectOptionsHeight = this.querySelector('.product .card-action').scrollHeight;
+            const selectOptionsHeight = this.querySelector('.product .card-action')?.scrollHeight;
             this.querySelector('.slick-list').style.paddingBottom = selectOptionsHeight + 'px';
         }
     }

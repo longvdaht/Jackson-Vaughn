@@ -23,9 +23,25 @@
 }
 
 .product-card-layout-06 .product-item .card-action  {
-	position: relative;
+	position: absolute;
+    bottom: 0;
+    right: 0;
+    width: auto;
 	z-index: 2;
 	transform: unset;
+}
+
+.product-card-layout-06 .card-action .button {
+	width: 40px;
+    padding: 0;
+    font-size: 0;
+    min-width: auto;
+    background: url('Cart.png');
+    height: 40px;
+    background-size: 19px 17px;
+    background-repeat: no-repeat;
+    border: none;
+    background-position: center;
 }
 
 .product-card-layout-06 .product-item:hover .card-action {
@@ -343,9 +359,9 @@
 @media (min-width: 1025px){
 	.product-card-layout-06 .product-item .card-action  {
 		position: absolute;
-		left: 0;
-		top: 100%;
-		width: 100%; 
+		/* left: 0; */
+		/* top: 100%; */
+		/* width: 100%;  */
 		height: max-content;  
 		/* transform: translateY(-100%); */
 		transform: translateY(0);	
@@ -380,6 +396,11 @@
 	}
 
 	.product-card-layout-06 .card-action{
+		opacity: 1;
+	    visibility: visible;
+	}
+
+	.product-card-layout-06 .product-item:hover .card-action {
 		opacity: 1;
 	    visibility: visible;
 	}

@@ -22,103 +22,132 @@
                         -%}
                         <fieldset class="js product-form__input{% if is_swatch %} product-form__swatch{% endif %} clearfix" data-product-attribute="set-rectangle" data-option-index="{{ forloop.index0 }}">
                             <legend class="form__label">
-                                {{ option.name | append: ':' }}
-                                <span data-header-option>
-                                    {{ option.selected_value }}
-                                </span>
+                                <div class="option-wrapper">
+                                    {{ option.name | append: ':' }}
+                                    <span data-header-option>
+                                        {{ option.selected_value }}
+                                    </span>
+                                </div>
+                                {%- if current_variant.metafields.custom.variant_burn_time_data.value -%}
+                                    {% assign burn_time = current_variant.metafields.custom.variant_burn_time_data.value %}
+                                    <div class="burn-time-info">
+                                        {%- if burn_time.burn_time -%}
+                                            <span class="burn-label">{{ 'products.product.burn_time' | t }}:</span>
+                                            <span class="burn-hours data-burn-hours">{{ burn_time.burn_time }}</span>
+                                        {%- endif -%}
+                                    </div>
+                                {%- endif -%}
                             </legend>
-                            {%- assign values = '' -%}
-                            {%- liquid
-                                assign variants_available_arr = product.variants | map: 'available'
-                                assign variants_option1_arr = product.variants | map: 'option1'
-                                assign variants_option2_arr = product.variants | map: 'option2'
-                                assign variants_option3_arr = product.variants | map: 'option3'
-                            -%}
-                            {%- for variant in product.variants -%}
-                                {%- assign value = variant.options[option_index] -%}
-                                {%- unless values contains value -%}
-                                    {%- liquid
-                                        assign values = values | join: ';'
-                                        assign values = values | append: ';' | append: value
-                                        assign values = values | split: ';'
-                                        assign option_stock = 'soldout'
-
-                                        for option1_name in variants_option1_arr
-                                            case option.position
-                                                when 1
-                                                    if variants_option1_arr[forloop.index0] == value and variants_available_arr[forloop.index0]
-                                                        assign option_stock = 'available'
-                                                    endif
-                                                when 2
-                                                    if option1_name == product.selected_or_first_available_variant.option1 and variants_option2_arr[forloop.index0] == value and variants_available_arr[forloop.index0]
-                                                        assign option_stock = 'available'
-                                                    endif
-                                                when 3
-                                                    if option1_name == product.selected_or_first_available_variant.option1 and variants_option2_arr[forloop.index0] == product.selected_or_first_available_variant.option2 and variants_option3_arr[forloop.index0] == value and variants_available_arr[forloop.index0]
-                                                        assign option_stock = 'available'
-                                                    endif
-                                            endcase
-                                        endfor
-                                    -%}
-                                    <input class="product-form__radio" type="radio" id="option-{{ product.id }}-{{ option.name }}-{{ forloop.index0 }}"
-                                        name="{{ option.name }}"
-                                        value="{{ value | escape }}"
-                                        {% if option.selected_value == value %}checked{% endif %}
-                                        {% if is_swatch and show_variant_image_group %}
-                                            data-filter=".filter-{{ value | handle }}"
-                                            data-metafields-vig="{{ variant.metafields.custom.variant_image_group }}"
-                                        {% endif %}
-                                        data-variant-id="{{ variant.id }}"
-                                    >
-                                    {%- if is_swatch -%}
+                            <div class="variant-wrapper">
+                                {%- assign values = '' -%}
+                                {%- liquid
+                                    assign variants_available_arr = product.variants | map: 'available'
+                                    assign variants_option1_arr = product.variants | map: 'option1'
+                                    assign variants_option2_arr = product.variants | map: 'option2'
+                                    assign variants_option3_arr = product.variants | map: 'option3'
+                                    
+                                -%}
+                                {%- for variant in product.variants -%}
+                                    {%- assign value = variant.options[option_index] -%}
+                                    {%- assign assign burn_time = variant.metafields.custom.variant_burn_time_data.value -%}
+                                    
+                                    {%- unless values contains value -%}
                                         {%- liquid
-                                            assign enable_variant_image = false
-                                            case swatch_type
-                                                when 'variant_image'
-                                                    assign background_image = variant.image.src | product_img_url: '130x'
-                                                    if variant.image
-                                                        assign enable_variant_image = true
-                                                    endif
-                                                when 'color'
-                                                    assign background_image = value | handle | append: '.png' | file_url
-                                                    assign enable_variant_image = true
-                                                when 'metafields'
-                                                    assign variant_color = variant.metafields.custom.variant_color
-                                                    assign color_codes = false
-                    
-                                                    if variant_color
-                                                        assign enable_variant_image = true
-                                                    
-                                                        if variant_color contains '#' or variant_color contains 'rgb' or variant_color contains 'hsl'
-                                                            assign color_codes = true
-                                                            assign background_color = variant_color
-                                                        else
-                                                            assign background_image = variant_color | append: '.png' | file_url
+                                            assign values = values | join: ';'
+                                            assign values = values | append: ';' | append: value
+                                            assign values = values | split: ';'
+                                            assign option_stock = 'soldout'
+
+                                            for option1_name in variants_option1_arr
+                                                case option.position
+                                                    when 1
+                                                        if variants_option1_arr[forloop.index0] == value and variants_available_arr[forloop.index0]
+                                                            assign option_stock = 'available'
                                                         endif
-                                                    elsif variant.image
-                                                        assign enable_variant_image = true
-                                                        assign background_image = variant.image.src | product_img_url: '130x'
-                                                    endif
-                                            endcase
+                                                    when 2
+                                                        if option1_name == product.selected_or_first_available_variant.option1 and variants_option2_arr[forloop.index0] == value and variants_available_arr[forloop.index0]
+                                                            assign option_stock = 'available'
+                                                        endif
+                                                    when 3
+                                                        if option1_name == product.selected_or_first_available_variant.option1 and variants_option2_arr[forloop.index0] == product.selected_or_first_available_variant.option2 and variants_option3_arr[forloop.index0] == value and variants_available_arr[forloop.index0]
+                                                            assign option_stock = 'available'
+                                                        endif
+                                                endcase
+                                            endfor
                                         -%}
-                                        <label class="product-form__label {{ option_stock }}" name="{{ option.name }}" for="option-{{ product.id }}-{{ option.name }}-{{ forloop.index0 }}" data-variant-id="{{ variant.id }}">
-                                            <span
-                                                class="pattern"
-                                                style="background-color: {{ value | split: ' ' | last | handle }};{% if enable_variant_image %}{% if swatch_type == 'metafields' %}{% if color_codes %} background: {{ background_color }}{% else %} background: url({{ background_image }}); background-size: cover;{% endif %}{% else %} background-image: url({{ background_image }});{% endif %}{% endif %}"
-                                            ></span>
-                                            {% if swatch_type == 'variant_image' and variant.image %}
-                                                <span class="expand">
-                                                    <img srcset="{{ variant.image.src | product_img_url: '75x'}}" src="{{ variant.image.src | product_img_url: '75x'}}" sizes="75px" loading="lazy">
-                                                </span>
+                                        <input class="product-form__radio" type="radio" id="option-{{ product.id }}-{{ option.name }}-{{ forloop.index0 }}"
+                                            name="{{ option.name }}"
+                                            value="{{ value | escape }}"
+                                            data-burn-time ="{{ burn_time.burn_time }}"
+                                            {% if option.selected_value == value %}checked{% endif %}
+                                            {% if is_swatch and show_variant_image_group %}
+                                                data-filter=".filter-{{ value | handle }}"
+                                                data-metafields-vig="{{ variant.metafields.custom.variant_image_group }}"
                                             {% endif %}
-                                        </label>
-                                    {%- else -%}   
-                                        <label class="product-form__label {{ option_stock }}" for="option-{{ product.id }}-{{ option.name }}-{{ forloop.index0 }}" data-variant-id="{{ variant.id }}">
-                                            <span class="text">{{ value }}</span>
-                                        </label>
-                                    {%- endif -%}
-                                {%- endunless -%}
-                            {%- endfor -%}
+                                            data-variant-id="{{ variant.id }}"
+                                        >
+                                        {%- if is_swatch -%}
+                                            {%- liquid
+                                                assign enable_variant_image = false
+                                                case swatch_type
+                                                    when 'variant_image'
+                                                        assign background_image = variant.image.src | product_img_url: '130x'
+                                                        if variant.image
+                                                            assign enable_variant_image = true
+                                                        endif
+                                                    when 'color'
+                                                        assign background_image = value | handle | append: '.png' | file_url
+                                                        assign enable_variant_image = true
+                                                    when 'metafields'
+                                                        assign variant_color = variant.metafields.custom.variant_color
+                                                        assign color_codes = false
+                        
+                                                        if variant_color
+                                                            assign enable_variant_image = true
+                                                        
+                                                            if variant_color contains '#' or variant_color contains 'rgb' or variant_color contains 'hsl'
+                                                                assign color_codes = true
+                                                                assign background_color = variant_color
+                                                            else
+                                                                assign background_image = variant_color | append: '.png' | file_url
+                                                            endif
+                                                        elsif variant.image
+                                                            assign enable_variant_image = true
+                                                            assign background_image = variant.image.src | product_img_url: '130x'
+                                                        endif
+                                                endcase
+                                            -%}
+                                            <label class="product-form__label {{ option_stock }}" name="{{ option.name }}" for="option-{{ product.id }}-{{ option.name }}-{{ forloop.index0 }}" data-variant-id="{{ variant.id }}">
+                                                <span
+                                                    class="pattern"
+                                                    style="background-color: {{ value | split: ' ' | last | handle }};{% if enable_variant_image %}{% if swatch_type == 'metafields' %}{% if color_codes %} background: {{ background_color }}{% else %} background: url({{ background_image }}); background-size: cover;{% endif %}{% else %} background-image: url({{ background_image }});{% endif %}{% endif %}"
+                                                ></span>
+                                                {% if swatch_type == 'variant_image' and variant.image %}
+                                                    <span class="expand">
+                                                        <img srcset="{{ variant.image.src | product_img_url: '75x'}}" src="{{ variant.image.src | product_img_url: '75x'}}" sizes="75px" loading="lazy">
+                                                    </span>
+                                                {% endif %}
+                                            </label>
+                                        {%- else -%}   
+                                            <label class="product-form__label {{ option_stock }}" for="option-{{ product.id }}-{{ option.name }}-{{ forloop.index0 }}" data-variant-id="{{ variant.id }}">
+                                                <span class="text">
+                                                    {{ value }}
+                                                    {%- if variant.metafields.custom.variant_burn_time_data.value -%}
+                                                        {% assign burn_time = variant.metafields.custom.variant_burn_time_data.value %}
+                                                        {%- if burn_time.title == value -%}
+                                                            <span class="burn-time-info">
+                                                                {%- if burn_time.burn_time -%}
+                                                                    <span class="burn-hours">{{ burn_time.burn_time }}</span>
+                                                                {%- endif -%}
+                                                            </span>
+                                                        {%- endif -%}
+                                                    {%- endif -%}
+                                                </span>
+                                            </label>
+                                        {%- endif -%}
+                                    {%- endunless -%}
+                                {%- endfor -%}
+                            </div>
                         </fieldset>
                     {%- endfor -%}
                     <script type="application/json">

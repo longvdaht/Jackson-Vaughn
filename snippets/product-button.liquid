@@ -68,7 +68,7 @@
                     {%- if check_show_qty == 'show_qty_1' or check_show_qty == 'show_qty_2' -%}
                         {%- liquid
                             if check_show_qty == 'show_qty_1'
-                                assign check_hidden = true
+                                assign check_hidden = false
                             endif
                         -%}
                         {% render 'product-quantity', current_variant: current_variant, check_hidden: check_hidden, qty_style: qty_style, quantity_stt: 1, product: product %}
@@ -78,7 +78,6 @@
                             <input type="hidden" name="id" value="{{ current_variant.id }}">
                             <div class="product-form__buttons">
                                 {%- if current_variant.available -%}
-
                                     {%- if use_direct_checkout_button -%}
                                         <direct-checkout-button
                                                 data-variant-id="{{ current_variant.id }}"

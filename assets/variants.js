@@ -626,6 +626,10 @@ class VariantSelects extends HTMLElement {
         const variant_swatch = [...this.querySelectorAll('.product-form__swatch')];
         inputWrappers.forEach((option, index) => {
             option.querySelector('[data-header-option]').innerText = option.querySelector(':checked').value;
+            const checkedOption = option.querySelector(':checked');
+            if (checkedOption) {
+                option.querySelector('.data-burn-hours').innerText = checkedOption.dataset.burnTime;
+            }
             if (index === 0 && inputLength > 1) return;
             const optionInputs = [...option.querySelectorAll('input[type="radio"], option')]
             const previousOptionSelected = inputLength > 1 ? inputWrappers[index - 1].querySelector(':checked').value : inputWrappers[index].querySelector(':checked').value;
