@@ -4601,6 +4601,8 @@
             var sliderNav = $scope.find('.productView-nav'),
                 sliderFor = $scope.find('.productView-for:not(".mobile")'),
                 sliderForMobile = $scope.find('.productView-for.mobile');
+            let thumbSwiper;
+            let mainSwiper;
 
             if(!sliderFor.hasClass('slick-initialized') && !sliderNav.hasClass('slick-initialized')) {
                 const navArrowsDesk = sliderNav.data('arrows-desk'),
@@ -4731,30 +4733,34 @@
                     });
                     checkNav = sliderNav2;
                 } else {
-                    if (!sliderNav.is('.style-2, .style-3') || window.innerWidth < 768) {
-                        sliderNav.slick({
-                            fade: true,
-                            dots: false,
-                            arrows: navArrowsDesk,
-                            infinite: true,
-                            slidesToShow: 1,
-                            slidesToScroll: 1,
-                            asNavFor: checkFor,
-                            nextArrow: window.arrows.icon_next,
-                            prevArrow: window.arrows.icon_prev,
+                    if (sliderNav.length && !sliderNav.is('.style-2, .style-3') || window.innerWidth < 768) {
+                        mainSwiper = new Swiper(sliderNav[0], {
+                            effect: 'fade',
+                            fadeEffect: {
+                                crossFade: true,
+                            },
+                            loop: true,
+                            slidesPerView: 1,
+                            slidesPerGroup: 1,
                             rtl: window.rtl_slick,
-                            responsive: [
-                                {
-                                    breakpoint: 768,
-                                    settings: {
-                                        arrows: navArrowsMobi
-                                    }
-                                }
-                            ]
-                        }); 
-                        checkNav = sliderNav;
-                    }
-                    else {
+                            navigation: {
+                                nextEl: window.arrows.icon_next,
+                                prevEl: window.arrows.icon_prev,
+                                enabled: navArrowsMobi,
+                            },
+                            breakpoints: {
+                                768: {
+                                    navigation: {
+                                        enabled: navArrowsDesk,
+                                    },
+                                },
+                            },
+                            thumbs: {
+                                swiper: thumbSwiper,
+                            },
+                        });
+                        checkNav = mainSwiper;
+                    } else {
                         checkNav = false;
                     }
                 }
@@ -4806,39 +4812,78 @@
                             }
                         ]
                     });
-                } else if($scope.hasClass('layout-3')){
-                    sliderFor.on('init',(event, slick) => {
-                        sliderFor.find('.animated-loading').removeClass('animated-loading');
-                    });
+                }
+                else if($scope.hasClass('layout-3')){
+                    // sliderFor.on('init',(event, slick) => {
+                    //     sliderFor.find('.animated-loading').removeClass('animated-loading');
+                    // });
 
-                    sliderFor.slick({
-                        slidesToShow: thumbnailToShow,
-                        slidesToScroll: 1,
-                        asNavFor: checkNav,
-                        arrows: true,
-                        dots: false,
-                        focusOnSelect: true,
-                        infinite: true,
-                        nextArrow: window.arrows.icon_next,
-                        prevArrow: window.arrows.icon_prev,
+                    // sliderFor.slick({
+                    //     slidesToShow: thumbnailToShow,
+                    //     slidesToScroll: 1,
+                    //     asNavFor: checkNav,
+                    //     arrows: true,
+                    //     dots: false,
+                    //     focusOnSelect: true,
+                    //     infinite: true,
+                    //     nextArrow: window.arrows.icon_next,
+                    //     prevArrow: window.arrows.icon_prev,
+                    //     rtl: window.rtl_slick,
+                    //     responsive: [
+                    //         {
+                    //             breakpoint: 1600,
+                    //             settings: {
+                    //                 slidesToShow: thumbnailToShow > 3 ? thumbnailToShow - 1 : thumbnailToShow,
+                    //                 slidesToScroll: 1
+                    //             }
+                    //         },
+                    //         {
+                    //             breakpoint: 767,
+                    //             settings: {
+                    //                 slidesToShow: 5,
+                    //                 slidesToScroll: 1,
+                    //                 variableWidth: true
+                    //             }
+                    //         }
+                    //     ]
+                    // });
+                    // 
+                    if (!sliderFor.length) return;
+                    const thumbSwiper = new Swiper(sliderFor[0], {
+                        slidesPerView: thumbnailToShow,
+                        spaceBetween: 6,
+                        watchSlidesProgress: true,
+                        freeMode: false,
+                        navigation: {
+                            nextEl: window.arrows.icon_next,
+                            prevEl: window.arrows.icon_prev,
+                        },
+                        loop: true,
                         rtl: window.rtl_slick,
-                        responsive: [
-                            {
-                                breakpoint: 1600,
-                                settings: {
-                                    slidesToShow: thumbnailToShow > 3 ? thumbnailToShow - 1 : thumbnailToShow,
-                                    slidesToScroll: 1
+                        on: {
+                            init: function () {
+                                sliderFor[0].querySelectorAll('.animated-loading').forEach(el => {
+                                    el.classList.remove('animated-loading');
+                                });
+                            },
+                            click: function (swiper, event) {
+                                if (mainSwiper && swiper.clickedIndex !== undefined) {
+                                    mainSwiper.slideToLoop(swiper.clickedIndex);
                                 }
                             },
-                            {
-                                breakpoint: 767,
-                                settings: {
-                                    slidesToShow: 3,
-                                    slidesToScroll: 1
-                                }
-                            }
-                        ]
+                        },
+                        breakpoints: {
+                            0: { slidesPerView: 'auto', spaceBetween: 0 },
+                            768: { slidesPerView: thumbnailToShow > 3 ? thumbnailToShow - 1 : thumbnailToShow, spaceBetween: 8 },
+                            1600: { slidesPerView: thumbnailToShow, spaceBetween: 8 },
+                        },
                     });
+
+                    if (mainSwiper) {
+                        mainSwiper.on('slideChange', function () {
+                            thumbSwiper.slideToLoop(mainSwiper.realIndex);
+                        });
+                    }
                 }
 
                 sliderForMobile.on('init',(event, slick) => {

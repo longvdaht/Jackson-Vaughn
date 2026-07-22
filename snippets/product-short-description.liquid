@@ -3,17 +3,23 @@
     assign fontsize_text = block.settings.fontsize_text
     assign color_text = block.settings.color_text
     assign word_number = block.settings.word_number
+    assign show_full_des = block.settings.show_full_des
 -%}
 {% if product.metafields.c_f.short_description %}
     {%- liquid
         assign desc = product.metafields.c_f.short_description
     -%}
 {% endif %}
+
 {%- if desc != blank -%}
     <div class="productView-desc halo-text-format" 
         style="--color-text: {{ color_text }};
         --fontsize-text: {{ fontsize_text | append: 'px' }}"
     >
-        {{ desc | strip_html | truncatewords: word_number }}
+        {%- if show_full_des -%}
+            {{ desc }}
+        {%- else -%}
+            {{ desc | strip_html | truncatewords: word_number }}
+        {%- endif -%}
     </div>
 {%- endif -%}

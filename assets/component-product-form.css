@@ -8,12 +8,15 @@
 
 .product-form__input .form__label,
 .form__label-combined{
-    display: block;
+    display: flex;
+    padding: 0;
+    flex-wrap: wrap;
+    gap: 14px;
     margin: 0;
-    font-size: var(--font-body-size);
-    font-weight: var(--font-weight-medium);
-    letter-spacing: var(--letter-spacing);
-    line-height: var(--line-height);
+    font-size: 15px;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: .75px;
+    line-height: var(--body-line-height);
     text-transform: capitalize;
     text-align: left;
     color: var(--color-text);
@@ -29,10 +32,29 @@
     margin-left: 7px;
 }
 
-.product-form__input .form__label [data-header-option]{
-    color: var(--product-vendor-color);
+.product-form__input .form__label [data-header-option],
+.product-form__input .burn-hours {
     font-weight: var(--font-weight-normal);
     margin-left: 2px;
+    display: inline-block;
+}
+
+.product-form__input .burn-time-info {
+    position: relative;
+}
+
+.product-form__input .burn-time-info::before {
+    content: '';
+    width: 1px;
+    height: 16px;
+    position: absolute;
+    left: -7px;
+    background: var(--color-text);
+    top: 4px;
+}
+
+.product-form__input .text .burn-time-info::before {
+    display: none;
 }
 
 .product-form__input .form__select{
@@ -47,7 +69,29 @@
     display: inline-block;
     vertical-align: top;
     cursor: pointer;
-    margin: 5px 10px 10px 0px;
+    margin: 0;
+}
+
+.variant-wrapper {
+    margin-top: 12px;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    gap: 12px;
+}
+
+.product-default .variant-wrapper .product-form__label .text {
+    border-radius: 5px;
+    min-width: 100%;
+    height: 54px;
+    border-color: #CFCFCF;
+    font-size: 15px;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: transparent;
 }
 
 .product-form__label .text{
@@ -177,6 +221,11 @@
     border-color: var(--swatch-border-active);
 }
 
+.product-default .product-form__radio:checked + .product-form__label .text {
+    background-color: #D4D1C8;
+    border-color: #D4D1C8;
+}
+
 .product-form__swatch .form__label{
     margin-bottom: 8px;
 
@@ -229,7 +278,7 @@
 
 @media (max-width: 551px){
     .product-form__label{
-        margin: 5px 6px 10px 0px;
+        margin: 0;
     }
 }
 

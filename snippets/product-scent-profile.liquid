@@ -1,0 +1,55 @@
+{% comment %}
+  snippets/scent-profile-block.liquid
+  
+  Simplified version:
+  - Fixed bar throw style
+  - Simplified settings
+  - Responsive font sizes
+  - Clean text color
+  
+  How to use:
+  {% include 'scent-profile-block', block: block %}
+{% endcomment %}
+
+<div class="scent-profile-block" {{ block.shopify_attributes }}>
+  {% assign scent = block.settings %}
+  
+  <div class="scent-profile-container" style="--text-color: {{ scent.text_color }}; --font-size-mb: {{ scent.font_size_mobile }}px; --font-size: {{ scent.font_size_desktop }}px;">
+    {% if scent.label_family %}
+      <div class="scent-family scent_row">
+        <span class="label">{{ 'products.product.scent_family' | t }}:</span>
+        <p class="value">{{ scent.label_family }}</p>
+      </div>
+    {% endif %}
+
+    {% if scent.label_notes %}
+      <div class="scent-notes scent_row">
+        <span class="label">{{ 'products.product.scent_notes' | t }}:</span>
+        <p class="value">{{ scent.label_notes }}</p>
+      </div>
+    {% endif %}
+
+    {% if scent.label_feels %}
+      <div class="feels-like scent_row">
+        <span class="label">{{ 'products.product.feels_like' | t }}:</span>
+        <p class="value">{{ scent.label_feels }}</p>
+      </div>
+    {% endif %}
+
+    {% if scent.throw_level %}
+      <div class="throw-level scent_row">
+        <span class="label">{{ 'products.product.throw' | t }}:</span>
+        <div class="throw-visualization">
+          {% assign throw_level = scent.throw_level | times: 1 %}
+
+          <div class="throw-bars">
+            {% for i in (1..5) %}
+              <div class="throw-bar {% if i <= throw_level %}filled{% endif %}"></div>
+            {% endfor %}
+          </div>
+          <p class="throw-text visually-hidden">{{ scent.throw_level }}/5</p>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>

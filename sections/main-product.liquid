@@ -1356,6 +1356,12 @@
             "settings": 
             [
                 {
+                    "type": "checkbox",
+                    "id": "show_full_des",
+                    "label": "Show full description",
+                    "default": false
+                },
+                {
                     "type": "text",
                     "id": "word_number",
                     "label": "t:sections.main-product.settings.general.word_number",
@@ -2565,6 +2571,222 @@
             ]
         },
         {
+            "type": "rich_text",
+            "name": "Rich text",
+            "settings": [
+                {
+                    "type": "richtext",
+                    "id": "text",
+                    "label": "Richtext content"
+                },
+                {
+                    "type": "range",
+                    "id": "content_spacing",
+                    "label": "t:sections.spotlight_block.settings.content_spacing",
+                    "min": 0,
+                    "max": 100,
+                    "step": 5,
+                    "unit": "t:sections.layout.mg_desktop.unit",
+                    "default": 25
+                },
+                {
+                    "type": "select",
+                    "id": "custom_block_align",
+                    "label": "t:sections.general.settings.block-title.label__3",
+                    "options": [
+                    {
+                        "value": "left",
+                        "label": "t:settings_schema.typography.settings.typography.left"
+                    },
+                    {
+                        "value": "center",
+                        "label": "t:settings_schema.typography.settings.typography.center"
+                    },
+                    {
+                        "value": "right",
+                        "label": "t:settings_schema.typography.settings.typography.right"
+                    }],
+                    "default": "center"
+                },
+                {
+                    "type": "color",
+                    "id": "background_color_block",
+                    "label": "t:settings_schema.colors.settings.colors_name.background_color",
+                    "default": "#f7f8fa"
+                },
+                {
+                    "type": "color_background",
+                    "id": "background_gradient_color_block",
+                    "label": "t:settings_schema.colors.settings.colors_name.background_color_gradient"
+                },
+                {
+                    "type": "header",
+                    "content": "t:sections.main-product.settings.general.spacing"
+                },
+                {
+                    "type": "range",
+                    "id": "spacing_top",
+                    "label": "t:sections.general.settings.aligmnent.options__5",
+                    "min": 0,
+                    "max": 100,
+                    "step": 1,
+                    "unit": "t:sections.layout.mg_desktop.unit",
+                    "default": 0
+                },
+                {
+                    "type": "range",
+                    "id": "spacing_bottom",
+                    "label": "t:sections.general.settings.aligmnent.options__6",
+                    "min": 0,
+                    "max": 100,
+                    "step": 1,
+                    "unit": "t:sections.layout.mg_desktop.unit",
+                    "default": 0
+                }
+            ]
+        },
+        {
+            "type": "scent_profile",
+            "name": "Scent profile",
+            "limit": 1,
+            "settings": [
+                {
+                "type": "header",
+                "content": "Scent Settings"
+                },
+                {
+                "type": "text",
+                "id": "label_family",
+                "label": "Family scent",
+                },
+                {
+                "type": "text",
+                "id": "label_notes",
+                "label": "Scent Notes",
+                },
+                {
+                "type": "text",
+                "id": "label_feels",
+                "label": "Feels Like",
+                },
+                {
+                "type": "color",
+                "id": "text_color",
+                "label": "Text color",
+                "default": "#232323"
+                },
+                {
+                "type": "range",
+                "id": "font_size_desktop",
+                "label": "Font Size - Desktop",
+                "min": 12,
+                "max": 24,
+                "step": 1,
+                "unit": "px",
+                "default": 16
+                },
+                {
+                "type": "range",
+                "id": "font_size_mobile",
+                "label": "Font Size - Mobile",
+                "min": 12,
+                "max": 20,
+                "step": 1,
+                "unit": "px",
+                "default": 14
+                },
+               
+                {
+                "type": "header",
+                "content": "Throw Visualization"
+                },
+                {
+                    "type": "text",
+                    "id": "throw_level",
+                    "label": "Throw level",
+                    "info": "Min value 1, max value 5"
+                },
+                {
+                "type": "header",
+                "content": "Layout Settings"
+                },
+                {
+                "type": "select",
+                "id": "alignment",
+                "label": "Text Alignment",
+                "options": [
+                    {
+                    "value": "left",
+                    "label": "Left"
+                    },
+                    {
+                    "value": "center",
+                    "label": "Center"
+                    },
+                    {
+                    "value": "right",
+                    "label": "Right"
+                    }
+                ],
+                "default": "left"
+                },
+                {
+                    "type": "header",
+                    "content": "t:sections.main-product.settings.general.spacing"
+                },
+                {
+                    "type": "range",
+                    "id": "spacing_top",
+                    "label": "t:sections.general.settings.aligmnent.options__5",
+                    "min": 0,
+                    "max": 100,
+                    "step": 1,
+                    "unit": "t:sections.layout.mg_desktop.unit",
+                    "default": 0
+                },
+                {
+                    "type": "range",
+                    "id": "spacing_bottom",
+                    "label": "t:sections.general.settings.aligmnent.options__6",
+                    "min": 0,
+                    "max": 100,
+                    "step": 1,
+                    "unit": "t:sections.layout.mg_desktop.unit",
+                    "default": 0
+                },
+                {
+                    "type": "range",
+                    "id": "spacing_top_mb",
+                    "label": "Top mobile",
+                    "min": 0,
+                    "max": 100,
+                    "step": 1,
+                    "unit": "t:sections.layout.mg_desktop.unit",
+                    "default": 0
+                },
+                {
+                    "type": "range",
+                    "id": "spacing_bottom_mb",
+                    "label": "Bottom mobile",
+                    "min": 0,
+                    "max": 100,
+                    "step": 1,
+                    "unit": "t:sections.layout.mg_desktop.unit",
+                    "default": 0
+                },
+                {
+                "type": "range",
+                "id": "padding",
+                "label": "Container Padding",
+                "min": 0,
+                "max": 48,
+                "step": 4,
+                "unit": "px",
+                "default": 24
+                }
+            ]
+        },
+        {
             "type": "custom_information",
             "name": "t:sections.main-product.settings.general.custom_information",
             "settings": [
@@ -2682,6 +2904,16 @@
             "name": "t:sections.main-product.blocks.custom.name",
             "settings": 
             [
+                {
+                "type": "select",
+                "id": "tab_display",
+                "label": "Display mode",
+                "options": [
+                    { "value": "accordion", "label": "Accordion (dropdown)" },
+                    { "value": "popup", "label": "Popup" }
+                ],
+                "default": "accordion"
+                },
                 {
                     "type": "checkbox",
                     "id": "open_tab_mobile",
