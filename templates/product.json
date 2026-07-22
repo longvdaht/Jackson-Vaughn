@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "main": {
       "type": "main-product",
@@ -146,7 +146,7 @@
           "type": "custom_liquid",
           "disabled": true,
           "settings": {
-            "custom_liquid": "{%- liquid assign preorder_product = all_products['texas-summer'] -%}\n{%- for preordervariant in preorder_product.variants -%}\n  {%- if preordervariant.inventory_policy == 'continue' -%}\n    {%- assign has_continue_policy = true -%}\n    {%- break -%}\n  {%- endif -%}\n{%- endfor -%}\n{%- if preorder_product.tags contains 'dtc_oos' and product.title contains 'Summer' and has_continue_policy -%}\n<div class=\"preorder_message\">\nPRE-ORDER | SHIPS WEEK OF JULY 3RD\n</div>\n<input type=\"hidden\" name=\"__properties[Pre-Order]\" \n value=\"Ships the week of July 3rd\">\n{%- endif -%}\n{% style %}\n.preorder_message {\n font-weight: 600;\n    padding-bottom: 25px;\n    text-align: center;\n    color: #36402d;\n    font-size: 1.18em;\n}\n.productView-moreItem:has(+ .preorder_message ){\npadding-bottom: 0 !important;\n}\n{% endstyle %}"
+            "custom_liquid": "{%- liquid assign preorder_product = all_products['texas-summer'] -%}\n{%- for preordervariant in preorder_product.variants -%}\n  {%- if preordervariant.inventory_policy == 'continue' -%}\n    {%- assign has_continue_policy = true -%}\n    {%- break -%}\n  {%- endif -%}\n{%- endfor -%}\n{%- if preorder_product.tags contains 'dtc_oos' and product.title contains 'Summer' and has_continue_policy -%}\n<div class=\"preorder_message\">\nPRE-ORDER | SHIPS WEEK OF JULY 3RD\n<\/div>\n<input type=\"hidden\" name=\"__properties[Pre-Order]\" \n value=\"Ships the week of July 3rd\">\n{%- endif -%}\n{% style %}\n.preorder_message {\n font-weight: 600;\n    padding-bottom: 25px;\n    text-align: center;\n    color: #36402d;\n    font-size: 1.18em;\n}\n.productView-moreItem:has(+ .preorder_message ){\npadding-bottom: 0 !important;\n}\n{% endstyle %}"
           }
         },
         "683f2b15-db3b-4f63-8d0f-e688cc678581": {
@@ -207,7 +207,7 @@
             "open_tab_mobile": false,
             "title": "Candle Care 101",
             "type": "all",
-            "content": "<p>LET'S START WITH THE WICK Before each burn, trim the wick to ¼ of an inch using a wick trimmer for a safe, even burn, and increased candle life. Before each burn remove debris and buildup to avoid excess smoke. Keep the wick centered in the container.</p> <p>BURN, BABY, BURN When you burn, allow the candle wax to melt to the edges of the glass every time to prevent tunneling. This is especially important during your first burn!</p> <p>SAFETY FIRST Never leave a lit candle unattended, and don’t burn your candle for more than 3-4 hours at a time. Protect the surface below your candle from heat by placing your candle on a coaster.</p> \n<p>STOP, LOOK, AND LISTEN Do not burn your candle if there is less than ½ inch of wax remaining in the glass. Burning a candle without enough wax can overheat the jar.</p>",
+            "content": "<p>LET'S START WITH THE WICK Before each burn, trim the wick to ¼ of an inch using a wick trimmer for a safe, even burn, and increased candle life. Before each burn remove debris and buildup to avoid excess smoke. Keep the wick centered in the container.<\/p> <p>BURN, BABY, BURN When you burn, allow the candle wax to melt to the edges of the glass every time to prevent tunneling. This is especially important during your first burn!<\/p> <p>SAFETY FIRST Never leave a lit candle unattended, and don’t burn your candle for more than 3-4 hours at a time. Protect the surface below your candle from heat by placing your candle on a coaster.<\/p> \n<p>STOP, LOOK, AND LISTEN Do not burn your candle if there is less than ½ inch of wax remaining in the glass. Burning a candle without enough wax can overheat the jar.<\/p>",
             "enable_btn_show_more": false,
             "maximum_des_to_show": 300,
             "product_custom_source": "dynamic",
@@ -221,7 +221,7 @@
             "open_tab_mobile": false,
             "title": "Shipping & Returns",
             "type": "all",
-            "content": "<p>SHIPPING Orders normally ship within 1-2 business days. Once your package is picked up by our carrier, transit times typically range between 1-5 business days, depending on delivery destination. You will receive a confirmation email when your label is created.</p>\n<p>RETURN POLICY All returns must be processed within 30 days of receiving the order. If you are not 100% satisfied with your Jackson Vaughn order, please contact our dedicated Support Team at orders@jacksonvaughn.com with your order number (found on your order confirmation email) and we'll help to initiate a return or exchange.</p>",
+            "content": "<p>SHIPPING Orders normally ship within 1-2 business days. Once your package is picked up by our carrier, transit times typically range between 1-5 business days, depending on delivery destination. You will receive a confirmation email when your label is created.<\/p>\n<p>RETURN POLICY All returns must be processed within 30 days of receiving the order. If you are not 100% satisfied with your Jackson Vaughn order, please contact our dedicated Support Team at orders@jacksonvaughn.com with your order number (found on your order confirmation email) and we'll help to initiate a return or exchange.<\/p>",
             "enable_btn_show_more": false,
             "maximum_des_to_show": 300,
             "product_custom_source": "dynamic",
@@ -254,10 +254,10 @@
           "type": "custom_information",
           "disabled": true,
           "settings": {
-            "icon": "<svg aria-hidden=\"true\" focusable=\"false\" data-prefix=\"fal\" data-icon=\"shipping-fast\" role=\"img\" xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 640 512\"><path fill=\"currentColor\" d=\"M280 192c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8H40c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8h240zm352 192h-24V275.9c0-16.8-6.8-33.3-18.8-45.2l-83.9-83.9c-11.8-12-28.3-18.8-45.2-18.8H416V78.6c0-25.7-22.2-46.6-49.4-46.6H113.4C86.2 32 64 52.9 64 78.6V96H8c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8h240c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8H96V78.6c0-8.1 7.8-14.6 17.4-14.6h253.2c9.6 0 17.4 6.5 17.4 14.6V384H207.6C193 364.7 170 352 144 352c-18.1 0-34.6 6.2-48 16.4V288H64v144c0 44.2 35.8 80 80 80s80-35.8 80-80c0-5.5-.6-10.8-1.6-16h195.2c-1.1 5.2-1.6 10.5-1.6 16 0 44.2 35.8 80 80 80s80-35.8 80-80c0-5.5-.6-10.8-1.6-16H632c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8zm-488 96c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm272-320h44.1c8.4 0 16.7 3.4 22.6 9.4l83.9 83.9c.8.8 1.1 1.9 1.8 2.8H416V160zm80 320c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm80-96h-16.4C545 364.7 522 352 496 352s-49 12.7-63.6 32H416v-96h160v96zM256 248v-16c0-4.4-3.6-8-8-8H8c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8h240c4.4 0 8-3.6 8-8z\"></path></svg>",
+            "icon": "<svg aria-hidden=\"true\" focusable=\"false\" data-prefix=\"fal\" data-icon=\"shipping-fast\" role=\"img\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewbox=\"0 0 640 512\"><path fill=\"currentColor\" d=\"M280 192c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8H40c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8h240zm352 192h-24V275.9c0-16.8-6.8-33.3-18.8-45.2l-83.9-83.9c-11.8-12-28.3-18.8-45.2-18.8H416V78.6c0-25.7-22.2-46.6-49.4-46.6H113.4C86.2 32 64 52.9 64 78.6V96H8c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8h240c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8H96V78.6c0-8.1 7.8-14.6 17.4-14.6h253.2c9.6 0 17.4 6.5 17.4 14.6V384H207.6C193 364.7 170 352 144 352c-18.1 0-34.6 6.2-48 16.4V288H64v144c0 44.2 35.8 80 80 80s80-35.8 80-80c0-5.5-.6-10.8-1.6-16h195.2c-1.1 5.2-1.6 10.5-1.6 16 0 44.2 35.8 80 80 80s80-35.8 80-80c0-5.5-.6-10.8-1.6-16H632c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8zm-488 96c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm272-320h44.1c8.4 0 16.7 3.4 22.6 9.4l83.9 83.9c.8.8 1.1 1.9 1.8 2.8H416V160zm80 320c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm80-96h-16.4C545 364.7 522 352 496 352s-49 12.7-63.6 32H416v-96h160v96zM256 248v-16c0-4.4-3.6-8-8-8H8c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8h240c4.4 0 8-3.6 8-8z\"><\/path><\/svg>",
             "text": "Free Shipping over $80",
             "color_title": "#232323",
-            "text_description": "<p>Free standard shipping on orders over $80</p>",
+            "text_description": "<p>Free standard shipping on orders over $80<\/p>",
             "color_des": "#4d4d4d",
             "content_popup": "",
             "fontsize_text": 12,
@@ -269,7 +269,7 @@
           "type": "custom_information",
           "disabled": true,
           "settings": {
-            "icon": "<svg aria-hidden=\"true\" focusable=\"false\" data-prefix=\"fal\" data-icon=\"shield-alt\" role=\"img\" xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 512 512\">\n    <path fill=\"currentColor\" d=\"M466.5 83.7l-192-80a48.15 48.15 0 0 0-36.9 0l-192 80C27.7 91.1 16 108.6 16 128c0 198.5 114.5 335.7 221.5 380.3 11.8 4.9 25.1 4.9 36.9 0C360.1 472.6 496 349.3 496 128c0-19.4-11.7-36.9-29.5-44.3zM262.2 478.8c-4 1.6-8.4 1.6-12.3 0C152 440 48 304 48 128c0-6.5 3.9-12.3 9.8-14.8l192-80c3.9-1.6 8.4-1.6 12.3 0l192 80c6 2.5 9.9 8.3 9.8 14.8.1 176-103.9 312-201.7 350.8zM256 411V100l-142.7 59.5c10.1 120.1 77.1 215 142.7 251.5zm-32-66.8c-36.4-39.9-65.8-97.8-76.1-164.5L224 148z\"></path>\n</svg>",
+            "icon": "<svg aria-hidden=\"true\" focusable=\"false\" data-prefix=\"fal\" data-icon=\"shield-alt\" role=\"img\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewbox=\"0 0 512 512\">\n    <path fill=\"currentColor\" d=\"M466.5 83.7l-192-80a48.15 48.15 0 0 0-36.9 0l-192 80C27.7 91.1 16 108.6 16 128c0 198.5 114.5 335.7 221.5 380.3 11.8 4.9 25.1 4.9 36.9 0C360.1 472.6 496 349.3 496 128c0-19.4-11.7-36.9-29.5-44.3zM262.2 478.8c-4 1.6-8.4 1.6-12.3 0C152 440 48 304 48 128c0-6.5 3.9-12.3 9.8-14.8l192-80c3.9-1.6 8.4-1.6 12.3 0l192 80c6 2.5 9.9 8.3 9.8 14.8.1 176-103.9 312-201.7 350.8zM256 411V100l-142.7 59.5c10.1 120.1 77.1 215 142.7 251.5zm-32-66.8c-36.4-39.9-65.8-97.8-76.1-164.5L224 148z\"><\/path>\n<\/svg>",
             "text": "Hassle Free Returns",
             "color_title": "#232323",
             "text_description": "",
@@ -284,12 +284,12 @@
           "type": "custom_information",
           "disabled": true,
           "settings": {
-            "icon": "<svg aria-hidden=\"true\" focusable=\"false\" data-prefix=\"fal\" data-icon=\"exclamation-triangle\" role=\"img\" xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 576 512\"><path fill=\"currentColor\" d=\"M270.2 160h35.5c3.4 0 6.1 2.8 6 6.2l-7.5 196c-.1 3.2-2.8 5.8-6 5.8h-20.5c-3.2 0-5.9-2.5-6-5.8l-7.5-196c-.1-3.4 2.6-6.2 6-6.2zM288 388c-15.5 0-28 12.5-28 28s12.5 28 28 28 28-12.5 28-28-12.5-28-28-28zm281.5 52L329.6 24c-18.4-32-64.7-32-83.2 0L6.5 440c-18.4 31.9 4.6 72 41.6 72H528c36.8 0 60-40 41.5-72zM528 480H48c-12.3 0-20-13.3-13.9-24l240-416c6.1-10.6 21.6-10.7 27.7 0l240 416c6.2 10.6-1.5 24-13.8 24z\"></path></svg>",
+            "icon": "<svg aria-hidden=\"true\" focusable=\"false\" data-prefix=\"fal\" data-icon=\"exclamation-triangle\" role=\"img\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewbox=\"0 0 576 512\"><path fill=\"currentColor\" d=\"M270.2 160h35.5c3.4 0 6.1 2.8 6 6.2l-7.5 196c-.1 3.2-2.8 5.8-6 5.8h-20.5c-3.2 0-5.9-2.5-6-5.8l-7.5-196c-.1-3.4 2.6-6.2 6-6.2zM288 388c-15.5 0-28 12.5-28 28s12.5 28 28 28 28-12.5 28-28-12.5-28-28-28zm281.5 52L329.6 24c-18.4-32-64.7-32-83.2 0L6.5 440c-18.4 31.9 4.6 72 41.6 72H528c36.8 0 60-40 41.5-72zM528 480H48c-12.3 0-20-13.3-13.9-24l240-416c6.1-10.6 21.6-10.7 27.7 0l240 416c6.2 10.6-1.5 24-13.8 24z\"><\/path><\/svg>",
             "text": "Covid-19 Shipping Delay Notice",
             "color_title": "#232323",
             "text_description": "",
             "color_des": "#999999",
-            "content_popup": "<div class=\"halo-text-format\">\n\t\t\t\t\t\t\t\t<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n\t\t\t\t\t\t\t</div>",
+            "content_popup": "<div class=\"halo-text-format\">\n\t\t\t\t\t\t\t\t<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.<\/p>\n\t\t\t\t\t\t\t<\/div>",
             "fontsize_text": 12,
             "spacing_top": 0,
             "spacing_bottom": 0
@@ -423,6 +423,116 @@
         "total_btn_bg_gradient_hover": ""
       }
     },
+    "custom_icon_features_PnL3aG": {
+      "type": "custom-icon-features",
+      "blocks": {
+        "icon_block_X9WWH6": {
+          "type": "icon_block",
+          "settings": {
+            "icon_image": "shopify:\/\/shop_images\/image.png",
+            "heading": "Hand-Poured",
+            "description": "<p>crafted in small<br\/>batches in Texas<\/p>",
+            "link": ""
+          }
+        },
+        "icon_block_FEncTF": {
+          "type": "icon_block",
+          "settings": {
+            "icon_image": "shopify:\/\/shop_images\/image22.png",
+            "heading": "Clean burn",
+            "description": "<p>artisan soy wax blend, <br\/>natural cotton wick<\/p>",
+            "link": ""
+          }
+        },
+        "icon_block_jzmDhw": {
+          "type": "icon_block",
+          "settings": {
+            "icon_image": "shopify:\/\/shop_images\/image3_b5f1375c-c483-4fd7-9231-c91275ba6f7a.png",
+            "heading": "Long-Lasting",
+            "description": "<p>up to 60 hours of<br\/> rich, even burn time<\/p>",
+            "link": ""
+          }
+        },
+        "icon_block_QnN9R3": {
+          "type": "icon_block",
+          "settings": {
+            "icon_image": "shopify:\/\/shop_images\/image4_92b6c070-42d6-4ccb-85a2-a2372b725fd7.png",
+            "heading": "designer candles",
+            "description": "<p>crafted by award-winning<br\/> interior designers<\/p>",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "icon_block_X9WWH6",
+        "icon_block_FEncTF",
+        "icon_block_jzmDhw",
+        "icon_block_QnN9R3"
+      ],
+      "name": "Icon Features",
+      "settings": {
+        "container": "container",
+        "padding_full_width": 0,
+        "content_align": "center",
+        "brand_bg": "#fcf9ef",
+        "brand_bg_gradient": "",
+        "gap_desktop": 24,
+        "gap_mobile": 12,
+        "hide_description_mobile": true,
+        "icon_size": 72,
+        "icon_size_mb": 72,
+        "color_heading": "#232323",
+        "fontsize_heading": 15,
+        "fontsize_heading_mb": 15,
+        "color_des": "#232323",
+        "fontsize_des": 14,
+        "mg_top_desktop": 65,
+        "mg_top_tablet": 65,
+        "mg_top_mobile": 65,
+        "mg_bottom_desktop": 65,
+        "mg_bottom_tablet": 65,
+        "mg_bottom_mobile": 65
+      }
+    },
+    "jv_highlight_QY4BUB": {
+      "type": "jv-highlight",
+      "blocks": {
+        "note_nrtYBi": {
+          "type": "note",
+          "settings": {
+            "icon_image": "shopify://shop_images/icon1.png",
+            "label": "Fresh Texas Peaches",
+            "content": "<p>Top notes of juicy, sun-warmed peaches picked at peak ripeness.</p>"
+          }
+        },
+        "note_8hncf9": {
+          "type": "note",
+          "settings": {
+            "icon_image": "shopify://shop_images/icon2_48376915-5ed4-431e-9346-3f23a609e70f.png",
+            "label": "Sun Ripened Apricot",
+            "content": "<p>A soft, golden heart of sweet apricot rounds out the fruit.</p>"
+          }
+        },
+        "note_CqxjpJ": {
+          "type": "note",
+          "settings": {
+            "icon_image": "shopify://shop_images/icon3.png",
+            "label": "Warm Patchouli",
+            "content": "<p>Grounded by an earthy base of warm patchouli for lasting depth.</p>"
+          }
+        }
+      },
+      "block_order": ["note_nrtYBi", "note_8hncf9", "note_CqxjpJ"],
+      "name": "JV - Highlight",
+      "settings": {
+        "image": "shopify://shop_images/aeed7711631f7449c879864078550788c1adb9b4.jpg",
+        "image_position": "left",
+        "eyebrow": "TEXAS SUMMER",
+        "heading": "Fragrance Notes",
+        "panel_bg": "#a35334",
+        "text_color": "#ffffff"
+      }
+    },
     "product-recommendations": {
       "type": "product-recommendations",
       "settings": {
@@ -476,11 +586,96 @@
         "border_color_card": "#f0f1f4"
       }
     },
+    "jv_gallery_kN93qU": {
+      "type": "jv-gallery",
+      "blocks": {
+        "image_z3zE4i": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/745f038e0998a3efd364155cd2c20d3d1fe6b323.jpg",
+            "link": ""
+          }
+        },
+        "image_TcrMap": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/7b66b120b42ec72e16642e469cdd90d33ba7fc97.jpg",
+            "link": ""
+          }
+        },
+        "image_Kt4gNJ": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/3afe48d029d5b875d480f20553924af6b55fcfd4.jpg",
+            "link": ""
+          }
+        },
+        "image_Fe4CQn": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/9bd7a2d4bbb8f3df2dbcda93bbd6f6aca56d80ef.jpg",
+            "link": ""
+          }
+        },
+        "image_bgqxA9": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/916c76aa51c337ee8339b2a4574d25ea54891380.jpg",
+            "link": ""
+          }
+        },
+        "image_HeWbCK": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/745f038e0998a3efd364155cd2c20d3d1fe6b323.jpg",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_z3zE4i",
+        "image_TcrMap",
+        "image_Kt4gNJ",
+        "image_Fe4CQn",
+        "image_bgqxA9",
+        "image_HeWbCK"
+      ],
+      "name": "JV - Gallery",
+      "settings": {
+        "heading": "From Our Home To Yours",
+        "heading_size": 24,
+        "heading_size_mobile": 24,
+        "heading_weight": "500",
+        "heading_spacing": 1,
+        "heading_gap": 30,
+        "block_layout": "slider",
+        "enable_center": true,
+        "per_view_desktop": 5,
+        "per_view_tablet": 3,
+        "per_view_mobile": 2,
+        "show_arrows": false,
+        "show_dots": false,
+        "autoplay": false,
+        "autoplay_speed": 4,
+        "image_ratio": "3 / 4",
+        "image_radius": 10,
+        "gap_desktop": 18,
+        "gap_mobile": 16,
+        "edge_padding": 40,
+        "edge_padding_mobile": 20,
+        "background_color": "#fcf9ef",
+        "heading_color": "#232323",
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "padding_top_mobile": 48,
+        "padding_bottom_mobile": 40
+      }
+    },
     "17836282550cec3aba": {
       "type": "apps",
       "blocks": {
         "judge_me_reviews_review_widget_x6Cr3b": {
-          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/review_widget\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {
             "review_data": "real_data",
             "max_width": 1200,
@@ -489,9 +684,7 @@
           }
         }
       },
-      "block_order": [
-        "judge_me_reviews_review_widget_x6Cr3b"
-      ],
+      "block_order": ["judge_me_reviews_review_widget_x6Cr3b"],
       "custom_css": [
         "{padding: 0 2em;}",
         ".jm-reviewer-info__name-cluster[data-v-6a854929] {flex-wrap: wrap;}",
@@ -568,7 +761,10 @@
   },
   "order": [
     "main",
+    "custom_icon_features_PnL3aG",
+    "jv_highlight_QY4BUB",
     "product-recommendations",
+    "jv_gallery_kN93qU",
     "17836282550cec3aba",
     "product-recently-viewed",
     "17839812280a5dd347"
