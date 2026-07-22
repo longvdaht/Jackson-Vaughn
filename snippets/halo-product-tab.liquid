@@ -16,6 +16,13 @@
 	if tab_layout_mobile == 'vertical_sidebar'
 		assign isVerticalSidebarMobile = 'sidebar-mobile'
 	endif
+
+	# Enable popup instance flag if any block opts into popup
+	for block in section.blocks
+		if block.settings.tab_display == 'popup'
+			assign isVerticalSidebarMobile = 'sidebar-mobile'
+		endif
+	endfor
 -%}
 <product-tab class="productView-tab layout-{{ tab_layout }} halo-product-tab" data-vertical="{{ isVerticalSidebar }}" data-vertical-mobile="{{ isVerticalSidebarMobile }}">
 	{%- if tab_layout == 'horizontal' or tab_layout == 'popup' -%}
@@ -118,9 +125,14 @@
 						assign style_mobile = 'sidebar-mobile'
 					endif
 				endif
+
+				# Per-block popup override (applies on all viewports)
+				if block.settings.tab_display == 'popup'
+					assign style_mobile = 'sidebar-mobile'
+				endif
 			-%}
 			{%- if has_tab and title != blank -%}
-				<div class="tab-content{% if block.type == 'description' %}{% if tab_layout == 'vertical' or tab_layout == 'horizontal' %} is-active{% endif %}{% endif %}" id="tab-{{ title | escape | handleize }}">
+				<div class="tab-content{% if block.type == 'description' %}{% if tab_layout == 'vertical' or tab_layout == 'horizontal' %} is-active{% endif %}{% endif %} {{ block.settings.tab_display }}-style" id="tab-{{ title | escape | handleize }}">
 					<div class="toggle-title{% if settings.product_page_layout == 'full_width_2' or template.suffix == 'template-full-width-2' %} title-content-full{% endif %}">
 		                <a class="toggleLink{% if style_mobile %} {{ style_mobile }}{% endif %}{% if block.type == 'description' and tab_layout == 'vertical' %} is-open{% endif %}" data-collapsible href="#tab-{{ title | escape | handleize }}-mobile">
 		                    <span class="text">
@@ -149,7 +161,25 @@
 							</div>
 							<div class="tab-popup-content">
 						{%- endif -%}
-							{{ content }}
+							{%- if content.type contains 'metaobject' -%}
+								<div class="product-tab-metaobjects">
+									{%- for item in content.value -%}
+									<div class="product-tab-metaobjects__item">
+										{%- if item.icon != blank -%}
+											<span class="product-tab-metaobjects__icon">
+												{{ item.icon | image_url: width: 96 | image_tag: loading: 'lazy', alt: '' }}
+											</span>
+										{%- endif -%}
+										{%- if item.text_data != blank -%}
+											<div class="product-tab-metaobjects__text">{{ item.text_data | metafield_tag }}</div>
+										{%- endif -%}
+									</div>
+									{%- endfor -%}
+								</div>
+							{%- else -%}
+								{{ content }}
+							{%- endif -%}
+
 							{%- if block.settings.enable_btn_show_more -%}
 								{% assign letter = content | size %}
 								<div class="tab-showMore is-show" data-letter="{{ letter }}" data-des-max="{{ block.settings.maximum_des_to_show }}">

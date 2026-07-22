@@ -236,6 +236,11 @@
       "select_variant": "Select Options",
       "more_sizes": "More sizes available",
       "measurements": "Measurements",
+      "scent_family": "Scent family",
+      "scent_notes": "Scent Notes",
+      "feels_like": "Feels like",
+      "throw": "Throw",
+      "burn_time": "Burn Time",
       "media": {
         "media_alt": "Load media in gallery viewer, {{ mediaAlt }}",
         "video_alt": "Load video in gallery viewer, {{ mediaAlt }}",

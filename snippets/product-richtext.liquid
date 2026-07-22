@@ -1,0 +1,6 @@
+{%- liquid 
+    assign text = block.settings.text
+-%}
+{%- if text != blank or text_icon != blank -%}
+    {{- text -}}
+{%- endif -%}
