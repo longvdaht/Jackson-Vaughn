@@ -1,0 +1,626 @@
+{% comment %} JV - Press {% endcomment %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Dosis:wght@400;500;600;700&display=swap"
+  rel="stylesheet"
+>
+
+{%- liquid
+  # Space between items (px)
+  assign space = section.settings.item_gap | default: 24
+
+  # Edge peek (px): how much of the first & last items is clipped on desktop/tablet.
+  # Achieved with a negative "bleed" margin on the swiper, clipped by the outer wrapper.
+  assign peek = section.settings.edge_peek | default: 80
+
+  assign spv_desktop = section.settings.per_view_desktop | default: 6
+  assign spv_tablet = section.settings.per_view_tablet | default: 3
+  assign spv_mobile = section.settings.per_view_mobile | default: 1.3
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --pr-bg: {{ section.settings.background_color | default: '#FBF3EC' }};
+    --pr-heading: {{ section.settings.heading_color | default: '#2C2622' }};
+    --pr-text: {{ section.settings.text_color | default: '#3C3630' }};
+    --pr-peek: {{ peek }}px;
+    --pr-space: {{ space }}px;
+    --font-heading: 'Petrona', serif;
+    --font-body: 'Dosis', sans-serif;
+  }
+
+  #shopify-section-{{ section.id }} .jv-press {
+    background: var(--pr-bg);
+    font-family: var(--font-body);
+    padding: {{ section.settings.padding_top | default: 72 }}px 0
+      {{ section.settings.padding_bottom | default: 72 }}px;
+    width: 100%;
+    overflow: hidden;
+    {%- if section.settings.border_top_width > 0 -%}
+      border-top: {{ section.settings.border_top_width }}px solid {{ section.settings.border_top_color | default: '#2C2622' }};
+    {%- endif -%}
+    {%- if section.settings.border_bottom_width > 0 -%}
+      border-bottom: {{ section.settings.border_bottom_width }}px solid {{ section.settings.border_bottom_color | default: '#2C2622' }};
+    {%- endif -%}
+  }
+
+  #shopify-section-{{ section.id }} .jv-press-heading {
+    font-family: var(--font-heading);
+    font-weight: normal;
+    font-size: {{ section.settings.heading_size | default: 30 }}px;
+    line-height: 1.2;
+    letter-spacing: {{ section.settings.heading_spacing | default: 4 }}px;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--pr-heading);
+    margin: 0 0 {{ section.settings.heading_gap | default: 48 }}px;
+    padding: 0 24px;
+  }
+
+  /* ── Slider ── */
+  #shopify-section-{{ section.id }} .jv-press-slider {
+    position: relative;
+  }
+
+  /* Bleed the swiper wider than the viewport so the outer wrapper clips the
+     first & last items symmetrically (desktop/tablet). */
+  #shopify-section-{{ section.id }} .jv-press-swiper {
+    overflow: hidden;
+    margin: 0 calc(-1 * var(--pr-peek));
+  }
+
+  /* Fallback sizing before Swiper initialises (avoids a flash of full-width slides) */
+  #shopify-section-{{ section.id }} .jv-press-swiper:not(.swiper-initialized) .swiper-wrapper {
+    display: flex;
+    gap: var(--pr-space);
+    overflow: hidden;
+  }
+  #shopify-section-{{ section.id }} .jv-press-swiper:not(.swiper-initialized) .swiper-slide {
+    flex: 0 0 calc((100% - ({{ spv_desktop | minus: 1 }} * var(--pr-space))) / {{ spv_desktop }});
+  }
+
+  #shopify-section-{{ section.id }} .jv-press-slide {
+    height: auto;
+  }
+
+  #shopify-section-{{ section.id }} .jv-press-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    text-align: {{ section.settings.text_align | default: 'left' }};
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* ── Logo ── */
+  #shopify-section-{{ section.id }} .jv-press-logo {
+    width: 100%;
+    height: {{ section.settings.logo_height | default: 64 }}px;
+    display: flex;
+    align-items: center;
+    margin-bottom: {{ section.settings.logo_gap | default: 28 }}px;
+  }
+  #shopify-section-{{ section.id }} .jv-press-logo img {
+    width: auto;
+    height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: {{ section.settings.text_align | default: 'left' }};
+    display: block;
+  }
+  #shopify-section-{{ section.id }} .jv-press-logo .placeholder-svg {
+    max-width: 60%;
+    max-height: 100%;
+    opacity: 0.25;
+  }
+
+  /* ── Description ── */
+  #shopify-section-{{ section.id }} .jv-press-desc {
+    width: 100%;
+    font-size: {{ section.settings.text_size | default: 16 }}px;
+    line-height: 1.6;
+    color: var(--pr-text);
+  }
+  #shopify-section-{{ section.id }} .jv-press-desc p {
+    margin: 0;
+  }
+  #shopify-section-{{ section.id }} .jv-press-desc a {
+    color: inherit;
+    text-decoration: underline;
+  }
+
+  /* ── Arrows (outside the clipped swiper) ── */
+  #shopify-section-{{ section.id }} .jv-press-arrow {
+    position: absolute;
+    top: {{ section.settings.logo_height | default: 64 }}px;
+    transform: translateY(-50%);
+    z-index: 3;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border-radius: 50%;
+    border: none;
+    background: var(--pr-bg);
+    color: var(--pr-heading);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.14);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+  }
+  #shopify-section-{{ section.id }} .jv-press-arrow:hover {
+    background: var(--pr-heading);
+    color: var(--pr-bg);
+  }
+  #shopify-section-{{ section.id }} .jv-press-arrow svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+  }
+  #shopify-section-{{ section.id }} .jv-press-arrow--prev {
+    left: 24px;
+  }
+  #shopify-section-{{ section.id }} .jv-press-arrow--next {
+    right: 24px;
+  }
+  #shopify-section-{{ section.id }} .jv-press-arrow.swiper-button-disabled {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* ── Pagination ── */
+  #shopify-section-{{ section.id }} .jv-press-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 28px;
+  }
+  #shopify-section-{{ section.id }} .jv-press-pagination .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--pr-heading);
+    opacity: 0.3;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+  #shopify-section-{{ section.id }} .jv-press-pagination .swiper-pagination-bullet-active {
+    opacity: 1;
+  }
+
+  /* ── Tablet ── */
+  @media (max-width: 1024px) {
+    #shopify-section-{{ section.id }} .jv-press-swiper:not(.swiper-initialized) .swiper-slide {
+      flex: 0 0 calc((100% - ({{ spv_tablet | minus: 1 }} * var(--pr-space))) / {{ spv_tablet }});
+    }
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 768px) {
+    #shopify-section-{{ section.id }} .jv-press {
+      padding: {{ section.settings.padding_top_mobile | default: 48 }}px 0
+        {{ section.settings.padding_bottom_mobile | default: 48 }}px;
+    }
+    #shopify-section-{{ section.id }} .jv-press-heading {
+      font-size: {{ section.settings.heading_size_mobile | default: 26 }}px;
+      margin-bottom: 32px;
+      padding: 0 16px;
+    }
+    #shopify-section-{{ section.id }} .jv-press-swiper {
+      margin: 0;
+      padding-left: 16px;
+    }
+    #shopify-section-{{ section.id }} .jv-press-swiper:not(.swiper-initialized) .swiper-slide {
+      flex: 0 0 calc(100% / {{ spv_mobile }});
+    }
+    #shopify-section-{{ section.id }} .jv-press-arrow {
+      display: none;
+    }
+  }
+</style>
+
+<div class="jv-press">
+  {%- if section.settings.heading != blank -%}
+    <h2 class="jv-press-heading">{{ section.settings.heading }}</h2>
+  {%- endif -%}
+
+  {%- if section.blocks.size > 0 -%}
+    <div class="jv-press-slider" data-loader-script="{{ 'halo.jv-press.js' | asset_url }}">
+      <div
+        class="swiper jv-press-swiper"
+        data-jv-press
+        data-per-desktop="{{ spv_desktop }}"
+        data-per-tablet="{{ spv_tablet }}"
+        data-per-mobile="{{ spv_mobile }}"
+        data-space="{{ space }}"
+        data-loop="{{ section.settings.enable_loop }}"
+        data-arrows="{{ section.settings.show_arrows }}"
+        data-dots="{{ section.settings.show_dots }}"
+        data-autoplay="{{ section.settings.autoplay }}"
+        data-autoplay-speed="{{ section.settings.autoplay_speed | times: 1000 }}"
+      >
+        <div class="swiper-wrapper">
+          {%- for block in section.blocks -%}
+            {%- assign is_link = false -%}
+            {%- if block.settings.link != blank -%}{%- assign is_link = true -%}{%- endif -%}
+
+            <div class="swiper-slide jv-press-slide" {{ block.shopify_attributes }}>
+              <{% if is_link %}a href="{{ block.settings.link }}"{% else %}div{% endif %} class="jv-press-item">
+                <div class="jv-press-logo">
+                  {%- if block.settings.image != blank -%}
+                    {{
+                      block.settings.image
+                      | image_url: width: 600
+                      | image_tag:
+                        loading: 'lazy',
+                        sizes: '(max-width: 768px) 70vw, 16vw',
+                        widths: '200, 300, 450, 600',
+                        alt: block.settings.image.alt
+                    }}
+                  {%- else -%}
+                    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                  {%- endif -%}
+                </div>
+                {%- if block.settings.description != blank -%}
+                  <div class="jv-press-desc rte">{{ block.settings.description }}</div>
+                {%- endif -%}
+              </{% if is_link %}a href="{{ block.settings.link }}"{% else %}div{% endif %}>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+
+      {%- if section.settings.show_arrows -%}
+        <button class="jv-press-arrow jv-press-arrow--prev" type="button" aria-label="Previous">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button class="jv-press-arrow jv-press-arrow--next" type="button" aria-label="Next">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      {%- endif -%}
+
+      {%- if section.settings.show_dots -%}
+        <div class="jv-press-pagination"></div>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+</div>
+
+<script src="{{ 'halo.jv-press.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "JV - Press",
+  "tag": "section",
+  "class": "jv-section-press",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "As Seen In"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size (desktop)",
+      "min": 18,
+      "max": 56,
+      "step": 1,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "label": "Heading size (mobile)",
+      "min": 16,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "default": 26
+    },
+    {
+      "type": "range",
+      "id": "heading_spacing",
+      "label": "Heading letter spacing",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "heading_gap",
+      "label": "Space below heading",
+      "min": 12,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "header",
+      "content": "Slider"
+    },
+    {
+      "type": "range",
+      "id": "per_view_desktop",
+      "label": "Items per view (desktop)",
+      "min": 3,
+      "max": 8,
+      "step": 1,
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "per_view_tablet",
+      "label": "Items per view (tablet)",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "range",
+      "id": "per_view_mobile",
+      "label": "Items per view (mobile)",
+      "min": 1,
+      "max": 2.5,
+      "step": 0.1,
+      "default": 1.3
+    },
+    {
+      "type": "range",
+      "id": "edge_peek",
+      "label": "Edge peek (desktop/tablet)",
+      "info": "How much of the first & last items is clipped at the edges.",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "item_gap",
+      "label": "Gap between items",
+      "min": 0,
+      "max": 80,
+      "step": 2,
+      "unit": "px",
+      "default": 24
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_loop",
+      "label": "Loop (infinite)",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_arrows",
+      "label": "Show arrows (desktop)",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_dots",
+      "label": "Show dots",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Autoplay",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "label": "Autoplay speed",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "default": 4
+    },
+    {
+      "type": "header",
+      "content": "Item style"
+    },
+    {
+      "type": "range",
+      "id": "logo_height",
+      "label": "Logo area height",
+      "min": 30,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "default": 90
+    },
+    {
+      "type": "range",
+      "id": "logo_gap",
+      "label": "Space below logo",
+      "min": 0,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Description size",
+      "min": 12,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Text alignment",
+      "default": "left",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#FBF3EC"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading / arrow color",
+      "default": "#2C2622"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Description color",
+      "default": "#3C3630"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top (desktop)",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom (desktop)",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding top (mobile)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding bottom (mobile)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "header",
+      "content": "Border"
+    },
+    {
+      "type": "range",
+      "id": "border_top_width",
+      "label": "Border top width",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "border_top_color",
+      "label": "Border top color",
+      "default": "#2C2622"
+    },
+    {
+      "type": "range",
+      "id": "border_bottom_width",
+      "label": "Border bottom width",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "border_bottom_color",
+      "label": "Border bottom color",
+      "default": "#2C2622"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "press_item",
+      "name": "Press item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Logo image"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>“Jackson Vaughn candles bring a little Texas into any home with aromas that capture the spirit of the Lone Star State.”</p>"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link (optional)"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 20,
+  "presets": [
+    {
+      "name": "JV - Press",
+      "blocks": [
+        { "type": "press_item" },
+        { "type": "press_item" },
+        { "type": "press_item" },
+        { "type": "press_item" },
+        { "type": "press_item" },
+        { "type": "press_item" }
+      ]
+    }
+  ]
+}
+{% endschema %}
