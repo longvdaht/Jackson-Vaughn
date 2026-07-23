@@ -13,7 +13,11 @@
         assign enable_iso_rtl = false 
     endif
 -%}
-<html class="no-js" lang="{{ request.locale.iso_code }}"{% if settings.enable_layout_rtl and enable_iso_rtl %} dir="rtl"{% endif %} style="--dominant_color:{{ product.metafields.custom.dominant_color }};">
+<html class="no-js" lang="{{ request.locale.iso_code }}"{% if settings.enable_layout_rtl and enable_iso_rtl %} dir="rtl"{% endif %} 
+    {% if product.metafields.custom.dominant_color != blank %}
+        style="--dominant_color:{{ product.metafields.custom.dominant_color }};"
+    {% endif %}
+>
     <head>
       <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
