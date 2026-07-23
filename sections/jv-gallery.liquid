@@ -7,11 +7,17 @@
 >
 
 {%- liquid
-  # Half-gutter (px) applied to each side of a slide -> 2x this between images
-  assign gutter = 6
-  assign gutter_full = gutter | times: 2
-  # Side padding used for arrow positioning (px)
-  assign edge = 40
+  # Space between images (px)
+  assign space = 12
+
+  # Edge peek (px): how much of the first & last images is clipped on desktop/tablet.
+  # Achieved with a negative "bleed" margin on the swiper, clipped by the outer wrapper.
+  assign peek = section.settings.edge_peek | default: 40
+
+  assign spv_desktop = section.settings.per_view_desktop | default: 5
+  # Tablet & mobile are fixed
+  assign spv_tablet = 3
+  assign spv_mobile = 1.8
 -%}
 
 <style>
@@ -20,8 +26,7 @@
     --gl-text: {{ section.settings.heading_color | default: '#2C2622' }};
     --gl-radius: {{ section.settings.image_radius | default: 4 }}px;
     --gl-ratio: {{ section.settings.image_ratio | default: '3 / 4' }};
-    --gl-edge: {{ edge }}px;
-    --gl-per-mobile: {{ section.settings.per_view_mobile | default: 1.8 }};
+    --gl-peek: {{ peek }}px;
     --font-heading: 'Petrona', serif;
     --font-body: 'Dosis', sans-serif;
   }
@@ -32,6 +37,10 @@
       {{ section.settings.padding_bottom | default: 56 }}px;
     font-family: var(--font-body);
     width: 100%;
+    overflow: hidden;
+    {%- if section.settings.border_top_width > 0 -%}
+      border-top: {{ section.settings.border_top_width }}px solid {{ section.settings.border_top_color | default: '#2C2622' }};
+    {%- endif -%}
   }
 
   #shopify-section-{{ section.id }} .jv-gl-heading {
@@ -44,30 +53,32 @@
     text-align: center;
     color: var(--gl-text);
     margin: 0 0 {{ section.settings.heading_gap | default: 44 }}px;
-    padding: 0 var(--gl-edge);
+    padding: 0 24px;
   }
 
-  /* ── Slider shell ── */
+  /* ── Slider ── */
   #shopify-section-{{ section.id }} .jv-gl-slider {
     position: relative;
   }
 
-  /* Before Slick inits: show items in a row so there's no flash of stacked images */
-  #shopify-section-{{ section.id }} .jv-gl-track:not(.slick-initialized) {
-    display: flex;
-    gap: {{ gutter_full }}px;
+  /* Bleed the swiper wider than the viewport so the outer wrapper clips the
+     first & last images symmetrically (desktop/tablet). */
+  #shopify-section-{{ section.id }} .jv-gl-swiper {
     overflow: hidden;
-  }
-  #shopify-section-{{ section.id }} .jv-gl-track:not(.slick-initialized) .jv-gl-item {
-    flex: 0 0 calc((100% - ({{ section.settings.per_view_desktop | default: 5 | minus: 1 }} * {{ gutter_full }}px)) / {{ section.settings.per_view_desktop | default: 5 }});
+    margin: 0 calc(-1 * var(--gl-peek));
   }
 
-  /* Gutter between slides (Slick) */
-  #shopify-section-{{ section.id }} .jv-gl-track .slick-list {
-    margin: 0 -{{ gutter }}px;
+  /* Fallback sizing before Swiper initialises (avoids a flash of full-width slides) */
+  #shopify-section-{{ section.id }} .jv-gl-swiper:not(.swiper-initialized) .swiper-wrapper {
+    display: flex;
+    gap: {{ space }}px;
+    overflow: hidden;
   }
-  #shopify-section-{{ section.id }} .jv-gl-track .slick-slide {
-    padding: 0 {{ gutter }}px;
+  #shopify-section-{{ section.id }} .jv-gl-swiper:not(.swiper-initialized) .swiper-slide {
+    flex: 0 0 calc((100% - ({{ section.settings.per_view_desktop | default: 5 | minus: 1 }} * {{ space }}px)) / {{ section.settings.per_view_desktop | default: 5 }});
+  }
+
+  #shopify-section-{{ section.id }} .jv-gl-slide {
     height: auto;
   }
 
@@ -103,12 +114,12 @@
     opacity: 0.25;
   }
 
-  /* ── Slick arrows ── */
-  #shopify-section-{{ section.id }} .jv-gl-track .slick-arrow {
+  /* ── Arrows (outside the clipped swiper) ── */
+  #shopify-section-{{ section.id }} .jv-gl-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    z-index: 2;
+    z-index: 3;
     width: 44px;
     height: 44px;
     padding: 0;
@@ -118,61 +129,49 @@
     color: var(--gl-text);
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.14);
     cursor: pointer;
-    display: flex !important;
+    display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.2s ease;
+    transition: background 0.2s ease, color 0.2s ease, opacity 0.2s ease;
   }
-  #shopify-section-{{ section.id }} .jv-gl-track .slick-arrow:hover {
+  #shopify-section-{{ section.id }} .jv-gl-arrow:hover {
     background: var(--gl-text);
     color: var(--gl-bg);
   }
-  #shopify-section-{{ section.id }} .jv-gl-track .slick-arrow svg {
+  #shopify-section-{{ section.id }} .jv-gl-arrow svg {
     width: 18px;
     height: 18px;
     fill: currentColor;
   }
-  #shopify-section-{{ section.id }} .jv-gl-track .slick-prev {
-    left: calc(var(--gl-edge) - 22px);
+  #shopify-section-{{ section.id }} .jv-gl-arrow--prev {
+    left: 24px;
   }
-  #shopify-section-{{ section.id }} .jv-gl-track .slick-next {
-    right: calc(var(--gl-edge) - 22px);
+  #shopify-section-{{ section.id }} .jv-gl-arrow--next {
+    right: 24px;
   }
-  #shopify-section-{{ section.id }} .jv-gl-track .slick-arrow.slick-disabled {
+  #shopify-section-{{ section.id }} .jv-gl-arrow.swiper-button-disabled {
     opacity: 0;
     pointer-events: none;
   }
 
-  /* ── Slick dots ── */
-  #shopify-section-{{ section.id }} .jv-gl-track .slick-dots {
+  /* ── Pagination ── */
+  #shopify-section-{{ section.id }} .jv-gl-pagination {
     display: flex;
     justify-content: center;
     gap: 8px;
-    list-style: none;
-    padding: 0;
-    margin: 28px 0 0;
+    margin-top: 28px;
   }
-  #shopify-section-{{ section.id }} .jv-gl-track .slick-dots li button {
-    font-size: 0;
+  #shopify-section-{{ section.id }} .jv-gl-pagination .swiper-pagination-bullet {
     width: 8px;
     height: 8px;
-    padding: 0;
-    border: none;
     border-radius: 50%;
     background: var(--gl-text);
     opacity: 0.3;
     cursor: pointer;
+    transition: opacity 0.2s ease;
   }
-  #shopify-section-{{ section.id }} .jv-gl-track .slick-dots li.slick-active button {
+  #shopify-section-{{ section.id }} .jv-gl-pagination .swiper-pagination-bullet-active {
     opacity: 1;
-  }
-
-  /* Grab cursor while dragging */
-  #shopify-section-{{ section.id }} .jv-gl-track.slick-initialized {
-    cursor: grab;
-  }
-  #shopify-section-{{ section.id }} .jv-gl-track.slick-initialized:active {
-    cursor: grabbing;
   }
 
   /* ── Mobile ── */
@@ -185,22 +184,17 @@
       font-size: {{ section.settings.heading_size_mobile | default: 26 }}px;
       letter-spacing: 2px;
       margin-bottom: 28px;
+      padding: 0 16px;
     }
-    #shopify-section-{{ section.id }} .jv-gl-slider {
+    #shopify-section-{{ section.id }} .jv-gl-swiper {
+      margin: 0;
       padding-left: 6px;
     }
-    #shopify-section-{{ section.id }} .jv-gl-track .slick-list {
-      margin: 0;
+    #shopify-section-{{ section.id }} .jv-gl-swiper:not(.swiper-initialized) .swiper-slide {
+      flex: 0 0 calc(100% / {{ spv_mobile }});
     }
-    /* Fractional peek (e.g. 1.8 items) via variableWidth */
-    #shopify-section-{{ section.id }} .jv-gl-track.slick-initialized .slick-slide {
-      width: calc(100vw / var(--gl-per-mobile));
-    }
-    #shopify-section-{{ section.id }} .jv-gl-track:not(.slick-initialized) {
-      gap: {{ gutter_full }}px;
-    }
-    #shopify-section-{{ section.id }} .jv-gl-track:not(.slick-initialized) .jv-gl-item {
-      flex: 0 0 calc((100% - ({{ section.settings.per_view_mobile | default: 1.8 | minus: 1 }} * {{ gutter_full }}px)) / {{ section.settings.per_view_mobile | default: 1.8 }});
+    #shopify-section-{{ section.id }} .jv-gl-arrow {
+      display: none;
     }
   }
 </style>
@@ -211,53 +205,64 @@
   {%- endif -%}
 
   {%- if section.blocks.size > 0 -%}
-    <div
-      class="jv-gl-slider"
-      {% if section.settings.block_layout == 'slider' %}
-        data-loader-script="{{ 'halo.jv-gallery.js' | asset_url }}"
-      {% endif %}
-    >
+    <div class="jv-gl-slider" data-loader-script="{{ 'halo.jv-gallery.js' | asset_url }}">
       <div
-        class="jv-gl-track"
-        {% if section.settings.block_layout == 'slider' %}
-          data-jv-gallery-slider
-          data-show="{{ section.settings.per_view_desktop | default: 5 }}"
-          data-show-tablet="{{ section.settings.per_view_tablet | default: 3 }}"
-          data-show-mobile="{{ section.settings.per_view_mobile | default: 2 }}"
-          data-center="{{ section.settings.enable_center }}"
-          data-arrows="{{ section.settings.show_arrows }}"
-          data-dots="{{ section.settings.show_dots }}"
-          data-autoplay="{{ section.settings.autoplay }}"
-          data-autoplay-speed="{{ section.settings.autoplay_speed | times: 1000 }}"
-        {% endif %}
+        class="swiper jv-gl-swiper"
+        data-jv-gallery
+        data-per-desktop="{{ spv_desktop }}"
+        data-per-tablet="{{ spv_tablet }}"
+        data-per-mobile="{{ spv_mobile }}"
+        data-space="{{ space }}"
+        data-loop="{{ section.settings.enable_loop }}"
+        data-arrows="{{ section.settings.show_arrows }}"
+        data-dots="{{ section.settings.show_dots }}"
+        data-autoplay="{{ section.settings.autoplay }}"
+        data-autoplay-speed="{{ section.settings.autoplay_speed | times: 1000 }}"
       >
-        {%- for block in section.blocks -%}
-          <div class="jv-gallery-item">
+        <div class="swiper-wrapper">
+          {%- for block in section.blocks -%}
             {%- assign is_link = false -%}
             {%- if block.settings.link != blank -%}{%- assign is_link = true -%}{%- endif -%}
 
-            <{% if is_link %}a href="{{ block.settings.link }}"{% else %}div{% endif %}
-              class="jv-gl-item{% if is_link %} jv-gl-item--link{% endif %}"
-              {{ block.shopify_attributes }}
-            >
-              {%- if block.settings.image != blank -%}
-                {{
-                  block.settings.image
-                  | image_url: width: 900
-                  | image_tag:
-                    loading: 'lazy',
-                    sizes: '(max-width: 768px) 50vw, 20vw',
-                    widths: '300, 450, 600, 900',
-                    alt: block.settings.image.alt
-                  | default: section.settings.heading
-                }}
-              {%- else -%}
-                {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-              {%- endif -%}
-            </{% if is_link %}a href="{{ block.settings.link }}"{% else %}div{% endif %}>
-          </div>
-        {%- endfor -%}
+            <div class="swiper-slide jv-gl-slide" {{ block.shopify_attributes }}>
+              <{% if is_link %}a href="{{ block.settings.link }}"{% else %}div{% endif %}
+                class="jv-gl-item{% if is_link %} jv-gl-item--link{% endif %}"
+              >
+                {%- if block.settings.image != blank -%}
+                  {{
+                    block.settings.image
+                    | image_url: width: 900
+                    | image_tag:
+                      loading: 'lazy',
+                      sizes: '(max-width: 768px) 60vw, 20vw',
+                      widths: '300, 450, 600, 900',
+                      alt: block.settings.image.alt | default: section.settings.heading
+                  }}
+                {%- else -%}
+                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                {%- endif -%}
+              </{% if is_link %}a{% else %}div{% endif %}>
+            </div>
+          {%- endfor -%}
+        </div>
       </div>
+
+      {%- if section.settings.show_arrows -%}
+        <button class="jv-gl-arrow jv-gl-arrow--prev" type="button" aria-label="Previous">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button class="jv-gl-arrow jv-gl-arrow--next" type="button" aria-label="Next">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      {%- endif -%}
+
+      {%- if section.settings.show_dots -%}
+        <div class="jv-gl-pagination"></div>
+      {%- endif -%}
     </div>
   {%- endif -%}
 </div>
@@ -310,24 +315,7 @@
     },
     {
       "type": "header",
-      "content": "Layout"
-    },
-    {
-      "type": "select",
-      "id": "block_layout",
-      "label": "Layout",
-      "default": "slider",
-      "options": [
-        { "value": "slider", "label": "Slider (drag / swipe)" },
-        { "value": "grid", "label": "Static row" }
-      ]
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_center",
-      "label": "Center mode (desktop)",
-      "info": "Centers the active item with a peek of neighbours on both sides.",
-      "default": true
+      "content": "Slider"
     },
     {
       "type": "range",
@@ -340,22 +328,20 @@
     },
     {
       "type": "range",
-      "id": "per_view_tablet",
-      "label": "Images per view (tablet)",
-      "min": 2,
-      "max": 5,
-      "step": 1,
-      "default": 3
+      "id": "edge_peek",
+      "label": "Edge peek (desktop/tablet)",
+      "info": "How much of the first & last images is clipped at the edges.",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 40
     },
     {
-      "type": "range",
-      "id": "per_view_mobile",
-      "label": "Images per view (mobile)",
-      "info": "Use a fractional value (e.g. 1.8) to peek the next image.",
-      "min": 1,
-      "max": 4,
-      "step": 0.1,
-      "default": 1.8
+      "type": "checkbox",
+      "id": "enable_loop",
+      "label": "Loop (infinite)",
+      "default": false
     },
     {
       "type": "checkbox",
@@ -470,6 +456,26 @@
       "step": 4,
       "unit": "px",
       "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Border"
+    },
+    {
+      "type": "range",
+      "id": "border_top_width",
+      "label": "Border top width",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "border_top_color",
+      "label": "Border top color",
+      "default": "#2C2622"
     }
   ],
   "blocks": [
@@ -495,6 +501,8 @@
     {
       "name": "JV - Gallery",
       "blocks": [
+        { "type": "image" },
+        { "type": "image" },
         { "type": "image" },
         { "type": "image" },
         { "type": "image" },

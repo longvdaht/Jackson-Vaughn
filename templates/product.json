@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "main": {
@@ -54,7 +45,7 @@
           }
         },
         "judge_me_reviews_preview_badge_UzFtEX": {
-          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/preview_badge\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {}
         },
         "scent_profile_Q3EaB7": {
@@ -231,7 +222,7 @@
         "rich_text_DPWhFd": {
           "type": "rich_text",
           "settings": {
-            "text": "<h3>The Jackson Vaughn Promise</h3><p>We started with a single candle, gifted to people we cared about. More than two decades later, that same warmth goes into everything we make.</p>",
+            "text": "<h3>The Jackson Vaughn Promise<\/h3><p>We started with a single candle, gifted to people we cared about. More than two decades later, that same warmth goes into everything we make.<\/p>",
             "content_spacing": 15,
             "custom_block_align": "center",
             "background_color_block": "#ebe7de",
@@ -500,32 +491,36 @@
         "note_nrtYBi": {
           "type": "note",
           "settings": {
-            "icon_image": "shopify://shop_images/icon1.png",
+            "icon_image": "shopify:\/\/shop_images\/icon1.png",
             "label": "Fresh Texas Peaches",
-            "content": "<p>Top notes of juicy, sun-warmed peaches picked at peak ripeness.</p>"
+            "content": "<p>Top notes of juicy, sun-warmed peaches picked at peak ripeness.<\/p>"
           }
         },
         "note_8hncf9": {
           "type": "note",
           "settings": {
-            "icon_image": "shopify://shop_images/icon2_48376915-5ed4-431e-9346-3f23a609e70f.png",
+            "icon_image": "shopify:\/\/shop_images\/icon2_48376915-5ed4-431e-9346-3f23a609e70f.png",
             "label": "Sun Ripened Apricot",
-            "content": "<p>A soft, golden heart of sweet apricot rounds out the fruit.</p>"
+            "content": "<p>A soft, golden heart of sweet apricot rounds out the fruit.<\/p>"
           }
         },
         "note_CqxjpJ": {
           "type": "note",
           "settings": {
-            "icon_image": "shopify://shop_images/icon3.png",
+            "icon_image": "shopify:\/\/shop_images\/icon3.png",
             "label": "Warm Patchouli",
-            "content": "<p>Grounded by an earthy base of warm patchouli for lasting depth.</p>"
+            "content": "<p>Grounded by an earthy base of warm patchouli for lasting depth.<\/p>"
           }
         }
       },
-      "block_order": ["note_nrtYBi", "note_8hncf9", "note_CqxjpJ"],
+      "block_order": [
+        "note_nrtYBi",
+        "note_8hncf9",
+        "note_CqxjpJ"
+      ],
       "name": "JV - Highlight",
       "settings": {
-        "image": "shopify://shop_images/aeed7711631f7449c879864078550788c1adb9b4.jpg",
+        "image": "shopify:\/\/shop_images\/aeed7711631f7449c879864078550788c1adb9b4.jpg",
         "image_position": "left",
         "eyebrow": "TEXAS SUMMER",
         "heading": "Fragrance Notes",
@@ -592,42 +587,42 @@
         "image_z3zE4i": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/745f038e0998a3efd364155cd2c20d3d1fe6b323.jpg",
+            "image": "shopify:\/\/shop_images\/745f038e0998a3efd364155cd2c20d3d1fe6b323.jpg",
             "link": ""
           }
         },
         "image_TcrMap": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/7b66b120b42ec72e16642e469cdd90d33ba7fc97.jpg",
+            "image": "shopify:\/\/shop_images\/7b66b120b42ec72e16642e469cdd90d33ba7fc97.jpg",
             "link": ""
           }
         },
         "image_Kt4gNJ": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/3afe48d029d5b875d480f20553924af6b55fcfd4.jpg",
+            "image": "shopify:\/\/shop_images\/3afe48d029d5b875d480f20553924af6b55fcfd4.jpg",
             "link": ""
           }
         },
         "image_Fe4CQn": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/9bd7a2d4bbb8f3df2dbcda93bbd6f6aca56d80ef.jpg",
+            "image": "shopify:\/\/shop_images\/9bd7a2d4bbb8f3df2dbcda93bbd6f6aca56d80ef.jpg",
             "link": ""
           }
         },
         "image_bgqxA9": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/916c76aa51c337ee8339b2a4574d25ea54891380.jpg",
+            "image": "shopify:\/\/shop_images\/916c76aa51c337ee8339b2a4574d25ea54891380.jpg",
             "link": ""
           }
         },
         "image_HeWbCK": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/745f038e0998a3efd364155cd2c20d3d1fe6b323.jpg",
+            "image": "shopify:\/\/shop_images\/745f038e0998a3efd364155cd2c20d3d1fe6b323.jpg",
             "link": ""
           }
         }
@@ -645,30 +640,531 @@
         "heading": "From Our Home To Yours",
         "heading_size": 24,
         "heading_size_mobile": 24,
-        "heading_weight": "500",
-        "heading_spacing": 1,
         "heading_gap": 30,
-        "block_layout": "slider",
-        "enable_center": true,
         "per_view_desktop": 5,
-        "per_view_tablet": 3,
-        "per_view_mobile": 2,
+        "edge_peek": 40,
+        "enable_loop": false,
         "show_arrows": false,
         "show_dots": false,
         "autoplay": false,
         "autoplay_speed": 4,
-        "image_ratio": "3 / 4",
+        "image_ratio": "3 \/ 4",
         "image_radius": 10,
-        "gap_desktop": 18,
-        "gap_mobile": 16,
-        "edge_padding": 40,
-        "edge_padding_mobile": 20,
         "background_color": "#fcf9ef",
         "heading_color": "#232323",
         "padding_top": 64,
         "padding_bottom": 64,
         "padding_top_mobile": 48,
-        "padding_bottom_mobile": 40
+        "padding_bottom_mobile": 40,
+        "border_top_width": 1,
+        "border_top_color": "#d3d3d3"
+      }
+    },
+    "video_block_wDxqn7": {
+      "type": "video-block",
+      "name": "t:sections.video.presets.name",
+      "settings": {
+        "container": "fullwidth",
+        "spotlight_bg": "#fff",
+        "spotlight_bg_gradient": "",
+        "video_block_title": "",
+        "color_title": "#232323",
+        "fontsize_title": 16,
+        "fontsize_title_mb": 22,
+        "margin_bottom_title": 45,
+        "video_block_des": "",
+        "color_des": "#3c3c3c",
+        "fontsize_des": 16,
+        "title_align": "center",
+        "cover_image": "shopify:\/\/shop_images\/6c51d3003592212b33cec89359a04dc44b8fe77f.jpg",
+        "autoplay": false,
+        "video_height": "54",
+        "video_height_mb": "100%",
+        "style_video": "youtube",
+        "video_url": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+        "video_url_mb": "https:\/\/www.youtube.com\/watch?v=_9VUPq3SxOc",
+        "url_mp4": "",
+        "url_mp4_mb": "",
+        "description": "",
+        "full_width": false,
+        "position_icon": "center",
+        "heading": "",
+        "font_size_heading": 40,
+        "font_size_heading_mb": 24,
+        "margin_bottom_heading": 20,
+        "color_heading": "#232323",
+        "text": "",
+        "font_size_des": 12,
+        "font_size_des_mb": 12,
+        "margin_bottom_des": 35,
+        "color_des_content": "#232323",
+        "content_width": 475,
+        "align": "center",
+        "position": "left",
+        "btn_text": "",
+        "link": "",
+        "button_width": 235,
+        "button_color": "#fff",
+        "button_border": "#232323",
+        "button_background": "#232323",
+        "button_background_gradient": "",
+        "button_color_hover": "#fff",
+        "button_border_hover": "#232323",
+        "button_background_hover": "#232323",
+        "button_background_gradient_hover": "",
+        "mg_top_desktop": 0,
+        "mg_top_tablet": 0,
+        "mg_top_mobile": 0,
+        "mg_bottom_desktop": 0,
+        "mg_bottom_tablet": 0,
+        "mg_bottom_mobile": 0
+      }
+    },
+    "jv_candle_care_yKPTEe": {
+      "type": "jv-candle-care",
+      "blocks": {
+        "care_item_HAUD49": {
+          "type": "care_item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/a8584e210cb992a5d3109934847da945bac9c247.jpg",
+            "heading": "Let’s Start With The Wick",
+            "description": "<p>Before each burn, trim the wick to ¼ of an inch using a wick trimmer for a safe, even burn, and increased candle life. Before each burn remove debris and buildup to avoid excess smoke. Keep the wick centered in the container.<\/p>",
+            "link_label": "Shop Wick Trimmers",
+            "link": "#"
+          }
+        },
+        "care_item_qt8gYU": {
+          "type": "care_item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/265a3841deb5f332f889040ac22dbf129c9f33f8.jpg",
+            "heading": "Burn, Baby, Burn",
+            "description": "<p>When you burn, allow the candle wax to melt to the edges of the glass every time to prevent tunneling. This is especially important during your first burn!<\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "care_item_tpgJR6": {
+          "type": "care_item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/4d578cc9158cc6e6c481b1b8e90eb2f6801f0764.jpg",
+            "heading": "Safety First",
+            "description": "<p>Never leave a lit candle unattended, and don’t burn your candle for more than 3-4 hours at a time. Protect the surface below your candle from heat by placing your candle on a coaster.<\/p>",
+            "link_label": "Shop Candle Trays",
+            "link": "#"
+          }
+        },
+        "care_item_XQBmeb": {
+          "type": "care_item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/0dcfb6541d0e5f806ac82ae7171fbf381a8e4c71.png",
+            "heading": "Stop, Look, and Listen",
+            "description": "<p>Do not burn your candle if there is less than ½ inch of wax remaining in the glass. Burning a candle without enough wax can overheat the jar.<\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "care_item_HAUD49",
+        "care_item_qt8gYU",
+        "care_item_tpgJR6",
+        "care_item_XQBmeb"
+      ],
+      "name": "JV - Candle Care",
+      "settings": {
+        "heading": "Candle Care 101",
+        "image": "shopify:\/\/shop_images\/98db3e590adab54115f3694083036ee525c6d92d.png",
+        "container": "container",
+        "padding_full_width": 0,
+        "image_max_width": 500,
+        "column_gap": 38,
+        "row_gap": 24,
+        "thumb_size": 150,
+        "image_radius": 10,
+        "image_ratio": "custom",
+        "image_ratio_custom": "5 \/ 8",
+        "per_view_mobile": 1.3,
+        "mobile_space": 12,
+        "media_gap_mobile": 24,
+        "heading_size": 40,
+        "heading_size_mobile": 40,
+        "heading_gap": 24,
+        "heading_gap_mobile": 24,
+        "row_title_size": 18,
+        "row_title_size_mobile": 18,
+        "row_text_size": 15,
+        "background_color": "#fcf9ef",
+        "heading_color": "#232323",
+        "text_color": "#232323",
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "padding_top_mobile": 64,
+        "padding_bottom_mobile": 64,
+        "border_top_width": 1,
+        "border_top_color": "#d3d3d3"
+      }
+    },
+    "jv_press_63LxeE": {
+      "type": "jv-press",
+      "blocks": {
+        "press_item_adJxPm": {
+          "type": "press_item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Texas_Heritage_Logo_bf189311-790a-4b50-87ed-94ab14d4e11d.png",
+            "description": "<p>“Jackson Vaughn candles bring a little Texas into any home with aromas that capture the spirit of the Lone Star State.”<\/p>",
+            "link": "https:\/\/www.dallasobserver.com\/best-of-dallas\/2024\/shopping-and-services\/best-candles-that-smell-like-texas-20599851\/"
+          }
+        },
+        "press_item_RepLQ8": {
+          "type": "press_item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Texas_Heritage_Logo_bf189311-790a-4b50-87ed-94ab14d4e11d.png",
+            "description": "<p>“Jackson Vaughn candles bring a little Texas into any home with aromas that capture the spirit of the Lone Star State.”<\/p>",
+            "link": "https:\/\/blog.txfb-ins.com\/last-minute-texas-gift-guide\/"
+          }
+        },
+        "press_item_8J8KkX": {
+          "type": "press_item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Logo1.png",
+            "description": "<p>““Dallas” is one of the beloved neighborhood candle shop’s bestsellers for good reason.”<\/p>",
+            "link": "https:\/\/www.papercitymag.com\/holiday\/dallas-valentines-day-gifts\/?fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnGjgUhBSfvHZSWDx2HAY9LSA47jsnD19kYHThdV44STNMNBS5SG_dE2tRUmM_aem_VGjBNG7HO0maf7LV3FMvwg"
+          }
+        },
+        "press_item_GVggay": {
+          "type": "press_item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Logo2_63ed4fd2-d17c-4c03-8750-7cb44163fc7e.png",
+            "description": "<p>“A family-owned business known for their vast candle collection, cozy home goods, and holiday items.”<\/p>",
+            "link": "https:\/\/www.instagram.com\/p\/DXpB0TdFP54\/?hl=en&img_index=14"
+          }
+        },
+        "press_item_N4PtYG": {
+          "type": "press_item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Logo3_4d877d3b-71bd-4ee2-ae35-f92fd50f391f.png",
+            "description": "<p>“Our dream was to collaborate with By Jackson Vaughn, and you could pinch us because we still can’t believe it came true!”<\/p>",
+            "link": "https:\/\/www.dallasites101.com\/blog\/post\/the-101-candle-collection-with-society-by-jackson-vaughn\/"
+          }
+        },
+        "press_item_43tQGJ": {
+          "type": "press_item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Logo_531bd46f-48bc-4535-830a-b9ebfbabab22.png",
+            "description": "<p>“For the scent obsessed. This hand-poured artisan soy wax-blend candle features a natural cotton wick, available in nine or 16 ounce jars for a 40-60 hour burn time.”<\/p>",
+            "link": "https:\/\/oakcliff.advocatemag.com\/2024\/11\/oak-cliff-gift-guide-2024\/"
+          }
+        }
+      },
+      "block_order": [
+        "press_item_adJxPm",
+        "press_item_RepLQ8",
+        "press_item_8J8KkX",
+        "press_item_GVggay",
+        "press_item_N4PtYG",
+        "press_item_43tQGJ"
+      ],
+      "name": "JV - Press",
+      "settings": {
+        "heading": "As Seen In",
+        "heading_size": 24,
+        "heading_size_mobile": 24,
+        "heading_spacing": 1,
+        "heading_gap": 30,
+        "per_view_desktop": 6,
+        "per_view_tablet": 3,
+        "per_view_mobile": 1.4,
+        "edge_peek": 80,
+        "item_gap": 36,
+        "enable_loop": false,
+        "show_arrows": true,
+        "show_dots": false,
+        "autoplay": false,
+        "autoplay_speed": 4,
+        "logo_height": 54,
+        "logo_gap": 12,
+        "text_size": 14,
+        "text_align": "left",
+        "background_color": "#fcf9ef",
+        "heading_color": "#232323",
+        "text_color": "#232323",
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "padding_top_mobile": 48,
+        "padding_bottom_mobile": 48,
+        "border_top_width": 1,
+        "border_top_color": "#d3d3d3",
+        "border_bottom_width": 1,
+        "border_bottom_color": "#d3d3d3"
+      }
+    },
+    "custom_image_banner_DBDbHK": {
+      "type": "custom-image-banner",
+      "blocks": {
+        "large_img_MrkbiU": {
+          "type": "largeImg",
+          "settings": {
+            "item_width": "20%",
+            "item_border_radirus": 10,
+            "item_spacing": 0,
+            "image": "shopify:\/\/shop_images\/83086d0aa6381d520343f35ddf62571749024f87.png",
+            "title_align": "left",
+            "align_items": "bottom",
+            "align_items_spacing": 20,
+            "align_items_spacing_lr": 25,
+            "sub_title": "",
+            "border_sub_title": false,
+            "color_sub_title": "#ffffff",
+            "fontsize_sub_title": 18,
+            "mg_bottom_sub_title": 10,
+            "title": "Bundle & Save",
+            "color_title": "#ffffff",
+            "fontsize_title": 24,
+            "fontsize_title_mb": 20,
+            "mg_bottom_title": 10,
+            "mg_bottom_title_mb": 5,
+            "enable_style_italic": false,
+            "des": "Shop bundles and save up to 25%",
+            "color_des": "#ffffff",
+            "fontsize_des": 16,
+            "mg_bottom_des": 20,
+            "mg_bottom_des_mb": 20,
+            "button": "Shop Now",
+            "link": "",
+            "fontsize_btn": 16,
+            "button_width": 190,
+            "color_button": "#232323",
+            "border_color_button": "#fcf9ef",
+            "bg_color_button": "#fcf9ef",
+            "bg_gradient_color_button": "",
+            "color_button_hover": "#fff",
+            "border_color_button_hover": "#232323",
+            "bg_color_button_hover": "#232323",
+            "bg_gradient_color_button_hover": "",
+            "bg_opacity_button": 1,
+            "btn_text_transform": "uppercase",
+            "btn_icon": "",
+            "image_behavior": "none"
+          }
+        },
+        "large_img_AgGdnr": {
+          "type": "largeImg",
+          "settings": {
+            "item_width": "20%",
+            "item_border_radirus": 10,
+            "item_spacing": 0,
+            "image": "shopify:\/\/shop_images\/532f6617a4f822c01e5676958075899a5a808ae2.jpg",
+            "title_align": "left",
+            "align_items": "bottom",
+            "align_items_spacing": 20,
+            "align_items_spacing_lr": 25,
+            "sub_title": "",
+            "border_sub_title": false,
+            "color_sub_title": "#ffffff",
+            "fontsize_sub_title": 18,
+            "mg_bottom_sub_title": 10,
+            "title": "Seasonal Scents",
+            "color_title": "#ffffff",
+            "fontsize_title": 24,
+            "fontsize_title_mb": 20,
+            "mg_bottom_title": 10,
+            "mg_bottom_title_mb": 5,
+            "enable_style_italic": false,
+            "des": "Shop bundles and save up to 25%",
+            "color_des": "#ffffff",
+            "fontsize_des": 16,
+            "mg_bottom_des": 20,
+            "mg_bottom_des_mb": 20,
+            "button": "Shop Now",
+            "link": "",
+            "fontsize_btn": 16,
+            "button_width": 190,
+            "color_button": "#232323",
+            "border_color_button": "#fcf9ef",
+            "bg_color_button": "#fcf9ef",
+            "bg_gradient_color_button": "",
+            "color_button_hover": "#fff",
+            "border_color_button_hover": "#232323",
+            "bg_color_button_hover": "#232323",
+            "bg_gradient_color_button_hover": "",
+            "bg_opacity_button": 1,
+            "btn_text_transform": "uppercase",
+            "btn_icon": "",
+            "image_behavior": "none"
+          }
+        },
+        "large_img_zQXnGb": {
+          "type": "largeImg",
+          "settings": {
+            "item_width": "20%",
+            "item_border_radirus": 10,
+            "item_spacing": 0,
+            "image": "shopify:\/\/shop_images\/f796d6d34cec2925eac1b25fd309a7fd6be81608.jpg",
+            "title_align": "left",
+            "align_items": "bottom",
+            "align_items_spacing": 20,
+            "align_items_spacing_lr": 25,
+            "sub_title": "",
+            "border_sub_title": false,
+            "color_sub_title": "#ffffff",
+            "fontsize_sub_title": 18,
+            "mg_bottom_sub_title": 10,
+            "title": "Give A Gift",
+            "color_title": "#ffffff",
+            "fontsize_title": 24,
+            "fontsize_title_mb": 20,
+            "mg_bottom_title": 10,
+            "mg_bottom_title_mb": 5,
+            "enable_style_italic": false,
+            "des": "Gifts they’ll bring home",
+            "color_des": "#ffffff",
+            "fontsize_des": 16,
+            "mg_bottom_des": 20,
+            "mg_bottom_des_mb": 20,
+            "button": "Shop Now",
+            "link": "#",
+            "fontsize_btn": 16,
+            "button_width": 190,
+            "color_button": "#232323",
+            "border_color_button": "#fcf9ef",
+            "bg_color_button": "#fcf9ef",
+            "bg_gradient_color_button": "",
+            "color_button_hover": "#fff",
+            "border_color_button_hover": "#232323",
+            "bg_color_button_hover": "#232323",
+            "bg_gradient_color_button_hover": "",
+            "bg_opacity_button": 1,
+            "btn_text_transform": "uppercase",
+            "btn_icon": "",
+            "image_behavior": "none"
+          }
+        },
+        "large_img_MY4Q8X": {
+          "type": "largeImg",
+          "settings": {
+            "item_width": "20%",
+            "item_border_radirus": 10,
+            "item_spacing": 0,
+            "image": "shopify:\/\/shop_images\/00aa1e42515265e9a085c4f79e2b21f49caa3b9c.png",
+            "title_align": "left",
+            "align_items": "bottom",
+            "align_items_spacing": 20,
+            "align_items_spacing_lr": 25,
+            "sub_title": "",
+            "border_sub_title": false,
+            "color_sub_title": "#ffffff",
+            "fontsize_sub_title": 18,
+            "mg_bottom_sub_title": 10,
+            "title": "Home Fragrances",
+            "color_title": "#ffffff",
+            "fontsize_title": 24,
+            "fontsize_title_mb": 20,
+            "mg_bottom_title": 10,
+            "mg_bottom_title_mb": 5,
+            "enable_style_italic": false,
+            "des": "Freshen any space, flame-free",
+            "color_des": "#ffffff",
+            "fontsize_des": 16,
+            "mg_bottom_des": 20,
+            "mg_bottom_des_mb": 20,
+            "button": "Shop Now",
+            "link": "",
+            "fontsize_btn": 16,
+            "button_width": 190,
+            "color_button": "#232323",
+            "border_color_button": "#fcf9ef",
+            "bg_color_button": "#fcf9ef",
+            "bg_gradient_color_button": "",
+            "color_button_hover": "#fff",
+            "border_color_button_hover": "#232323",
+            "bg_color_button_hover": "#232323",
+            "bg_gradient_color_button_hover": "",
+            "bg_opacity_button": 1,
+            "btn_text_transform": "uppercase",
+            "btn_icon": "",
+            "image_behavior": "none"
+          }
+        },
+        "large_img_CthnNp": {
+          "type": "largeImg",
+          "settings": {
+            "item_width": "20%",
+            "item_border_radirus": 10,
+            "item_spacing": 0,
+            "image": "shopify:\/\/shop_images\/304996dccb28f1330ef8e1ba454e0f44ec7cf9f7.png",
+            "title_align": "left",
+            "align_items": "bottom",
+            "align_items_spacing": 20,
+            "align_items_spacing_lr": 25,
+            "sub_title": "",
+            "border_sub_title": false,
+            "color_sub_title": "#ffffff",
+            "fontsize_sub_title": 18,
+            "mg_bottom_sub_title": 10,
+            "title": "Candle Accessories",
+            "color_title": "#ffffff",
+            "fontsize_title": 24,
+            "fontsize_title_mb": 20,
+            "mg_bottom_title": 10,
+            "mg_bottom_title_mb": 5,
+            "enable_style_italic": false,
+            "des": "Essential tools for every candle ritual",
+            "color_des": "#ffffff",
+            "fontsize_des": 16,
+            "mg_bottom_des": 20,
+            "mg_bottom_des_mb": 20,
+            "button": "Shop Now",
+            "link": "",
+            "fontsize_btn": 16,
+            "button_width": 190,
+            "color_button": "#232323",
+            "border_color_button": "#fcf9ef",
+            "bg_color_button": "#fcf9ef",
+            "bg_gradient_color_button": "",
+            "color_button_hover": "#fff",
+            "border_color_button_hover": "#232323",
+            "bg_color_button_hover": "#232323",
+            "bg_gradient_color_button_hover": "",
+            "bg_opacity_button": 1,
+            "btn_text_transform": "uppercase",
+            "btn_icon": "",
+            "image_behavior": "none"
+          }
+        }
+      },
+      "block_order": [
+        "large_img_MrkbiU",
+        "large_img_AgGdnr",
+        "large_img_zQXnGb",
+        "large_img_MY4Q8X",
+        "large_img_CthnNp"
+      ],
+      "name": "t:sections.custom_image_banner_block.presets.name",
+      "settings": {
+        "container": "fullwidth",
+        "padding_full_width": 20,
+        "custom_image_banner_block_swipe_on_mobile": "slider",
+        "item_distance": 5,
+        "equalize_image_height": true,
+        "image_ratio": "267\/404",
+        "custom_image_banner_bg": "#fcf9ef",
+        "custom_image_banner_bg_gradient": "",
+        "title_align": "center",
+        "custom_image_banner_title": "More to Discover",
+        "enable_border_title": false,
+        "color_title": "#232323",
+        "fontsize_title": 24,
+        "fontsize_title_mb": 24,
+        "margin_bottom_title": 30,
+        "custom_image_banner_des": "",
+        "color_des": "#3c3c3c",
+        "fontsize_des": 16,
+        "mg_top_desktop": 65,
+        "mg_top_tablet": 50,
+        "mg_top_mobile": 50,
+        "mg_bottom_desktop": 65,
+        "mg_bottom_tablet": 65,
+        "mg_bottom_mobile": 65
       }
     },
     "17836282550cec3aba": {
@@ -684,7 +1180,9 @@
           }
         }
       },
-      "block_order": ["judge_me_reviews_review_widget_x6Cr3b"],
+      "block_order": [
+        "judge_me_reviews_review_widget_x6Cr3b"
+      ],
       "custom_css": [
         "{padding: 0 2em;}",
         ".jm-reviewer-info__name-cluster[data-v-6a854929] {flex-wrap: wrap;}",
@@ -699,6 +1197,7 @@
     },
     "product-recently-viewed": {
       "type": "product-recently-viewed",
+      "disabled": true,
       "settings": {
         "display_product_recently_viewed": true,
         "product_recently_viewed_container": "container",
@@ -754,6 +1253,7 @@
     },
     "17839812280a5dd347": {
       "type": "apps",
+      "disabled": true,
       "settings": {
         "include_margins": false
       }
@@ -765,7 +1265,11 @@
     "jv_highlight_QY4BUB",
     "product-recommendations",
     "jv_gallery_kN93qU",
+    "video_block_wDxqn7",
+    "jv_candle_care_yKPTEe",
     "17836282550cec3aba",
+    "jv_press_63LxeE",
+    "custom_image_banner_DBDbHK",
     "product-recently-viewed",
     "17839812280a5dd347"
   ]

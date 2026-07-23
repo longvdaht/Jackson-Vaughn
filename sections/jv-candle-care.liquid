@@ -1,0 +1,649 @@
+{% comment %} JV - Candle Care {% endcomment %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Dosis:wght@400;500;600;700&display=swap"
+  rel="stylesheet"
+>
+
+{%- liquid
+  assign spv_mobile = section.settings.per_view_mobile | default: 1.3
+  assign row_space = section.settings.row_gap | default: 32
+
+  # Feature image ratio — allow a free-form value (e.g. "5/8") when "custom" is selected.
+  # CSS aspect-ratio accepts both "5/8" and "5 / 8", so the raw value is used as-is.
+  assign image_ratio = section.settings.image_ratio | default: '3 / 4'
+  if section.settings.image_ratio == 'custom'
+    assign image_ratio = section.settings.image_ratio_custom | default: '3 / 4'
+  endif
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --cc-bg: {{ section.settings.background_color | default: '#FBF3EC' }};
+    --cc-text: {{ section.settings.heading_color | default: '#2C2622' }};
+    --cc-body: {{ section.settings.text_color | default: '#3C3630' }};
+    --cc-radius: {{ section.settings.image_radius | default: 8 }}px;
+    --cc-col-gap: {{ section.settings.column_gap | default: 64 }}px;
+    --cc-row-gap: {{ row_space }}px;
+    --cc-img-max: {{ section.settings.image_max_width | default: 500 }}px;
+    --font-heading: 'Petrona', serif;
+    --font-body: 'Dosis', sans-serif;
+  }
+
+  #shopify-section-{{ section.id }} .jv-care {
+    background: var(--cc-bg);
+    font-family: var(--font-body);
+    padding: {{ section.settings.padding_top | default: 72 }}px 0
+      {{ section.settings.padding_bottom | default: 72 }}px;
+    overflow: hidden;
+    {%- if section.settings.border_top_width > 0 -%}
+      border-top: {{ section.settings.border_top_width }}px solid {{ section.settings.border_top_color | default: '#2C2622' }};
+    {%- endif -%}
+  }
+
+  #shopify-section-{{ section.id }} .jv-care__inner {
+    display: grid;
+    /* Left column is driven by the configured image max-width; content fills the rest. */
+    grid-template-columns: minmax(0, var(--cc-img-max)) minmax(0, 1fr);
+    gap: var(--cc-col-gap);
+    align-items: center;
+  }
+
+  {%- if section.settings.container == 'fullwidth' -%}
+    @media (min-width: 1025px) {
+      #shopify-section-{{ section.id }} .jv-care__inner {
+        padding-left: {{ section.settings.padding_full_width | default: 0 }}px;
+        padding-right: {{ section.settings.padding_full_width | default: 0 }}px;
+      }
+    }
+  {%- endif -%}
+
+  /* ── Left: feature image ── */
+  #shopify-section-{{ section.id }} .jv-care__media {
+    display: flex;
+    justify-content: flex-start;
+  }
+  #shopify-section-{{ section.id }} .jv-care__media-inner {
+    width: 100%;
+    border-radius: var(--cc-radius);
+    overflow: hidden;
+    aspect-ratio: {{ image_ratio }};
+    background: var(--cc-text)0D;
+  }
+  #shopify-section-{{ section.id }} .jv-care__media-inner img,
+  #shopify-section-{{ section.id }} .jv-care__media-inner .placeholder-svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ── Right: content ── */
+  #shopify-section-{{ section.id }} .jv-care__heading {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: {{ section.settings.heading_size | default: 42 }}px;
+    line-height: 1.2;
+    color: var(--cc-text);
+    margin: 0 0 {{ section.settings.heading_gap | default: 32 }}px;
+    letter-spacing: 0;
+  }
+
+  /* Wrapper is a plain vertical list on desktop (Swiper is not initialised).
+     Swiper's own .swiper-wrapper defaults to a flex row, so force a column. */
+  #shopify-section-{{ section.id }} .jv-care__list .swiper-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  #shopify-section-{{ section.id }} .jv-care__row {
+    display: grid;
+    grid-template-columns: {{ section.settings.thumb_size | default: 120 }}px minmax(0, 1fr);
+    gap: 20px;
+    align-items: start;
+    padding: var(--cc-row-gap) 0;
+    height: auto;
+  }
+  #shopify-section-{{ section.id }} .jv-care__row:first-child {
+    padding-top: 0;
+  }
+  #shopify-section-{{ section.id }} .jv-care__row:not(:last-child) {
+    border-bottom: 1px solid {{ section.settings.heading_color | default: '#2C2622' }}1A;
+  }
+
+  #shopify-section-{{ section.id }} .jv-care__thumb {
+    width: {{ section.settings.thumb_size | default: 120 }}px;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--cc-radius);
+    overflow: hidden;
+    background: var(--cc-text)0D;
+  }
+  #shopify-section-{{ section.id }} .jv-care__thumb img,
+  #shopify-section-{{ section.id }} .jv-care__thumb .placeholder-svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  #shopify-section-{{ section.id }} .jv-care__row-title {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: {{ section.settings.row_title_size | default: 20 }}px;
+    line-height: 1.2;
+    color: var(--cc-text);
+    letter-spacing: 0.72px;
+    margin: 0 0 4px;
+  }
+  #shopify-section-{{ section.id }} .jv-care__row-text {
+    font-size: {{ section.settings.row_text_size | default: 16 }}px;
+    line-height: 1.5;
+    color: var(--cc-body);
+    margin: 0;
+    letter-spacing: 0;
+  }
+  #shopify-section-{{ section.id }} .jv-care__row-text p {
+    margin: 0;
+  }
+  #shopify-section-{{ section.id }} .jv-care__row-text a {
+    color: var(--cc-text);
+    text-decoration: underline;
+  }
+  #shopify-section-{{ section.id }} .jv-care__row-link {
+    display: inline-block;
+    font-size: {{ section.settings.row_text_size | default: 16 }}px;
+    color: var(--cc-text);
+    text-decoration: underline;
+  }
+
+  /* Hide the desktop-only feature image inside content flow on mobile handled below */
+
+  /* ── Mobile ── */
+  @media (max-width: 767px) {
+    #shopify-section-{{ section.id }} .jv-care {
+      padding: {{ section.settings.padding_top_mobile | default: 48 }}px 0
+        {{ section.settings.padding_bottom_mobile | default: 48 }}px;
+    }
+    #shopify-section-{{ section.id }} .jv-care__inner {
+      display: flex;
+      flex-direction: column;
+      gap: {{ section.settings.media_gap_mobile | default: 32 }}px;
+      padding: 0 24px;
+    }
+    #shopify-section-{{ section.id }} .jv-care__heading {
+      font-size: {{ section.settings.heading_size_mobile | default: 34 }}px;
+      text-align: center;
+      margin-bottom: {{ section.settings.heading_gap_mobile | default: 28 }}px;
+    }
+
+    /* Content first, feature image below (matches mobile design) */
+    #shopify-section-{{ section.id }} .jv-care__content {
+      order: 1;
+      width: 100%;
+    }
+    #shopify-section-{{ section.id }} .jv-care__media {
+      order: 2;
+    }
+    #shopify-section-{{ section.id }} .jv-care__media-inner {
+      max-width: 100%;
+    }
+
+    /* Swiper takes over the list on mobile */
+    #shopify-section-{{ section.id }} .jv-care__list .swiper-wrapper {
+      flex-direction: row;
+    }
+    #shopify-section-{{ section.id }} .jv-care__row {
+      display: block;
+      height: auto;
+      padding: 0;
+      border-bottom: none !important;
+    }
+    #shopify-section-{{ section.id }} .jv-care__thumb {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    #shopify-section-{{ section.id }} .jv-care__row-title {
+      font-size: {{ section.settings.row_title_size_mobile | default: 19 }}px;
+    }
+
+    /* Fallback sizing before Swiper initialises (avoids flash of full-width slides) */
+    #shopify-section-{{ section.id }} .jv-care-swiper:not(.swiper-initialized) .swiper-wrapper {
+      gap: {{ section.settings.mobile_space | default: 16 }}px;
+    }
+    #shopify-section-{{ section.id }} .jv-care-swiper:not(.swiper-initialized) .swiper-slide {
+      flex: 0 0 calc(100% / {{ spv_mobile }});
+    }
+  }
+</style>
+
+<div class="jv-care">
+  <div class="jv-care__inner {% if section.settings.container == 'fullwidth' %}container-full{% elsif section.settings.container == '1170' %}container-1170{% elsif section.settings.container == '1770' %}container-1770{% else %}container{% endif %}">
+    <div class="jv-care__media">
+      <div class="jv-care__media-inner">
+        {%- if section.settings.image != blank -%}
+          {{
+            section.settings.image
+            | image_url: width: 1000
+            | image_tag:
+              loading: 'lazy',
+              sizes: '(max-width: 767px) 100vw, 500px',
+              widths: '300, 500, 700, 1000',
+              alt: section.settings.image.alt
+            | default: section.settings.heading
+          }}
+        {%- else -%}
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="jv-care__content">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="jv-care__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+
+      {%- if section.blocks.size > 0 -%}
+        <div
+          class="swiper jv-care-swiper jv-care__list"
+          data-jv-care
+          data-per-mobile="{{ spv_mobile }}"
+          data-space="{{ section.settings.mobile_space | default: 16 }}"
+        >
+          <div class="swiper-wrapper">
+            {%- for block in section.blocks -%}
+              <div class="swiper-slide jv-care__row" {{ block.shopify_attributes }}>
+                <div class="jv-care__thumb">
+                  {%- if block.settings.image != blank -%}
+                    {{
+                      block.settings.image
+                      | image_url: width: 400
+                      | image_tag:
+                        loading: 'lazy',
+                        sizes: '(max-width: 767px) 90vw, 120px',
+                        widths: '120, 240, 400',
+                        alt: block.settings.heading
+                    }}
+                  {%- else -%}
+                    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                  {%- endif -%}
+                </div>
+                <div class="jv-care__row-body">
+                  {%- if block.settings.heading != blank -%}
+                    <h3 class="jv-care__row-title">{{ block.settings.heading }}</h3>
+                  {%- endif -%}
+                  {%- if block.settings.description != blank -%}
+                    <div class="jv-care__row-text rte">{{ block.settings.description }}</div>
+                  {%- endif -%}
+                  {%- if block.settings.link_label != blank and block.settings.link != blank -%}
+                    <a href="{{ block.settings.link }}" class="jv-care__row-link">
+                      {{- block.settings.link_label -}}
+                    </a>
+                  {%- endif -%}
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+<script src="{{ 'halo.jv-candle-care.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "JV - Candle Care",
+  "tag": "section",
+  "class": "jv-section-candle-care",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Candle Care 101"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Feature image (left)"
+    },
+    {
+      "type": "header",
+      "content": "Layout & spacing"
+    },
+    {
+      "type": "select",
+      "id": "container",
+      "label": "t:sections.layout.container.option",
+      "default": "container",
+      "options": [
+        { "value": "container", "label": "t:sections.layout.container.option1" },
+        { "value": "1170", "label": "t:sections.layout.container.option4" },
+        { "value": "1770", "label": "t:sections.layout.container.option3" },
+        { "value": "fullwidth", "label": "t:sections.layout.container.option2" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "padding_full_width",
+      "label": "t:sections.layout.container.padding_full_width",
+      "min": 0,
+      "max": 50,
+      "step": 5,
+      "unit": "px",
+      "default": 0,
+      "info": "t:sections.layout.container.info_full_width"
+    },
+    {
+      "type": "range",
+      "id": "image_max_width",
+      "label": "Feature image max width",
+      "min": 300,
+      "max": 700,
+      "step": 10,
+      "unit": "px",
+      "default": 500
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "label": "Gap between columns (desktop)",
+      "min": 20,
+      "max": 140,
+      "step": 2,
+      "unit": "px",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "row_gap",
+      "label": "Gap between rows (desktop)",
+      "min": 8,
+      "max": 64,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "thumb_size",
+      "label": "Thumbnail size (desktop)",
+      "min": 60,
+      "max": 180,
+      "step": 2,
+      "unit": "px",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "image_radius",
+      "label": "Image corner radius",
+      "min": 0,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Feature image ratio",
+      "default": "3 / 4",
+      "options": [
+        { "value": "3 / 4", "label": "Portrait (3:4)" },
+        { "value": "4 / 5", "label": "Portrait tall (4:5)" },
+        { "value": "2 / 3", "label": "Portrait taller (2:3)" },
+        { "value": "1 / 1", "label": "Square (1:1)" },
+        { "value": "custom", "label": "Custom" }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "image_ratio_custom",
+      "label": "Custom ratio",
+      "info": "Used when ratio is set to \"Custom\". Format: width / height, e.g. 5 / 8",
+      "default": "5 / 8"
+    },
+    {
+      "type": "header",
+      "content": "Mobile slider"
+    },
+    {
+      "type": "range",
+      "id": "per_view_mobile",
+      "label": "Items per view (mobile)",
+      "min": 1,
+      "max": 2.5,
+      "step": 0.1,
+      "default": 1.3
+    },
+    {
+      "type": "range",
+      "id": "mobile_space",
+      "label": "Gap between slides (mobile)",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "media_gap_mobile",
+      "label": "Space above feature image (mobile)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size (desktop)",
+      "min": 22,
+      "max": 64,
+      "step": 1,
+      "unit": "px",
+      "default": 42
+    },
+    {
+      "type": "range",
+      "id": "heading_size_mobile",
+      "label": "Heading size (mobile)",
+      "min": 20,
+      "max": 48,
+      "step": 1,
+      "unit": "px",
+      "default": 34
+    },
+    {
+      "type": "range",
+      "id": "heading_gap",
+      "label": "Space below heading (desktop)",
+      "min": 8,
+      "max": 64,
+      "step": 2,
+      "unit": "px",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "heading_gap_mobile",
+      "label": "Space below heading (mobile)",
+      "min": 8,
+      "max": 64,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "row_title_size",
+      "label": "Item title size (desktop)",
+      "min": 14,
+      "max": 32,
+      "step": 1,
+      "unit": "px",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "row_title_size_mobile",
+      "label": "Item title size (mobile)",
+      "min": 14,
+      "max": 28,
+      "step": 1,
+      "unit": "px",
+      "default": 19
+    },
+    {
+      "type": "range",
+      "id": "row_text_size",
+      "label": "Item text size",
+      "min": 12,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#FBF3EC"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading / title color",
+      "default": "#2C2622"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Body text color",
+      "default": "#3C3630"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top (desktop)",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom (desktop)",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "label": "Padding top (mobile)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "label": "Padding bottom (mobile)",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "header",
+      "content": "Border"
+    },
+    {
+      "type": "range",
+      "id": "border_top_width",
+      "label": "Border top width",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "color",
+      "id": "border_top_color",
+      "label": "Border top color",
+      "default": "#2C2622"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "care_item",
+      "name": "Care step",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Thumbnail image"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Title",
+          "default": "Let's Start With The Wick"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Before each burn, trim the wick to ¼ of an inch using a wick trimmer for a safe, even burn, and increased candle life.</p>"
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "Link label (optional)"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link (optional)"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "JV - Candle Care",
+      "blocks": [{ "type": "care_item" }, { "type": "care_item" }, { "type": "care_item" }, { "type": "care_item" }]
+    }
+  ]
+}
+{% endschema %}
