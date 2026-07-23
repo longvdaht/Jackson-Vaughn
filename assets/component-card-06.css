@@ -387,9 +387,9 @@
 		transition: box-shadow 350ms ease-in-out;
 	}
 
-	.product-card-layout-06 .card:hover{
+	/* .product-card-layout-06 .card:hover{
 		box-shadow: 0px 2px 5px 0px rgb(0 0 0 / 15%);
-	}
+	} */
 
 	.product-card-layout-06 .halo-cart-sidebar .card:hover, .product-card-layout-06 .quickSearchResultsWrap .card:hover{
 		box-shadow: none;
