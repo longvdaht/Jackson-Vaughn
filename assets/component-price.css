@@ -60,8 +60,12 @@
     line-height: var(--product-price-line-height);
 }
 
+.price__compare .price-item {
+    color: var(--color-text2);
+}
+
 .price-item .text{
-    display: inline-block;
+    display: none;
     vertical-align: middle;
     font-size: var(--font-body-size);
     font-weight: var(--font-weight-normal);

@@ -1,0 +1,59 @@
+.halo-recommendations-block .halo-block-header {
+  margin: 0;
+}
+
+.halo-recommendations-block .halo-block-header .title {
+  letter-spacing: .9px;
+}
+
+.halo-product-block.halo-recommendations-block .container-full:not(.product-block-has__banner) .halo-block-content {
+  padding: 0;
+}
+
+.halo-recommendations-block .wrapper-container.container-full {
+  padding-right: 0 !important;
+}
+
+.halo-recommendations-block.halo-product-block .product {
+  padding: 0;
+}
+
+.halo-recommendations-block .card-product__wrapper .card-media img {
+  border-radius: 10px;
+}
+
+.product-card-layout-06 .halo-recommendations-block .card-information {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.product-card-layout-06 .halo-recommendations-block .card-information .text-center {
+  text-align: left;
+}
+
+.halo-recommendations-block .card-title {
+  font-size: 18px;
+  font-weight: var(--font-weight-medium);
+  line-height: 21.6px;
+  letter-spacing: .36px;
+  margin-bottom: 4px;
+}
+
+.halo-recommendations-block .card-information__wrapper.text-center .card-price {
+  justify-content: start;
+}
+
+.halo-recommendations-block center {
+  text-align: left;
+  font-size: var(--product-title-font-size);
+}
+
+.halo-recommendations-block .more-size {
+  display: none;
+}
+
+@media (min-width: 1025px) {
+  .halo-product-block.halo-recommendations-block .container-full:not(.product-block-has__banner) .halo-block-content {
+    padding: 0 15px;
+  }
+}
