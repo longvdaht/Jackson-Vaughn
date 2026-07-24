@@ -1,5 +1,11 @@
 {%- if section.blocks.size > 0 -%}
   {%- assign swipe = section.settings.custom_image_banner_block_swipe_on_mobile -%}
+  {%- liquid
+    assign use_swiper = false
+    if swipe == 'slider' and section.settings.use_swiper
+      assign use_swiper = true
+    endif
+  -%}
   <link
     rel="stylesheet"
     href="{{ 'component-custom-image-banner-block.css' | asset_url }}"
@@ -34,13 +40,21 @@
           {%- endif -%}
         </div>
       {%- endif -%}
-      {%- if swipe == 'slider' -%}
+      {%- if swipe == 'slider' and use_swiper == false -%}
         <banner-slider-component>
       {%- endif -%}
       <div
-        class="halo-row{% if swipe == 'slider' %} slider slider--tablet{% endif %}{% if section.settings.item_distance == 0 %} not-distance{% endif %}{% if swipe == 'scroll' %} scroll-snap-mobile disable-srollbar{% endif %}"
+        class="halo-row{% if swipe == 'slider' and use_swiper == false %} slider slider--tablet{% endif %}{% if use_swiper %} cib-swiper swiper{% endif %}{% if section.settings.item_distance == 0 %} not-distance{% endif %}{% if swipe == 'scroll' %} scroll-snap-mobile disable-srollbar{% endif %}"
         style="--row-distance-style: {{ section.settings.item_distance | prepend: '-' | append: 'px' }};"
+        {%- if use_swiper -%}
+          data-cib-swiper
+          data-per-mobile="1.3"
+          data-per-tablet="{% if section.blocks.size < 3 %}{{ section.blocks.size }}{% else %}3{% endif %}"
+          data-per-desktop="{{ section.blocks.size }}"
+          data-space="{{ section.settings.item_distance }}"
+        {%- endif -%}
       >
+        {%- if use_swiper -%}<div class="swiper-wrapper">{%- endif -%}
         {%- for block in section.blocks -%}
           {%- if block.type == 'smallImg' -%}
             {%- if block.settings.enable_item_1
@@ -49,7 +63,7 @@
               or block.settings.enable_item_4
             -%}
               <div
-                class="halo-item{% if swipe == 'slider' %} slider__slide{% endif %} customImageBanner--{{ block.type }}"
+                class="halo-item{% if use_swiper %} swiper-slide{% elsif swipe == 'slider' %} slider__slide{% endif %} customImageBanner--{{ block.type }}"
                 id="block-{{block.id}}"
                 style="--item-distance-style: {{ section.settings.item_distance | append: 'px' }}; --item-width-style: {{ block.settings.item_width }}"
                 data-width="{{ block.settings.item_width }}"
@@ -519,7 +533,7 @@
             {%- endif -%}
           {%- else -%}
             <div
-              class="halo-item{% if swipe == 'slider' %} slider__slide{% endif %} customImageBanner--{{ block.type }}"
+              class="halo-item{% if use_swiper %} swiper-slide{% elsif swipe == 'slider' %} slider__slide{% endif %} customImageBanner--{{ block.type }}"
               id="block-{{block.id}}"
               style="--item-distance-style: {{ section.settings.item_distance | append: 'px' }}; --item-spacing-style: {{ block.settings.item_spacing | append: 'px' }}; --item-width-style: {{ block.settings.item_width }}"
               data-width="{{ block.settings.item_width }}"
@@ -631,8 +645,12 @@
             </div>
           {%- endif -%}
         {%- endfor -%}
+        {%- if use_swiper -%}</div>{%- endif -%}
       </div>
-      {%- if swipe == 'slider' and section.blocks.size > 1 -%}
+      {%- if use_swiper and section.blocks.size > 1 -%}
+        <div class="swiper-pagination cib-swiper-pagination"></div>
+      {%- endif -%}
+      {%- if swipe == 'slider' and use_swiper == false and section.blocks.size > 1 -%}
         <div class="slider-buttons no-js-hidden{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
           <ul class="slider-dots {% if section.blocks.size == 2 %}count_2{% endif %}">
             {%- for block in section.blocks -%}
@@ -643,7 +661,7 @@
           </ul>
         </div>
       {%- endif -%}
-      {%- if swipe == 'slider' -%}
+      {%- if swipe == 'slider' and use_swiper == false -%}
         </banner-slider-component>
       {%- endif -%}
     </div>
@@ -681,6 +699,17 @@
     {%- if section.settings.container == 'fullwidth' -%}
         .custom-image-banner-block {overflow: hidden;}
     {%- endif -%}
+    {%- if section.settings.equalize_image_height and section.settings.image_ratio != blank -%}
+        .section-block-{{section.id}} .customImageBanner-item .image-zoom.adaptive_height {padding-top: 0 !important; height: auto !important; aspect-ratio: {{ section.settings.image_ratio }};}
+        .section-block-{{section.id}} .customImageBanner-item .adaptive_height img {object-fit: cover !important;}
+    {%- endif -%}
+    {%- if use_swiper -%}
+        .section-block-{{section.id}} .cib-swiper {margin-left: 0; margin-right: 0;}
+        .section-block-{{section.id}} .cib-swiper .halo-item {width: auto; padding-left: 0; padding-right: 0; margin-top: 0; height: auto;}
+        .section-block-{{section.id}} .cib-swiper .swiper-wrapper {align-items: stretch;}
+        .section-block-{{section.id}} .cib-swiper .swiper-slide {height: auto;}
+        .section-block-{{section.id}} .cib-swiper-pagination {position: static; margin-top: 16px; text-align: center;display: none;}
+    {%- endif -%}
     {%- if padding_full_width == '45' -%}
         .customImageBanner-inner .spotlight-button.custom-button-style span {display: block;}
     {%- endif -%}
@@ -707,11 +736,15 @@
     @media (max-width: 767px) {
         {%- if section.settings.container == 'fullwidth' -%}
             .section-block-{{section.id}} .container-full {padding-left: 10px;padding-right: 10px}
+            .section-block-{{section.id}} .container-full:has(.cib-swiper) {padding-left: 24px;padding-right: 0}
         {%- endif -%}
         .section-block-{{section.id}} {padding-top: {{ mg_top_mobile | append: 'px' }}; padding-bottom: {{ mg_bottom_mobile | append: 'px' }};}
         .section-block-{{section.id}} .halo-block-header .title {font-size: {{ fontsize_title_mb | append: 'px' }};}
     }
   </style>
+  {%- if use_swiper -%}
+    <script src="{{ 'custom-image-banner-swiper.js' | asset_url }}" defer="defer"></script>
+  {%- endif -%}
 {%- endif -%}
 {% schema %}
 {
@@ -779,6 +812,14 @@
       ]
     },
     {
+      "type": "checkbox",
+      "id": "use_swiper",
+      "label": "Use Swiper",
+      "visible_if": "{{ section.settings.custom_image_banner_block_swipe_on_mobile == 'slider' }}",
+      "info": "Only applies when Layout Mobile Responsive is set to Slider. Uses Swiper and shows 1.3 items per view on mobile.",
+      "default": false
+    },
+    {
       "type": "range",
       "id": "item_distance",
       "label": "t:settings_schema.typography.settings.typography.grid_gap",
@@ -787,6 +828,20 @@
       "step": 1,
       "unit": "t:sections.layout.fontsize.fontsize_title.unit",
       "default": 15
+    },
+    {
+      "type": "checkbox",
+      "id": "equalize_image_height",
+      "label": "Equalize image height (crop to fit)",
+      "info": "Force all images to the same ratio and crop them (object-fit: cover) so every card is the same size even when the uploaded images have different dimensions.",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "image_ratio",
+      "label": "Image aspect ratio",
+      "info": "CSS aspect-ratio (width / height), e.g. 1 for square or 404/267. Only applies when 'Equalize image height' is on.",
+      "default": "404/267"
     },
     {
       "type": "color",
