@@ -536,6 +536,8 @@
     letter-spacing: .75px;
     font-family: var(--font-body-family);
     line-height: var(--body-line-height);
+    text-transform: uppercase;
+    color: var(--color-text);
 }
 
 /* .productView-tab .tabs-contents-vertical .tab-content:first-child {
@@ -1899,9 +1901,11 @@
     text-transform: var(--text-transform);
 }
 
-.product__text {
+.productView-customText .product__text {
     color: var(--color-title);
     font-size: var(--fontsize-text);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: .28px;
 }
 
 .product__text.title {
@@ -3019,6 +3023,10 @@ quantity-input.disabled {
         flex-wrap: nowrap;
         align-items: flex-start;
         justify-content: flex-start;
+    }
+
+    .productView-title{
+        line-height: max(30px, 110%);
     }
 
     .halo-productView-left{
