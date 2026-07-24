@@ -19,6 +19,11 @@
             assign swipe = true
         endif
     -%}
+    <link rel="stylesheet" href="{{ 'product-recommendations.css' | asset_url }}" media="print" onload="this.media='all'">
+    <noscript>{{ 'product-recommendations.css' | asset_url | stylesheet_tag }}</noscript>
+    {% if layout == 'slider' %}
+        {{ 'product-recommendations-slider.js' | asset_url | script_tag }}
+    {% endif %}
     <style type="text/css" media="screen">
         {%- liquid
             assign product_bg = section.settings.product_bg
@@ -29,6 +34,7 @@
 
             assign mg_top_title = section.settings.mg_top_title
             assign mg_bottom_title = section.settings.mg_bottom_title
+            assign mg_bottom_title_desktop = section.settings.mg_bottom_title_desktop
 
             assign mg_top_desktop = section.settings.mg_top_desktop
             assign mg_top_tablet = section.settings.mg_top_tablet
@@ -255,6 +261,12 @@
             }
         }
 
+        @media (min-width: 768px) {
+            .section-block-{{section.id}} .halo-block-header .title {
+                margin-bottom: {{ mg_bottom_title_desktop | append: 'px' }};
+            }
+        }
+
         @media (min-width: 1025px) {
             .section-block-{{section.id}} .products-carousel .product {
                 padding-right: var(--grid-gap);
@@ -333,7 +345,7 @@
                             assign arrows = section.settings.product_block_arrows
                             assign arrows_mb = section.settings.product_block_arrows_mb
                         -%}
-                        <div class="products-carousel column-{{ column }}"
+                        <div class="products-carousels column-{{ column }} swiper product-recommendations"
                             data-item-to-show="{{ column }}"
                             data-item-dots="{{ dots }}"
                             data-item-dots-mb="{{ dots_mb }}"
@@ -373,18 +385,19 @@
                             "
                         >
                     {%- endif -%}
-                        {%- for product in recommendations.products limit: limit -%}
-                            <div class="product{% if swipe %} slider__slide grid__item{% endif %}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}"{% if settings.banner_animation == 'effect_fade_up' %} style="--animation-order: {{ forloop.index }};"{% endif %}>
-                                {% render 'product-grid-layout',
-                                    product_card_product: product,
-                                    media_size: image_ratio,
-                                    portrait_aspect_ratio: '125',
-                                    serial: forloop.index,
-                                    sectionId: sectionId
-                                %}
-                            </div>
-                        {%- endfor -%}
-                    </div>
+                        <div class="swiper-wrapper">
+                            {%- for product in recommendations.products limit: limit -%}
+                                <div class="swiper-slide product{% if swipe %} slider__slide grid__item{% endif %}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}"{% if settings.banner_animation == 'effect_fade_up' %} style="--animation-order: {{ forloop.index }};"{% endif %}>
+                                    {% render 'product-grid-layout',
+                                        product_card_product: product,
+                                        media_size: image_ratio,
+                                        portrait_aspect_ratio: '125',
+                                        serial: forloop.index,
+                                        sectionId: sectionId
+                                    %}
+                                </div>
+                            {%- endfor -%}
+                        </div>
                     {%- if swipe -%}
                         <div class="slider-buttons no-js-hidden{% if products_to_display < 4 %} medium-hide{% endif %}{% if products_to_display < 3 %} small-hide{% endif %}">
                             <div class="slider-counter">
@@ -712,6 +725,16 @@
             "step": 1,
             "unit": "t:sections.layout.mg_desktop.unit",
             "default": 12
+        },
+        {
+            "type": "range",
+            "id": "mg_bottom_title_desktop",
+            "label": "Title Margin Bottom Desktop",
+            "min": 0,
+            "max": 50,
+            "step": 1,
+            "unit": "t:sections.layout.mg_desktop.unit",
+            "default": 30
         },
         {
             "type": "range",

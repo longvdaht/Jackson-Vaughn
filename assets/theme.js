@@ -4526,22 +4526,20 @@
                         tableList = $('.halo-popup-content .halo-compare-color-popup #sortTableList'),
                         compareColorPopup = $('.halo-popup-content .halo-compare-color-popup'),
                         sizeChartPopup = $('.halo-popup-content .halo-size-chart-popup');
-                    
-                    halo.productImageGallery($scope);
-                    halo.productLastSoldOut($scope);
-                    halo.productCustomerViewing($scope);
-                    halo.productCountdown($scope);
-                    halo.productSizeChart($scope);
-                    halo.setProductForWishlist(handle);
-                    halo.initVariantImageGroup($scope, window.variant_image_group_quick_view);
-
                     $body.addClass('quick-view-show');
 
-                    if (window.Shopify && Shopify.PaymentButton) {
-                        Shopify.PaymentButton.init();
-                    }
+                    requestAnimationFrame(() => {
+                        try { halo.productImageGallery($scope); } catch(e){ console.warn('QV gallery', e); }
+                        try { halo.productLastSoldOut($scope); } catch(e){}
+                        try { halo.productCustomerViewing($scope); } catch(e){}
+                        try { halo.productCountdown($scope); } catch(e){}
+                        try { halo.productSizeChart($scope); } catch(e){}
+                        try { halo.setProductForWishlist(handle); } catch(e){}
+                        try { halo.initVariantImageGroup($scope, window.variant_image_group_quick_view); } catch(e){ console.warn('QV VIG', e); }
 
-                    tableList.attr('id', 'quickViewSortTableList');
+                        if (window.Shopify && Shopify.PaymentButton) Shopify.PaymentButton.init();
+
+                        tableList.attr('id', 'quickViewSortTableList');
 
                     items.each((index, element) => {
                         const itemInput = $(element).find('.swatch-compare-color-option'),
@@ -4593,6 +4591,23 @@
                         window.sharedFunctionsAnimation.onEnterButton();
                         window.sharedFunctionsAnimation.onLeaveButton();
                     }
+                    });
+
+                    // halo.productImageGallery($scope);
+                    // halo.productLastSoldOut($scope);
+                    // halo.productCustomerViewing($scope);
+                    // halo.productCountdown($scope);
+                    // halo.productSizeChart($scope);
+                    // halo.setProductForWishlist(handle);
+                    // halo.initVariantImageGroup($scope, window.variant_image_group_quick_view);
+
+                    
+
+                    // if (window.Shopify && Shopify.PaymentButton) {
+                    //     Shopify.PaymentButton.init();
+                    // }
+
+                    
                 }
             });
         },
@@ -4603,7 +4618,7 @@
                 sliderForMobile = $scope.find('.productView-for.mobile');
             let thumbSwiper;
             let mainSwiper;
-
+            
             if(!sliderFor.hasClass('slick-initialized') && !sliderNav.hasClass('slick-initialized')) {
                 const navArrowsDesk = sliderNav.data('arrows-desk'),
                     navArrowsMobi = sliderNav.data('arrows-mobi'),
@@ -4733,7 +4748,7 @@
                     });
                     checkNav = sliderNav2;
                 } else {
-                    if (sliderNav.length && !sliderNav.is('.style-2, .style-3') || window.innerWidth < 768) {
+                    if (sliderNav.length && (!sliderNav.is('.style-2, .style-3') || window.innerWidth < 768)) {
                         mainSwiper = new Swiper(sliderNav[0], {
                             effect: 'fade',
                             fadeEffect: {
@@ -4743,18 +4758,6 @@
                             slidesPerView: 1,
                             slidesPerGroup: 1,
                             rtl: window.rtl_slick,
-                            navigation: {
-                                nextEl: window.arrows.icon_next,
-                                prevEl: window.arrows.icon_prev,
-                                enabled: navArrowsMobi,
-                            },
-                            breakpoints: {
-                                768: {
-                                    navigation: {
-                                        enabled: navArrowsDesk,
-                                    },
-                                },
-                            },
                             thumbs: {
                                 swiper: thumbSwiper,
                             },
@@ -4854,10 +4857,6 @@
                         spaceBetween: 6,
                         watchSlidesProgress: true,
                         freeMode: false,
-                        navigation: {
-                            nextEl: window.arrows.icon_next,
-                            prevEl: window.arrows.icon_prev,
-                        },
                         loop: true,
                         rtl: window.rtl_slick,
                         on: {
