@@ -49,11 +49,12 @@
         arrows && nextEl && prevEl ? { nextEl: nextEl, prevEl: prevEl } : false,
       pagination: dots && dotsEl ? { el: dotsEl, clickable: true } : false,
       breakpoints: {
-        // Tablet — exact integer count; edge peek comes from the CSS bleed margin.
+        // Tablet — this many items fully visible; the CSS padding gutter adds the
+        // prev/next peek on top, so it is not part of this count.
         769: {
           slidesPerView: perTablet,
         },
-        // Desktop — exact integer count; edge peek comes from the CSS bleed margin.
+        // Desktop — same: N full items between the two peek gutters.
         1025: {
           slidesPerView: perDesktop,
         },

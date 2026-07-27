@@ -703,6 +703,9 @@
         .section-block-{{section.id}} .customImageBanner-item .image-zoom.adaptive_height {padding-top: 0 !important; height: auto !important; aspect-ratio: {{ section.settings.image_ratio }};}
         .section-block-{{section.id}} .customImageBanner-item .adaptive_height img {object-fit: cover !important;}
     {%- endif -%}
+    {%- comment -%} Scrim over the lower part of each image so the white block text stays legible. {%- endcomment -%}
+    .section-block-{{section.id}} .customImageBanner-item .image-zoom {position: relative; isolation: isolate;}
+    .section-block-{{section.id}} .customImageBanner-item .image-zoom:after {content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; background: linear-gradient(180deg, rgba(0, 0, 0, 0) 56.65%, #666666 73.35%); mix-blend-mode: multiply;z-index: 1;}
     {%- if use_swiper -%}
         .section-block-{{section.id}} .cib-swiper {margin-left: 0; margin-right: 0;}
         .section-block-{{section.id}} .cib-swiper .halo-item {width: auto; padding-left: 0; padding-right: 0; margin-top: 0; height: auto;}
