@@ -60,7 +60,8 @@
   border: 1px solid var(--border-color-button-style);
   text-transform: var(--text-transform-button-style);
   font-size: var(--font-size-button-style);
-  min-width: var(--button-width-style);
+  /* min-width: var(--button-width-style); */
+  min-width: 100%;
 }
 
 .btn_1_br_outside

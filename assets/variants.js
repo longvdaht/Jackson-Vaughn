@@ -279,8 +279,10 @@ class VariantSelects extends HTMLElement {
 
     updateAttribute(unavailable = true, disable = true){
         const addButton = document.getElementById(`product-form-${this.dataset.product}`)?.querySelector('[name="add"]');
-        var quantityInput = this.item.find('input[name="quantity"]'),
-            notifyMe = this.item.find('.productView-notifyMe'),
+        var quantityInput = this.item.find('.quantity__group--1 input[name="quantity"]').filter(':visible').first();
+        if (quantityInput.length === 0) quantityInput = this.item.find('.quantity__group--1 input[name="quantity"]').first();
+        if (quantityInput.length === 0) quantityInput = this.item.find('input[name="quantity"]').first();
+        var notifyMe = this.item.find('.productView-notifyMe'),
             hotStock = this.item.find('.productView-hotStock'),
             buttonAddtocart = this.item.find('.product-form__submit'),
             maxValue = parseInt(quantityInput.attr('data-inventory-quantity'));
@@ -426,13 +428,13 @@ class VariantSelects extends HTMLElement {
                             pdView_subTotal.textContent = subTotal;
                         }
 
-                        if (this.currentVariant.available && maxValue <= 0 && this.currentVariant.inventory_management == "shopify") {
+                        if (this.currentVariant.available && maxValue <= 0 && this.currentVariant.inventory_management == "shopify" && this.currentVariant.inventory_policy != 'continue') {
                             text = window.variantStrings.preOrder;
                         } else {
                             text = window.variantStrings.addToCart;
                         }
                     } else if (window.subtotal.style == '2') {
-                        if (this.currentVariant.available && maxValue <= 0 && this.currentVariant.inventory_management == "shopify") {
+                        if (this.currentVariant.available && maxValue <= 0 && this.currentVariant.inventory_management == "shopify" && this.currentVariant.inventory_policy != 'continue') {
                             text = window.variantStrings.preOrder;
                         } else {
                             text = window.subtotal.text.replace('[value]', subTotal);
@@ -443,7 +445,7 @@ class VariantSelects extends HTMLElement {
                 } else {
                     subTotal = Shopify.formatMoney(price, window.money_format);
                     subTotal = extractContent(subTotal);
-                    if (this.currentVariant.available && maxValue <= 0 && this.currentVariant.inventory_management == "shopify") {
+                    if (this.currentVariant.available && maxValue <= 0 && this.currentVariant.inventory_management == "shopify" && this.currentVariant.inventory_policy != 'continue') {
                         text = window.variantStrings.preOrder;
                     } else {
                         text = window.variantStrings.addToCart;
@@ -556,7 +558,7 @@ class VariantSelects extends HTMLElement {
                     button.setAttribute('disabled', true);
                     button.textContent = text;
                 } else {
-                    if (this.currentVariant.available && maxValue <= 0 && this.currentVariant.inventory_management == "shopify") {
+                    if (this.currentVariant.available && maxValue <= 0 && this.currentVariant.inventory_management == "shopify" && this.currentVariant.inventory_policy != 'continue') {
                         text = window.variantStrings.preOrder;
                     } else {
                         text = window.variantStrings.addToCart;

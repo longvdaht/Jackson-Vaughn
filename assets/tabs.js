@@ -39,7 +39,7 @@ class ProductTabs extends HTMLElement {
         });
 
         if (this.isVerticalPopup || this.isVerticalSidebarMobile) {
-            document.querySelector('.background-overlay').addEventListener('click', this.onBackgroundClick.bind(this));
+            document.querySelector('.background-overlay')?.addEventListener('click', this.onBackgroundClick.bind(this));
         }
 
         setTimeout(() => {
@@ -110,7 +110,7 @@ class ProductTabs extends HTMLElement {
             }
             else if($this.classList.contains('is-open')){
                 $this.classList.remove('is-open');
-                if ((this.isVerticalPopup && window.innerWidth > 550) || ($this.matches('.sidebar-mobile') && window.innerWidth <= 550)) {
+                if ((this.isVerticalPopup && window.innerWidth > 550) || $this.matches('.sidebar-mobile')) {
                     $thisContent.classList.remove('is-show');
                     document.body.classList.remove('tab-popup-show');
                 }
@@ -119,12 +119,10 @@ class ProductTabs extends HTMLElement {
                 }
             } else {
                 $this.classList.add('is-open');
-                if ((this.isVerticalPopup && window.innerWidth > 550) || ($this.classList.contains('sidebar-mobile') && window.innerWidth <= 550)) {
-                    // if($this.matches('.sidebar-mobile') && window.innerWidth <= 550) {
-                        document.body.classList.add('tab-popup-sidebar-show');
-                        $thisContent.classList.add('is-show');
-                        document.body.classList.add('tab-popup-show');
-                    // }
+                if ((this.isVerticalPopup && window.innerWidth > 550) || $this.classList.contains('sidebar-mobile')) {
+                    document.body.classList.add('tab-popup-sidebar-show');
+                    $thisContent.classList.add('is-show');
+                    document.body.classList.add('tab-popup-show');
                 } else {
                     $($thisContent).slideDown('slow');
                 }
@@ -176,11 +174,8 @@ class ProductTabs extends HTMLElement {
             document.querySelector('.an-horizontal-shaking')?.classList.remove('open-tab-content');
         });
 
-        if (window.innerWidth <= 551) {
-            const $toggleContent = event.target.closest('.toggle-content');
-
-            $toggleContent.classList.remove('is-show');
-        }
+        const $toggleContent = event.target.closest('.toggle-content');
+        $toggleContent?.classList.remove('is-show');
     }
 
     checkTabShowMore(id) {

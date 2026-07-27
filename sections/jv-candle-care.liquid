@@ -213,12 +213,16 @@
     #shopify-section-{{ section.id }} .jv-care-swiper:not(.swiper-initialized) .swiper-slide {
       flex: 0 0 calc(100% / {{ spv_mobile }});
     }
+
+    #shopify-section-{{ section.id }} .jv-care__media.hidden-on-mb {
+      display: none;
+    }
   }
 </style>
 
 <div class="jv-care">
   <div class="jv-care__inner {% if section.settings.container == 'fullwidth' %}container-full{% elsif section.settings.container == '1170' %}container-1170{% elsif section.settings.container == '1770' %}container-1770{% else %}container{% endif %}">
-    <div class="jv-care__media">
+    <div class="jv-care__media {% if section.settings.hide_on_mb %}hidden-on-mb{% endif %}">
       <div class="jv-care__media-inner">
         {%- if section.settings.image != blank -%}
           {{
@@ -311,6 +315,12 @@
       "type": "image_picker",
       "id": "image",
       "label": "Feature image (left)"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_on_mb",
+      "label": "Hide this image on mobile",
+      "default": false
     },
     {
       "type": "header",
