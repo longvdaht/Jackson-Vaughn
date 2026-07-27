@@ -10,8 +10,9 @@
   # Space between items (px)
   assign space = section.settings.item_gap | default: 24
 
-  # Edge peek (px): how much of the first & last items is clipped on desktop/tablet.
-  # Achieved with a negative "bleed" margin on the swiper, clipped by the outer wrapper.
+  # Edge peek (px): how much of the previous / next item shows at each edge on
+  # desktop/tablet. It is a padding gutter on the swiper, so it sits outside the
+  # slidesPerView division — N items stay fully visible between the two peeks.
   assign peek = section.settings.edge_peek | default: 80
 
   assign spv_desktop = section.settings.per_view_desktop | default: 6
@@ -63,11 +64,13 @@
     position: relative;
   }
 
-  /* Bleed the swiper wider than the viewport so the outer wrapper clips the
-     first & last items symmetrically (desktop/tablet). */
+  /* Peek gutters (desktop/tablet). Swiper subtracts horizontal padding from the
+     size it divides by slidesPerView, so the slides fill the middle exactly and
+     the gutters show the neighbouring items — overflow clips at the padding box,
+     which keeps them visible. */
   #shopify-section-{{ section.id }} .jv-press-swiper {
     overflow: hidden;
-    margin: 0 calc(-1 * var(--pr-peek));
+    padding: 0 var(--pr-peek);
   }
 
   /* Fallback sizing before Swiper initialises (avoids a flash of full-width slides) */
@@ -210,8 +213,7 @@
       padding: 0 16px;
     }
     #shopify-section-{{ section.id }} .jv-press-swiper {
-      margin: 0;
-      padding-left: 16px;
+      padding: 0 0 0 16px;
     }
     #shopify-section-{{ section.id }} .jv-press-swiper:not(.swiper-initialized) .swiper-slide {
       flex: 0 0 calc(100% / {{ spv_mobile }});
