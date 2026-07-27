@@ -3212,6 +3212,31 @@ quantity-input.disabled {
     .productView-rating + .productView-soldProduct{
         margin-left: 23px;
     }
+
+    .productView-sticky .halo-productView-left {
+        height: 100vh;
+        max-height: 100vh;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        position: relative;
+        top: 0;
+    }
+
+    .productView-sticky .halo-productView-left::-webkit-scrollbar {
+        display: none;
+        width: 0;
+        height: 0;
+    }
+
+    .productView-sticky .halo-productView-left:hover {
+        overflow-y: auto;
+        scroll-snap-type: y mandatory;
+        scroll-behavior: smooth;
+    }
+
 }
 
 @media (min-width: 1025px) {
