@@ -28,15 +28,18 @@
                                         {{ option.selected_value }}
                                     </span>
                                 </div>
-                                {%- if current_variant.metafields.custom.variant_burn_time_data.value -%}
-                                    {% assign burn_time = current_variant.metafields.custom.variant_burn_time_data.value %}
-                                    <div class="burn-time-info">
-                                        {%- if burn_time.burn_time -%}
-                                            <span class="burn-label">{{ 'products.product.burn_time' | t }}:</span>
-                                            <span class="burn-hours data-burn-hours">{{ burn_time.burn_time }}</span>
-                                        {%- endif -%}
-                                    </div>
-                                {%- endif -%}
+                                {% assign option_type = option.name | downcase %}
+                                {% if option_type == 'size' %}
+                                    {%- if current_variant.metafields.custom.variant_burn_time_data.value -%}
+                                        {% assign burn_time = current_variant.metafields.custom.variant_burn_time_data.value %}
+                                        <div class="burn-time-info">
+                                            {%- if burn_time.burn_time -%}
+                                                <span class="burn-label">{{ 'products.product.burn_time' | t }}:</span>
+                                                <span class="burn-hours data-burn-hours">{{ burn_time.burn_time }}</span>
+                                            {%- endif -%}
+                                        </div>
+                                    {%- endif -%}
+                                {% endif %}
                             </legend>
                             <div class="variant-wrapper">
                                 {%- assign values = '' -%}
@@ -49,7 +52,7 @@
                                 -%}
                                 {%- for variant in product.variants -%}
                                     {%- assign value = variant.options[option_index] -%}
-                                    {%- assign assign burn_time = variant.metafields.custom.variant_burn_time_data.value -%}
+                                    {%- assign burn_time = variant.metafields.custom.variant_burn_time_data.value -%}
                                     
                                     {%- unless values contains value -%}
                                         {%- liquid
