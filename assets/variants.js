@@ -288,7 +288,7 @@ class VariantSelects extends HTMLElement {
             maxValue = parseInt(quantityInput.attr('data-inventory-quantity'));
 
         if (isNaN(maxValue)) {
-            maxValue = maxValue = parseInt(buttonAddtocart.attr('data-inventory-quantity'));
+            maxValue = parseInt(buttonAddtocart.attr('data-inventory-quantity'));
         } else {
             maxValue = parseInt(quantityInput.attr('data-inventory-quantity'));
         }
@@ -348,6 +348,7 @@ class VariantSelects extends HTMLElement {
                 }
 
                 quantityInput.attr('data-price', this.currentVariant?.price);
+                quantityInput.attr('data-compare-price', this.currentVariant?.compare_at_price || '');
                 quantityInput.attr('disabled', true);
                 if (addButton != null){
                     addButton.setAttribute('disabled', true);
@@ -397,6 +398,7 @@ class VariantSelects extends HTMLElement {
                 }
             } else {
                 var text,
+                    buttonHTML = null,
                     subTotal = 0,
                     price = this.currentVariant?.price;
 
@@ -440,6 +442,18 @@ class VariantSelects extends HTMLElement {
                             text = window.subtotal.text.replace('[value]', subTotal);
                             $('#show-sticky-product').text(text);
                             $('#product-sticky-add-to-cart').text(text);
+
+                            // Compare-at subtotal on the ATC button (qty * compare_at_price)
+                            let qtyForCompare = quantityInput.val() || 1;
+                            let cmp = this.currentVariant?.compare_at_price;
+                            if (cmp && cmp > price) {
+                                let cmpTotal = Shopify.formatMoney(qtyForCompare * cmp, window.money_format);
+                                cmpTotal = extractContent(cmpTotal);
+                                buttonHTML = window.subtotal.text.replace(
+                                    '[value]',
+                                    '<s class="atc-compare-price">' + cmpTotal + '</s> <span class="atc-current-price">' + subTotal + '</span>'
+                                );
+                            }
                         }
                     }
                 } else {
@@ -453,10 +467,15 @@ class VariantSelects extends HTMLElement {
                 }
 
                 quantityInput.attr('data-price', this.currentVariant?.price);
+                quantityInput.attr('data-compare-price', this.currentVariant?.compare_at_price || '');
                 quantityInput.attr('disabled', false);
                 if (addButton != null){
                     addButton.removeAttribute('disabled');
-                    addButton.textContent = text;
+                    if (buttonHTML) {
+                        addButton.innerHTML = buttonHTML;
+                    } else {
+                        addButton.textContent = text;
+                    }
                 }
                 quantityInput.closest('quantity-input').removeClass('disabled');
 
@@ -630,7 +649,8 @@ class VariantSelects extends HTMLElement {
             option.querySelector('[data-header-option]').innerText = option.querySelector(':checked').value;
             const checkedOption = option.querySelector(':checked');
             if (checkedOption) {
-                option.querySelector('.data-burn-hours').innerText = checkedOption.dataset.burnTime;
+                var burnEl = option.querySelector('.data-burn-hours');
+                if (burnEl) burnEl.innerText = checkedOption.dataset.burnTime;
             }
             if (index === 0 && inputLength > 1) return;
             const optionInputs = [...option.querySelectorAll('input[type="radio"], option')]
@@ -844,7 +864,18 @@ class QuantityInput extends HTMLElement {
                 text = window.subtotal.text.replace('[value]', subTotal);
                 $('#product-sticky-add-to-cart').text(text);
                 if (addButton != null){
-                    addButton.textContent = text;
+                    // Compare-at subtotal on the ATC button (qty * compare_at_price)
+                    let cmp = parseFloat(this.input.dataset.comparePrice);
+                    if (cmp && cmp > price) {
+                        let cmpTotal = Shopify.formatMoney(inputValue * cmp, window.money_format);
+                        cmpTotal = extractContent(cmpTotal);
+                        addButton.innerHTML = window.subtotal.text.replace(
+                            '[value]',
+                            '<s class="atc-compare-price">' + cmpTotal + '</s> <span class="atc-current-price">' + subTotal + '</span>'
+                        );
+                    } else {
+                        addButton.textContent = text;
+                    }
                 }
             }
 
