@@ -1464,6 +1464,11 @@
                   </div>
                 {%- when '@app' -%}
                   {% render block %}
+                {%- when 'icon-with-text' -%}
+                  <div class="icon-texts productView-moreItem{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger {% if share_layout == '3' %}animate--fade-in{% else %}animate--slide-in{% endif %}{% endif %}" style="--spacing-top: {{ spacing_top | append: 'px' }};
+                                        --spacing-bottom: {{ spacing_bottom | append: 'px' }}; --heading-color: {{ block.settings.heading_color }}; --description-color: {{ block.settings.description_color }};">
+                    {% render 'icon-with-text', block: block %}
+                  </div>
                 {%- when 'delivery_time' -%}
                   {%- liquid
                     assign delivery_time_icon = block.settings.delivery_time_icon

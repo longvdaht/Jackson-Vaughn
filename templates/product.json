@@ -31,7 +31,7 @@
           "type": "title",
           "settings": {
             "fontsize_text": 40,
-            "fontsize_text_mb": 36,
+            "fontsize_text_mb": 32,
             "color_title": "#232323",
             "spacing_top": 0,
             "spacing_bottom": 6
@@ -177,6 +177,27 @@
             "spacing_bottom": 0
           }
         },
+        "icon_with_text_3wdLTF": {
+          "type": "icon-with-text",
+          "settings": {
+            "image_1": "shopify://shop_images/Hand-Poured.png",
+            "heading_1": "Hand-Poured",
+            "description_1": "<p>crafted in small<br/>batches in Texas</p>",
+            "link_1": "",
+            "image_2": "shopify://shop_images/CLean_burn.png",
+            "heading_2": "Clean burn",
+            "description_2": "<p>artisan soy wax blend,<br/>natural cotton wick</p>",
+            "link_2": "",
+            "image_3": "shopify://shop_images/Long-Lasting.png",
+            "heading_3": "Long-Lasting",
+            "description_3": "<p>up to 60 hours of<br/>rich, even burn time</p>",
+            "link_3": "",
+            "image_4": "shopify://shop_images/designer_candles.png",
+            "heading_4": "designer candles",
+            "description_4": "<p>crafted by award-winning<br/>interior designers</p>",
+            "link_4": ""
+          }
+        },
         "bd066b80-c8e3-4f3e-8280-b27fbf6e9423": {
           "type": "description",
           "settings": {
@@ -299,7 +320,7 @@
           "type": "complementary_products",
           "settings": {
             "show_complementary_product": true,
-            "complementary_product_title": "Pairs it with:",
+            "complementary_product_title": "Pairs well with:",
             "complementary_product_arrows": false,
             "complementary_product_dots": true,
             "complementary_product_layout": "1",
@@ -326,6 +347,7 @@
         "683f2b15-db3b-4f63-8d0f-e688cc678581",
         "19de9abb-17c8-4d67-941d-b32706ed06fd",
         "10093fcf-2053-47e9-bedb-841bb0d046fa",
+        "icon_with_text_3wdLTF",
         "bd066b80-c8e3-4f3e-8280-b27fbf6e9423",
         "custom_cx63PF",
         "b9d6eb19-10f4-41f8-bfdc-ea10e8b3182a",
@@ -469,6 +491,7 @@
         "icon_block_jzmDhw",
         "icon_block_QnN9R3"
       ],
+      "disabled": true,
       "name": "Icon Features",
       "settings": {
         "container": "container",

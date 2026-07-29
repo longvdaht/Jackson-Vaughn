@@ -4754,7 +4754,6 @@
                             fadeEffect: {
                                 crossFade: true,
                             },
-                            loop: true,
                             slidesPerView: 1,
                             slidesPerGroup: 1,
                             rtl: window.rtl_slick,
@@ -4857,7 +4856,6 @@
                         spaceBetween: 6,
                         watchSlidesProgress: true,
                         freeMode: false,
-                        loop: true,
                         rtl: window.rtl_slick,
                         on: {
                             init: function () {
@@ -4867,7 +4865,7 @@
                             },
                             click: function (swiper, event) {
                                 if (mainSwiper && swiper.clickedIndex !== undefined) {
-                                    mainSwiper.slideToLoop(swiper.clickedIndex);
+                                    mainSwiper.slideTo(swiper.clickedIndex);
                                 }
                             },
                         },
@@ -4878,9 +4876,10 @@
                         },
                     });
 
+                    // main slideChange handler
                     if (mainSwiper) {
                         mainSwiper.on('slideChange', function () {
-                            thumbSwiper.slideToLoop(mainSwiper.realIndex);
+                            thumbSwiper.slideTo(mainSwiper.activeIndex);   // was slideToLoop + realIndex
                         });
                     }
                 }
