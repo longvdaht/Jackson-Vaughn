@@ -6,6 +6,10 @@
     padding-bottom: 0;
 }
 
+.product-default .productView {
+    padding-bottom: 48px;
+}
+
 .product-full-width .productView {
     padding-top: 0;
     padding-bottom: 80px;
@@ -3064,6 +3068,10 @@ quantity-input.disabled {
         flex-wrap: nowrap;
         align-items: flex-start;
         justify-content: flex-start;
+    }
+
+    .product-default .productView {
+        padding-bottom: 64px;
     }
 
     .productView-title{
