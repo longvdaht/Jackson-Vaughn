@@ -1,0 +1,218 @@
+{% comment %}
+  Renders icon with text block
+
+  Accepts:
+  - block: {Object} passes in the block information.
+
+  Usage:
+  {% render 'icon-with-text',
+    block: block
+  %}
+{% endcomment %}
+
+{%- liquid
+  assign heading_1_empty = false
+  assign heading_2_empty = false
+  assign heading_3_empty = false
+  assign heading_4_empty = false
+  assign text_only_all_items = true
+
+  if block.settings.heading_1 == blank
+    assign heading_1_empty = true
+  endif
+
+  if block.settings.heading_2 == blank
+    assign heading_2_empty = true
+  endif
+
+  if block.settings.heading_3 == blank
+    assign heading_3_empty = true
+  endif
+
+  if block.settings.heading_4 == blank
+    assign heading_4_empty = true
+  endif
+
+  if heading_1_empty == false and block.settings.image_1 != blank
+    assign text_only_all_items = false
+  elsif heading_2_empty == false and block.settings.image_2 != blank
+    assign text_only_all_items = false
+  elsif heading_3_empty == false and block.settings.image_3 != blank
+    assign text_only_all_items = false
+  elsif heading_4_empty == false and block.settings.image_4 != blank
+    assign text_only_all_items = false
+  endif
+-%}
+
+<div class="swiper icon-wrapper icons-wrapper-{{ block.id }}">
+  <ul
+    class="swiper-wrapper icon-with-text icon-with-text--{{ block.settings.layout }} list-unstyled{% if text_only_all_items %} icon-with-text--text-only{% endif %}"
+    {{ block.shopify_attributes }}
+  >
+
+    {%- unless heading_1_empty -%}
+      <li class="icon-with-text__item swiper-slide">
+        {%- if block.settings.link_1 != blank -%}
+          <a href="{{ block.settings.link_1 }}" class="icon-with-text__link">
+        {%- endif -%}
+
+        {%- if block.settings.image_1 != blank -%}
+          {{
+            block.settings.image_1
+            | image_url: width: 120
+            | image_tag:
+              loading: 'lazy',
+              widths: '60,120',
+              alt: block.settings.heading_1
+          }}
+        {%- endif -%}
+
+        <div class="icon-with-text__content">
+          <span class="h4 inline-richtext">
+            {{ block.settings.heading_1 }}
+          </span>
+
+          {%- if block.settings.description_1 != blank -%}
+            <div class="icon-with-text__description rte">
+              {{ block.settings.description_1 }}
+            </div>
+          {%- endif -%}
+        </div>
+
+        {%- if block.settings.link_1 != blank -%}
+          </a>
+        {%- endif -%}
+      </li>
+    {%- endunless -%}
+
+
+    {%- unless heading_2_empty -%}
+      <li class="icon-with-text__item swiper-slide">
+        {%- if block.settings.link_2 != blank -%}
+          <a href="{{ block.settings.link_2 }}" class="icon-with-text__link">
+        {%- endif -%}
+
+        {%- if block.settings.image_2 != blank -%}
+          {{
+            block.settings.image_2
+            | image_url: width: 120
+            | image_tag:
+              loading: 'lazy',
+              widths: '60,120',
+              alt: block.settings.heading_2
+          }}
+        {%- endif -%}
+
+        <div class="icon-with-text__content">
+          <span class="h4 inline-richtext">
+            {{ block.settings.heading_2 }}
+          </span>
+
+          {%- if block.settings.description_2 != blank -%}
+            <div class="icon-with-text__description rte">
+              {{ block.settings.description_2 }}
+            </div>
+          {%- endif -%}
+        </div>
+
+        {%- if block.settings.link_2 != blank -%}
+          </a>
+        {%- endif -%}
+      </li>
+    {%- endunless -%}
+
+
+    {%- unless heading_3_empty -%}
+      <li class="icon-with-text__item swiper-slide">
+        {%- if block.settings.link_3 != blank -%}
+          <a href="{{ block.settings.link_3 }}" class="icon-with-text__link">
+        {%- endif -%}
+
+        {%- if block.settings.image_3 != blank -%}
+          {{
+            block.settings.image_3
+            | image_url: width: 120
+            | image_tag:
+              loading: 'lazy',
+              widths: '60,120',
+              alt: block.settings.heading_3
+          }}
+        {%- endif -%}
+
+        <div class="icon-with-text__content">
+          <span class="h4 inline-richtext">
+            {{ block.settings.heading_3 }}
+          </span>
+
+          {%- if block.settings.description_3 != blank -%}
+            <div class="icon-with-text__description rte">
+              {{ block.settings.description_3 }}
+            </div>
+          {%- endif -%}
+        </div>
+
+        {%- if block.settings.link_3 != blank -%}
+          </a>
+        {%- endif -%}
+      </li>
+    {%- endunless -%}
+
+
+    {%- unless heading_4_empty -%}
+      <li class="icon-with-text__item swiper-slide">
+        {%- if block.settings.link_4 != blank -%}
+          <a href="{{ block.settings.link_4 }}" class="icon-with-text__link">
+        {%- endif -%}
+
+        {%- if block.settings.image_4 != blank -%}
+          {{
+            block.settings.image_4
+            | image_url: width: 120
+            | image_tag:
+              loading: 'lazy',
+              widths: '60,120',
+              alt: block.settings.heading_4
+          }}
+        {%- endif -%}
+
+        <div class="icon-with-text__content">
+          <span class="h4 inline-richtext">
+            {{ block.settings.heading_4 }}
+          </span>
+
+          {%- if block.settings.description_4 != blank -%}
+            <div class="icon-with-text__description rte">
+              {{ block.settings.description_4 }}
+            </div>
+          {%- endif -%}
+        </div>
+
+        {%- if block.settings.link_4 != blank -%}
+          </a>
+        {%- endif -%}
+      </li>
+    {%- endunless -%}
+
+  </ul>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.icons-wrapper-{{ block.id }}').forEach((slider) => {
+      new Swiper(slider, {
+        slidesPerView: 2.6,
+        spaceBetween: 12,
+        grabCursor: true,
+        watchOverflow: true,
+        breakpoints: {
+          750: {
+            spaceBetween: 16,
+          },
+          990: {
+            spaceBetween: 24,
+          }
+        }
+      });
+    });
+  }); 
+</script>

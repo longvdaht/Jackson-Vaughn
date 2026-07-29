@@ -1616,6 +1616,43 @@
     padding-bottom: var(--spacing-bottom);
 }
 
+.productView-moreItem .icon-with-text img {
+    max-width: 72px;
+    height: auto;
+    display: block;
+}
+
+.productView-moreItem .icon-with-text__item {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.productView-moreItem .icon-with-text__content .h4 {
+    font-size: 15px;
+    font-family: var(--font-body-family);
+    color: var(--heading-color);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: .75px;
+    line-height: var(--body-line-height);
+    text-transform: uppercase;
+    margin: 0 0 6px;
+}
+
+.productView-moreItem .icon-with-text .icon-with-text__description * {
+    font-size: 15px;
+    color: var(--description-color);
+    letter-spacing: 0;
+    text-transform: none;
+    margin: 0;
+}
+
+.swiper.icon-wrapper {
+    margin-right: -10px;
+}
 .productView-moreItem.productView-scentProfile {
     padding-top: var(--spacing-top-mb);
     padding-bottom: var(--spacing-bottom-mb);
@@ -2723,6 +2760,10 @@ quantity-input.disabled {
 
     .halo-productView-left {
         margin-bottom: 10px;
+    }
+
+    .halo-productView-left.productView-images {
+        margin-bottom: 24px;
     }
 
     .product-details.has-sidebar .halo-productView-left + .halo-productView-right {

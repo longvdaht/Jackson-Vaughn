@@ -95,14 +95,40 @@ class VariantSelects extends HTMLElement {
         setTimeout(() => {
             if (!this.currentVariant || !this.currentVariant?.featured_media || document.querySelector('.productView-nav')?.matches('.media-filter')) return;
             
-            const newMedia = document.querySelectorAll(
-                `[data-media-id="${this.dataset.section}-${this.currentVariant.featured_media.id}"]`
-            );
-    
-            if (!newMedia) return;
-            window.setTimeout(() => {
-                $(newMedia).trigger('click');
-            }, time);
+            const targetMediaId = this.currentVariant.featured_media.id;
+
+            // Swiper (replacing the old Slick markup): drive the main gallery via
+            // swiper.slideTo() instead of triggering a click on the thumbnail.
+            // Main slider slides carry the media id on .product-single__media
+            // (unprefixed), while thumbnails use "${section}-${id}".
+            const productScope = this.item && this.item[0] ? this.item[0] : document;
+            const mainSlider = productScope.querySelector('.main-slider');
+            const mainSwiper = mainSlider?.swiper;
+
+            if (mainSwiper && targetMediaId) {
+                const slides = Array.from(mainSlider.querySelectorAll('.swiper-slide'));
+                const targetIndex = slides.findIndex((slide) =>
+                    slide.querySelector(`[data-media-id="${targetMediaId}"]`)
+                );
+                if (targetIndex >= 0) {
+                    window.setTimeout(() => {
+                        // loop mode needs slideToLoop; fall back to slideTo otherwise
+                        if (typeof mainSwiper.slideToLoop === 'function' && mainSwiper.params?.loop) {
+                            mainSwiper.slideToLoop(targetIndex);
+                        } else {
+                            mainSwiper.slideTo(targetIndex);
+                        }
+                    }, time);
+                }
+            } else {
+                // Fallback to the legacy behaviour if Swiper isn't present.
+                const newMedia = document.querySelectorAll(
+                    `[data-media-id="${this.dataset.section}-${targetMediaId}"]`
+                );
+                if (newMedia.length) {
+                    window.setTimeout(() => { $(newMedia).trigger('click'); }, time);
+                }
+            }
     
             if (!this.isFullWidth || window.innerWidth < 768 || !this.currentVariant) return;
             const mediaId = this.currentVariant.featured_media.id;
