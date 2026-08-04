@@ -6,6 +6,10 @@
     padding-bottom: 0;
 }
 
+.jdgm-widget.jdgm-widget {
+    margin-top: 10px;
+}
+
 .product-default .productView {
     padding-bottom: 48px;
 }
@@ -1621,15 +1625,21 @@
 }
 
 .productView-moreItem .icon-with-text img {
-    max-width: 72px;
+    max-width: 100%;
     height: auto;
     display: block;
+}
+
+.productView-moreItem .icon-with-text {
+    display: grid;
+    grid-template-columns: repeat(var(--item-count), minmax(0, 1fr));
+    gap: 6px;
 }
 
 .productView-moreItem .icon-with-text__item {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 0;
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -1643,7 +1653,13 @@
     letter-spacing: .75px;
     line-height: var(--body-line-height);
     text-transform: uppercase;
-    margin: 0 0 6px;
+    margin: 0 auto;
+    max-width: 90%;
+    display: block;
+}
+
+.productView-moreItem .icon-with-text__content .h4 + .icon-with-text__description {
+    margin-top: 6px;
 }
 
 .productView-moreItem .icon-with-text .icon-with-text__description * {
@@ -1657,7 +1673,9 @@
 .swiper.icon-wrapper {
     margin-right: -10px;
 }
-.productView-moreItem.productView-scentProfile {
+.productView-moreItem.productView-scentProfile,
+.productView-moreItem.productView-moreItem-product-variant
+ {
     padding-top: var(--spacing-top-mb);
     padding-bottom: var(--spacing-bottom-mb);
 }
@@ -1716,6 +1734,10 @@
 @media (min-width: 768px) {
     .productView-scentProfile .scent-profile-container * {
         font-size: var(--font-size);
+    }
+
+    .productView-moreItem .icon-with-text {
+        gap: 12px;
     }
 }
 
@@ -3229,7 +3251,8 @@ quantity-input.disabled {
         width: 100% !important;
     }
 
-    .productView-moreItem.productView-scentProfile {
+    .productView-moreItem.productView-scentProfile,
+    .productView-moreItem.productView-moreItem-product-variant {
         padding-top: var(--spacing-top);
         padding-bottom: var(--spacing-bottom);
     }
@@ -3270,7 +3293,7 @@ quantity-input.disabled {
         overscroll-behavior: contain;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
-        position: relative;
+        position: sticky;
         top: 0;
     }
 

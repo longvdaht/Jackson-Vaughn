@@ -9,6 +9,25 @@
     block: block
   %}
 {% endcomment %}
+{%- liquid
+  assign item_count = 0
+
+  unless heading_1_empty
+    assign item_count = item_count | plus: 1
+  endunless
+
+  unless heading_2_empty
+    assign item_count = item_count | plus: 1
+  endunless
+
+  unless heading_3_empty
+    assign item_count = item_count | plus: 1
+  endunless
+
+  unless heading_4_empty
+    assign item_count = item_count | plus: 1
+  endunless
+-%}
 
 {%- liquid
   assign heading_1_empty = false
@@ -44,14 +63,15 @@
   endif
 -%}
 
-<div class="swiper icon-wrapper icons-wrapper-{{ block.id }}">
+<div class="icon-wrapper icons-wrapper-{{ block.id }}">
   <ul
-    class="swiper-wrapper icon-with-text icon-with-text--{{ block.settings.layout }} list-unstyled{% if text_only_all_items %} icon-with-text--text-only{% endif %}"
+    class="icon-with-text icon-with-text--{{ block.settings.layout }} list-unstyled{% if text_only_all_items %} icon-with-text--text-only{% endif %}"
     {{ block.shopify_attributes }}
+    style="--item-count: {{ item_count }};"
   >
 
     {%- unless heading_1_empty -%}
-      <li class="icon-with-text__item swiper-slide">
+      <li class="icon-with-text__item">
         {%- if block.settings.link_1 != blank -%}
           <a href="{{ block.settings.link_1 }}" class="icon-with-text__link">
         {%- endif -%}
@@ -69,7 +89,7 @@
 
         <div class="icon-with-text__content">
           <span class="h4 inline-richtext">
-            {{ block.settings.heading_1 }}
+            {{ block.settings.heading_1 | strip_html }}
           </span>
 
           {%- if block.settings.description_1 != blank -%}
@@ -87,7 +107,7 @@
 
 
     {%- unless heading_2_empty -%}
-      <li class="icon-with-text__item swiper-slide">
+      <li class="icon-with-text__item">
         {%- if block.settings.link_2 != blank -%}
           <a href="{{ block.settings.link_2 }}" class="icon-with-text__link">
         {%- endif -%}
@@ -105,7 +125,7 @@
 
         <div class="icon-with-text__content">
           <span class="h4 inline-richtext">
-            {{ block.settings.heading_2 }}
+            {{ block.settings.heading_2 | strip_html }}
           </span>
 
           {%- if block.settings.description_2 != blank -%}
@@ -123,7 +143,7 @@
 
 
     {%- unless heading_3_empty -%}
-      <li class="icon-with-text__item swiper-slide">
+      <li class="icon-with-text__item">
         {%- if block.settings.link_3 != blank -%}
           <a href="{{ block.settings.link_3 }}" class="icon-with-text__link">
         {%- endif -%}
@@ -141,7 +161,7 @@
 
         <div class="icon-with-text__content">
           <span class="h4 inline-richtext">
-            {{ block.settings.heading_3 }}
+            {{ block.settings.heading_3 | strip_html }}
           </span>
 
           {%- if block.settings.description_3 != blank -%}
@@ -159,7 +179,7 @@
 
 
     {%- unless heading_4_empty -%}
-      <li class="icon-with-text__item swiper-slide">
+      <li class="icon-with-text__item">
         {%- if block.settings.link_4 != blank -%}
           <a href="{{ block.settings.link_4 }}" class="icon-with-text__link">
         {%- endif -%}
@@ -177,7 +197,7 @@
 
         <div class="icon-with-text__content">
           <span class="h4 inline-richtext">
-            {{ block.settings.heading_4 }}
+            {{ block.settings.heading_4 | strip_html }}
           </span>
 
           {%- if block.settings.description_4 != blank -%}
@@ -195,24 +215,3 @@
 
   </ul>
 </div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.icons-wrapper-{{ block.id }}').forEach((slider) => {
-      new Swiper(slider, {
-        slidesPerView: 2.6,
-        spaceBetween: 12,
-        grabCursor: true,
-        watchOverflow: true,
-        breakpoints: {
-          750: {
-            spaceBetween: 16,
-          },
-          990: {
-            spaceBetween: 24,
-          }
-        }
-      });
-    });
-  }); 
-</script>

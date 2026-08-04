@@ -949,6 +949,8 @@
               {%- liquid
                 assign spacing_top = block.settings.spacing_top
                 assign spacing_bottom = block.settings.spacing_bottom
+                assign spacing_top_mb = block.settings.spacing_top_mb
+                assign spacing_bottom_mb = block.settings.spacing_bottom_mb
               -%}
               {%- case block.type -%}
                 {%- when 'breadcrumb' -%}
@@ -1165,7 +1167,7 @@
                 {%- when 'variant_picker' -%}
                   {% unless has_product_combo %}
                     <div class="productView-moreItem productView-moreItem-product-variant{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="--spacing-top: {{ spacing_top | append: 'px' }};
-                                                --spacing-bottom: {{ spacing_bottom | append: 'px' }}">
+                                                --spacing-bottom: {{ spacing_bottom | append: 'px' }};--spacing-top-mb: {{ spacing_top_mb | append: 'px' }};--spacing-bottom-mb: {{ spacing_bottom_mb | append: 'px' }};">
                       {%- if settings.enable_combined_products_listing -%}
                         {% render 'combined-products-listing'
                           , product: product %}

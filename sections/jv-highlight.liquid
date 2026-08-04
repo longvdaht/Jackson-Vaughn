@@ -1,18 +1,65 @@
 {% comment %} JV - Highlight {% endcomment %}
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-  href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Dosis:wght@400;500;600;700&display=swap"
-  rel="stylesheet"
->
+
+{%- comment -%}
+  Content source: product metafield metaobject -> section settings (fallback).
+  Metafield: product.metafields.custom.product_highlight_section
+  Verify field API keys below match the metaobject definition exactly.
+{%- endcomment -%}
+{%- liquid
+  assign mo = product.metafields.custom.product_highlight_section.value
+  assign use_mo = false
+  if mo != blank
+    assign use_mo = true
+  endif
+
+  if use_mo and mo.image != blank
+    assign hl_image = mo.image
+  else
+    assign hl_image = section.settings.image
+  endif
+
+  if use_mo and mo.eyebrow_label != blank
+    assign hl_eyebrow = mo.eyebrow_label
+  else
+    assign hl_eyebrow = section.settings.eyebrow
+  endif
+
+  if use_mo and mo.heading != blank
+    assign hl_heading = mo.heading
+  else
+    assign hl_heading = section.settings.heading
+  endif
+
+  if use_mo and mo.panel_background != blank
+    assign hl_panel_bg = mo.panel_background
+  else
+    assign hl_panel_bg = section.settings.panel_bg | default: '#B0563B'
+  endif
+
+  if use_mo and mo.text_color != blank
+    assign hl_text_color = mo.text_color
+  else
+    assign hl_text_color = section.settings.text_color | default: '#FBF3EC'
+  endif
+
+  if use_mo and mo.image_position != blank
+    assign hl_image_position = mo.image_position
+  else
+    assign hl_image_position = section.settings.image_position
+  endif
+
+  assign hl_notes = mo.highlight_note_items.value
+  assign use_mo_notes = false
+  if use_mo and hl_notes != blank and hl_notes.size > 0
+    assign use_mo_notes = true
+  endif
+-%}
 
 <style>
   #shopify-section-{{ section.id }} {
-    --hl-bg: var(--dominant_color, {{ section.settings.panel_bg | default: '#B0563B' }});
-    --hl-text: {{ section.settings.text_color | default: '#FBF3EC' }};
-    --hl-rule: {{ section.settings.text_color | default: '#FBF3EC' }}40;
-    --font-heading: 'Petrona', serif;
-    --font-body: 'Dosis', sans-serif;
+    --hl-bg: var(--dominant_color, {{ hl_panel_bg }});
+    --hl-text: {{ hl_text_color }};
+    --hl-rule: {{ hl_text_color }}40;
   }
 
   #shopify-section-{{ section.id }} .jv-hl {
@@ -21,7 +68,7 @@
     margin: 0 auto;
     background: var(--hl-bg);
     color: var(--hl-text);
-    font-family: var(--font-body);
+    font-family: var(--font-body-family);
   }
 
   /* Image position (right) */
@@ -59,7 +106,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    fill: {{ section.settings.text_color | default: '#FBF3EC' }};
+    fill: {{ hl_text_color }};
     opacity: 0.35;
   }
 
@@ -89,7 +136,7 @@
   }
 
   #shopify-section-{{ section.id }} .jv-hl-eyebrow {
-    font-family: var(--font-heading);
+    font-family: var(--font-family-2);
     font-size: 18px;
     font-weight: normal;
     letter-spacing: 0.9px;
@@ -98,7 +145,7 @@
   }
 
   #shopify-section-{{ section.id }} .jv-hl-heading {
-    font-family: var(--font-heading);
+    font-family: var(--font-family-2);
     font-size: 40px;
     font-weight: 600;
     line-height: 48px;
@@ -152,7 +199,7 @@
 
   #shopify-section-{{ section.id }} .jv-hl-label {
     flex: 1;
-    font-family: var(--font-body);
+    font-family: var(--font-body-family);
     font-size: 18px;
     line-height: 22px;
     font-weight: 600;
@@ -171,7 +218,7 @@
   }
 
   #shopify-section-{{ section.id }} .jv-hl-body {
-    font-family: var(--font-body);
+    font-family: var(--font-body-family);
     font-size: 15px;
     line-height: 1.6;
     padding: 0 0 20px;
@@ -224,11 +271,11 @@
   }
 </style>
 
-<div class="jv-hl{% if section.settings.image_position == 'right' %} jv-hl--image-right{% endif %}">
+<div class="jv-hl{% if hl_image_position == 'right' %} jv-hl--image-right{% endif %}">
   {%- comment -%} ── Image ── {%- endcomment -%}
-  <div class="jv-hl-media{% if section.settings.image == blank %} jv-hl-media--placeholder{% endif %}">
-    {%- if section.settings.image != blank -%}
-      {{ section.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', alt: section.settings.heading }}
+  <div class="jv-hl-media{% if hl_image == blank %} jv-hl-media--placeholder{% endif %}">
+    {%- if hl_image != blank -%}
+      {{ hl_image | image_url: width: 1200 | image_tag: loading: 'lazy', alt: hl_heading }}
     {%- else -%}
       {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
     {%- endif -%}
@@ -238,16 +285,40 @@
   <div class="jv-hl-content">
     <div class="jv-hl-content-inner">
       <div class="jv-hl-content-header">
-        {%- if section.settings.eyebrow != blank -%}
-          <p class="jv-hl-eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- if hl_eyebrow != blank -%}
+          <p class="jv-hl-eyebrow">{{ hl_eyebrow }}</p>
         {%- endif -%}
 
-        {%- if section.settings.heading != blank -%}
-          <h2 class="jv-hl-heading">{{ section.settings.heading }}</h2>
+        {%- if hl_heading != blank -%}
+          <h2 class="jv-hl-heading">{{ hl_heading }}</h2>
         {%- endif -%}
       </div>
 
-      {%- if section.blocks.size > 0 -%}
+      {%- comment -%} Notes: metaobject list first, else section blocks. {%- endcomment -%}
+      {%- if use_mo_notes -%}
+        <div class="jv-hl-list">
+          {%- for note in hl_notes -%}
+            {%- assign has_body = false -%}
+            {%- if note.expanded_content != blank -%}{%- assign has_body = true -%}{%- endif -%}
+            <details class="jv-hl-item{% unless has_body %} jv-hl-item--nobody{% endunless %}">
+              <summary>
+                <span class="jv-hl-icon">
+                  {%- if note.icon != blank -%}
+                    {{ note.icon | image_url: width: 80 | image_tag: loading: 'lazy', alt: note.label }}
+                  {%- endif -%}
+                </span>
+                <span class="jv-hl-label">{{ note.label }}</span>
+                <svg class="jv-hl-chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </summary>
+              {%- if has_body -%}
+                <div class="jv-hl-body rte">{{ note.expanded_content }}</div>
+              {%- endif -%}
+            </details>
+          {%- endfor -%}
+        </div>
+      {%- elsif section.blocks.size > 0 -%}
         <div class="jv-hl-list">
           {%- for block in section.blocks -%}
             {%- assign has_body = false -%}

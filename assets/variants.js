@@ -130,6 +130,36 @@ class VariantSelects extends HTMLElement {
                 }
             }
     
+            // Desktop stacked gallery (not full-width): images live in an internal
+            // scroll container (.halo-productView-left) whose overflow-y is hidden
+            // by default (only scrollable on :hover). To auto-scroll on variant
+            // change we briefly force overflow-y:auto inline (inline wins over the
+            // stylesheet), scroll, then remove the inline style to restore the
+            // hover-only behaviour.
+            if (window.innerWidth >= 768 && !this.isFullWidth) {
+                var stackMediaId = this.currentVariant.featured_media.id;
+                var mediaEl = productScope.querySelector(`.product-single__media[data-media-id="${stackMediaId}"]`);
+                var block = mediaEl ? (mediaEl.closest('.swiper-slide') || mediaEl.closest('.productView-image') || mediaEl) : null;
+                if (block) {
+                    var scrollContainer = block.closest('.halo-productView-left') || block.closest('[data-image-gallery]');
+                    window.setTimeout(() => {
+                        if (scrollContainer) {
+                            var prevOverflow = scrollContainer.style.overflowY;
+                            scrollContainer.style.overflowY = 'auto';          // temporarily enable
+                            var top = block.offsetTop - scrollContainer.offsetTop;
+                            scrollContainer.scrollTo({ top: top, behavior: 'smooth' });
+                            // Restore the hover-only overflow after the smooth scroll finishes.
+                            window.setTimeout(() => {
+                                scrollContainer.style.overflowY = prevOverflow || '';
+                            }, 600);
+                        } else {
+                            block.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }, 30);
+                }
+                return;
+            }
+
             if (!this.isFullWidth || window.innerWidth < 768 || !this.currentVariant) return;
             const mediaId = this.currentVariant.featured_media.id;
             const mediaToReplace = document?.querySelector('.productView-image[data-index="1"]');

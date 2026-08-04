@@ -1,58 +1,163 @@
 {% comment %} JV - Gallery {% endcomment %}
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-  href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Dosis:wght@400;500;600;700&display=swap"
-  rel="stylesheet"
->
-
 {%- liquid
-  # Space between images (px)
+  # Content source: product metafield metaobject -> section settings (fallback).
+  # Metafield: product.metafields.custom.product_gallery_section
+  # Spacing (padding) is NOT in the metaobject, so it always uses section settings.
+  assign mo = product.metafields.custom.product_gallery_section.value
+  assign use_mo = false
+  if mo != blank
+    assign use_mo = true
+  endif
+
+  # Helper resolves: metaobject value if present, else section setting.
+  if use_mo and mo.heading != blank
+    assign g_heading = mo.heading
+  else
+    assign g_heading = section.settings.heading
+  endif
+
+  if use_mo and mo.heading_size_on_desktop != blank
+    assign g_heading_size = mo.heading_size_on_desktop
+  else
+    assign g_heading_size = section.settings.heading_size | default: 30
+  endif
+
+  if use_mo and mo.heading_size_on_mobile != blank
+    assign g_heading_size_mobile = mo.heading_size_on_mobile
+  else
+    assign g_heading_size_mobile = section.settings.heading_size_mobile | default: 26
+  endif
+
+  if use_mo and mo.space_below_heading != blank
+    assign g_heading_gap = mo.space_below_heading
+  else
+    assign g_heading_gap = section.settings.heading_gap | default: 44
+  endif
+
+  if use_mo and mo.images_per_view_desktop != blank
+    assign g_per_view_desktop = mo.images_per_view_desktop
+  else
+    assign g_per_view_desktop = section.settings.per_view_desktop | default: 5
+  endif
+
+  if use_mo and mo.edge_peek_desktop_tablet != blank
+    assign g_edge_peek = mo.edge_peek_desktop_tablet
+  else
+    assign g_edge_peek = section.settings.edge_peek | default: 40
+  endif
+
+  if use_mo and mo.loop_infinite != blank
+    assign g_loop = mo.loop_infinite
+  else
+    assign g_loop = section.settings.enable_loop
+  endif
+
+  if use_mo and mo.show_arrows_desktop != blank
+    assign g_show_arrows = mo.show_arrows_desktop
+  else
+    assign g_show_arrows = section.settings.show_arrows
+  endif
+
+  if use_mo and mo.show_dots != blank
+    assign g_show_dots = mo.show_dots
+  else
+    assign g_show_dots = section.settings.show_dots
+  endif
+
+  if use_mo and mo.autoplay != blank
+    assign g_autoplay = mo.autoplay
+  else
+    assign g_autoplay = section.settings.autoplay
+  endif
+
+  if use_mo and mo.autoplay_speed != blank
+    assign g_autoplay_speed = mo.autoplay_speed
+  else
+    assign g_autoplay_speed = section.settings.autoplay_speed | default: 4
+  endif
+
+  if use_mo and mo.image_aspect_ratio != blank
+    assign g_image_ratio = mo.image_aspect_ratio
+  else
+    assign g_image_ratio = section.settings.image_ratio | default: '3 / 4'
+  endif
+
+  if use_mo and mo.image_corner_radius != blank
+    assign g_image_radius = mo.image_corner_radius
+  else
+    assign g_image_radius = section.settings.image_radius | default: 4
+  endif
+
+  if use_mo and mo.background != blank
+    assign g_bg = mo.background
+  else
+    assign g_bg = section.settings.background_color | default: '#FBF3EC'
+  endif
+
+  if use_mo and mo.heading_arrow_color != blank
+    assign g_heading_color = mo.heading_arrow_color
+  else
+    assign g_heading_color = section.settings.heading_color | default: '#2C2622'
+  endif
+
+  if use_mo and mo.border_top_width != blank
+    assign g_border_top_width = mo.border_top_width
+  else
+    assign g_border_top_width = section.settings.border_top_width
+  endif
+
+  if use_mo and mo.border_top_color != blank
+    assign g_border_top_color = mo.border_top_color
+  else
+    assign g_border_top_color = section.settings.border_top_color | default: '#2C2622'
+  endif
+
+  # Image list: metaobject gallery_images (item = image + link) else section blocks.
+  assign g_images = mo.gallery_images.value
+  assign use_mo_images = false
+  if use_mo and g_images != blank and g_images.size > 0
+    assign use_mo_images = true
+  endif
+
+  # Derived slider vars
   assign space = 12
-
-  # Edge peek (px): how much of the first & last images is clipped on desktop/tablet.
-  # Achieved with a negative "bleed" margin on the swiper, clipped by the outer wrapper.
-  assign peek = section.settings.edge_peek | default: 40
-
-  assign spv_desktop = section.settings.per_view_desktop | default: 5
-  # Tablet & mobile are fixed
+  assign peek = g_edge_peek | default: 40
+  assign spv_desktop = g_per_view_desktop | default: 5
   assign spv_tablet = 3
   assign spv_mobile = 1.8
 -%}
 
 <style>
   #shopify-section-{{ section.id }} {
-    --gl-bg: {{ section.settings.background_color | default: '#FBF3EC' }};
-    --gl-text: {{ section.settings.heading_color | default: '#2C2622' }};
-    --gl-radius: {{ section.settings.image_radius | default: 4 }}px;
-    --gl-ratio: {{ section.settings.image_ratio | default: '3 / 4' }};
+    --gl-bg: {{ g_bg }};
+    --gl-text: {{ g_heading_color }};
+    --gl-radius: {{ g_image_radius }}px;
+    --gl-ratio: {{ g_image_ratio }};
     --gl-peek: {{ peek }}px;
-    --font-heading: 'Petrona', serif;
-    --font-body: 'Dosis', sans-serif;
   }
 
   #shopify-section-{{ section.id }} .jv-gl {
     background: var(--gl-bg);
     padding: {{ section.settings.padding_top | default: 56 }}px 0
       {{ section.settings.padding_bottom | default: 56 }}px;
-    font-family: var(--font-body);
+    font-family: var(--font-body-family);
     width: 100%;
     overflow: hidden;
-    {%- if section.settings.border_top_width > 0 -%}
-      border-top: {{ section.settings.border_top_width }}px solid {{ section.settings.border_top_color | default: '#2C2622' }};
+    {%- if g_border_top_width > 0 -%}
+      border-top: {{ g_border_top_width }}px solid {{ g_border_top_color }};
     {%- endif -%}
   }
 
   #shopify-section-{{ section.id }} .jv-gl-heading {
-    font-family: var(--font-heading);
+    font-family: var(--font-family-2);
     font-weight: normal;
-    font-size: {{ section.settings.heading_size | default: 30 }}px;
+    font-size: {{ g_heading_size }}px;
     line-height: 1.2;
     letter-spacing: 0.9px;
     text-transform: uppercase;
     text-align: center;
     color: var(--gl-text);
-    margin: 0 0 {{ section.settings.heading_gap | default: 44 }}px;
+    margin: 0 0 {{ g_heading_gap }}px;
     padding: 0 24px;
   }
 
@@ -75,7 +180,7 @@
     overflow: hidden;
   }
   #shopify-section-{{ section.id }} .jv-gl-swiper:not(.swiper-initialized) .swiper-slide {
-    flex: 0 0 calc((100% - ({{ section.settings.per_view_desktop | default: 5 | minus: 1 }} * {{ space }}px)) / {{ section.settings.per_view_desktop | default: 5 }});
+    flex: 0 0 calc((100% - ({{ g_per_view_desktop | default: 5 | minus: 1 }} * {{ space }}px)) / {{ g_per_view_desktop | default: 5 }});
   }
 
   #shopify-section-{{ section.id }} .jv-gl-slide {
@@ -87,7 +192,7 @@
     aspect-ratio: var(--gl-ratio);
     overflow: hidden;
     border-radius: var(--gl-radius);
-    background: {{ section.settings.heading_color | default: '#2C2622' }}0D;
+    background: {{ g_heading_color }}0D;
     display: block;
   }
 
@@ -181,7 +286,7 @@
         {{ section.settings.padding_bottom_mobile | default: 40 }}px;
     }
     #shopify-section-{{ section.id }} .jv-gl-heading {
-      font-size: {{ section.settings.heading_size_mobile | default: 26 }}px;
+      font-size: {{ g_heading_size_mobile }}px;
       letter-spacing: 2px;
       margin-bottom: 28px;
       padding: 0 16px;
@@ -200,11 +305,11 @@
 </style>
 
 <div class="jv-gl">
-  {%- if section.settings.heading != blank -%}
-    <h2 class="jv-gl-heading">{{ section.settings.heading }}</h2>
+  {%- if g_heading != blank -%}
+    <h2 class="jv-gl-heading">{{ g_heading }}</h2>
   {%- endif -%}
 
-  {%- if section.blocks.size > 0 -%}
+  {%- if use_mo_images or section.blocks.size > 0 -%}
     <div class="jv-gl-slider" data-loader-script="{{ 'halo.jv-gallery.js' | asset_url }}">
       <div
         class="swiper jv-gl-swiper"
@@ -213,41 +318,68 @@
         data-per-tablet="{{ spv_tablet }}"
         data-per-mobile="{{ spv_mobile }}"
         data-space="{{ space }}"
-        data-loop="{{ section.settings.enable_loop }}"
-        data-arrows="{{ section.settings.show_arrows }}"
-        data-dots="{{ section.settings.show_dots }}"
-        data-autoplay="{{ section.settings.autoplay }}"
-        data-autoplay-speed="{{ section.settings.autoplay_speed | times: 1000 }}"
+        data-loop="{{ g_loop }}"
+        data-arrows="{{ g_show_arrows }}"
+        data-dots="{{ g_show_dots }}"
+        data-autoplay="{{ g_autoplay }}"
+        data-autoplay-speed="{{ g_autoplay_speed | times: 1000 }}"
       >
         <div class="swiper-wrapper">
-          {%- for block in section.blocks -%}
-            {%- assign is_link = false -%}
-            {%- if block.settings.link != blank -%}{%- assign is_link = true -%}{%- endif -%}
+          {%- if use_mo_images -%}
+            {%- for item in g_images -%}
+              {%- assign is_link = false -%}
+              {%- if item.link != blank -%}{%- assign is_link = true -%}{%- endif -%}
 
-            <div class="swiper-slide jv-gl-slide" {{ block.shopify_attributes }}>
-              <{% if is_link %}a href="{{ block.settings.link }}"{% else %}div{% endif %}
-                class="jv-gl-item{% if is_link %} jv-gl-item--link{% endif %}"
-              >
-                {%- if block.settings.image != blank -%}
-                  {{
-                    block.settings.image
-                    | image_url: width: 900
-                    | image_tag:
-                      loading: 'lazy',
-                      sizes: '(max-width: 768px) 60vw, 20vw',
-                      widths: '300, 450, 600, 900',
-                      alt: block.settings.image.alt | default: section.settings.heading
-                  }}
-                {%- else -%}
-                  {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-                {%- endif -%}
-              </{% if is_link %}a{% else %}div{% endif %}>
-            </div>
-          {%- endfor -%}
+              <div class="swiper-slide jv-gl-slide">
+                <{% if is_link %}a href="{{ item.link }}"{% else %}div{% endif %}
+                  class="jv-gl-item{% if is_link %} jv-gl-item--link{% endif %}"
+                >
+                  {%- if item.image != blank -%}
+                    {{
+                      item.image
+                      | image_url: width: 900
+                      | image_tag:
+                        loading: 'lazy',
+                        sizes: '(max-width: 768px) 60vw, 20vw',
+                        widths: '300, 450, 600, 900',
+                        alt: item.image.alt | default: g_heading
+                    }}
+                  {%- else -%}
+                    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                  {%- endif -%}
+                </{% if is_link %}a{% else %}div{% endif %}>
+              </div>
+            {%- endfor -%}
+          {%- else -%}
+            {%- for block in section.blocks -%}
+              {%- assign is_link = false -%}
+              {%- if block.settings.link != blank -%}{%- assign is_link = true -%}{%- endif -%}
+
+              <div class="swiper-slide jv-gl-slide" {{ block.shopify_attributes }}>
+                <{% if is_link %}a href="{{ block.settings.link }}"{% else %}div{% endif %}
+                  class="jv-gl-item{% if is_link %} jv-gl-item--link{% endif %}"
+                >
+                  {%- if block.settings.image != blank -%}
+                    {{
+                      block.settings.image
+                      | image_url: width: 900
+                      | image_tag:
+                        loading: 'lazy',
+                        sizes: '(max-width: 768px) 60vw, 20vw',
+                        widths: '300, 450, 600, 900',
+                        alt: block.settings.image.alt | default: g_heading
+                    }}
+                  {%- else -%}
+                    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                  {%- endif -%}
+                </{% if is_link %}a{% else %}div{% endif %}>
+              </div>
+            {%- endfor -%}
+          {%- endif -%}
         </div>
       </div>
 
-      {%- if section.settings.show_arrows -%}
+      {%- if g_show_arrows -%}
         <button class="jv-gl-arrow jv-gl-arrow--prev" type="button" aria-label="Previous">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
@@ -260,7 +392,7 @@
         </button>
       {%- endif -%}
 
-      {%- if section.settings.show_dots -%}
+      {%- if g_show_dots -%}
         <div class="jv-gl-pagination"></div>
       {%- endif -%}
     </div>

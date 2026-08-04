@@ -50,7 +50,7 @@
             "background_color_block": "rgba(0,0,0,0)",
             "background_gradient_color_block": "",
             "spacing_top": 0,
-            "spacing_bottom": 10
+            "spacing_bottom": 0
           }
         },
         "judge_me_reviews_preview_badge_UzFtEX": {
@@ -70,9 +70,9 @@
             "throw_level": "{{ product.metafields.custom.scent_profile.value.throw_level.value }}",
             "alignment": "left",
             "spacing_top": 32,
-            "spacing_bottom": 32,
+            "spacing_bottom": 0,
             "spacing_top_mb": 24,
-            "spacing_bottom_mb": 24,
+            "spacing_bottom_mb": 0,
             "padding": 0
           }
         },
@@ -92,8 +92,10 @@
             "enable_border_top": false,
             "enable_border_bottom": false,
             "color_border": "#e6e6e6",
-            "spacing_top": 0,
-            "spacing_bottom": 24
+            "spacing_top": 32,
+            "spacing_bottom": 24,
+            "spacing_top_mb": 24,
+            "spacing_bottom_mb": 24
           }
         },
         "d97e417a-941b-4a5d-bef3-a651adb918d8": {
@@ -180,21 +182,25 @@
         "icon_with_text_3wdLTF": {
           "type": "icon-with-text",
           "settings": {
-            "image_1": "shopify://shop_images/Hand-Poured.png",
-            "heading_1": "Hand-Poured",
-            "description_1": "<p>crafted in small<br/>batches in Texas</p>",
+            "heading_color": "#232323",
+            "description_color": "#232323",
+            "spacing_top": 0,
+            "spacing_bottom": 24,
+            "image_1": "shopify://shop_images/candle.png",
+            "heading_1": "<p>Hand-Poured</p>",
+            "description_1": "",
             "link_1": "",
-            "image_2": "shopify://shop_images/CLean_burn.png",
-            "heading_2": "Clean burn",
-            "description_2": "<p>artisan soy wax blend,<br/>natural cotton wick</p>",
+            "image_2": "shopify://shop_images/fire.png",
+            "heading_2": "<p>Clean burn</p>",
+            "description_2": "",
             "link_2": "",
-            "image_3": "shopify://shop_images/Long-Lasting.png",
-            "heading_3": "Long-Lasting",
-            "description_3": "<p>up to 60 hours of<br/>rich, even burn time</p>",
+            "image_3": "shopify://shop_images/clock.png",
+            "heading_3": "<p>Long-Lasting</p>",
+            "description_3": "",
             "link_3": "",
-            "image_4": "shopify://shop_images/designer_candles.png",
-            "heading_4": "designer candles",
-            "description_4": "<p>crafted by award-winning<br/>interior designers</p>",
+            "image_4": "shopify://shop_images/Sparkles.png",
+            "heading_4": "<p>designer candles</p>",
+            "description_4": "",
             "link_4": ""
           }
         },
