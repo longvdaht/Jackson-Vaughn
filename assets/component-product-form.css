@@ -6,6 +6,10 @@
     margin: 0;
 }
 
+.product-form__input.scent.notes {
+    display: none;
+}
+
 .product-form__input .form__label,
 .form__label-combined{
     display: flex;

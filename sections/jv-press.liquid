@@ -1,61 +1,212 @@
 {% comment %} JV - Press {% endcomment %}
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-  href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Dosis:wght@400;500;600;700&display=swap"
-  rel="stylesheet"
->
-
 {%- liquid
-  # Space between items (px)
-  assign space = section.settings.item_gap | default: 24
+  # Content source: product metafield metaobject -> section settings (fallback).
+  # Metafield: product.metafields.custom.product_press_section
+  # Section padding is NOT in the metaobject, so it always uses section settings.
+  assign mo = product.metafields.custom.product_press_section.value
+  assign use_mo = false
+  if mo != blank
+    assign use_mo = true
+  endif
 
-  # Edge peek (px): how much of the previous / next item shows at each edge on
-  # desktop/tablet. It is a padding gutter on the swiper, so it sits outside the
-  # slidesPerView division — N items stay fully visible between the two peeks.
-  assign peek = section.settings.edge_peek | default: 80
+  if use_mo and mo.heading != blank
+    assign pr_heading = mo.heading
+  else
+    assign pr_heading = section.settings.heading
+  endif
 
-  assign spv_desktop = section.settings.per_view_desktop | default: 6
-  assign spv_tablet = section.settings.per_view_tablet | default: 3
-  assign spv_mobile = section.settings.per_view_mobile | default: 1.3
+  if use_mo and mo.heading_size_desktop != blank
+    assign pr_heading_size = mo.heading_size_desktop
+  else
+    assign pr_heading_size = section.settings.heading_size | default: 30
+  endif
+
+  if use_mo and mo.heading_size_mobile != blank
+    assign pr_heading_size_mobile = mo.heading_size_mobile
+  else
+    assign pr_heading_size_mobile = section.settings.heading_size_mobile | default: 26
+  endif
+
+  if use_mo and mo.heading_letter_spacing != blank
+    assign pr_heading_spacing = mo.heading_letter_spacing
+  else
+    assign pr_heading_spacing = section.settings.heading_spacing | default: 4
+  endif
+
+  if use_mo and mo.space_below_heading != blank
+    assign pr_heading_gap = mo.space_below_heading
+  else
+    assign pr_heading_gap = section.settings.heading_gap | default: 48
+  endif
+
+  if use_mo and mo.items_per_view_desktop != blank
+    assign spv_desktop = mo.items_per_view_desktop
+  else
+    assign spv_desktop = section.settings.per_view_desktop | default: 6
+  endif
+
+  if use_mo and mo.items_per_view_tablet != blank
+    assign spv_tablet = mo.items_per_view_tablet
+  else
+    assign spv_tablet = section.settings.per_view_tablet | default: 3
+  endif
+
+  if use_mo and mo.items_per_view_mobile != blank
+    assign spv_mobile = mo.items_per_view_mobile
+  else
+    assign spv_mobile = section.settings.per_view_mobile | default: 1.3
+  endif
+
+  if use_mo and mo.edge_peek_desktop_tablet != blank
+    assign peek = mo.edge_peek_desktop_tablet
+  else
+    assign peek = section.settings.edge_peek | default: 80
+  endif
+
+  if use_mo and mo.gap_between_items != blank
+    assign space = mo.gap_between_items
+  else
+    assign space = section.settings.item_gap | default: 24
+  endif
+
+  if use_mo and mo.loop_infinite != blank
+    assign pr_loop = mo.loop_infinite
+  else
+    assign pr_loop = section.settings.enable_loop
+  endif
+
+  if use_mo and mo.show_arrows_desktop != blank
+    assign pr_arrows = mo.show_arrows_desktop
+  else
+    assign pr_arrows = section.settings.show_arrows
+  endif
+
+  if use_mo and mo.show_dots != blank
+    assign pr_dots = mo.show_dots
+  else
+    assign pr_dots = section.settings.show_dots
+  endif
+
+  if use_mo and mo.autoplay != blank
+    assign pr_autoplay = mo.autoplay
+  else
+    assign pr_autoplay = section.settings.autoplay
+  endif
+
+  if use_mo and mo.autoplay_speed != blank
+    assign pr_autoplay_speed = mo.autoplay_speed
+  else
+    assign pr_autoplay_speed = section.settings.autoplay_speed | default: 4
+  endif
+
+  if use_mo and mo.logo_area_height != blank
+    assign pr_logo_height = mo.logo_area_height
+  else
+    assign pr_logo_height = section.settings.logo_height | default: 90
+  endif
+
+  if use_mo and mo.space_below_logo != blank
+    assign pr_logo_gap = mo.space_below_logo
+  else
+    assign pr_logo_gap = section.settings.logo_gap | default: 28
+  endif
+
+  if use_mo and mo.description_size != blank
+    assign pr_text_size = mo.description_size
+  else
+    assign pr_text_size = section.settings.text_size | default: 16
+  endif
+
+  if use_mo and mo.text_alignment != blank
+    assign pr_text_align = mo.text_alignment
+  else
+    assign pr_text_align = section.settings.text_align | default: 'left'
+  endif
+
+  if use_mo and mo.background != blank
+    assign pr_bg = mo.background
+  else
+    assign pr_bg = section.settings.background_color | default: '#FBF3EC'
+  endif
+
+  if use_mo and mo.heading_arrow_color != blank
+    assign pr_heading_color = mo.heading_arrow_color
+  else
+    assign pr_heading_color = section.settings.heading_color | default: '#2C2622'
+  endif
+
+  if use_mo and mo.description_color != blank
+    assign pr_text_color = mo.description_color
+  else
+    assign pr_text_color = section.settings.text_color | default: '#3C3630'
+  endif
+
+  if use_mo and mo.border_top_width != blank
+    assign pr_border_top_width = mo.border_top_width
+  else
+    assign pr_border_top_width = section.settings.border_top_width
+  endif
+
+  if use_mo and mo.border_top_color != blank
+    assign pr_border_top_color = mo.border_top_color
+  else
+    assign pr_border_top_color = section.settings.border_top_color | default: '#2C2622'
+  endif
+
+  if use_mo and mo.border_bottom_width != blank
+    assign pr_border_bottom_width = mo.border_bottom_width
+  else
+    assign pr_border_bottom_width = section.settings.border_bottom_width
+  endif
+
+  if use_mo and mo.border_bottom_color != blank
+    assign pr_border_bottom_color = mo.border_bottom_color
+  else
+    assign pr_border_bottom_color = section.settings.border_bottom_color | default: '#2C2622'
+  endif
+
+  # Press items list: metaobject press_items else section blocks.
+  assign pr_items = mo.press_items.value
+  assign use_mo_items = false
+  if use_mo and pr_items != blank and pr_items.size > 0
+    assign use_mo_items = true
+  endif
 -%}
 
 <style>
   #shopify-section-{{ section.id }} {
-    --pr-bg: {{ section.settings.background_color | default: '#FBF3EC' }};
-    --pr-heading: {{ section.settings.heading_color | default: '#2C2622' }};
-    --pr-text: {{ section.settings.text_color | default: '#3C3630' }};
+    --pr-bg: {{ pr_bg }};
+    --pr-heading: {{ pr_heading_color }};
+    --pr-text: {{ pr_text_color }};
     --pr-peek: {{ peek }}px;
     --pr-space: {{ space }}px;
-    --font-heading: 'Petrona', serif;
-    --font-body: 'Dosis', sans-serif;
   }
 
   #shopify-section-{{ section.id }} .jv-press {
     background: var(--pr-bg);
-    font-family: var(--font-body);
+    font-family: var(--font-body-family);
     padding: {{ section.settings.padding_top | default: 72 }}px 0
       {{ section.settings.padding_bottom | default: 72 }}px;
     width: 100%;
     overflow: hidden;
-    {%- if section.settings.border_top_width > 0 -%}
-      border-top: {{ section.settings.border_top_width }}px solid {{ section.settings.border_top_color | default: '#2C2622' }};
+    {%- if pr_border_top_width > 0 -%}
+      border-top: {{ pr_border_top_width }}px solid {{ pr_border_top_color }};
     {%- endif -%}
-    {%- if section.settings.border_bottom_width > 0 -%}
-      border-bottom: {{ section.settings.border_bottom_width }}px solid {{ section.settings.border_bottom_color | default: '#2C2622' }};
+    {%- if pr_border_bottom_width > 0 -%}
+      border-bottom: {{ pr_border_bottom_width }}px solid {{ pr_border_bottom_color }};
     {%- endif -%}
   }
 
   #shopify-section-{{ section.id }} .jv-press-heading {
     font-family: var(--font-heading);
     font-weight: normal;
-    font-size: {{ section.settings.heading_size | default: 30 }}px;
+    font-size: {{ pr_heading_size }}px;
     line-height: 1.2;
-    letter-spacing: {{ section.settings.heading_spacing | default: 4 }}px;
+    letter-spacing: {{ pr_heading_spacing }}px;
     text-transform: uppercase;
     text-align: center;
     color: var(--pr-heading);
-    margin: 0 0 {{ section.settings.heading_gap | default: 48 }}px;
+    margin: 0 0 {{ pr_heading_gap }}px;
     padding: 0 24px;
   }
 
@@ -92,7 +243,7 @@
     flex-direction: column;
     align-items: center;
     height: 100%;
-    text-align: {{ section.settings.text_align | default: 'left' }};
+    text-align: {{ pr_text_align }};
     color: inherit;
     text-decoration: none;
   }
@@ -100,17 +251,17 @@
   /* ── Logo ── */
   #shopify-section-{{ section.id }} .jv-press-logo {
     width: 100%;
-    height: {{ section.settings.logo_height | default: 64 }}px;
+    height: {{ pr_logo_height }}px;
     display: flex;
     align-items: center;
-    margin-bottom: {{ section.settings.logo_gap | default: 28 }}px;
+    margin-bottom: {{ pr_logo_gap }}px;
   }
   #shopify-section-{{ section.id }} .jv-press-logo img {
     width: auto;
     height: 100%;
     max-width: 100%;
     object-fit: contain;
-    object-position: {{ section.settings.text_align | default: 'left' }};
+    object-position: {{ pr_text_align }};
     display: block;
   }
   #shopify-section-{{ section.id }} .jv-press-logo .placeholder-svg {
@@ -122,7 +273,7 @@
   /* ── Description ── */
   #shopify-section-{{ section.id }} .jv-press-desc {
     width: 100%;
-    font-size: {{ section.settings.text_size | default: 16 }}px;
+    font-size: {{ pr_text_size }}px;
     line-height: 1.6;
     color: var(--pr-text);
   }
@@ -137,7 +288,7 @@
   /* ── Arrows (outside the clipped swiper) ── */
   #shopify-section-{{ section.id }} .jv-press-arrow {
     position: absolute;
-    top: {{ section.settings.logo_height | default: 64 }}px;
+    top: {{ pr_logo_height }}px;
     transform: translateY(-50%);
     z-index: 3;
     width: 44px;
@@ -208,7 +359,7 @@
         {{ section.settings.padding_bottom_mobile | default: 48 }}px;
     }
     #shopify-section-{{ section.id }} .jv-press-heading {
-      font-size: {{ section.settings.heading_size_mobile | default: 26 }}px;
+      font-size: {{ pr_heading_size_mobile }}px;
       margin-bottom: 32px;
       padding: 0 16px;
     }
@@ -225,11 +376,11 @@
 </style>
 
 <div class="jv-press">
-  {%- if section.settings.heading != blank -%}
-    <h2 class="jv-press-heading">{{ section.settings.heading }}</h2>
+  {%- if pr_heading != blank -%}
+    <h2 class="jv-press-heading">{{ pr_heading }}</h2>
   {%- endif -%}
 
-  {%- if section.blocks.size > 0 -%}
+  {%- if use_mo_items or section.blocks.size > 0 -%}
     <div class="jv-press-slider" data-loader-script="{{ 'halo.jv-press.js' | asset_url }}">
       <div
         class="swiper jv-press-swiper"
@@ -238,44 +389,90 @@
         data-per-tablet="{{ spv_tablet }}"
         data-per-mobile="{{ spv_mobile }}"
         data-space="{{ space }}"
-        data-loop="{{ section.settings.enable_loop }}"
-        data-arrows="{{ section.settings.show_arrows }}"
-        data-dots="{{ section.settings.show_dots }}"
-        data-autoplay="{{ section.settings.autoplay }}"
-        data-autoplay-speed="{{ section.settings.autoplay_speed | times: 1000 }}"
+        data-loop="{{ pr_loop }}"
+        data-arrows="{{ pr_arrows }}"
+        data-dots="{{ pr_dots }}"
+        data-autoplay="{{ pr_autoplay }}"
+        data-autoplay-speed="{{ pr_autoplay_speed | times: 1000 }}"
       >
         <div class="swiper-wrapper">
-          {%- for block in section.blocks -%}
-            {%- assign is_link = false -%}
-            {%- if block.settings.link != blank -%}{%- assign is_link = true -%}{%- endif -%}
+          {%- if use_mo_items -%}
+            {%- for item in pr_items -%}
+              {%- assign is_link = false -%}
+              {%- if item.link_optional != blank -%}{%- assign is_link = true -%}{%- endif -%}
 
-            <div class="swiper-slide jv-press-slide" {{ block.shopify_attributes }}>
-              <{% if is_link %}a href="{{ block.settings.link }}"{% else %}div{% endif %} class="jv-press-item">
-                <div class="jv-press-logo">
-                  {%- if block.settings.image != blank -%}
-                    {{
-                      block.settings.image
-                      | image_url: width: 600
-                      | image_tag:
-                        loading: 'lazy',
-                        sizes: '(max-width: 768px) 70vw, 16vw',
-                        widths: '200, 300, 450, 600',
-                        alt: block.settings.image.alt
-                    }}
-                  {%- else -%}
-                    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-                  {%- endif -%}
-                </div>
-                {%- if block.settings.description != blank -%}
-                  <div class="jv-press-desc rte">{{ block.settings.description }}</div>
+              <div class="swiper-slide jv-press-slide">
+                {%- if is_link -%}
+                  <a href="{{ item.link_optional }}" class="jv-press-item">
+                {%- else -%}
+                  <div class="jv-press-item">
                 {%- endif -%}
-              </{% if is_link %}a href="{{ block.settings.link }}"{% else %}div{% endif %}>
-            </div>
-          {%- endfor -%}
+                  <div class="jv-press-logo">
+                    {%- if item.logo_image != blank -%}
+                      {{
+                        item.logo_image
+                        | image_url: width: 600
+                        | image_tag:
+                          loading: 'lazy',
+                          sizes: '(max-width: 768px) 70vw, 16vw',
+                          widths: '200, 300, 450, 600',
+                          alt: item.logo_image.alt
+                      }}
+                    {%- else -%}
+                      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                    {%- endif -%}
+                  </div>
+                  {%- if item.description != blank -%}
+                    <div class="jv-press-desc rte">{{ item.description | metafield_tag }}</div>
+                  {%- endif -%}
+                {%- if is_link -%}
+                  </a>
+                {%- else -%}
+                  </div>
+                {%- endif -%}
+              </div>
+            {%- endfor -%}
+          {%- else -%}
+            {%- for block in section.blocks -%}
+              {%- assign is_link = false -%}
+              {%- if block.settings.link != blank -%}{%- assign is_link = true -%}{%- endif -%}
+
+              <div class="swiper-slide jv-press-slide" {{ block.shopify_attributes }}>
+                {%- if is_link -%}
+                  <a href="{{ block.settings.link }}" class="jv-press-item">
+                {%- else -%}
+                  <div class="jv-press-item">
+                {%- endif -%}
+                  <div class="jv-press-logo">
+                    {%- if block.settings.image != blank -%}
+                      {{
+                        block.settings.image
+                        | image_url: width: 600
+                        | image_tag:
+                          loading: 'lazy',
+                          sizes: '(max-width: 768px) 70vw, 16vw',
+                          widths: '200, 300, 450, 600',
+                          alt: block.settings.image.alt
+                      }}
+                    {%- else -%}
+                      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+                    {%- endif -%}
+                  </div>
+                  {%- if block.settings.description != blank -%}
+                    <div class="jv-press-desc rte">{{ block.settings.description }}</div>
+                  {%- endif -%}
+                {%- if is_link -%}
+                  </a>
+                {%- else -%}
+                  </div>
+                {%- endif -%}
+              </div>
+            {%- endfor -%}
+          {%- endif -%}
         </div>
       </div>
 
-      {%- if section.settings.show_arrows -%}
+      {%- if pr_arrows -%}
         <button class="jv-press-arrow jv-press-arrow--prev" type="button" aria-label="Previous">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
@@ -288,7 +485,7 @@
         </button>
       {%- endif -%}
 
-      {%- if section.settings.show_dots -%}
+      {%- if pr_dots -%}
         <div class="jv-press-pagination"></div>
       {%- endif -%}
     </div>

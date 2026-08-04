@@ -20,7 +20,7 @@
                             assign swatch_type = settings.swatch_type
                             assign option_index = forloop.index0
                         -%}
-                        <fieldset class="js product-form__input{% if is_swatch %} product-form__swatch{% endif %} clearfix" data-product-attribute="set-rectangle" data-option-index="{{ forloop.index0 }}">
+                        <fieldset class="{{ option.name | downcase }} js product-form__input{% if is_swatch %} product-form__swatch{% endif %} clearfix" data-product-attribute="set-rectangle" data-option-index="{{ forloop.index0 }}">
                             <legend class="form__label">
                                 <div class="option-wrapper">
                                     {{ option.name | append: ':' }}
