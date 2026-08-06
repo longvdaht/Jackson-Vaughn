@@ -313,7 +313,7 @@
                 </svg>
               </summary>
               {%- if has_body -%}
-                <div class="jv-hl-body rte">{{ note.expanded_content }}</div>
+                <div class="jv-hl-body rte">{{ note.expanded_content | metafield_tag }}</div>
               {%- endif -%}
             </details>
           {%- endfor -%}
