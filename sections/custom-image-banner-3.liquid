@@ -1,11 +1,84 @@
-{%- if section.blocks.size > 0 -%}
-  {%- assign swipe = section.settings.custom_image_banner_block_swipe_on_mobile -%}
-  {%- liquid
-    assign use_swiper = false
-    if swipe == 'slider' and section.settings.use_swiper
-      assign use_swiper = true
+{%- comment -%}
+  ============================================================================
+  METAOBJECT-DRIVEN  (custom.product_custom_image_section)
+  ----------------------------------------------------------------------------
+  When the parent metaobject is present, the section renders from it:
+    - section-level fields  -> section vars (fallback to section.settings)
+    - "Image lists" entries -> one card each (flat, replaces the 4-item blocks)
+  When absent, the native theme blocks (smallImg) render unchanged.
+  Field keys marked VERIFY are guessed from the field labels — check them in
+  Admin and fix here if needed. A wrong key just renders that value empty.
+  ============================================================================
+{%- endcomment -%}
+{%- liquid
+  # ---- Resolve the parent metaobject (product then page metafield) ----
+  assign pmo = nil
+  if product.metafields.custom.product_custom_image_section != blank
+    assign pmo = product.metafields.custom.product_custom_image_section.value
+  elsif page.metafields.custom.product_custom_image_section != blank
+    assign pmo = page.metafields.custom.product_custom_image_section.value
+  endif
+  assign use_mo = false
+  if pmo != blank
+    assign use_mo = true
+  endif
+
+  # ---- Card list + count ----
+  assign image_lists = pmo.image_lists.value
+  if use_mo
+    assign cards_count = image_lists.size
+  else
+    assign cards_count = section.blocks.size
+  endif
+
+  # ---- Section-level settings (metaobject wins, else section.settings) ----
+  assign container                = pmo.section_width.value    | default: section.settings.container
+  assign padding_full_width       = pmo.padding_container_full_width.value | default: section.settings.padding_full_width 
+  assign swipe                    = pmo.layout_mobile_responsive.value | default: section.settings.custom_image_banner_block_swipe_on_mobile 
+  assign item_distance            = pmo.grid_gap.value         | default: section.settings.item_distance  
+  assign image_ratio              = pmo.image_aspect_ratio.value | default: section.settings.image_ratio   
+  assign custom_image_banner_bg   = pmo.background_color.value | default: section.settings.custom_image_banner_bg
+  assign custom_image_banner_bg_gradient = section.settings.custom_image_banner_bg_gradient
+  assign title_align              = pmo.alignment.value        | default: section.settings.title_align
+  assign custom_image_banner_title = pmo.title.value           | default: section.settings.custom_image_banner_title
+  assign color_title              = pmo.title_color.value      | default: section.settings.color_title
+  assign fontsize_title           = pmo.title_font_size.value  | default: section.settings.fontsize_title
+  assign fontsize_title_mb        = pmo.title_font_size_mobile.value | default: section.settings.fontsize_title_mb
+  assign margin_bottom_title      = pmo.title_margin_bottom.value | default: section.settings.margin_bottom_title
+  assign custom_image_banner_des  = pmo.description.value      | default: section.settings.custom_image_banner_des
+  assign color_des                = pmo.description_color.value | default: section.settings.color_des
+  assign fontsize_des             = pmo.description_font_size.value | default: section.settings.fontsize_des
+
+  # ---- Booleans (never use `default`) ----
+  assign use_swiper_raw = section.settings.use_swiper
+  if use_mo and pmo.use_swiper != blank
+    assign use_swiper_raw = pmo.use_swiper.value           
+  endif
+  assign enable_border_title = section.settings.enable_border_title
+  if use_mo and pmo.enable_border_title != blank
+    assign enable_border_title = pmo.enable_border_title.value
+  endif
+  assign equalize_image_height = section.settings.equalize_image_height
+  if use_mo and pmo.equalize_image_height != blank
+    assign equalize_image_height = pmo.equalize_image_height.value  
+  endif
+
+  # ---- Background image (File on metaobject, image_picker on section) ----
+  assign custom_image_bg_image = section.settings.custom_image_bg_image
+  if pmo.background_image.value != blank
+    assign custom_image_bg_image = pmo.background_image.value
+    if custom_image_bg_image.image != blank
+      assign custom_image_bg_image = custom_image_bg_image.image
     endif
-  -%}
+  endif
+
+  # ---- Swiper enabled? ----
+  assign use_swiper = false
+  if swipe == 'slider' and use_swiper_raw
+    assign use_swiper = true
+  endif
+-%}
+{%- if cards_count > 0 -%}
   <link
     rel="stylesheet"
     href="{{ 'component-custom-image-banner-block.css' | asset_url }}"
@@ -17,25 +90,25 @@
     class="custom-image-banner-block section-block-{{section.id}}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}"
     id="custom-image-banner-{{section.id}}"
   >
-    <div class="{% if section.settings.container == 'fullwidth' %}container-full{% elsif section.settings.container == '1170' %}container-1170{% elsif section.settings.container == '1770' %}container-1770{% else %}container{% endif %}">
-      {%- if section.settings.custom_image_banner_title != blank -%}
-        <div class="halo-block-header text-{{ section.settings.title_align }}">
+    <div class="{% if container == 'fullwidth' %}container-full{% elsif container == '1170' %}container-1170{% elsif container == '1770' %}container-1770{% else %}container{% endif %}">
+      {%- if custom_image_banner_title != blank -%}
+        <div class="halo-block-header text-{{ title_align }}">
           <h3
             class="title{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}"
             {% if settings.banner_animation == 'effect_fade_up' %}
               style="--animation-order: 1;"
             {% endif %}
           >
-            <span class="text">{{ section.settings.custom_image_banner_title }}</span>
+            <span class="text">{{ custom_image_banner_title }}</span>
           </h3>
-          {%- if section.settings.custom_image_banner_des != blank -%}
+          {%- if custom_image_banner_des != blank -%}
             <div
               class="rte subtext-spotlight{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}"
               {% if settings.banner_animation == 'effect_fade_up' %}
                 style="--animation-order: 2;"
               {% endif %}
             >
-              {{ section.settings.custom_image_banner_des }}
+              {{ custom_image_banner_des }}
             </div>
           {%- endif -%}
         </div>
@@ -44,17 +117,170 @@
         <banner-slider-component>
       {%- endif -%}
       <div
-        class="halo-row{% if swipe == 'slider' and use_swiper == false %} slider slider--tablet{% endif %}{% if use_swiper %} cib-swiper swiper{% endif %}{% if section.settings.item_distance == 0 %} not-distance{% endif %}{% if swipe == 'scroll' %} scroll-snap-mobile disable-srollbar{% endif %}"
-        style="--row-distance-style: {{ section.settings.item_distance | prepend: '-' | append: 'px' }};"
+        class="halo-row{% if swipe == 'slider' and use_swiper == false %} slider slider--tablet{% endif %}{% if use_swiper %} cib-swiper swiper{% endif %}{% if item_distance == 0 %} not-distance{% endif %}{% if swipe == 'scroll' %} scroll-snap-mobile disable-srollbar{% endif %}"
+        style="--row-distance-style: {{ item_distance | prepend: '-' | append: 'px' }};"
         {%- if use_swiper -%}
           data-cib-swiper
           data-per-mobile="1.3"
-          data-per-tablet="{% if section.blocks.size < 3 %}{{ section.blocks.size }}{% else %}3{% endif %}"
-          data-per-desktop="{{ section.blocks.size }}"
-          data-space="{{ section.settings.item_distance }}"
+          data-per-tablet="{% if cards_count < 3 %}{{ cards_count }}{% else %}3{% endif %}"
+          data-per-desktop="{{ cards_count }}"
+          data-space="{{ item_distance }}"
         {%- endif -%}
       >
         {%- if use_swiper -%}<div class="swiper-wrapper">{%- endif -%}
+        {%- if use_mo -%}
+          {%- comment -%}
+            METAOBJECT PATH — one card per "Image lists" entry (mirrors the
+            native largeImg block). Child field keys are guessed from labels;
+            VERIFY in Admin and edit here. A wrong key just renders empty.
+            Mapping (metaobject key -> largeImg block id):
+              spacing_bottom->item_spacing, item_border_radius->item_border_radirus,
+              alignment->title_align, content->sub_title,
+              content_align_items->align_items,
+              content_spacing_top_spacing_bottom->align_items_spacing,
+              content_spacing_left_spacing_right->align_items_spacing_lr,
+              enable_border_sub_title->border_sub_title,
+              sub_title_color/font_size/spacing_bottom->color/fontsize/mg_bottom_sub_title,
+              title_color->color_title, title_font_size(_mobile)->fontsize_title(_mb),
+              enable_font_weight_italic->enable_style_italic,
+              title_spacing_bottom(_mobile)->mg_bottom_title(_mb),
+              description*->des*, background_color->bg_color_button,
+              button_background_opacity->bg_opacity_button, border_color->border_color_button,
+              hover_active_color->color_button_hover,
+              hover_active_background_color->bg_color_button_hover,
+              hover_active_border_color->border_color_button_hover,
+              button_text_transform->btn_text_transform, button_font_size->fontsize_btn,
+              icon->btn_icon, image_behavior->image_behavior
+          {%- endcomment -%}
+          {%- for item in image_lists -%}
+            {%- liquid
+              assign card_img = item.image.value
+              if card_img.image != blank
+                assign card_img = card_img.image
+              endif
+              assign card_link = item.link.value
+              assign card_button = item.button.value
+              assign card_title = item.title.value
+              assign card_sub = item.content.value
+              assign card_des = item.description.value
+              assign card_icon = item.icon.value
+              assign card_behavior = item.image_behavior.value
+              assign card_focal = ''
+              if card_img.presentation.focal_point != blank
+                assign card_focal = card_img.presentation.focal_point
+              endif
+            -%}
+            <div
+              class="halo-item{% if use_swiper %} swiper-slide{% elsif swipe == 'slider' %} slider__slide{% endif %} customImageBanner--largeImg"
+              style="--item-distance-style: {{ item_distance | append: 'px' }}; --item-spacing-style: {{ item.spacing_bottom.value | append: 'px' }}; --item-width-style: {{ item.item_width.value }}"
+              data-width="{{ item.item_width.value }}"
+            >
+              <div
+                class="customImageBanner-item content_absolute{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}"
+                {% if settings.banner_animation == 'effect_fade_up' %}
+                  data-cascade style="--animation-order: {{ forloop.index }};"
+                {% endif %}
+              >
+                <div class="img-box{% if card_behavior != blank and card_behavior != 'none' %} animate--{{ card_behavior }} o-hidden{% endif %}">
+                  {%- if card_img != blank -%}
+                    <a
+                      {% if card_link == blank %}
+                        role="link" aria-disabled="true"
+                      {% else %}
+                        href="{{ card_link }}" aria-label="{{ card_button }}"
+                      {% endif %}
+                      class="image-zoom adaptive_height image"
+                      style="{% if card_img.aspect_ratio %}padding-top: {% if card_focal != blank and card_focal != '50.0% 50.0%' %}{{ 1 | divided_by: card_img.aspect_ratio | times: 120 }}%;{% else %}{{ 1 | divided_by: card_img.aspect_ratio | times: 100 }}%;{% endif %}{% endif %} --item-border-radirus-style: {{ item.item_border_radius.value | append: 'px' }}"
+                    >
+                      <img
+                        {% render 'lazyload', preview_img: card_img, enable_rtl: settings.enable_layout_rtl -%}
+                        {% if card_focal != blank and card_focal != '50.0% 50.0%' %}
+                          style="object-position: {{ card_focal }}"
+                        {% endif %}
+                      />
+                      {% if settings.enable_lazyload %}<span class="data-lazy-loading"></span>{% endif %}
+                    </a>
+                  {%- else -%}
+                    <a
+                      {% if card_link == blank %}
+                        role="link" aria-disabled="true"
+                      {% else %}
+                        href="{{ card_link }}"
+                      {% endif %}
+                      class="image-zoom"
+                      style="--item-border-radirus-style: {{ item.item_border_radius.value | append: 'px' }}"
+                    >
+                      {% if item.item_width.value == '33.333333%' %}
+                        <div class="not_img" style="--height_not_img: 920px">590 x 920px</div>
+                      {% else %}
+                        <div class="not_img" style="--height_not_img: 570px">570 x 570px</div>
+                      {% endif %}
+                    </a>
+                  {%- endif -%}
+                </div>
+                {%- if card_sub != blank
+                  or card_title != blank
+                  or card_des != blank
+                  or card_button != blank
+                -%}
+                  <div
+                    class="content customImageBanner-inner text-{{ item.alignment.value }} align-items--{{ item.content_align_items.value }}"
+                    style="--align-items-spacing-style: {{ item.content_spacing_top_spacing_bottom.value | append: 'px' }}; --align-items-spacing-lr-style: {{ item.content_spacing_left_spacing_right.value | append: 'px' }}"
+                  >
+                    {%- if card_sub != blank -%}
+                      <p
+                        class="sub_title custom-text-style{% if item.enable_border_sub_title.value %} has-border{% endif %}"
+                        style="--color-text-style: {{ item.sub_title_color.value }}; --fontsize-text-style: {{ item.sub_title_font_size.value | append: 'px' }}; --mg-bottom-sub-title-style: {{ item.sub_title_spacing_bottom.value | append: 'px' }}"
+                      >
+                        <span>{{ card_sub }}</span>
+                      </p>
+                    {%- endif -%}
+                    {%- if card_title != blank -%}
+                      <h3
+                        class="title custom-text-style"
+                        style="--color-text-style: {{ item.title_color.value }}; --fontsize-text-style: {{ item.title_font_size.value | append: 'px' }}; --fontsize-mobile-text-style: {{ item.title_font_size_mobile.value | append: 'px' }}; --font-text-style: {%- if item.enable_font_weight_italic.value -%}italic{%- else -%}normal{%- endif -%}; --mg-bottom-title-style: {{ item.title_spacing_bottom.value | append: 'px' }}; --mg-bottom-title-style-mb: {{ item.title_spacing_bottom_mobile.value | append: 'px' }};"
+                      >
+                        <a
+                          {% if card_link == blank %}
+                            role="link" aria-disabled="true"
+                          {% else %}
+                            href="{{ card_link }}"
+                          {% endif %}
+                          class="link_title"
+                          ><span>{{ card_title }}</span></a
+                        >
+                      </h3>
+                    {%- endif -%}
+                    {%- if card_des != blank -%}
+                      <div
+                        class="des custom-text-style"
+                        style="--color-text-style: {{ item.description_color.value }}; --fontsize-text-style: {{ item.description_font_size.value | append: 'px' }}; --margin-bottom-des-style: {{ item.description_spacing_bottom.value | append: 'px' }}; --margin-bottom-des-style-mb: {{ item.description_spacing_bottom_mobile.value | append: 'px' }};"
+                      >
+                        {{ card_des }}
+                      </div>
+                    {%- endif -%}
+                    {%- if card_button != blank -%}
+                      <a
+                        {% if card_link == blank %}
+                          role="link" aria-disabled="true"
+                        {% else %}
+                          href="{{ card_link }}" aria-label="{{ card_button }}"
+                        {% endif %}
+                        class="spotlight-button button custom-button-style"
+                        style="--color-button-style: {{ item.button_color.value }}; --bg-color-button-style: {% if item.button_background_opacity.value != blank %}{{ item.background_color.value | color_modify: 'alpha', item.button_background_opacity.value }}{% else %}{{ item.background_color.value }}{% endif %}; --border-color-button-style: {{ item.border_color.value }}; --color-button-hover-style: {{ item.hover_active_color.value }}; --bg-color-button-hover-style: {{ item.hover_active_background_color.value }}; --border-color-button-hover-style: {{ item.hover_active_border_color.value }}; --text-transform-button-style: {{ item.button_text_transform.value }}; --font-size-button-style: {{ item.button_font_size.value | append: 'px' }}; --button-width-style: {{ item.button_width.value | append: 'px' }}"
+                      >
+                        {%- if card_icon != blank -%}
+                          {{ card_icon }}
+                        {%- endif -%}
+                        <span>{{ card_button }}</span>
+                      </a>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- else -%}
         {%- for block in section.blocks -%}
           {%- if block.type == 'smallImg' -%}
             {%- if block.settings.enable_item_1
@@ -65,7 +291,7 @@
               <div
                 class="halo-item{% if use_swiper %} swiper-slide{% elsif swipe == 'slider' %} slider__slide{% endif %} customImageBanner--{{ block.type }}"
                 id="block-{{block.id}}"
-                style="--item-distance-style: {{ section.settings.item_distance | append: 'px' }}; --item-width-style: {{ block.settings.item_width }}"
+                style="--item-distance-style: {{ item_distance | append: 'px' }}; --item-width-style: {{ block.settings.item_width }}"
                 data-width="{{ block.settings.item_width }}"
               >
                 <div
@@ -535,7 +761,7 @@
             <div
               class="halo-item{% if use_swiper %} swiper-slide{% elsif swipe == 'slider' %} slider__slide{% endif %} customImageBanner--{{ block.type }}"
               id="block-{{block.id}}"
-              style="--item-distance-style: {{ section.settings.item_distance | append: 'px' }}; --item-spacing-style: {{ block.settings.item_spacing | append: 'px' }}; --item-width-style: {{ block.settings.item_width }}"
+              style="--item-distance-style: {{ item_distance | append: 'px' }}; --item-spacing-style: {{ block.settings.item_spacing | append: 'px' }}; --item-width-style: {{ block.settings.item_width }}"
               data-width="{{ block.settings.item_width }}"
             >
               <div
@@ -645,15 +871,16 @@
             </div>
           {%- endif -%}
         {%- endfor -%}
+        {%- endif -%}
         {%- if use_swiper -%}</div>{%- endif -%}
       </div>
-      {%- if use_swiper and section.blocks.size > 1 -%}
+      {%- if use_swiper and cards_count > 1 -%}
         <div class="swiper-pagination cib-swiper-pagination"></div>
       {%- endif -%}
-      {%- if swipe == 'slider' and use_swiper == false and section.blocks.size > 1 -%}
+      {%- if swipe == 'slider' and use_swiper == false and cards_count > 1 -%}
         <div class="slider-buttons no-js-hidden{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
-          <ul class="slider-dots {% if section.blocks.size == 2 %}count_2{% endif %}">
-            {%- for block in section.blocks -%}
+          <ul class="slider-dots {% if cards_count == 2 %}count_2{% endif %}">
+            {%- for i in (1..cards_count) -%}
               <li class="dots-item {% if forloop.first %}active{% endif %}">
                 <button name="dots" data-index="{{ forloop.index0 }}">{{ forloop.index }}</button>
               </li>
@@ -668,23 +895,14 @@
   </div>
   <style>
     {%- liquid
-        assign custom_image_banner_bg = section.settings.custom_image_banner_bg
-        assign custom_image_banner_bg_gradient = section.settings.custom_image_banner_bg_gradient
-        assign custom_image_bg_image = section.settings.custom_image_bg_image
-        assign color_title = section.settings.color_title
-        assign fontsize_title = section.settings.fontsize_title
-        assign fontsize_title_mb = section.settings.fontsize_title_mb
-        assign margin_bottom_title = section.settings.margin_bottom_title
-        assign color_des = section.settings.color_des
-        assign fontsize_des = section.settings.fontsize_des
+        # Section colours / sizes already resolved at the top of the file.
+        # Only the top/bottom spacing lives on section.settings (not the metaobject).
         assign mg_top_desktop = section.settings.mg_top_desktop
         assign mg_top_tablet = section.settings.mg_top_tablet
         assign mg_top_mobile = section.settings.mg_top_mobile
         assign mg_bottom_desktop = section.settings.mg_bottom_desktop
         assign mg_bottom_tablet = section.settings.mg_bottom_tablet
         assign mg_bottom_mobile = section.settings.mg_bottom_mobile
-        assign padding_full_width = section.settings.padding_full_width
-        assign enable_border_title = section.settings.enable_border_title
     -%}
     {%- if custom_image_bg_image != blank -%}
         .section-block-{{section.id}}{background: url({{ custom_image_bg_image | img_url: '1920x' }}); background-repeat: repeat-x; background-size: cover;}
@@ -696,11 +914,11 @@
     .section-block-{{section.id}} .halo-block-header .title:before {background-color: {{ color_title }};{% unless enable_border_title %}display: none;{% endunless %}}
     .section-block-{{section.id}} .halo-block-header .title {color: {{ color_title }}; font-size: {{ fontsize_title | append: 'px' }}; margin-bottom: {{ margin_bottom_title | append: 'px' }};{% if enable_border_title %} display: block;{% endif %}}
     .section-block-{{section.id}} .halo-block-header .rte {color: {{ color_des }}; font-size: {{ fontsize_des | append: 'px' }};}
-    {%- if section.settings.container == 'fullwidth' -%}
+    {%- if container == 'fullwidth' -%}
         .custom-image-banner-block {overflow: hidden;}
     {%- endif -%}
-    {%- if section.settings.equalize_image_height and section.settings.image_ratio != blank -%}
-        .section-block-{{section.id}} .customImageBanner-item .image-zoom.adaptive_height {padding-top: 0 !important; height: auto !important; aspect-ratio: {{ section.settings.image_ratio }};}
+    {%- if equalize_image_height and image_ratio != blank -%}
+        .section-block-{{section.id}} .customImageBanner-item .image-zoom.adaptive_height {padding-top: 0 !important; height: auto !important; aspect-ratio: {{ image_ratio }};}
         .section-block-{{section.id}} .customImageBanner-item .adaptive_height img {object-fit: cover !important;}
     {%- endif -%}
     {%- comment -%} Scrim over the lower part of each image so the white block text stays legible. {%- endcomment -%}
@@ -718,7 +936,7 @@
     {%- endif -%}
     @media (min-width: 1200px) {.section-block-{{section.id}} {padding-top: {{ mg_top_desktop | append: 'px' }}; padding-bottom: {{ mg_bottom_desktop | append: 'px' }};}}
     @media (min-width: 1025px) {
-        {%- if section.settings.container == 'fullwidth' -%}
+        {%- if container == 'fullwidth' -%}
             .section-block-{{section.id}} .container-full {padding-left: {{ padding_full_width | append: 'px' }}; padding-right: {{ padding_full_width | append: 'px' }};}
             .custom-image-banner-block {overflow: hidden;}
         {%- endif -%}
@@ -732,12 +950,12 @@
             .section-block-{{section.id}}{background-position: center top;}
         {%- endif -%}
         .section-block-{{section.id}}{overflow: hidden;}
-        {%- if section.settings.container == 'fullwidth' -%}
+        {%- if container == 'fullwidth' -%}
             .section-block-{{section.id}} .container-full {padding-left: 15px;padding-right: 15px}
         {%- endif -%}
     }
     @media (max-width: 767px) {
-        {%- if section.settings.container == 'fullwidth' -%}
+        {%- if container == 'fullwidth' -%}
             .section-block-{{section.id}} .container-full {padding-left: 10px;padding-right: 10px}
             .section-block-{{section.id}} .container-full:has(.cib-swiper) {padding-left: 24px;padding-right: 0}
         {%- endif -%}
@@ -751,7 +969,7 @@
 {%- endif -%}
 {% schema %}
 {
-  "name": "t:sections.custom_image_banner_block.presets.section",
+  "name": "Custom Image Banner JV",
   "class": "sections-custom-image-banner-block",
   "max_blocks": 5,
   "settings": [
@@ -818,7 +1036,6 @@
       "type": "checkbox",
       "id": "use_swiper",
       "label": "Use Swiper",
-      "visible_if": "{{ section.settings.custom_image_banner_block_swipe_on_mobile == 'slider' }}",
       "info": "Only applies when Layout Mobile Responsive is set to Slider. Uses Swiper and shows 1.3 items per view on mobile.",
       "default": false
     },
@@ -2187,7 +2404,7 @@
   ],
   "presets": [
     {
-      "name": "t:sections.custom_image_banner_block.presets.name",
+      "name": "Custom Image Banner JV",
       "blocks": [
         {
           "type": "smallImg"

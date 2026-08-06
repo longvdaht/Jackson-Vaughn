@@ -375,7 +375,7 @@
   }
 </style>
 
-<div class="jv-press">
+<div class="jv-press {% unless use_mo %}{% if section.blocks.size < 1 %}hidden{% endif %}{% endunless %}">
   {%- if pr_heading != blank -%}
     <h2 class="jv-press-heading">{{ pr_heading }}</h2>
   {%- endif -%}

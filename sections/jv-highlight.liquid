@@ -271,7 +271,7 @@
   }
 </style>
 
-<div class="jv-hl{% if hl_image_position == 'right' %} jv-hl--image-right{% endif %}">
+<div class="jv-hl{% if hl_image_position == 'right' %} jv-hl--image-right{% endif %} {% unless use_mo %}{% if section.blocks.size < 1 %}hidden{% endif %}{% endunless %}">
   {%- comment -%} ── Image ── {%- endcomment -%}
   <div class="jv-hl-media{% if hl_image == blank %} jv-hl-media--placeholder{% endif %}">
     {%- if hl_image != blank -%}
