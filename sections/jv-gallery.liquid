@@ -304,7 +304,7 @@
   }
 </style>
 
-<div class="jv-gl">
+<div class="jv-gl {% unless use_mo %}{% if section.blocks.size < 1 %}hidden{% endif %}{% endunless %}">
   {%- if g_heading != blank -%}
     <h2 class="jv-gl-heading">{{ g_heading }}</h2>
   {%- endif -%}

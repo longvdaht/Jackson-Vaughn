@@ -61,15 +61,15 @@
           "type": "scent_profile",
           "source": "{{ product.metafields.custom.scent_profile.value }}",
           "settings": {
-            "label_family": "{{ product.metafields.custom.scent_profile.value.scent_family.value }}",
-            "label_notes": "{{ product.metafields.custom.scent_profile.value.scent_notes.value }}",
-            "label_feels": "{{ product.metafields.custom.scent_profile.value.feels_like.value }}",
+            "label_family": "{{ product.metafields.custom.product_scent_family.value }}",
+            "label_notes": "{{ product.metafields.custom.product_scent_notes.value }}",
+            "label_feels": "{{ product.metafields.custom.product_scent_feels_like.value }}",
             "text_color": "#232323",
             "font_size_desktop": 15,
             "font_size_mobile": 15,
-            "throw_level": "{{ product.metafields.custom.scent_profile.value.throw_level.value }}",
+            "throw_level": "{{ product.metafields.custom.product_throw_level.value }}",
             "alignment": "left",
-            "spacing_top": 32,
+            "spacing_top": 24,
             "spacing_bottom": 0,
             "spacing_top_mb": 24,
             "spacing_bottom_mb": 0,
@@ -92,7 +92,7 @@
             "enable_border_top": false,
             "enable_border_bottom": false,
             "color_border": "#e6e6e6",
-            "spacing_top": 32,
+            "spacing_top": 24,
             "spacing_bottom": 24,
             "spacing_top_mb": 24,
             "spacing_bottom_mb": 24
@@ -528,6 +528,7 @@
       "blocks": {
         "note_nrtYBi": {
           "type": "note",
+          "disabled": true,
           "settings": {
             "icon_image": "shopify://shop_images/icon1.png",
             "label": "Fresh Texas Peaches",
@@ -536,6 +537,7 @@
         },
         "note_8hncf9": {
           "type": "note",
+          "disabled": true,
           "settings": {
             "icon_image": "shopify://shop_images/icon2_48376915-5ed4-431e-9346-3f23a609e70f.png",
             "label": "Sun Ripened Apricot",
@@ -544,6 +546,7 @@
         },
         "note_CqxjpJ": {
           "type": "note",
+          "disabled": true,
           "settings": {
             "icon_image": "shopify://shop_images/icon3.png",
             "label": "Warm Patchouli",
@@ -625,6 +628,7 @@
       "blocks": {
         "image_z3zE4i": {
           "type": "image",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/745f038e0998a3efd364155cd2c20d3d1fe6b323.jpg",
             "link": ""
@@ -632,6 +636,7 @@
         },
         "image_TcrMap": {
           "type": "image",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/7b66b120b42ec72e16642e469cdd90d33ba7fc97.jpg",
             "link": ""
@@ -639,6 +644,7 @@
         },
         "image_Kt4gNJ": {
           "type": "image",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/3afe48d029d5b875d480f20553924af6b55fcfd4.jpg",
             "link": ""
@@ -646,6 +652,7 @@
         },
         "image_Fe4CQn": {
           "type": "image",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/9bd7a2d4bbb8f3df2dbcda93bbd6f6aca56d80ef.jpg",
             "link": ""
@@ -653,6 +660,7 @@
         },
         "image_bgqxA9": {
           "type": "image",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/916c76aa51c337ee8339b2a4574d25ea54891380.jpg",
             "link": ""
@@ -660,6 +668,7 @@
         },
         "image_HeWbCK": {
           "type": "image",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/745f038e0998a3efd364155cd2c20d3d1fe6b323.jpg",
             "link": ""
@@ -720,8 +729,8 @@
         "video_height": "54",
         "video_height_mb": "100%",
         "style_video": "youtube",
-        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
-        "video_url_mb": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "video_url": "",
+        "video_url_mb": "",
         "url_mp4": "",
         "url_mp4_mb": "",
         "description": "",
@@ -764,6 +773,7 @@
       "blocks": {
         "care_item_HAUD49": {
           "type": "care_item",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/a8584e210cb992a5d3109934847da945bac9c247.jpg",
             "heading": "Let’s Start With The Wick",
@@ -774,6 +784,7 @@
         },
         "care_item_qt8gYU": {
           "type": "care_item",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/265a3841deb5f332f889040ac22dbf129c9f33f8.jpg",
             "heading": "Burn, Baby, Burn",
@@ -784,6 +795,7 @@
         },
         "care_item_tpgJR6": {
           "type": "care_item",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/4d578cc9158cc6e6c481b1b8e90eb2f6801f0764.jpg",
             "heading": "Safety First",
@@ -794,6 +806,7 @@
         },
         "care_item_XQBmeb": {
           "type": "care_item",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/0dcfb6541d0e5f806ac82ae7171fbf381a8e4c71.png",
             "heading": "Stop, Look, and Listen",
@@ -877,6 +890,7 @@
       "blocks": {
         "press_item_adJxPm": {
           "type": "press_item",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Texas_Heritage_Logo_bf189311-790a-4b50-87ed-94ab14d4e11d.png",
             "description": "<p>“Jackson Vaughn candles bring a little Texas into any home with aromas that capture the spirit of the Lone Star State.”</p>",
@@ -885,6 +899,7 @@
         },
         "press_item_RepLQ8": {
           "type": "press_item",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Texas_Heritage_Logo_bf189311-790a-4b50-87ed-94ab14d4e11d.png",
             "description": "<p>“Jackson Vaughn candles bring a little Texas into any home with aromas that capture the spirit of the Lone Star State.”</p>",
@@ -893,6 +908,7 @@
         },
         "press_item_8J8KkX": {
           "type": "press_item",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Logo1.png",
             "description": "<p>““Dallas” is one of the beloved neighborhood candle shop’s bestsellers for good reason.”</p>",
@@ -901,6 +917,7 @@
         },
         "press_item_GVggay": {
           "type": "press_item",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Logo2_63ed4fd2-d17c-4c03-8750-7cb44163fc7e.png",
             "description": "<p>“A family-owned business known for their vast candle collection, cozy home goods, and holiday items.”</p>",
@@ -909,6 +926,7 @@
         },
         "press_item_N4PtYG": {
           "type": "press_item",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Logo3_4d877d3b-71bd-4ee2-ae35-f92fd50f391f.png",
             "description": "<p>“Our dream was to collaborate with By Jackson Vaughn, and you could pinch us because we still can’t believe it came true!”</p>",
@@ -917,6 +935,7 @@
         },
         "press_item_43tQGJ": {
           "type": "press_item",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Logo_531bd46f-48bc-4535-830a-b9ebfbabab22.png",
             "description": "<p>“For the scent obsessed. This hand-poured artisan soy wax-blend candle features a natural cotton wick, available in nine or 16 ounce jars for a 40-60 hour burn time.”</p>",
@@ -971,6 +990,7 @@
       "blocks": {
         "large_img_MrkbiU": {
           "type": "largeImg",
+          "disabled": true,
           "settings": {
             "item_width": "20%",
             "item_border_radirus": 10,
@@ -1017,6 +1037,7 @@
         },
         "large_img_AgGdnr": {
           "type": "largeImg",
+          "disabled": true,
           "settings": {
             "item_width": "20%",
             "item_border_radirus": 10,
@@ -1063,6 +1084,7 @@
         },
         "large_img_zQXnGb": {
           "type": "largeImg",
+          "disabled": true,
           "settings": {
             "item_width": "20%",
             "item_border_radirus": 10,
@@ -1109,6 +1131,7 @@
         },
         "large_img_MY4Q8X": {
           "type": "largeImg",
+          "disabled": true,
           "settings": {
             "item_width": "20%",
             "item_border_radirus": 10,
@@ -1155,6 +1178,7 @@
         },
         "large_img_CthnNp": {
           "type": "largeImg",
+          "disabled": true,
           "settings": {
             "item_width": "20%",
             "item_border_radirus": 10,
@@ -1207,7 +1231,7 @@
         "large_img_MY4Q8X",
         "large_img_CthnNp"
       ],
-      "name": "t:sections.custom_image_banner_block.presets.name",
+      "name": "Custom Image Banner JV",
       "settings": {
         "container": "fullwidth",
         "padding_full_width": 20,

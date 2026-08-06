@@ -1,73 +1,205 @@
 {{ 'video-section.css' | asset_url | stylesheet_tag }}
 
+{%- comment -%}
+  ============================================================================
+  METAOBJECT-DRIVEN CONTENT  (custom.video_section)
+  ----------------------------------------------------------------------------
+  Every value = vmo.<field_key>.value | default: section.settings.<id>
+  If a metaobject field is set, it wins; otherwise the theme-editor value is
+  used. A WRONG guessed key just falls back to section.settings (no breakage),
+  so verify the keys marked "VERIFY" against the metaobject definition in Admin
+  and fix them here in this single block if needed.
+  ============================================================================
+{%- endcomment -%}
 {%- liquid
-  assign autoVideo = section.settings.autoplay
-  assign heading = section.settings.heading
-  assign text = section.settings.text
+  # ---- Resolve the metaobject (section picker → product → page) ----
+  assign vmo = nil
+  if section.settings.video_section != blank
+    assign vmo = section.settings.video_section
+  elsif product.metafields.custom.product_video_section != blank
+    assign vmo = product.metafields.custom.product_video_section.value
+  elsif page.metafields.custom.product_video_section != blank
+    assign vmo = page.metafields.custom.product_video_section.value
+  endif
 
-  assign content_width = section.settings.content_width
-  assign align = section.settings.align
-  assign position = section.settings.position
+  # ---- General / layout ----
+  assign container            = vmo.section_width.value        | default: section.settings.container
+  assign spotlight_bg         = vmo.background_color.value     | default: section.settings.spotlight_bg
+  assign spotlight_bg_gradient = section.settings.spotlight_bg_gradient
+  assign spotlight_bg_image   = section.settings.spotlight_bg_image
+  if vmo.background_image.value != blank
+    assign spotlight_bg_image = vmo.background_image.value
+    if spotlight_bg_image.image != blank
+      assign spotlight_bg_image = spotlight_bg_image.image
+    endif
+  endif
 
-  assign heading_font_size = section.settings.font_size_heading
-  assign heading_font_size_mb = section.settings.font_size_heading_mb
-  assign margin_bottom_heading = section.settings.margin_bottom_heading
-  assign heading_color = section.settings.color_heading
-  assign des_font_size = section.settings.font_size_des
-  assign des_font_size_mb = section.settings.font_size_des_mb
-  assign des_color = section.settings.color_des_content
-  assign margin_bottom_des = section.settings.margin_bottom_des
-  assign btn_text = section.settings.btn_text
-  assign link = section.settings.link
-  assign button_color = section.settings.button_color
-  assign button_border = section.settings.button_border
-  assign button_background = section.settings.button_background
-  assign button_background_gradient = section.settings.button_background_gradient
-  assign button_color_hover = section.settings.button_color_hover
-  assign button_border_hover = section.settings.button_border_hover
-  assign button_background_hover = section.settings.button_background_hover
-  assign button_background_gradient_hover = section.settings.button_background_gradient_hover
-  assign button_width = section.settings.button_width
+  # ---- Section title / description (above the video) ----
+  assign video_block_title = vmo.title.value               | default: section.settingsvideo_block_title
+  assign color_title       = vmo.title_color.value         | default: section.settings.color_title
+  assign fontsize_title    = vmo.title_font_size.value      | default: section.settings.fontsize_title
+  assign fontsize_title_mb = vmo.title_font_size_mobile.value | default: section.settings.fontsize_title_mb
+  assign margin_bottom_title = vmo.title_margin_bottom.value | default: section.settings.margin_bottom_title
+  assign video_block_des   = vmo.description.value          | default: section.settings.video_block_des
+  assign color_des         = vmo.description_color.value     | default: section.settings.color_des
+  assign fontsize_des      = vmo.description_font_size.value  | default: section.settings.fontsize_des
+  assign title_align       = vmo.alignment.value            | default: section.settings.title_align
 
+  # ---- Video ----
+  assign style_video     = vmo.style_video.value          | default: section.settings.style_video
+  assign url_mp4         = vmo.url_mp4_video.value         | default: section.settings.url_mp4         
+  assign url_mp4_mb      = vmo.url_mp4_mobile_video.value  | default: section.settings.url_mp4_mb        
+  assign video_height    = vmo.video_height.value          | default: section.settings.video_height
+  assign video_height_mb = vmo.video_height_on_mobile.value | default: section.settings.video_height_mb
+  assign position_icon   = vmo.position_icon.value         | default: section.settings.position_icon
+  assign video_alt       = vmo.video_alt_text.value        | default: section.settings.description
+
+  # ---- Cover image (metaobject File → normalise to an image object) ----
+  assign cover_image = cover_image
+  if vmo.cover_image.value != blank
+    assign cover_image = vmo.cover_image.value
+    if cover_image.image != blank
+      assign cover_image = cover_image.image
+    endif
+  endif
+
+  # ---- Auto play (boolean — never use `default`, false is a real value) ----
+  assign auto_video = section.settings.autoplay
+  if vmo != blank and vmo.auto_play_video != blank
+    assign auto_video = vmo.auto_play_video.value
+  endif
+
+  # ---- Full width (boolean) ----
+  assign full_width = section.settings.full_width
+  if vmo != blank and vmo.make_section_full_width != blank
+    assign full_width = vmo.make_section_full_width.value
+  endif
+
+  # ---- Content box (overlay) ----
+  assign heading              = vmo.content_title.value                 | default: section.settings.heading
+  assign heading_font_size    = vmo.content_title_font_size.value       | default: section.settings.font_size_heading
+  assign heading_font_size_mb = vmo.content_title_font_size_mobile.value | default: section.settings.font_size_heading_mb
+  assign margin_bottom_heading = vmo.content_title_spacing_bottom.value | default: section.settings.margin_bottom_heading
+  assign heading_color        = vmo.content_title_color.value           | default: section.settings.color_heading
+  assign text                 = vmo.content_description.value           | default: section.settings.text
+  assign des_font_size        = vmo.content_description_font_size.value  | default: section.settings.font_size_des
+  assign des_font_size_mb     = vmo.content_description_font_size_mobile.value | default: section.settings.font_size_des_mb
+  assign margin_bottom_des    = vmo.description_spacing_bottom.value     | default: section.settings.margin_bottom_des
+  assign des_color            = vmo.content_description_color.value      | default: section.settings.color_des_content
+  assign content_width        = vmo.content_max_width.value             | default: section.settings.content_width
+  assign align                = vmo.content_alignment.value             | default: section.settings.align
+  assign position             = vmo.content_position.value              | default: section.settings.position
+
+  # ---- Button ----
+  assign btn_text     = vmo.button_text.value  | default: section.settings.btn_text
+  assign link         = vmo.button_link.value  | default: section.settings.link
+  assign button_width = vmo.button_width.value | default: section.settings.button_width
+  # Button colours — VERIFY these keys against the metaobject definition
+  assign button_color                     = vmo.button_color.value                     | default: section.settings.button_color
+  assign button_border                    = vmo.button_border_color.value              | default: section.settings.button_border
+  assign button_background                = vmo.button_background_color.value           | default: section.settings.button_background
+  assign button_background_gradient       = vmo.button_background_gradient.value        | default: section.settings.button_background_gradient
+  assign button_color_hover               = vmo.button_hover_active_color.value         | default: section.settings.button_color_hover
+  assign button_border_hover              = vmo.button_hover_active_border_color.value  | default: section.settings.button_border_hover
+  assign button_background_hover          = vmo.button_hover_active_background_color.value | default: section.settings.button_background_hover
+  assign button_background_gradient_hover = vmo.button_hover_active_background_gradient.value | default: section.settings.button_background_gradient_hover
+
+  # ---- Spacing (top / bottom) — VERIFY keys ----
+  assign mg_top_desktop    = vmo.spacing_top_desktop.value    | default: section.settings.mg_top_desktop
+  assign mg_top_tablet     = vmo.spacing_top_tablet.value     | default: section.settings.mg_top_tablet
+  assign mg_top_mobile     = vmo.spacing_top_mobile.value     | default: section.settings.mg_top_mobile
+  assign mg_bottom_desktop = vmo.spacing_bottom_desktop.value | default: section.settings.mg_bottom_desktop
+  assign mg_bottom_tablet  = vmo.spacing_bottom_tablet.value  | default: section.settings.mg_bottom_tablet
+  assign mg_bottom_mobile  = vmo.spacing_bottom_mobile.value  | default: section.settings.mg_bottom_mobile
+
+  # ---- Derive video id + provider from the plain URL string ----
+  assign yt_id = ''
+  assign vm_id = ''
+  assign video_provider = 'youtube'
+  assign url_video_mo    = vmo.url_video.value
+  assign url_video_mo_mb = vmo.url_video_mobile.value
+  if url_video_mo != blank
+    if url_video_mo contains 'youtu'
+      assign video_provider = 'youtube'
+      assign yt_id = url_video_mo | split: 'v=' | last | split: '&' | first | split: '/' | last
+    elsif url_video_mo contains 'vimeo'
+      assign video_provider = 'vimeo'
+      assign vm_id = url_video_mo | split: '?' | first | split: '/' | last
+    endif
+  endif
+  # Fallback to the theme-editor video_url object when no metaobject URL
+  if url_video_mo == blank
+    assign video_provider = section.settings.video_url.type
+    assign yt_id = section.settings.video_url.id
+    assign vm_id = section.settings.video_url.id
+  endif
+  # Mobile id
+  assign yt_id_mb = ''
+  assign vm_id_mb = ''
+  assign has_video_mb = false
+  if url_video_mo_mb != blank
+    assign has_video_mb = true
+    if url_video_mo_mb contains 'youtu'
+      assign yt_id_mb = url_video_mo_mb | split: 'v=' | last | split: '&' | first | split: '/' | last
+    elsif url_video_mo_mb contains 'vimeo'
+      assign vm_id_mb = url_video_mo_mb | split: '?' | first | split: '/' | last
+    endif
+  elsif section.settings.video_url_mb != blank
+    assign has_video_mb = true
+    assign yt_id_mb = section.settings.video_url_mb.id
+    assign vm_id_mb = section.settings.video_url_mb.id
+  endif
+
+  if section.settings.video_url_mb == blank and section.settings.video_url == blank and section.settings.url_mp4 == blank and section.settings.url_mp4_mb == blank
+    assign no_video = true
+  endif
+
+  # ---- Helpers for noscript link + deferred-media id ----
+  assign video_href = url_video_mo | default: section.settings.video_url
+  if video_provider == 'vimeo'
+    assign video_media_id = vm_id
+  else
+    assign video_media_id = yt_id
+  endif
 -%}
-<div class="video-section section-block-{{section.id}}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" allow-transparent-header data-loader-script="{%- if autoVideo -%}{{ 'autoplay-video.js' | asset_url }}{%- else -%}{{ 'deferred-media.js' | asset_url }}{%- endif -%}">
-  <div class="{% if section.settings.container == 'fullwidth' %}container-full{% elsif section.settings.container == '1770' %}container-1770{% elsif section.settings.container == '1170' %}container-1170{% else %}container{% endif %}">
-      {% if section.settings.video_block_title != blank %}
-          <div class="halo-block-header text-{{ section.settings.title_align }}">
-              <h3 class="title{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="--margin-bottom-title: {{ section.settings.mg_bottom_title | append: 'px' }}">
+<div class="{% if vmo == blank %}{% if no_video %}hidden{% endif %}{% endif %} video-section section-block-{{section.id}}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" allow-transparent-header data-loader-script="{%- if autoVideo -%}{{ 'autoplay-video.js' | asset_url }}{%- else -%}{{ 'deferred-media.js' | asset_url }}{%- endif -%}">
+  <div class="{% if container == 'fullwidth' %}container-full{% elsif container == '1770' %}container-1770{% elsif container == '1170' %}container-1170{% else %}container{% endif %}">
+      {% if video_block_title != blank %}
+          <div class="halo-block-header text-{{ title_align }}">
+              <h3 class="title{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="--margin-bottom-title: {{ margin_bottom_title | append: 'px' }}">
                   <span class="text">
-                  {{ section.settings.video_block_title }}
+                  {{ video_block_title }}
                   </span>
               </h3>
-              {% if section.settings.video_block_des != blank %}
+              {% if video_block_des != blank %}
                   <div class="subtext-video rte{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
-                      {{ section.settings.video_block_des }}
+                      {{ video_block_des }}
                   </div>        
               {% endif %}
           </div>
       {% endif %}
       <noscript>
         <div class="video-section__media"
-          {% if section.settings.cover_image != blank %} style="padding-bottom: {{ 1 | divided_by: section.settings.cover_image.aspect_ratio | times: 100 }}%;"{% endif %}
+          {% if cover_image != blank %} style="padding-bottom: {{ 1 | divided_by: cover_image.aspect_ratio | times: 100 }}%;"{% endif %}
         >
-          <a {% if section.settings.video_url == blank %} role="link" aria-disabled="true"{% else %} href="{{ section.settings.video_url }}"{% endif %} class="video-section__poster media media--transparent media--landscape{% if section.settings.cover_image == blank %} video-section__placeholder{% endif %}">
-            {%- if section.settings.cover_image != blank -%}
+          <a {% if video_href == blank %} role="link" aria-disabled="true"{% else %} href="{{ video_href }}"{% endif %} class="video-section__poster media media--transparent media--landscape{% if cover_image == blank %} video-section__placeholder{% endif %}">
+            {%- if cover_image != blank -%}
               <img
-                srcset="{%- if section.settings.cover_image.width >= 375 -%}{{ section.settings.cover_image | img_url: '375x' }} 375w,{%- endif -%}
-                  {%- if section.settings.cover_image.width >= 750 -%}{{ section.settings.cover_image | img_url: '750x' }} 750w,{%- endif -%}
-                  {%- if section.settings.cover_image.width >= 1100 -%}{{ section.settings.cover_image | img_url: '1100x' }} 1100w,{%- endif -%}
-                  {%- if section.settings.cover_image.width >= 1500 -%}{{ section.settings.cover_image | img_url: '1500x' }} 1500w,{%- endif -%}
-                  {%- if section.settings.cover_image.width >= 1780 -%}{{ section.settings.cover_image | img_url: '1780x' }} 1780w,{%- endif -%}
-                  {%- if section.settings.cover_image.width >= 2000 -%}{{ section.settings.cover_image | img_url: '2000x' }} 2000w,{%- endif -%}
-                  {%- if section.settings.cover_image.width >= 3000 -%}{{ section.settings.cover_image | img_url: '3000x' }} 3000w,{%- endif -%}
-                  {%- if section.settings.cover_image.width >= 3840 -%}{{ section.settings.cover_image | img_url: '3840x' }} 3840w,{%- endif -%}
-                  {{ section.settings.cover_image | img_url: 'master' }} {{ section.settings.cover_image.width }}w"
-                src="{{ section.settings.cover_image | img_url: '1920x' }}"
-                sizes="{% if section.settings.full_width %}100vw{% else %}(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px, (min-width: 750px) calc(100vw - 10rem), 100vw{% endif %}"
-                alt="{{ 'sections.video.load_video' | t: description: section.settings.description | escape }}"
+                srcset="{%- if cover_image.width >= 375 -%}{{ cover_image | img_url: '375x' }} 375w,{%- endif -%}
+                  {%- if cover_image.width >= 750 -%}{{ cover_image | img_url: '750x' }} 750w,{%- endif -%}
+                  {%- if cover_image.width >= 1100 -%}{{ cover_image | img_url: '1100x' }} 1100w,{%- endif -%}
+                  {%- if cover_image.width >= 1500 -%}{{ cover_image | img_url: '1500x' }} 1500w,{%- endif -%}
+                  {%- if cover_image.width >= 1780 -%}{{ cover_image | img_url: '1780x' }} 1780w,{%- endif -%}
+                  {%- if cover_image.width >= 2000 -%}{{ cover_image | img_url: '2000x' }} 2000w,{%- endif -%}
+                  {%- if cover_image.width >= 3000 -%}{{ cover_image | img_url: '3000x' }} 3000w,{%- endif -%}
+                  {%- if cover_image.width >= 3840 -%}{{ cover_image | img_url: '3840x' }} 3840w,{%- endif -%}
+                  {{ cover_image | img_url: 'master' }} {{ cover_image.width }}w"
+                src="{{ cover_image | img_url: '1920x' }}"
+                sizes="{% if full_width %}100vw{% else %}(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px, (min-width: 750px) calc(100vw - 10rem), 100vw{% endif %}"
+                alt="{{ 'sections.video.load_video' | t: description: video_alt | escape }}"
                 {% unless settings.enable_layout_rtl %} loading="lazy"{% endunless %}
-                width="{{ section.settings.cover_image.width }}"
-                height="{{ section.settings.cover_image.height }}"
+                width="{{ cover_image.width }}"
+                height="{{ cover_image.height }}"
               >
             {%- else -%}
               {{ 'collection-2' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
@@ -75,41 +207,41 @@
           </a>
         </div>
       </noscript>
-      <deferred-media class="video-section__media deferred-media no-js-hidden{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" data-media-id="{{ section.settings.video_url.id }}"
-        {% if section.settings.cover_image != blank %} style="padding-bottom: {{ section.settings.video_height }}%;--video_height_mb: {{ section.settings.video_height_mb }}%;"{% endif %}
+      <deferred-media class="video-section__media deferred-media no-js-hidden{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" data-media-id="{{ video_media_id }}"
+        {% if cover_image != blank %} style="padding-bottom: {{ video_height }}%;--video_height_mb: {{ video_height_mb }}%;"{% endif %}
       >
         <button
-          id="Deferred-Poster-Modal-{{ section.settings.video_url.id }}"
+          id="Deferred-Poster-Modal-{{ video_media_id }}"
           class="video-section__poster media deferred-media__poster media--landscape"
           type="button"
           {% if autoVideo %}
             style="display: none"
           {% endif %}
         >
-          {%- if section.settings.cover_image != blank -%}
+          {%- if cover_image != blank -%}
             <img
-              srcset="{%- if section.settings.cover_image.width >= 375 -%}{{ section.settings.cover_image | img_url: '375x' }} 375w,{%- endif -%}
-                {%- if section.settings.cover_image.width >= 750 -%}{{ section.settings.cover_image | img_url: '750x' }} 750w,{%- endif -%}
-                {%- if section.settings.cover_image.width >= 1100 -%}{{ section.settings.cover_image | img_url: '1100x' }} 1100w,{%- endif -%}
-                {%- if section.settings.cover_image.width >= 1500 -%}{{ section.settings.cover_image | img_url: '1500x' }} 1500w,{%- endif -%}
-                {%- if section.settings.cover_image.width >= 1780 -%}{{ section.settings.cover_image | img_url: '1780x' }} 1780w,{%- endif -%}
-                {%- if section.settings.cover_image.width >= 2000 -%}{{ section.settings.cover_image | img_url: '2000x' }} 2000w,{%- endif -%}
-                {%- if section.settings.cover_image.width >= 3000 -%}{{ section.settings.cover_image | img_url: '3000x' }} 3000w,{%- endif -%}
-                {%- if section.settings.cover_image.width >= 3840 -%}{{ section.settings.cover_image | img_url: '3840x' }} 3840w,{%- endif -%}
-                {{ section.settings.cover_image | img_url: 'master' }} {{ section.settings.cover_image.width }}w"
-              src="{{ section.settings.cover_image | img_url: '1920x' }}"
-              sizes="{% if section.settings.full_width %}100vw{% else %}(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px, (min-width: 750px) calc(100vw - 10rem), 100vw{% endif %}"
-              alt="{{ 'sections.video.load_video' | t: description: section.settings.description | escape }}"
+              srcset="{%- if cover_image.width >= 375 -%}{{ cover_image | img_url: '375x' }} 375w,{%- endif -%}
+                {%- if cover_image.width >= 750 -%}{{ cover_image | img_url: '750x' }} 750w,{%- endif -%}
+                {%- if cover_image.width >= 1100 -%}{{ cover_image | img_url: '1100x' }} 1100w,{%- endif -%}
+                {%- if cover_image.width >= 1500 -%}{{ cover_image | img_url: '1500x' }} 1500w,{%- endif -%}
+                {%- if cover_image.width >= 1780 -%}{{ cover_image | img_url: '1780x' }} 1780w,{%- endif -%}
+                {%- if cover_image.width >= 2000 -%}{{ cover_image | img_url: '2000x' }} 2000w,{%- endif -%}
+                {%- if cover_image.width >= 3000 -%}{{ cover_image | img_url: '3000x' }} 3000w,{%- endif -%}
+                {%- if cover_image.width >= 3840 -%}{{ cover_image | img_url: '3840x' }} 3840w,{%- endif -%}
+                {{ cover_image | img_url: 'master' }} {{ cover_image.width }}w"
+              src="{{ cover_image | img_url: '1920x' }}"
+              sizes="{% if full_width %}100vw{% else %}(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px, (min-width: 750px) calc(100vw - 10rem), 100vw{% endif %}"
+              alt="{{ 'sections.video.load_video' | t: description: video_alt | escape }}"
               {% unless settings.enable_layout_rtl %} loading="lazy"{% endunless %}
-              width="{{ section.settings.cover_image.width }}"
-              height="{{ section.settings.cover_image.height }}"
+              width="{{ cover_image.width }}"
+              height="{{ cover_image.height }}"
             >
           {%- else -%}
             <div class="not_img" style="--height_not_img: 100%">
               {{ 'collection-2' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
             </div>
           {%- endif -%}
-          <span class="deferred-media__poster-button motion-reduce icon-position-{{section.settings.position_icon}}{% if heading != blank or text != blank %} enable_content{% endif %}">
+          <span class="deferred-media__poster-button motion-reduce icon-position-{{position_icon}}{% if heading != blank or text != blank %} enable_content{% endif %}">
             {%- render 'icon-play' -%}
           </span>
         </button>
@@ -138,25 +270,25 @@
 
 
         <{%- if autoVideo -%}div{%- else -%}template{%- endif -%}>
-            {% if section.settings.style_video == 'youtube' %}
-                {%- if section.settings.video_url.type == 'youtube' -%}
-                    <iframe src="https://www.youtube.com/embed/{{ section.settings.video_url.id }}?enablejsapi=1&modestbranding=1&autohide=1&showinfo=0&controls=0&mute=1&autoplay=1&loop=1&playlist={{section.settings.video_url.id}}" class="js-youtube{% if section.settings.video_url_mb != blank %} slide-pc{% endif %}" allow="autoplay; loop; encrypted-media" allowfullscreen title="{{ section.settings.description | escape }}"></iframe>
-                    {%- if section.settings.video_url_mb != blank -%}
-                        <iframe src="https://www.youtube.com/embed/{{ section.settings.video_url_mb.id }}?enablejsapi=1&modestbranding=1&autohide=1&showinfo=0&controls=0&mute=1&autoplay=1&loop=1&playlist={{section.settings.video_url_mb.id}}" class="js-youtube slide-mb" allow="autoplay; loop; encrypted-media" allowfullscreen title="{{ section.settings.description | escape }}"></iframe>
+            {% if style_video == 'youtube' %}
+                {%- if video_provider == 'youtube' -%}
+                    <iframe src="https://www.youtube.com/embed/{{ yt_id }}?enablejsapi=1&modestbranding=1&autohide=1&showinfo=0&controls=0&mute=1&autoplay=1&loop=1&playlist={{ yt_id }}" class="js-youtube{% if has_video_mb %} slide-pc{% endif %}" allow="autoplay; loop; encrypted-media" allowfullscreen title="{{ video_alt | escape }}"></iframe>
+                    {%- if has_video_mb -%}
+                        <iframe src="https://www.youtube.com/embed/{{ yt_id_mb }}?enablejsapi=1&modestbranding=1&autohide=1&showinfo=0&controls=0&mute=1&autoplay=1&loop=1&playlist={{ yt_id_mb }}" class="js-youtube slide-mb" allow="autoplay; loop; encrypted-media" allowfullscreen title="{{ video_alt | escape }}"></iframe>
                     {%- endif -%}
                 {%- else -%}
-                    <iframe src="https://player.vimeo.com/video/{{ section.settings.video_url.id }}?autoplay=1&title=0&byline=0&portrait=0&mute=1&loop=1&autopause=0&playlist={{section.settings.video_url.id}}" class="js-vimeo{% if section.settings.video_url_mb != blank %} slide-pc{% endif %}" allow="autoplay; encrypted-media" webkitallowfullscreen mozallowfullscreen allowfullscreen title="{{ section.settings.description | escape }}"></iframe>
-                    {%- if section.settings.video_url_mb != blank -%}
-                        <iframe src="https://player.vimeo.com/video/{{ section.settings.video_url_mb.id }}?autoplay=1&title=0&byline=0&portrait=0&mute=1&loop=1&autopause=0&playlist={{section.settings.video_url_mb.id}}" class="js-vimeo slide-mb" allow="autoplay; encrypted-media" webkitallowfullscreen mozallowfullscreen allowfullscreen title="{{ section.settings.description | escape }}"></iframe>
+                    <iframe src="https://player.vimeo.com/video/{{ vm_id }}?autoplay=1&title=0&byline=0&portrait=0&mute=1&loop=1&autopause=0&playlist={{ vm_id }}" class="js-vimeo{% if has_video_mb %} slide-pc{% endif %}" allow="autoplay; encrypted-media" webkitallowfullscreen mozallowfullscreen allowfullscreen title="{{ video_alt | escape }}"></iframe>
+                    {%- if has_video_mb -%}
+                        <iframe src="https://player.vimeo.com/video/{{ vm_id_mb }}?autoplay=1&title=0&byline=0&portrait=0&mute=1&loop=1&autopause=0&playlist={{ vm_id_mb }}" class="js-vimeo slide-mb" allow="autoplay; encrypted-media" webkitallowfullscreen mozallowfullscreen allowfullscreen title="{{ video_alt | escape }}"></iframe>
                     {%- endif -%}
                 {%- endif -%}
             {%- else -%}
-                <video class="js-video{% if section.settings.url_mp4_mb != blank %} slide-pc{% endif %}" muted playsinline preload="none" autoplay loop controls>
-                    <source type="video/mp4" src="{{ section.settings.url_mp4 }}">
+                <video class="js-video{% if url_mp4_mb != blank %} slide-pc{% endif %}" muted playsinline preload="none" autoplay loop controls>
+                    <source type="video/mp4" src="{{ url_mp4 }}">
                 </video>
-                {%- if section.settings.url_mp4_mb != blank -%}
+                {%- if url_mp4_mb != blank -%}
                   <video class="js-video slide-mb" muted playsinline preload="none" autoplay loop controls>
-                    <source type="video/mp4" src="{{ section.settings.url_mp4_mb }}">
+                    <source type="video/mp4" src="{{ url_mp4_mb }}">
                   </video>
                 {%- endif -%}
           {% endif %}
@@ -166,28 +298,10 @@
   
 </div>
 <style>
-    {%- liquid
-        assign spotlight_bg = section.settings.spotlight_bg
-        assign spotlight_bg_gradient = section.settings.spotlight_bg_gradient
-        assign spotlight_bg_image = section.settings.spotlight_bg_image
-
-        assign color_title = section.settings.color_title
-        assign fontsize_title = section.settings.fontsize_title
-        assign fontsize_title_mb = section.settings.fontsize_title_mb
-        assign margin_bottom_title = section.settings.margin_bottom_title
-
-        assign color_des = section.settings.color_des
-        assign fontsize_des = section.settings.fontsize_des
-
-        assign mg_top_desktop = section.settings.mg_top_desktop
-        assign mg_top_tablet = section.settings.mg_top_tablet
-        assign mg_top_mobile = section.settings.mg_top_mobile
-
-        assign mg_bottom_desktop = section.settings.mg_bottom_desktop
-        assign mg_bottom_tablet = section.settings.mg_bottom_tablet
-        assign mg_bottom_mobile = section.settings.mg_bottom_mobile
-
-    -%}
+    {%- comment -%}
+      All style values (spotlight_bg, colours, font sizes, margins/spacing)
+      are already resolved in the metaobject block at the top of this file.
+    {%- endcomment -%}
 
     {% if spotlight_bg_image != blank %}
         .section-block-{{section.id}}{
@@ -253,6 +367,7 @@
         }
     }
 </style>
+
 {% schema %}
 {
   "name": "t:sections.video.name",
