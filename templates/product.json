@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{
+ {
   "sections": {
     "main": {
       "type": "main-product",
@@ -61,15 +61,15 @@
           "type": "scent_profile",
           "source": "{{ product.metafields.custom.scent_profile.value }}",
           "settings": {
-            "label_family": "{{ product.metafields.custom.scent_profile.value.scent_family.value }}",
-            "label_notes": "{{ product.metafields.custom.scent_profile.value.scent_notes.value }}",
-            "label_feels": "{{ product.metafields.custom.scent_profile.value.feels_like.value }}",
+            "label_family": "{{ product.metafields.custom.product_scent_family.value }}",
+            "label_notes": "{{ product.metafields.custom.product_scent_notes.value }}",
+            "label_feels": "{{ product.metafields.custom.product_scent_feels_like.value }}",
             "text_color": "#232323",
             "font_size_desktop": 15,
             "font_size_mobile": 15,
-            "throw_level": "{{ product.metafields.custom.scent_profile.value.throw_level.value }}",
+            "throw_level": "{{ product.metafields.custom.product_throw_level.value }}",
             "alignment": "left",
-            "spacing_top": 32,
+            "spacing_top": 24,
             "spacing_bottom": 0,
             "spacing_top_mb": 24,
             "spacing_bottom_mb": 0,
@@ -92,7 +92,7 @@
             "enable_border_top": false,
             "enable_border_bottom": false,
             "color_border": "#e6e6e6",
-            "spacing_top": 32,
+            "spacing_top": 24,
             "spacing_bottom": 24,
             "spacing_top_mb": 24,
             "spacing_bottom_mb": 24
