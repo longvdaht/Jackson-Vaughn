@@ -3,6 +3,16 @@
     assign enable_border_top = block.settings.enable_border_top
     assign enable_border_bottom = block.settings.enable_border_bottom
     assign color_border = block.settings.color_border
+
+    # Burn time source. JSON metafield keyed by size option value, e.g.
+    #   { "16oz": "60 hours", "9oz": "40 hours" }
+    # Keys must match the option values exactly (a case-insensitive retry is
+    # done below). Any size not present in the map renders no burn time.
+    #
+    # Shop-level keeps one map for the whole catalogue. Swap to the product
+    # line instead if the mapping needs to differ per product.
+    assign burn_time_map = shop.metafields.custom.burn_time_data.value
+    # assign burn_time_map = product.metafields.custom.burn_time_data.value
 -%}
 <div class="productView-options{% if enable_border_top %} has-border-top{% endif %}{% if enable_border_bottom %} has-border-bottom{% endif %}" style="--color-border: {{ color_border }}" data-lang="{{ request.locale.iso_code | downcase }}" data-default-lang="{{ localization.country.iso_code | downcase }}">
     {%- if variantCount > 0  and product.has_only_default_variant != true -%}
@@ -30,13 +40,21 @@
                                 </div>
                                 {% assign option_type = option.name | downcase %}
                                 {% if option_type == 'size' %}
-                                    {%- if current_variant.metafields.custom.variant_burn_time_data.value -%}
-                                        {% assign burn_time = current_variant.metafields.custom.variant_burn_time_data.value %}
+                                    {%- liquid
+                                        assign selected_burn_hours = ''
+                                        if burn_time_map
+                                            assign burn_key = option.selected_value | strip
+                                            assign selected_burn_hours = burn_time_map[burn_key]
+                                            if selected_burn_hours == blank
+                                                assign burn_key = burn_key | downcase
+                                                assign selected_burn_hours = burn_time_map[burn_key]
+                                            endif
+                                        endif
+                                    -%}
+                                    {%- if selected_burn_hours != blank -%}
                                         <div class="burn-time-info">
-                                            {%- if burn_time.burn_time -%}
-                                                <span class="burn-label">{{ 'products.product.burn_time' | t }}:</span>
-                                                <span class="burn-hours data-burn-hours">{{ burn_time.burn_time }}</span>
-                                            {%- endif -%}
+                                            <span class="burn-label">{{ 'products.product.burn_time' | t }}:</span>
+                                            <span class="burn-hours data-burn-hours">{{ selected_burn_hours }}</span>
                                         </div>
                                     {%- endif -%}
                                 {% endif %}
@@ -52,14 +70,25 @@
                                 -%}
                                 {%- for variant in product.variants -%}
                                     {%- assign value = variant.options[option_index] -%}
-                                    {%- assign burn_time = variant.metafields.custom.variant_burn_time_data.value -%}
-                                    
+
                                     {%- unless values contains value -%}
                                         {%- liquid
                                             assign values = values | join: ';'
                                             assign values = values | append: ';' | append: value
                                             assign values = values | split: ';'
                                             assign option_stock = 'soldout'
+
+                                            # Burn time for this option value. Blank for any value not
+                                            # in the map, including colour options.
+                                            assign burn_hours = ''
+                                            if burn_time_map
+                                                assign burn_key = value | strip
+                                                assign burn_hours = burn_time_map[burn_key]
+                                                if burn_hours == blank
+                                                    assign burn_key = burn_key | downcase
+                                                    assign burn_hours = burn_time_map[burn_key]
+                                                endif
+                                            endif
 
                                             for option1_name in variants_option1_arr
                                                 case option.position
@@ -81,7 +110,7 @@
                                         <input class="product-form__radio" type="radio" id="option-{{ product.id }}-{{ option.name }}-{{ forloop.index0 }}"
                                             name="{{ option.name }}"
                                             value="{{ value | escape }}"
-                                            data-burn-time ="{{ burn_time.burn_time }}"
+                                            data-burn-time="{{ burn_hours }}"
                                             {% if option.selected_value == value %}checked{% endif %}
                                             {% if is_swatch and show_variant_image_group %}
                                                 data-filter=".filter-{{ value | handle }}"
@@ -135,15 +164,10 @@
                                             <label class="product-form__label {{ option_stock }}" for="option-{{ product.id }}-{{ option.name }}-{{ forloop.index0 }}" data-variant-id="{{ variant.id }}">
                                                 <span class="text">
                                                     {{ value }}
-                                                    {%- if variant.metafields.custom.variant_burn_time_data.value -%}
-                                                        {% assign burn_time = variant.metafields.custom.variant_burn_time_data.value %}
-                                                        {%- if burn_time.title == value -%}
-                                                            <span class="burn-time-info">
-                                                                {%- if burn_time.burn_time -%}
-                                                                    <span class="burn-hours">{{ burn_time.burn_time }}</span>
-                                                                {%- endif -%}
-                                                            </span>
-                                                        {%- endif -%}
+                                                    {%- if burn_hours != blank -%}
+                                                        <span class="burn-time-info">
+                                                            <span class="burn-hours">{{ burn_hours }}</span>
+                                                        </span>
                                                     {%- endif -%}
                                                 </span>
                                             </label>
