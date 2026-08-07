@@ -62,7 +62,7 @@
         "sections--14682829619277__4ab8d20d-daab-4f67-a325-24252a3c0077-168087019747e73ca8-0": {
           "type": "main_menu",
           "settings": {
-            "menu": "2026-menu-same-day",
+            "menu": "presidio-nav-2-0",
             "menu_top_spacing": 21,
             "menu_bottom_spacing": 21,
             "grid_gap_menu_item": 10,
@@ -127,7 +127,7 @@
             "text_font_size": 14,
             "show_wishlist_sticky": false,
             "show_customer_sticky": false,
-            "show_search_sticky": true,
+            "show_search_sticky": false,
             "show_language_currency_sticky": false,
             "show_cart_sticky": true,
             "header_icons_color": "#fcf9ef",
@@ -180,9 +180,9 @@
             "item": "Shop",
             "column": 4,
             "show_banner_1": true,
-            "banner_1": "shopify://shop_images/logo.svg",
-            "banner_url_1": "",
-            "show_product": true,
+            "banner_1": "shopify:\/\/shop_images\/texassummertriopeachcandle4.jpg",
+            "banner_url_1": "shopify:\/\/products\/texas-summer-trio",
+            "show_product": false,
             "product_title": "Featured Products",
             "product_collection": "oak-cliff-large"
           }
@@ -192,12 +192,12 @@
           "settings": {
             "layout_block": "custom_width",
             "header_custom_width_size": 1200,
-            "item": "Give a gift",
+            "item": "Gifts",
             "column": 3,
             "show_banner_1": true,
-            "banner_1": "shopify://shop_images/rituals.svg",
-            "banner_url_1": "shopify://collections",
-            "show_product": true,
+            "banner_1": "shopify:\/\/shop_images\/The_Perfect_Gift_For_Her_1.jpg",
+            "banner_url_1": "shopify:\/\/products\/the-perfect-gift-for-her",
+            "show_product": false,
             "product_title": "Featured Products",
             "product_collection": "texas-candle-large"
           }

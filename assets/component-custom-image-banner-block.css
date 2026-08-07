@@ -60,7 +60,10 @@
   border: 1px solid var(--border-color-button-style);
   text-transform: var(--text-transform-button-style);
   font-size: var(--font-size-button-style);
-  /* min-width: var(--button-width-style); */
+  min-width: var(--button-width-style);
+}
+
+.customImageBanner-inner .spotlight-button.custom-button-style.btn-full-width {
   min-width: 100%;
 }
 
@@ -285,6 +288,15 @@
     .customImageBanner-inner
     .spotlight-button.custom-button-style {
     min-width: 170px;
+  }
+
+  .customImageBanner--largeImg[data-width="33.333333%"]
+    .customImageBanner-inner
+    .spotlight-button.custom-button-style.btn-full-width,
+  .customImageBanner--smallImg[data-width="33.333333%"]
+    .customImageBanner-inner
+    .spotlight-button.custom-button-style.btn-full-width {
+    min-width: 100%;
   }
 }
 

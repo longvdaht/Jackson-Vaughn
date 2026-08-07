@@ -160,7 +160,7 @@
                                 {% else %}
                                   href="{{ block.settings.link_1 }}" aria-label="{{ block.settings.button_1 }}"
                                 {% endif %}
-                                class="spotlight-button button custom-button-style"
+                                class="spotlight-button button custom-button-style{% if block.settings.button_full_width %} btn-full-width{% endif %}"
                                 style="--color-button-style: {{ block.settings.color_button_1 }}; --bg-color-button-style: {% if block.settings.bg_gradient_color_button_1 != blank %}{{ block.settings.bg_gradient_color_button_1 }}{% else %}{{ block.settings.bg_color_button_1 | color_modify: 'alpha', block.settings.bg_opacity_button }}{% endif %}; --border-color-button-style: {{ block.settings.border_color_button_1 }}; --color-button-hover-style: {{ block.settings.color_button_hover_1 }}; --bg-color-button-hover-style: {% if block.settings.bg_gradient_color_button_hover_1 != blank %}{{ block.settings.bg_gradient_color_button_hover_1 }}{% else %}{{ block.settings.bg_color_button_hover_1 }}{% endif %}; --border-color-button-hover-style: {{ block.settings.border_color_button_hover_1 }}; --text-transform-button-style: {{ block.settings.btn_text_transform }}; --font-size-button-style: {{block.settings.fontsize_btn | append: 'px' }}; --button-width-style: {{block.settings.button_width | append: 'px' }}"
                               >
                                 {%- if block.settings.btn_icon_1 != blank -%}
@@ -276,7 +276,7 @@
                                 {% else %}
                                   href="{{ block.settings.link_2 }}" aria-label="{{ block.settings.button_2 }}"
                                 {% endif %}
-                                class="spotlight-button button custom-button-style"
+                                class="spotlight-button button custom-button-style{% if block.settings.button_full_width %} btn-full-width{% endif %}"
                                 style="--color-button-style: {{ block.settings.color_button_2 }}; --bg-color-button-style: {% if block.settings.bg_gradient_color_button_2 != blank %}{{ block.settings.bg_gradient_color_button_2 }}{% else %}{{ block.settings.bg_color_button_2 | color_modify: 'alpha', block.settings.bg_opacity_button }}{% endif %}; --border-color-button-style: {{ block.settings.border_color_button_2 }}; --color-button-hover-style: {{ block.settings.color_button_hover_2 }}; --bg-color-button-hover-style: {% if block.settings.bg_gradient_color_button_hover_2 != blank %}{{ block.settings.bg_gradient_color_button_hover_2 }}{% else %}{{ block.settings.bg_color_button_hover_2 }}{% endif %}; --border-color-button-hover-style: {{ block.settings.border_color_button_hover_2 }}; --text-transform-button-style: {{ block.settings.btn_text_transform }}; --font-size-button-style: {{block.settings.fontsize_btn | append: 'px' }}; --button-width-style: {{block.settings.button_width | append: 'px' }}"
                               >
                                 {%- if block.settings.btn_icon_2 != blank -%}
@@ -388,7 +388,7 @@
                                 {% else %}
                                   href="{{ block.settings.link_3 }}" aria-label="{{ block.settings.button_3 }}"
                                 {% endif %}
-                                class="spotlight-button button custom-button-style"
+                                class="spotlight-button button custom-button-style{% if block.settings.button_full_width %} btn-full-width{% endif %}"
                                 style="--color-button-style: {{ block.settings.color_button_3 }}; --bg-color-button-style: {% if block.settings.bg_gradient_color_button_3 != blank %}{{ block.settings.bg_gradient_color_button_3 }}{% else %}{{ block.settings.bg_color_button_3 | color_modify: 'alpha', block.settings.bg_opacity_button }}{% endif %}; --border-color-button-style: {{ block.settings.border_color_button_3 }}; --color-button-hover-style: {{ block.settings.color_button_hover_3 }}; --bg-color-button-hover-style: {% if block.settings.bg_gradient_color_button_hover_3 != blank %}{{ block.settings.bg_gradient_color_button_hover_3 }}{% else %}{{ block.settings.bg_color_button_hover_3 }}{% endif %}; --border-color-button-hover-style: {{ block.settings.border_color_button_hover_3 }}; --text-transform-button-style: {{ block.settings.btn_text_transform }}; --font-size-button-style: {{block.settings.fontsize_btn | append: 'px' }}; --button-width-style: {{block.settings.button_width | append: 'px' }}"
                               >
                                 {%- if block.settings.btn_icon_3 != blank -%}
@@ -500,7 +500,7 @@
                                 {% else %}
                                   href="{{ block.settings.link_4 }}" aria-label="{{ block.settings.button_4 }}"
                                 {% endif %}
-                                class="spotlight-button button custom-button-style"
+                                class="spotlight-button button custom-button-style{% if block.settings.button_full_width %} btn-full-width{% endif %}"
                                 style="--color-button-style: {{ block.settings.color_button_4 }}; --bg-color-button-style: {% if block.settings.bg_gradient_color_button_4 != blank %}{{ block.settings.bg_gradient_color_button_4 }}{% else %}{{ block.settings.bg_color_button_4 | color_modify: 'alpha', block.settings.bg_opacity_button }}{% endif %}; --border-color-button-style: {{ block.settings.border_color_button_4 }}; --color-button-hover-style: {{ block.settings.color_button_hover_4 }}; --bg-color-button-hover-style: {% if block.settings.bg_gradient_color_button_hover_4 != blank %}{{ block.settings.bg_gradient_color_button_hover_4 }}{% else %}{{ block.settings.bg_color_button_hover_4 }}{% endif %}; --border-color-button-hover-style: {{ block.settings.border_color_button_hover_4 }}; --text-transform-button-style: {{ block.settings.btn_text_transform }}; --font-size-button-style: {{block.settings.fontsize_btn | append: 'px' }}; --button-width-style: {{block.settings.button_width | append: 'px' }}"
                               >
                                 {%- if block.settings.btn_icon_4 != blank -%}
@@ -616,7 +616,7 @@
                         {% else %}
                           href="{{ block.settings.link }}" aria-label="{{ block.settings.button }}"
                         {% endif %}
-                        class="spotlight-button button custom-button-style"
+                        class="spotlight-button button custom-button-style{% if block.settings.button_full_width %} btn-full-width{% endif %}"
                         style="--color-button-style: {{ block.settings.color_button }}; --bg-color-button-style: {% if block.settings.bg_gradient_color_button != blank %}{{ block.settings.bg_gradient_color_button }}{% else %}{{ block.settings.bg_color_button | color_modify: 'alpha', block.settings.bg_opacity_button }}{% endif %}; --border-color-button-style: {{ block.settings.border_color_button }}; --color-button-hover-style: {{ block.settings.color_button_hover }}; --bg-color-button-hover-style: {% if block.settings.bg_gradient_color_button_hover != blank %}{{ block.settings.bg_gradient_color_button_hover }}{% else %}{{ block.settings.bg_color_button_hover }}{% endif %}; --border-color-button-hover-style: {{ block.settings.border_color_button_hover }}; --text-transform-button-style: {{block.settings.btn_text_transform}}; --font-size-button-style: {{block.settings.fontsize_btn | append: 'px' }}; --button-width-style: {{block.settings.button_width | append: 'px' }}"
                       >
                         {%- if block.settings.btn_icon != blank -%}
@@ -1174,6 +1174,12 @@
           "default": 16
         },
         {
+          "type": "checkbox",
+          "id": "button_full_width",
+          "label": "Button full width",
+          "default": false
+        },
+        {
           "type": "range",
           "id": "button_width",
           "label": "t:settings_schema.typography.settings.typography.button_width",
@@ -1181,7 +1187,8 @@
           "max": 600,
           "step": 5,
           "unit": "t:sections.layout.mg_desktop.unit",
-          "default": 190
+          "default": 190,
+          "info": "t:settings_schema.typography.settings.typography.button_width_info"
         },
         {
           "type": "range",
@@ -2009,6 +2016,12 @@
           "default": 16
         },
         {
+          "type": "checkbox",
+          "id": "button_full_width",
+          "label": "Button full width",
+          "default": false
+        },
+        {
           "type": "range",
           "id": "button_width",
           "label": "t:settings_schema.typography.settings.typography.button_width",
@@ -2016,7 +2029,8 @@
           "max": 600,
           "step": 5,
           "unit": "t:sections.layout.mg_desktop.unit",
-          "default": 190
+          "default": 190,
+          "info": "t:settings_schema.typography.settings.typography.button_width_info"
         },
         {
           "type": "color",

@@ -190,7 +190,12 @@
                             {% endif %}
                         {%- endif -%}
                         {%- if block.settings.heading != blank or block.settings.slide-des != blank or block.settings.button_slide != blank or section.settings.dots_shape == 'line' -%}
-                            <div class="slide-content content-box--absolute content-box--{{ block.settings.alignment }} text-{{ block.settings.text_alignment }} {% if block.settings.enable_custom_position %}custom_position{% endif %} {% if block.settings.enable_position_outside_image %}enable_position_outside_image{% endif %}{% if block.settings.sub_heading_font == 'font_1' %} sub_heading_font_1{% endif %}" {% if block.settings.enable_custom_position %}style="--horizontal_position: {{ block.settings.custom_horizontal }}%;--vertical_position: {{ block.settings.custom_vertical }}%;--minus_horizontal_position: -{{ block.settings.custom_horizontal }}%;--minus_vertical_position: -{{ block.settings.custom_vertical }}%"{% endif %}>
+                            <div class="slide-content content-box--absolute content-box--{{ block.settings.alignment }} content-box-v--{{ block.settings.vertical_alignment | default: 'center' }} text-{{ block.settings.alignment }} {% if block.settings.enable_custom_position %}custom_position{% endif %} {% if block.settings.enable_position_outside_image %}enable_position_outside_image{% endif %}{% if block.settings.sub_heading_font == 'font_1' %} sub_heading_font_1{% endif %}"
+                                data-horizontal-alignment-desktop="{{ block.settings.alignment }}"
+                                data-horizontal-alignment-mobile="{{ block.settings.alignment_mb | default: block.settings.alignment }}"
+                                data-vertical-alignment-desktop="{{ block.settings.vertical_alignment | default: 'center' }}"
+                                data-vertical-alignment-mobile="{{ block.settings.vertical_alignment_mb | default: block.settings.vertical_alignment | default: 'center' }}"
+                                {% if block.settings.enable_custom_position %}style="--horizontal_position: {{ block.settings.custom_horizontal }}%;--vertical_position: {{ block.settings.custom_vertical }}%;--minus_horizontal_position: -{{ block.settings.custom_horizontal }}%;--minus_vertical_position: -{{ block.settings.custom_vertical }}%"{% endif %}>
                             {%- if block.settings.profile_name != blank or block.settings.profile_title != blank or block.settings.profile_picture != blank -%}
                                 <div class="slide-content__person slide-testimonial{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}">
                                     {%- if block.settings.profile_picture != blank -%}
@@ -343,6 +348,24 @@
                                 .style-dots-2 .section-block-{{ section.id }} .slideshow .slick-dots li {height: 24px;line-height: 24px}
                                 .style-dots-2 .slick-dots li:first-child, .style-dots-2 .slider-dots li:first-child {margin-left: 5px}
                                 .style-dots-2 .slick-dots li:last-child, .style-dots-2 .slider-dots li:last-child {margin-right: 5px}
+
+                                /* Responsive position of the whole content block. Horizontal alignment also controls inner text alignment. */
+                                .slide-block-{{ block.id }} .slide-content:not(.custom_position).content-box-v--top {top: 0;bottom: auto}
+                                .slide-block-{{ block.id }} .slide-content:not(.custom_position).content-box-v--center {top: 50%;bottom: auto}
+                                .slide-block-{{ block.id }} .slide-content:not(.custom_position).content-box-v--bottom {top: auto;bottom: 0}
+
+                                .slide-block-{{ block.id }} .slide-content:not(.custom_position).content-box--left.content-box-v--top,
+                                .slide-block-{{ block.id }} .slide-content:not(.custom_position).content-box--right.content-box-v--top,
+                                .slide-block-{{ block.id }} .slide-content:not(.custom_position).content-box--left.content-box-v--bottom,
+                                .slide-block-{{ block.id }} .slide-content:not(.custom_position).content-box--right.content-box-v--bottom {transform: none}
+
+                                .slide-block-{{ block.id }} .slide-content:not(.custom_position).content-box--center.content-box-v--top,
+                                .slide-block-{{ block.id }} .slide-content:not(.custom_position).content-box--center.content-box-v--bottom {transform: translateX(-50%)}
+
+                                .slide-block-{{ block.id }} .slide-content:not(.custom_position).content-box--left.content-box-v--center,
+                                .slide-block-{{ block.id }} .slide-content:not(.custom_position).content-box--right.content-box-v--center {transform: translateY(-50%)}
+
+                                .slide-block-{{ block.id }} .slide-content:not(.custom_position).content-box--center.content-box-v--center {transform: translate(-50%, -50%)}
 
                                 @media (max-width: 1024px){
                                     .slide-block-{{ block.id }} .slide-testimonial { margin-bottom: 15px}
@@ -667,6 +690,50 @@
             {%- endif -%}
         }
     </style>
+
+    <script>
+        (() => {
+            const wrapper = document.getElementById('slideshow-wrapper-{{ section.id }}');
+
+            if (!wrapper) return;
+
+            const mobileQuery = window.matchMedia('(max-width: 767px)');
+            const horizontalClasses = ['content-box--left', 'content-box--center', 'content-box--right'];
+            const verticalClasses = ['content-box-v--top', 'content-box-v--center', 'content-box-v--bottom'];
+            const textClasses = ['text-left', 'text-center', 'text-right'];
+
+            const applyResponsiveAlignment = () => {
+                const isMobile = mobileQuery.matches;
+
+                wrapper.querySelectorAll('.slide-content[data-horizontal-alignment-desktop]').forEach((content) => {
+                    const horizontalAlignment = isMobile
+                        ? content.dataset.horizontalAlignmentMobile
+                        : content.dataset.horizontalAlignmentDesktop;
+                    const verticalAlignment = isMobile
+                        ? content.dataset.verticalAlignmentMobile
+                        : content.dataset.verticalAlignmentDesktop;
+
+                    content.classList.remove(...horizontalClasses, ...verticalClasses, ...textClasses);
+                    content.classList.add(
+                        `content-box--${horizontalAlignment}`,
+                        `content-box-v--${verticalAlignment}`,
+                        `text-${horizontalAlignment}`
+                    );
+                });
+            };
+
+            applyResponsiveAlignment();
+
+            if (typeof mobileQuery.addEventListener === 'function') {
+                mobileQuery.addEventListener('change', applyResponsiveAlignment);
+            } else {
+                mobileQuery.addListener(applyResponsiveAlignment);
+            }
+
+            const observer = new MutationObserver(applyResponsiveAlignment);
+            observer.observe(wrapper, { childList: true, subtree: true });
+        })();
+    </script>
 {%- endif -%}
 
 {% schema %}
@@ -1290,7 +1357,26 @@
                     {
                         "type": "select",
                         "id": "alignment",
-                        "label": "t:sections.slide-show.blocks.image.slider_layout.alignment.option",
+                        "label": "Content horizontal position - Desktop",
+                        "default": "left",
+                        "options": [
+                        {
+                            "value": "left",
+                            "label": "t:sections.product_block.settings.general.options__7"
+                        },
+                        {
+                            "value": "center",
+                            "label": "t:sections.product_block.settings.general.options__8"
+                        },
+                        {
+                            "value": "right",
+                            "label": "t:sections.product_block.settings.general.options__9"
+                        }]
+                    },
+                    {
+                        "type": "select",
+                        "id": "alignment_mb",
+                        "label": "Content horizontal position - Mobile",
                         "default": "left",
                         "options": [
                         {
@@ -1333,22 +1419,41 @@
                     },
                     {
                         "type": "select",
-                        "id": "text_alignment",
-                        "label": "t:sections.slide-show.blocks.image.slider_layout.alignment.option_1",
+                        "id": "vertical_alignment",
+                        "label": "Content vertical position - Desktop",
+                        "default": "center",
                         "options": [
                         {
-                            "value": "left",
-                            "label": "t:sections.product_block.settings.general.options__7"
+                            "value": "top",
+                            "label": "t:sections.image-banner.blocks.image.settings.content.options__9"
                         },
                         {
                             "value": "center",
-                            "label": "t:sections.product_block.settings.general.options__8"
+                            "label": "t:sections.image-banner.blocks.image.settings.content.options__7"
                         },
                         {
-                            "value": "right",
-                            "label": "t:sections.product_block.settings.general.options__9"
-                        }],
-                        "default": "center"
+                            "value": "bottom",
+                            "label": "t:sections.image-banner.blocks.image.settings.content.options__10"
+                        }]
+                    },
+                    {
+                        "type": "select",
+                        "id": "vertical_alignment_mb",
+                        "label": "Content vertical position - Mobile",
+                        "default": "center",
+                        "options": [
+                        {
+                            "value": "top",
+                            "label": "t:sections.image-banner.blocks.image.settings.content.options__9"
+                        },
+                        {
+                            "value": "center",
+                            "label": "t:sections.image-banner.blocks.image.settings.content.options__7"
+                        },
+                        {
+                            "value": "bottom",
+                            "label": "t:sections.image-banner.blocks.image.settings.content.options__10"
+                        }]
                     },
                     {
                         "type": "checkbox",
@@ -2301,7 +2406,26 @@
                     {
                         "type": "select",
                         "id": "alignment",
-                        "label": "t:sections.slide-show.blocks.image.slider_layout.alignment.option",
+                        "label": "Content horizontal position - Desktop",
+                        "default": "left",
+                        "options": [
+                        {
+                            "value": "left",
+                            "label": "t:sections.product_block.settings.general.options__7"
+                        },
+                        {
+                            "value": "center",
+                            "label": "t:sections.product_block.settings.general.options__8"
+                        },
+                        {
+                            "value": "right",
+                            "label": "t:sections.product_block.settings.general.options__9"
+                        }]
+                    },
+                    {
+                        "type": "select",
+                        "id": "alignment_mb",
+                        "label": "Content horizontal position - Mobile",
                         "default": "left",
                         "options": [
                         {
@@ -2337,22 +2461,41 @@
                     },
                     {
                         "type": "select",
-                        "id": "text_alignment",
-                        "label": "t:sections.product_block.settings.general.label__7",
+                        "id": "vertical_alignment",
+                        "label": "Content vertical position - Desktop",
+                        "default": "center",
                         "options": [
                         {
-                            "value": "left",
-                            "label": "t:sections.product_block.settings.general.options__7"
+                            "value": "top",
+                            "label": "t:sections.image-banner.blocks.image.settings.content.options__9"
                         },
                         {
                             "value": "center",
-                            "label": "t:sections.product_block.settings.general.options__8"
+                            "label": "t:sections.image-banner.blocks.image.settings.content.options__7"
                         },
                         {
-                            "value": "right",
-                            "label": "t:sections.product_block.settings.general.options__9"
-                        }],
-                        "default": "center"
+                            "value": "bottom",
+                            "label": "t:sections.image-banner.blocks.image.settings.content.options__10"
+                        }]
+                    },
+                    {
+                        "type": "select",
+                        "id": "vertical_alignment_mb",
+                        "label": "Content vertical position - Mobile",
+                        "default": "center",
+                        "options": [
+                        {
+                            "value": "top",
+                            "label": "t:sections.image-banner.blocks.image.settings.content.options__9"
+                        },
+                        {
+                            "value": "center",
+                            "label": "t:sections.image-banner.blocks.image.settings.content.options__7"
+                        },
+                        {
+                            "value": "bottom",
+                            "label": "t:sections.image-banner.blocks.image.settings.content.options__10"
+                        }]
                     },
                     {
                         "type": "header",
