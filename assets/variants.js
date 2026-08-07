@@ -705,8 +705,13 @@ class VariantSelects extends HTMLElement {
             option.querySelector('[data-header-option]').innerText = option.querySelector(':checked').value;
             const checkedOption = option.querySelector(':checked');
             if (checkedOption) {
-                var burnEl = option.querySelector('.data-burn-hours');
-                if (burnEl) burnEl.innerText = checkedOption.dataset.burnTime;
+                const burnEl = option.querySelector('.data-burn-hours');
+                if (burnEl) {
+                    const burnTime = checkedOption.dataset.burnTime;
+                    burnEl.innerText = burnTime || '';
+                    const burnWrapper = burnEl.closest('.burn-time-info');
+                    if (burnWrapper) burnWrapper.classList.toggle('hidden', !burnTime);
+                }
             }
             if (index === 0 && inputLength > 1) return;
             const optionInputs = [...option.querySelectorAll('input[type="radio"], option')]
