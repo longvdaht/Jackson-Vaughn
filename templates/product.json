@@ -64,9 +64,9 @@
             "font_size_mobile": 15,
             "throw_level": "{{ product.metafields.custom.product_throw_level.value }}",
             "alignment": "left",
-            "spacing_top": 0,
+            "spacing_top": 24,
             "spacing_bottom": 0,
-            "spacing_top_mb": 0,
+            "spacing_top_mb": 24,
             "spacing_bottom_mb": 0,
             "padding": 24
           }
