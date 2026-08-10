@@ -580,9 +580,9 @@
 
 .card-action .variants-popup-close {
     position: absolute;
-    top: -6px;
+    top: 4px;
     left: auto;
-    right: -7px;
+    right: 4px;
     color: inherit;
     line-height: 1;
     font-size: 0;
@@ -591,9 +591,9 @@
 }
 
 .card-action .variants-popup-close svg {
-    width: 40px;
-    height: 40px;
-    padding: 11px;
+    width: 24px;
+    height: 24px;
+    padding: 0;
     fill: var(--icon);
     stroke: transparent;
 }
@@ -625,6 +625,7 @@
     padding: 0px 25px 0 25px;
     text-align: center;
     line-height: 18px;
+    width: auto;
 }
 
 .card-action .selector-wrapper .form-label .label-value-1,

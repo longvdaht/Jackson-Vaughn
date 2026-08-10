@@ -2352,6 +2352,10 @@ quantity-input.disabled {
     align-items: center;
 }
 
+.complementary-products-slider .card-information .more-size {
+    display: none;
+}
+
 .complementary-products .card .card-price {
     display: none;
 }
