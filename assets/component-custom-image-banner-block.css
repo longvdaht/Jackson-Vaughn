@@ -67,6 +67,12 @@
   min-width: 100%;
 }
 
+.customImageBanner-inner .spotlight-button.custom-button-style.btn-no-radius,
+.customImageBanner-inner
+  .spotlight-button.custom-button-style.btn-no-radius:after {
+  border-radius: 0;
+}
+
 .btn_1_br_outside
   .customImageBanner-inner
   .spotlight-button.custom-button-style:after {
