@@ -53,6 +53,24 @@
             "spacing_bottom": 0
           }
         },
+        "scent_profile_GB7jrK": {
+          "type": "scent_profile",
+          "settings": {
+            "label_family": "{{ product.metafields.custom.product_scent_family.value }}",
+            "label_notes": "{{ product.metafields.custom.product_scent_notes.value }}",
+            "label_feels": "{{ product.metafields.custom.product_scent_feels_like.value }}",
+            "text_color": "#232323",
+            "font_size_desktop": 16,
+            "font_size_mobile": 14,
+            "throw_level": "{{ product.metafields.custom.product_throw_level.value }}",
+            "alignment": "left",
+            "spacing_top": 0,
+            "spacing_bottom": 0,
+            "spacing_top_mb": 0,
+            "spacing_bottom_mb": 0,
+            "padding": 24
+          }
+        },
         "judge_me_reviews_preview_badge_UzFtEX": {
           "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
           "settings": {}
@@ -323,6 +341,7 @@
         "2e8c7c14-a0ad-4930-a1d8-3def05310426",
         "b0ea69b7-8a54-4a3c-9abd-0fcceeabaaa0",
         "product_text_nWQ6Vw",
+        "scent_profile_GB7jrK",
         "judge_me_reviews_preview_badge_UzFtEX",
         "bd3a641e-98d0-4da1-ab57-d5e4b0391995",
         "d98e243b-3682-495a-965a-1c7f7d460880",
