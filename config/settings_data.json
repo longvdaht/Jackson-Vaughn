@@ -119,7 +119,7 @@
     "type_page_title_font_size": 30,
     "type_page_title_font_weight": "500",
     "type_page_title_letter_spacing": ".05em",
-    "favicon": "shopify:\/\/shop_images\/urn.png",
+    "favicon": "shopify://shop_images/urn.png",
     "show_wishlist": false,
     "show_effect_close": true,
     "show_global_checkbox": false,
@@ -133,9 +133,9 @@
     "after_add_to_cart": "quick_cart",
     "enable_lazyload": true,
     "pagination_style": "1",
-    "trust_image_product_3": "shopify:\/\/shop_images\/security-image-3.png",
-    "trust_image_product_4": "shopify:\/\/shop_images\/security-image-4.png",
-    "trust_image_cart_1": "shopify:\/\/shop_images\/image-trust.jpg",
+    "trust_image_product_3": "shopify://shop_images/security-image-3.png",
+    "trust_image_product_4": "shopify://shop_images/security-image-4.png",
+    "trust_image_cart_1": "shopify://shop_images/image-trust.jpg",
     "show_scroll_down_section": false,
     "enable_view_documentation": false,
     "product_card_layout": "06",
@@ -169,17 +169,17 @@
     "product_marquee_text_size": 14,
     "enable_layout_rtl": false,
     "lange_1": "en",
-    "i-lang-1": "<svg viewbox=\"0 0 512 512\" style=\"enable-background:new 0 0 512 512;\"><circle style=\"fill:#F0F0F0;\" cx=\"256\" cy=\"256\" r=\"256\"><\/circle><g><path style=\"fill:#0052B4;\" d=\"M52.92,100.142c-20.109,26.163-35.272,56.318-44.101,89.077h133.178L52.92,100.142z\"><\/path><path style=\"fill:#0052B4;\" d=\"M503.181,189.219c-8.829-32.758-23.993-62.913-44.101-89.076l-89.075,89.076H503.181z\"><\/path><path style=\"fill:#0052B4;\" d=\"M8.819,322.784c8.83,32.758,23.993,62.913,44.101,89.075l89.074-89.075L8.819,322.784L8.819,322.784 z\"><\/path><path style=\"fill:#0052B4;\" d=\"M411.858,52.921c-26.163-20.109-56.317-35.272-89.076-44.102v133.177L411.858,52.921z\"><\/path><path style=\"fill:#0052B4;\" d=\"M100.142,459.079c26.163,20.109,56.318,35.272,89.076,44.102V370.005L100.142,459.079z\"><\/path><path style=\"fill:#0052B4;\" d=\"M189.217,8.819c-32.758,8.83-62.913,23.993-89.075,44.101l89.075,89.075V8.819z\"><\/path><path style=\"fill:#0052B4;\" d=\"M322.783,503.181c32.758-8.83,62.913-23.993,89.075-44.101l-89.075-89.075V503.181z\"><\/path><path style=\"fill:#0052B4;\" d=\"M370.005,322.784l89.075,89.076c20.108-26.162,35.272-56.318,44.101-89.076H370.005z\"><\/path><\/g><g><path style=\"fill:#D80027;\" d=\"M509.833,222.609h-220.44h-0.001V2.167C278.461,0.744,267.317,0,256,0 c-11.319,0-22.461,0.744-33.391,2.167v220.44v0.001H2.167C0.744,233.539,0,244.683,0,256c0,11.319,0.744,22.461,2.167,33.391 h220.44h0.001v220.442C233.539,511.256,244.681,512,256,512c11.317,0,22.461-0.743,33.391-2.167v-220.44v-0.001h220.442 C511.256,278.461,512,267.319,512,256C512,244.683,511.256,233.539,509.833,222.609z\"><\/path><path style=\"fill:#D80027;\" d=\"M322.783,322.784L322.783,322.784L437.019,437.02c5.254-5.252,10.266-10.743,15.048-16.435 l-97.802-97.802h-31.482V322.784z\"><\/path><path style=\"fill:#D80027;\" d=\"M189.217,322.784h-0.002L74.98,437.019c5.252,5.254,10.743,10.266,16.435,15.048l97.802-97.804 V322.784z\"><\/path><path style=\"fill:#D80027;\" d=\"M189.217,189.219v-0.002L74.981,74.98c-5.254,5.252-10.266,10.743-15.048,16.435l97.803,97.803 H189.217z\"><\/path><path style=\"fill:#D80027;\" d=\"M322.783,189.219L322.783,189.219L437.02,74.981c-5.252-5.254-10.743-10.266-16.435-15.047 l-97.802,97.803V189.219z\"><\/path>\n<\/g><\/svg>",
+    "i-lang-1": "<svg viewbox=\"0 0 512 512\" style=\"enable-background:new 0 0 512 512;\"><circle style=\"fill:#F0F0F0;\" cx=\"256\" cy=\"256\" r=\"256\"></circle><g><path style=\"fill:#0052B4;\" d=\"M52.92,100.142c-20.109,26.163-35.272,56.318-44.101,89.077h133.178L52.92,100.142z\"></path><path style=\"fill:#0052B4;\" d=\"M503.181,189.219c-8.829-32.758-23.993-62.913-44.101-89.076l-89.075,89.076H503.181z\"></path><path style=\"fill:#0052B4;\" d=\"M8.819,322.784c8.83,32.758,23.993,62.913,44.101,89.075l89.074-89.075L8.819,322.784L8.819,322.784 z\"></path><path style=\"fill:#0052B4;\" d=\"M411.858,52.921c-26.163-20.109-56.317-35.272-89.076-44.102v133.177L411.858,52.921z\"></path><path style=\"fill:#0052B4;\" d=\"M100.142,459.079c26.163,20.109,56.318,35.272,89.076,44.102V370.005L100.142,459.079z\"></path><path style=\"fill:#0052B4;\" d=\"M189.217,8.819c-32.758,8.83-62.913,23.993-89.075,44.101l89.075,89.075V8.819z\"></path><path style=\"fill:#0052B4;\" d=\"M322.783,503.181c32.758-8.83,62.913-23.993,89.075-44.101l-89.075-89.075V503.181z\"></path><path style=\"fill:#0052B4;\" d=\"M370.005,322.784l89.075,89.076c20.108-26.162,35.272-56.318,44.101-89.076H370.005z\"></path></g><g><path style=\"fill:#D80027;\" d=\"M509.833,222.609h-220.44h-0.001V2.167C278.461,0.744,267.317,0,256,0 c-11.319,0-22.461,0.744-33.391,2.167v220.44v0.001H2.167C0.744,233.539,0,244.683,0,256c0,11.319,0.744,22.461,2.167,33.391 h220.44h0.001v220.442C233.539,511.256,244.681,512,256,512c11.317,0,22.461-0.743,33.391-2.167v-220.44v-0.001h220.442 C511.256,278.461,512,267.319,512,256C512,244.683,511.256,233.539,509.833,222.609z\"></path><path style=\"fill:#D80027;\" d=\"M322.783,322.784L322.783,322.784L437.019,437.02c5.254-5.252,10.266-10.743,15.048-16.435 l-97.802-97.802h-31.482V322.784z\"></path><path style=\"fill:#D80027;\" d=\"M189.217,322.784h-0.002L74.98,437.019c5.252,5.254,10.743,10.266,16.435,15.048l97.802-97.804 V322.784z\"></path><path style=\"fill:#D80027;\" d=\"M189.217,189.219v-0.002L74.981,74.98c-5.254,5.252-10.266,10.743-15.048,16.435l97.803,97.803 H189.217z\"></path><path style=\"fill:#D80027;\" d=\"M322.783,189.219L322.783,189.219L437.02,74.981c-5.252-5.254-10.743-10.266-16.435-15.047 l-97.802,97.803V189.219z\"></path>\n</g></svg>",
     "lange_2": "de",
-    "i-lang-2": "<svg viewbox=\"0 0 512 512\" style=\"enable-background:new 0 0 512 512;\"><path style=\"fill:#FFDA44;\" d=\"M15.923,345.043C52.094,442.527,145.929,512,256,512s203.906-69.473,240.077-166.957L256,322.783  L15.923,345.043z\"><\/path><path d=\"M256,0C145.929,0,52.094,69.472,15.923,166.957L256,189.217l240.077-22.261C459.906,69.472,366.071,0,256,0z\"><\/path><path style=\"fill:#D80027;\" d=\"M15.923,166.957C5.633,194.69,0,224.686,0,256s5.633,61.31,15.923,89.043h480.155  C506.368,317.31,512,287.314,512,256s-5.632-61.31-15.923-89.043H15.923z\"><\/path><\/svg>",
+    "i-lang-2": "<svg viewbox=\"0 0 512 512\" style=\"enable-background:new 0 0 512 512;\"><path style=\"fill:#FFDA44;\" d=\"M15.923,345.043C52.094,442.527,145.929,512,256,512s203.906-69.473,240.077-166.957L256,322.783  L15.923,345.043z\"></path><path d=\"M256,0C145.929,0,52.094,69.472,15.923,166.957L256,189.217l240.077-22.261C459.906,69.472,366.071,0,256,0z\"></path><path style=\"fill:#D80027;\" d=\"M15.923,166.957C5.633,194.69,0,224.686,0,256s5.633,61.31,15.923,89.043h480.155  C506.368,317.31,512,287.314,512,256s-5.632-61.31-15.923-89.043H15.923z\"></path></svg>",
     "enable_currencies": false,
     "currency_1_unit": "USD",
-    "i-currency-1": "<svg x=\"0px\" y=\"0px\" viewbox=\"0 0 512 512\" style=\"enable-background:new 0 0 512 512;\"><circle style=\"fill:#F0F0F0;\" cx=\"256\" cy=\"256\" r=\"256\"><\/circle><g><path style=\"fill:#D80027;\" d=\"M244.87,256H512c0-23.106-3.08-45.49-8.819-66.783H244.87V256z\"><\/path><path style=\"fill:#D80027;\" d=\"M244.87,122.435h229.556c-15.671-25.572-35.708-48.175-59.07-66.783H244.87V122.435z\"><\/path><path style=\"fill:#D80027;\" d=\"M256,512c60.249,0,115.626-20.824,159.356-55.652H96.644C140.374,491.176,195.751,512,256,512z\"><\/path><path style=\"fill:#D80027;\" d=\"M37.574,389.565h436.852c12.581-20.529,22.338-42.969,28.755-66.783H8.819   C15.236,346.596,24.993,369.036,37.574,389.565z\"><\/path><\/g><path style=\"fill:#0052B4;\" d=\"M118.584,39.978h23.329l-21.7,15.765l8.289,25.509l-21.699-15.765L85.104,81.252l7.16-22.037 C73.158,75.13,56.412,93.776,42.612,114.552h7.475l-13.813,10.035c-2.152,3.59-4.216,7.237-6.194,10.938l6.596,20.301l-12.306-8.941  c-3.059,6.481-5.857,13.108-8.372,19.873l7.267,22.368h26.822l-21.7,15.765l8.289,25.509l-21.699-15.765l-12.998,9.444  C0.678,234.537,0,245.189,0,256h256c0-141.384,0-158.052,0-256C205.428,0,158.285,14.67,118.584,39.978z M128.502,230.4  l-21.699-15.765L85.104,230.4l8.289-25.509l-21.7-15.765h26.822l8.288-25.509l8.288,25.509h26.822l-21.7,15.765L128.502,230.4z   M120.213,130.317l8.289,25.509l-21.699-15.765l-21.699,15.765l8.289-25.509l-21.7-15.765h26.822l8.288-25.509l8.288,25.509h26.822  L120.213,130.317z M220.328,230.4l-21.699-15.765L176.93,230.4l8.289-25.509l-21.7-15.765h26.822l8.288-25.509l8.288,25.509h26.822  l-21.7,15.765L220.328,230.4z M212.039,130.317l8.289,25.509l-21.699-15.765l-21.699,15.765l8.289-25.509l-21.7-15.765h26.822  l8.288-25.509l8.288,25.509h26.822L212.039,130.317z M212.039,55.743l8.289,25.509l-21.699-15.765L176.93,81.252l8.289-25.509  l-21.7-15.765h26.822l8.288-25.509l8.288,25.509h26.822L212.039,55.743z\"><\/path><\/svg>",
+    "i-currency-1": "<svg x=\"0px\" y=\"0px\" viewbox=\"0 0 512 512\" style=\"enable-background:new 0 0 512 512;\"><circle style=\"fill:#F0F0F0;\" cx=\"256\" cy=\"256\" r=\"256\"></circle><g><path style=\"fill:#D80027;\" d=\"M244.87,256H512c0-23.106-3.08-45.49-8.819-66.783H244.87V256z\"></path><path style=\"fill:#D80027;\" d=\"M244.87,122.435h229.556c-15.671-25.572-35.708-48.175-59.07-66.783H244.87V122.435z\"></path><path style=\"fill:#D80027;\" d=\"M256,512c60.249,0,115.626-20.824,159.356-55.652H96.644C140.374,491.176,195.751,512,256,512z\"></path><path style=\"fill:#D80027;\" d=\"M37.574,389.565h436.852c12.581-20.529,22.338-42.969,28.755-66.783H8.819   C15.236,346.596,24.993,369.036,37.574,389.565z\"></path></g><path style=\"fill:#0052B4;\" d=\"M118.584,39.978h23.329l-21.7,15.765l8.289,25.509l-21.699-15.765L85.104,81.252l7.16-22.037 C73.158,75.13,56.412,93.776,42.612,114.552h7.475l-13.813,10.035c-2.152,3.59-4.216,7.237-6.194,10.938l6.596,20.301l-12.306-8.941  c-3.059,6.481-5.857,13.108-8.372,19.873l7.267,22.368h26.822l-21.7,15.765l8.289,25.509l-21.699-15.765l-12.998,9.444  C0.678,234.537,0,245.189,0,256h256c0-141.384,0-158.052,0-256C205.428,0,158.285,14.67,118.584,39.978z M128.502,230.4  l-21.699-15.765L85.104,230.4l8.289-25.509l-21.7-15.765h26.822l8.288-25.509l8.288,25.509h26.822l-21.7,15.765L128.502,230.4z   M120.213,130.317l8.289,25.509l-21.699-15.765l-21.699,15.765l8.289-25.509l-21.7-15.765h26.822l8.288-25.509l8.288,25.509h26.822  L120.213,130.317z M220.328,230.4l-21.699-15.765L176.93,230.4l8.289-25.509l-21.7-15.765h26.822l8.288-25.509l8.288,25.509h26.822  l-21.7,15.765L220.328,230.4z M212.039,130.317l8.289,25.509l-21.699-15.765l-21.699,15.765l8.289-25.509l-21.7-15.765h26.822  l8.288-25.509l8.288,25.509h26.822L212.039,130.317z M212.039,55.743l8.289,25.509l-21.699-15.765L176.93,81.252l8.289-25.509  l-21.7-15.765h26.822l8.288-25.509l8.288,25.509h26.822L212.039,55.743z\"></path></svg>",
     "currency_2_unit": "EUR",
-    "i-currency-2": "<svg x=\"0px\" y=\"0px\" viewbox=\"0 0 512 512\" style=\"enable-background:new 0 0 512 512;\"><circle style=\"fill:#0052B4;\" cx=\"256\" cy=\"256\" r=\"256\"><\/circle><g><polygon style=\"fill:#FFDA44;\" points=\"256.001,100.174 264.29,125.683 291.11,125.683 269.411,141.448 277.7,166.957 256.001,151.191 234.301,166.957 242.59,141.448 220.891,125.683 247.712,125.683\"><\/polygon><polygon style=\"fill:#FFDA44;\" points=\"145.814,145.814 169.714,157.99 188.679,139.026 184.482,165.516 208.381,177.693 181.89,181.889 177.694,208.381 165.517,184.482 139.027,188.679 157.992,169.714\"><\/polygon><polygon style=\"fill:#FFDA44;\" points=\"100.175,256 125.684,247.711 125.684,220.89 141.448,242.59 166.958,234.301 151.191,256 166.958,277.699 141.448,269.411 125.684,291.11 125.684,264.289\"><\/polygon><polygon style=\"fill:#FFDA44;\" points=\"145.814,366.186 157.991,342.286 139.027,323.321 165.518,327.519 177.693,303.62 181.89,330.111 208.38,334.307 184.484,346.484 188.679,372.974 169.714,354.009\"><\/polygon><polygon style=\"fill:#FFDA44;\" points=\"256.001,411.826 247.711,386.317 220.891,386.317 242.591,370.552 234.301,345.045 256.001,360.809 277.7,345.045 269.411,370.552 291.11,386.317 264.289,386.317\"><\/polygon><polygon style=\"fill:#FFDA44;\" points=\"366.187,366.186 342.288,354.01 323.322,372.975 327.519,346.483 303.622,334.307 330.112,330.111 334.308,303.62 346.484,327.519 372.974,323.321 354.009,342.288\"><\/polygon><polygon style=\"fill:#FFDA44;\" points=\"411.826,256 386.317,264.289 386.317,291.11 370.552,269.41 345.045,277.699 360.81,256 345.045,234.301 370.553,242.59 386.317,220.89 386.317,247.712\"><\/polygon><polygon style=\"fill:#FFDA44;\" points=\"366.187,145.814 354.01,169.714 372.975,188.679 346.483,184.481 334.308,208.38 330.112,181.889 303.622,177.692 327.519,165.516 323.322,139.027 342.289,157.991\"><\/polygon><\/g><\/svg>",
+    "i-currency-2": "<svg x=\"0px\" y=\"0px\" viewbox=\"0 0 512 512\" style=\"enable-background:new 0 0 512 512;\"><circle style=\"fill:#0052B4;\" cx=\"256\" cy=\"256\" r=\"256\"></circle><g><polygon style=\"fill:#FFDA44;\" points=\"256.001,100.174 264.29,125.683 291.11,125.683 269.411,141.448 277.7,166.957 256.001,151.191 234.301,166.957 242.59,141.448 220.891,125.683 247.712,125.683\"></polygon><polygon style=\"fill:#FFDA44;\" points=\"145.814,145.814 169.714,157.99 188.679,139.026 184.482,165.516 208.381,177.693 181.89,181.889 177.694,208.381 165.517,184.482 139.027,188.679 157.992,169.714\"></polygon><polygon style=\"fill:#FFDA44;\" points=\"100.175,256 125.684,247.711 125.684,220.89 141.448,242.59 166.958,234.301 151.191,256 166.958,277.699 141.448,269.411 125.684,291.11 125.684,264.289\"></polygon><polygon style=\"fill:#FFDA44;\" points=\"145.814,366.186 157.991,342.286 139.027,323.321 165.518,327.519 177.693,303.62 181.89,330.111 208.38,334.307 184.484,346.484 188.679,372.974 169.714,354.009\"></polygon><polygon style=\"fill:#FFDA44;\" points=\"256.001,411.826 247.711,386.317 220.891,386.317 242.591,370.552 234.301,345.045 256.001,360.809 277.7,345.045 269.411,370.552 291.11,386.317 264.289,386.317\"></polygon><polygon style=\"fill:#FFDA44;\" points=\"366.187,366.186 342.288,354.01 323.322,372.975 327.519,346.483 303.622,334.307 330.112,330.111 334.308,303.62 346.484,327.519 372.974,323.321 354.009,342.288\"></polygon><polygon style=\"fill:#FFDA44;\" points=\"411.826,256 386.317,264.289 386.317,291.11 370.552,269.41 345.045,277.699 360.81,256 345.045,234.301 370.553,242.59 386.317,220.89 386.317,247.712\"></polygon><polygon style=\"fill:#FFDA44;\" points=\"366.187,145.814 354.01,169.714 372.975,188.679 346.483,184.481 334.308,208.38 330.112,181.889 303.622,177.692 327.519,165.516 323.322,139.027 342.289,157.991\"></polygon></g></svg>",
     "currency_3_unit": "GBP",
-    "i-currency-3": "<svg viewbox=\"0 0 512 512\" style=\"enable-background:new 0 0 512 512;\"><circle style=\"fill:#F0F0F0;\" cx=\"256\" cy=\"256\" r=\"256\"><\/circle><g><path style=\"fill:#0052B4;\" d=\"M52.92,100.142c-20.109,26.163-35.272,56.318-44.101,89.077h133.178L52.92,100.142z\"><\/path><path style=\"fill:#0052B4;\" d=\"M503.181,189.219c-8.829-32.758-23.993-62.913-44.101-89.076l-89.075,89.076H503.181z\"><\/path><path style=\"fill:#0052B4;\" d=\"M8.819,322.784c8.83,32.758,23.993,62.913,44.101,89.075l89.074-89.075L8.819,322.784L8.819,322.784 z\"><\/path><path style=\"fill:#0052B4;\" d=\"M411.858,52.921c-26.163-20.109-56.317-35.272-89.076-44.102v133.177L411.858,52.921z\"><\/path><path style=\"fill:#0052B4;\" d=\"M100.142,459.079c26.163,20.109,56.318,35.272,89.076,44.102V370.005L100.142,459.079z\"><\/path><path style=\"fill:#0052B4;\" d=\"M189.217,8.819c-32.758,8.83-62.913,23.993-89.075,44.101l89.075,89.075V8.819z\"><\/path><path style=\"fill:#0052B4;\" d=\"M322.783,503.181c32.758-8.83,62.913-23.993,89.075-44.101l-89.075-89.075V503.181z\"><\/path><path style=\"fill:#0052B4;\" d=\"M370.005,322.784l89.075,89.076c20.108-26.162,35.272-56.318,44.101-89.076H370.005z\"><\/path><\/g><g><path style=\"fill:#D80027;\" d=\"M509.833,222.609h-220.44h-0.001V2.167C278.461,0.744,267.317,0,256,0 c-11.319,0-22.461,0.744-33.391,2.167v220.44v0.001H2.167C0.744,233.539,0,244.683,0,256c0,11.319,0.744,22.461,2.167,33.391 h220.44h0.001v220.442C233.539,511.256,244.681,512,256,512c11.317,0,22.461-0.743,33.391-2.167v-220.44v-0.001h220.442 C511.256,278.461,512,267.319,512,256C512,244.683,511.256,233.539,509.833,222.609z\"><\/path><path style=\"fill:#D80027;\" d=\"M322.783,322.784L322.783,322.784L437.019,437.02c5.254-5.252,10.266-10.743,15.048-16.435 l-97.802-97.802h-31.482V322.784z\"><\/path><path style=\"fill:#D80027;\" d=\"M189.217,322.784h-0.002L74.98,437.019c5.252,5.254,10.743,10.266,16.435,15.048l97.802-97.804 V322.784z\"><\/path><path style=\"fill:#D80027;\" d=\"M189.217,189.219v-0.002L74.981,74.98c-5.254,5.252-10.266,10.743-15.048,16.435l97.803,97.803 H189.217z\"><\/path><path style=\"fill:#D80027;\" d=\"M322.783,189.219L322.783,189.219L437.02,74.981c-5.252-5.254-10.743-10.266-16.435-15.047 l-97.802,97.803V189.219z\"><\/path><\/g><\/svg>",
-    "i-currency-4": "<svg viewbox=\"0 0 512 512\" style=\"enable-background:new 0 0 512 512;\"><circle style=\"fill:#D80027;\" cx=\"256\" cy=\"256\" r=\"256\"><\/circle><polygon style=\"fill:#F0F0F0;\" points=\"389.565,211.479 300.522,211.479 300.522,122.435 211.478,122.435 211.478,211.479   122.435,211.479 122.435,300.522 211.478,300.522 211.478,389.565 300.522,389.565 300.522,300.522 389.565,300.522 \"><\/polygon><\/svg>",
+    "i-currency-3": "<svg viewbox=\"0 0 512 512\" style=\"enable-background:new 0 0 512 512;\"><circle style=\"fill:#F0F0F0;\" cx=\"256\" cy=\"256\" r=\"256\"></circle><g><path style=\"fill:#0052B4;\" d=\"M52.92,100.142c-20.109,26.163-35.272,56.318-44.101,89.077h133.178L52.92,100.142z\"></path><path style=\"fill:#0052B4;\" d=\"M503.181,189.219c-8.829-32.758-23.993-62.913-44.101-89.076l-89.075,89.076H503.181z\"></path><path style=\"fill:#0052B4;\" d=\"M8.819,322.784c8.83,32.758,23.993,62.913,44.101,89.075l89.074-89.075L8.819,322.784L8.819,322.784 z\"></path><path style=\"fill:#0052B4;\" d=\"M411.858,52.921c-26.163-20.109-56.317-35.272-89.076-44.102v133.177L411.858,52.921z\"></path><path style=\"fill:#0052B4;\" d=\"M100.142,459.079c26.163,20.109,56.318,35.272,89.076,44.102V370.005L100.142,459.079z\"></path><path style=\"fill:#0052B4;\" d=\"M189.217,8.819c-32.758,8.83-62.913,23.993-89.075,44.101l89.075,89.075V8.819z\"></path><path style=\"fill:#0052B4;\" d=\"M322.783,503.181c32.758-8.83,62.913-23.993,89.075-44.101l-89.075-89.075V503.181z\"></path><path style=\"fill:#0052B4;\" d=\"M370.005,322.784l89.075,89.076c20.108-26.162,35.272-56.318,44.101-89.076H370.005z\"></path></g><g><path style=\"fill:#D80027;\" d=\"M509.833,222.609h-220.44h-0.001V2.167C278.461,0.744,267.317,0,256,0 c-11.319,0-22.461,0.744-33.391,2.167v220.44v0.001H2.167C0.744,233.539,0,244.683,0,256c0,11.319,0.744,22.461,2.167,33.391 h220.44h0.001v220.442C233.539,511.256,244.681,512,256,512c11.317,0,22.461-0.743,33.391-2.167v-220.44v-0.001h220.442 C511.256,278.461,512,267.319,512,256C512,244.683,511.256,233.539,509.833,222.609z\"></path><path style=\"fill:#D80027;\" d=\"M322.783,322.784L322.783,322.784L437.019,437.02c5.254-5.252,10.266-10.743,15.048-16.435 l-97.802-97.802h-31.482V322.784z\"></path><path style=\"fill:#D80027;\" d=\"M189.217,322.784h-0.002L74.98,437.019c5.252,5.254,10.743,10.266,16.435,15.048l97.802-97.804 V322.784z\"></path><path style=\"fill:#D80027;\" d=\"M189.217,189.219v-0.002L74.981,74.98c-5.254,5.252-10.266,10.743-15.048,16.435l97.803,97.803 H189.217z\"></path><path style=\"fill:#D80027;\" d=\"M322.783,189.219L322.783,189.219L437.02,74.981c-5.252-5.254-10.743-10.266-16.435-15.047 l-97.802,97.803V189.219z\"></path></g></svg>",
+    "i-currency-4": "<svg viewbox=\"0 0 512 512\" style=\"enable-background:new 0 0 512 512;\"><circle style=\"fill:#D80027;\" cx=\"256\" cy=\"256\" r=\"256\"></circle><polygon style=\"fill:#F0F0F0;\" points=\"389.565,211.479 300.522,211.479 300.522,122.435 211.478,122.435 211.478,211.479   122.435,211.479 122.435,300.522 211.478,300.522 211.478,389.565 300.522,389.565 300.522,300.522 389.565,300.522 \"></polygon></svg>",
     "show_quick_search": true,
     "quick_search_to_show": 4,
     "search_trending_title": "Trending Now",
@@ -213,7 +213,7 @@
     "show_cart_gift": false,
     "cart_product_gift": "gift-wrapping",
     "gift_content": "Do you want a gift wrap?",
-    "main_cart_gift_content": "DO YOU WANT A GIFT WRAP? <span style=\"font-weight: bold\">ONLY FOR $10.00<span><\/span><\/span>",
+    "main_cart_gift_content": "DO YOU WANT A GIFT WRAP? <span style=\"font-weight: bold\">ONLY FOR $10.00<span></span></span>",
     "show_cart_shipping": false,
     "shipping_rate_calculator_default_country": "United States",
     "show_shipping_note": false,
@@ -259,14 +259,14 @@
     "someone_purchase_position": "right",
     "show_gdpr_cookie_consent": true,
     "gdpr_cookie_consent_type": "left",
-    "gdpr_cookie_consent_btn_1_link": "https:\/\/policies.google.com\/",
+    "gdpr_cookie_consent_btn_1_link": "https://policies.google.com/",
     "gdpr_cookie_consent_btn_2_text": "Accept",
     "gdpr_cookie_consent_color": "#ffffff",
     "gdpr_cookie_consent_color_privacy": "#818181",
     "gdpr_cookie_consent_bg": "#141414",
     "show_newsletter_popup": false,
     "newsletter_popup_delay": 5,
-    "newsletter_popup_image": "shopify:\/\/shop_images\/image1-2_1024x1024_af65bbab-94ee-448c-a31e-088f87562859.jpg",
+    "newsletter_popup_image": "shopify://shop_images/image1-2_1024x1024_af65bbab-94ee-448c-a31e-088f87562859.jpg",
     "newsletter_popup_title": "Enjoy 15% OFF your first order",
     "newsletter_popup_desc": "Sign Up for exclusive updates, \nnew arrivals & insider only discounts",
     "newsletter_popup_note": "No, thanks",
@@ -276,9 +276,9 @@
     "show_recently_viewed_top": false,
     "show_before_you_leave": false,
     "before_you_leave_time": 1,
-    "before_you_leave_logo": "shopify:\/\/shop_images\/ella-logo-black-compressor.png",
-    "before_you_leave_bg": "shopify:\/\/shop_images\/before-you.jpg",
-    "before_you_leave_content": "<h3 class=\"title\">Before you leave...<\/h3>\n\t\t<p class=\"desc1\">Take 20% off your first order<\/p>\n\t\t<h3 class=\"heading1\">\n\t\t\t<span class=\"text\">20% off<\/span>\n\t\t<\/h3>\n\t\t<p class=\"desc2\">Enter the code below at checkout to get 20% off your first order<\/p>\n\t\t<h3 class=\"heading2\">CODESALE20<\/h3>\n\t\t<a class=\"button button-2\" href=\"\/new-in\">\n\t\t\t<span class=\"text\">Continue Shopping<\/span>\n\t\t<\/a>",
+    "before_you_leave_logo": "shopify://shop_images/ella-logo-black-compressor.png",
+    "before_you_leave_bg": "shopify://shop_images/before-you.jpg",
+    "before_you_leave_content": "<h3 class=\"title\">Before you leave...</h3>\n\t\t<p class=\"desc1\">Take 20% off your first order</p>\n\t\t<h3 class=\"heading1\">\n\t\t\t<span class=\"text\">20% off</span>\n\t\t</h3>\n\t\t<p class=\"desc2\">Enter the code below at checkout to get 20% off your first order</p>\n\t\t<h3 class=\"heading2\">CODESALE20</h3>\n\t\t<a class=\"button button-2\" href=\"/new-in\">\n\t\t\t<span class=\"text\">Continue Shopping</span>\n\t\t</a>",
     "before_you_leave_collection": "milancelos",
     "before_you_leave_collection_limit": 3,
     "before_you_leave_btn": "1",
@@ -286,16 +286,16 @@
     "notify_form_btn": "1",
     "show_ask_an_expert": false,
     "ask_an_expert_show": "all_page",
-    "ask_an_expert_icon": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewbox=\"0 0 48 48\"><path fill=\"#FFA726\" d=\"M10 22A4 4 0 1 0 10 30 4 4 0 1 0 10 22zM38 22A4 4 0 1 0 38 30 4 4 0 1 0 38 22z\"><\/path><path fill=\"#FFB74D\" d=\"M39,19c0-12.7-30-8.3-30,0c0,1.8,0,8.2,0,10c0,8.3,6.7,15,15,15s15-6.7,15-15C39,27.2,39,20.8,39,19z\"><\/path><path fill=\"#FF5722\" d=\"M24,3C14.6,3,7,10.6,7,20c0,1.2,0,3.4,0,3.4L9,25v-3l21-9.8l9,9.8v3l2-1.6c0,0,0-2.1,0-3.4C41,12,35.3,3,24,3z\"><\/path><path fill=\"#784719\" d=\"M31 24A2 2 0 1 0 31 28 2 2 0 1 0 31 24zM17 24A2 2 0 1 0 17 28 2 2 0 1 0 17 24z\"><\/path><path fill=\"#757575\" d=\"M43,24c-0.6,0-1,0.4-1,1v-7c0-8.8-7.2-16-16-16h-7c-0.6,0-1,0.4-1,1s0.4,1,1,1h7c7.7,0,14,6.3,14,14v10c0,0.6,0.4,1,1,1s1-0.4,1-1v2c0,3.9-3.1,7-7,7H24c-0.6,0-1,0.4-1,1s0.4,1,1,1h11c5,0,9-4,9-9v-5C44,24.4,43.6,24,43,24z\"><\/path><g><path fill=\"#37474F\" d=\"M43 22h-1c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h1c1.1 0 2-.9 2-2v-4C45 22.9 44.1 22 43 22zM24 36A2 2 0 1 0 24 40 2 2 0 1 0 24 36z\"><\/path><\/g><\/svg>",
+    "ask_an_expert_icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 48 48\"><path fill=\"#FFA726\" d=\"M10 22A4 4 0 1 0 10 30 4 4 0 1 0 10 22zM38 22A4 4 0 1 0 38 30 4 4 0 1 0 38 22z\"></path><path fill=\"#FFB74D\" d=\"M39,19c0-12.7-30-8.3-30,0c0,1.8,0,8.2,0,10c0,8.3,6.7,15,15,15s15-6.7,15-15C39,27.2,39,20.8,39,19z\"></path><path fill=\"#FF5722\" d=\"M24,3C14.6,3,7,10.6,7,20c0,1.2,0,3.4,0,3.4L9,25v-3l21-9.8l9,9.8v3l2-1.6c0,0,0-2.1,0-3.4C41,12,35.3,3,24,3z\"></path><path fill=\"#784719\" d=\"M31 24A2 2 0 1 0 31 28 2 2 0 1 0 31 24zM17 24A2 2 0 1 0 17 28 2 2 0 1 0 17 24z\"></path><path fill=\"#757575\" d=\"M43,24c-0.6,0-1,0.4-1,1v-7c0-8.8-7.2-16-16-16h-7c-0.6,0-1,0.4-1,1s0.4,1,1,1h7c7.7,0,14,6.3,14,14v10c0,0.6,0.4,1,1,1s1-0.4,1-1v2c0,3.9-3.1,7-7,7H24c-0.6,0-1,0.4-1,1s0.4,1,1,1h11c5,0,9-4,9-9v-5C44,24.4,43.6,24,43,24z\"></path><g><path fill=\"#37474F\" d=\"M43 22h-1c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h1c1.1 0 2-.9 2-2v-4C45 22.9 44.1 22 43 22zM24 36A2 2 0 1 0 24 40 2 2 0 1 0 24 36z\"></path></g></svg>",
     "enable_social_share": true,
     "share_twitter": false,
     "share_tumblr": false,
     "share_telegram": false,
     "social_twitter_link": "",
-    "social_facebook_link": "https:\/\/www.facebook.com\/byjacksonvaughn",
-    "social_pinterest_link": "https:\/\/www.pinterest.com\/byjacksonvaughn\/",
-    "social_instagram_link": "https:\/\/www.instagram.com\/byjacksonvaughn\/",
-    "social_tiktok_link": "https:\/\/tiktok.com\/@byjacksonvaughn",
+    "social_facebook_link": "https://www.facebook.com/byjacksonvaughn",
+    "social_pinterest_link": "https://www.pinterest.com/byjacksonvaughn/",
+    "social_instagram_link": "https://www.instagram.com/byjacksonvaughn/",
+    "social_tiktok_link": "https://tiktok.com/@byjacksonvaughn",
     "social_youtube_link": "",
     "social_vimeo_link": "",
     "product_vendor_color": "#969696",
@@ -369,7 +369,7 @@
     "custom_badge_color": "#ffffff",
     "custom_badge_bg": "#ffbb49",
     "show_review": false,
-    "checkout_logo_image": "shopify:\/\/shop_images\/logo3.png",
+    "checkout_logo_image": "shopify://shop_images/logo3.png",
     "checkout_logo_position": "center",
     "checkout_logo_size": "large",
     "checkout_body_background_color": "#f0e5d3",
@@ -447,15 +447,15 @@
           "ff736cd3-bd2d-452d-b620-6f30e5896e28": {
             "type": "link",
             "settings": {
-              "icon": "<svg aria-hidden=\"true\" focusable=\"false\" data-prefix=\"fal\" data-icon=\"home-lg-alt\" role=\"img\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewbox=\"0 0 576 512\" class=\"svg-inline--fa fa-home-lg-alt fa-w-18 fa-3x\"><path fill=\"currentColor\" d=\"M573.48 219.91L310.6 8a35.85 35.85 0 0 0-45.19 0L2.53 219.91a6.71 6.71 0 0 0-1 9.5l14.2 17.5a6.82 6.82 0 0 0 9.6 1L64 216.72V496a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V216.82l38.8 31.29a6.83 6.83 0 0 0 9.6-1l14.19-17.5a7.14 7.14 0 0 0-1.11-9.7zM240 480V320h96v160zm240 0H368V304a16 16 0 0 0-16-16H224a16 16 0 0 0-16 16v176H96V190.92l187.71-151.4a6.63 6.63 0 0 1 8.4 0L480 191z\" class=\"\"><\/path><\/svg>",
+              "icon": "<svg aria-hidden=\"true\" focusable=\"false\" data-prefix=\"fal\" data-icon=\"home-lg-alt\" role=\"img\" xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 576 512\" class=\"svg-inline--fa fa-home-lg-alt fa-w-18 fa-3x\"><path fill=\"currentColor\" d=\"M573.48 219.91L310.6 8a35.85 35.85 0 0 0-45.19 0L2.53 219.91a6.71 6.71 0 0 0-1 9.5l14.2 17.5a6.82 6.82 0 0 0 9.6 1L64 216.72V496a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V216.82l38.8 31.29a6.83 6.83 0 0 0 9.6-1l14.19-17.5a7.14 7.14 0 0 0-1.11-9.7zM240 480V320h96v160zm240 0H368V304a16 16 0 0 0-16-16H224a16 16 0 0 0-16 16v176H96V190.92l187.71-151.4a6.63 6.63 0 0 1 8.4 0L480 191z\" class=\"\"></path></svg>",
               "text": "Home",
-              "link": "\/"
+              "link": "/"
             }
           },
           "7635fde1-aff2-4094-84c8-586f0dfcde6b": {
             "type": "action",
             "settings": {
-              "icon": "<svg style=\"transform: scale(1.2);\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewbox=\"0 0 32 32\" class=\"icon icon-search\">\n\t<path d=\"M 19 3 C 13.488281 3 9 7.488281 9 13 C 9 15.394531 9.839844 17.589844 11.25 19.3125 L 3.28125 27.28125 L 4.71875 28.71875 L 12.6875 20.75 C 14.410156 22.160156 16.605469 23 19 23 C 24.511719 23 29 18.511719 29 13 C 29 7.488281 24.511719 3 19 3 Z M 19 5 C 23.429688 5 27 8.570313 27 13 C 27 17.429688 23.429688 21 19 21 C 14.570313 21 11 17.429688 11 13 C 11 8.570313 14.570313 5 19 5 Z\"><\/path>\n<\/svg>",
+              "icon": "<svg style=\"transform: scale(1.2);\" xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 32 32\" class=\"icon icon-search\">\n\t<path d=\"M 19 3 C 13.488281 3 9 7.488281 9 13 C 9 15.394531 9.839844 17.589844 11.25 19.3125 L 3.28125 27.28125 L 4.71875 28.71875 L 12.6875 20.75 C 14.410156 22.160156 16.605469 23 19 23 C 24.511719 23 29 18.511719 29 13 C 29 7.488281 24.511719 3 19 3 Z M 19 5 C 23.429688 5 27 8.570313 27 13 C 27 17.429688 23.429688 21 19 21 C 14.570313 21 11 17.429688 11 13 C 11 8.570313 14.570313 5 19 5 Z\"></path>\n</svg>",
               "text": "Search",
               "action_to": "search"
             }
@@ -464,16 +464,16 @@
             "type": "link",
             "disabled": true,
             "settings": {
-              "icon": "<svg xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewbox=\"0 0 384.97 384.97\" xmlns:xlink=\"http:\/\/www.w3.org\/1999\/xlink\" xml:space=\"preserve\"><g><g id=\"Grid\"><path d=\"M144.364,0H24.061C10.767,0,0,10.767,0,24.061v120.303c0,13.281,10.767,24.061,24.061,24.061h120.303 c13.293,0,24.061-10.779,24.061-24.061V24.061C168.424,10.767,157.657,0,144.364,0z M144.364,144.364H24.061V24.061h120.303 V144.364z\"><\/path><path d=\"M360.909,0H240.606c-13.293,0-24.061,10.767-24.061,24.061v120.303c0,13.281,10.767,24.061,24.061,24.061h120.303    c13.281,0,24.061-10.779,24.061-24.061V24.061C384.97,10.767,374.191,0,360.909,0z M360.909,144.364H240.606V24.061h120.303 V144.364z\"><\/path><path d=\"M360.909,216.545H240.606c-13.293,0-24.061,10.779-24.061,24.061v120.303c0,13.293,10.767,24.061,24.061,24.061h120.303 c13.281,0,24.061-10.767,24.061-24.061V240.606C384.97,227.313,374.191,216.545,360.909,216.545z M360.909,360.909H240.606 V240.606h120.303V360.909z\"><\/path><path d=\"M144.364,216.545H24.061C10.767,216.545,0,227.325,0,240.606v120.303c0,13.293,10.767,24.061,24.061,24.061h120.303 c13.293,0,24.061-10.767,24.061-24.061V240.606C168.424,227.313,157.657,216.545,144.364,216.545z M144.364,360.909H24.061 V240.606h120.303V360.909z\"><\/path><\/g><\/g><\/svg>",
+              "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 384.97 384.97\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xml:space=\"preserve\"><g><g id=\"Grid\"><path d=\"M144.364,0H24.061C10.767,0,0,10.767,0,24.061v120.303c0,13.281,10.767,24.061,24.061,24.061h120.303 c13.293,0,24.061-10.779,24.061-24.061V24.061C168.424,10.767,157.657,0,144.364,0z M144.364,144.364H24.061V24.061h120.303 V144.364z\"></path><path d=\"M360.909,0H240.606c-13.293,0-24.061,10.767-24.061,24.061v120.303c0,13.281,10.767,24.061,24.061,24.061h120.303    c13.281,0,24.061-10.779,24.061-24.061V24.061C384.97,10.767,374.191,0,360.909,0z M360.909,144.364H240.606V24.061h120.303 V144.364z\"></path><path d=\"M360.909,216.545H240.606c-13.293,0-24.061,10.779-24.061,24.061v120.303c0,13.293,10.767,24.061,24.061,24.061h120.303 c13.281,0,24.061-10.767,24.061-24.061V240.606C384.97,227.313,374.191,216.545,360.909,216.545z M360.909,360.909H240.606 V240.606h120.303V360.909z\"></path><path d=\"M144.364,216.545H24.061C10.767,216.545,0,227.325,0,240.606v120.303c0,13.293,10.767,24.061,24.061,24.061h120.303 c13.293,0,24.061-10.767,24.061-24.061V240.606C168.424,227.313,157.657,216.545,144.364,216.545z M144.364,360.909H24.061 V240.606h120.303V360.909z\"></path></g></g></svg>",
               "text": "Collection",
-              "link": "shopify:\/\/collections"
+              "link": "shopify://collections"
             }
           },
           "5d6d32ae-e121-47c0-84be-ab16049c7872": {
             "type": "action",
             "disabled": true,
             "settings": {
-              "icon": "<svg style=\"transform: scale(1.3);\" xmlns=\"http:\/\/www.w3.org\/2000\/svg\" viewbox=\"0 0 32 32\" aria-hidden=\"true\" focusable=\"false\" role=\"presentation\" class=\"icon icon-account\"><path d=\"M 16 3 C 8.832031 3 3 8.832031 3 16 C 3 23.167969 8.832031 29 16 29 C 23.167969 29 29 23.167969 29 16 C 29 8.832031 23.167969 3 16 3 Z M 16 5 C 22.085938 5 27 9.914063 27 16 C 27 22.085938 22.085938 27 16 27 C 9.914063 27 5 22.085938 5 16 C 5 9.914063 9.914063 5 16 5 Z M 16 8 C 13.25 8 11 10.25 11 13 C 11 14.515625 11.707031 15.863281 12.78125 16.78125 C 10.53125 17.949219 9 20.300781 9 23 L 11 23 C 11 20.226563 13.226563 18 16 18 C 18.773438 18 21 20.226563 21 23 L 23 23 C 23 20.300781 21.46875 17.949219 19.21875 16.78125 C 20.292969 15.863281 21 14.515625 21 13 C 21 10.25 18.75 8 16 8 Z M 16 10 C 17.667969 10 19 11.332031 19 13 C 19 14.667969 17.667969 16 16 16 C 14.332031 16 13 14.667969 13 13 C 13 11.332031 14.332031 10 16 10 Z\"><\/path><\/svg>",
+              "icon": "<svg style=\"transform: scale(1.3);\" xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 32 32\" aria-hidden=\"true\" focusable=\"false\" role=\"presentation\" class=\"icon icon-account\"><path d=\"M 16 3 C 8.832031 3 3 8.832031 3 16 C 3 23.167969 8.832031 29 16 29 C 23.167969 29 29 23.167969 29 16 C 29 8.832031 23.167969 3 16 3 Z M 16 5 C 22.085938 5 27 9.914063 27 16 C 27 22.085938 22.085938 27 16 27 C 9.914063 27 5 22.085938 5 16 C 5 9.914063 9.914063 5 16 5 Z M 16 8 C 13.25 8 11 10.25 11 13 C 11 14.515625 11.707031 15.863281 12.78125 16.78125 C 10.53125 17.949219 9 20.300781 9 23 L 11 23 C 11 20.226563 13.226563 18 16 18 C 18.773438 18 21 20.226563 21 23 L 23 23 C 23 20.300781 21.46875 17.949219 19.21875 16.78125 C 20.292969 15.863281 21 14.515625 21 13 C 21 10.25 18.75 8 16 8 Z M 16 10 C 17.667969 10 19 11.332031 19 13 C 19 14.667969 17.667969 16 16 16 C 14.332031 16 13 14.667969 13 13 C 13 11.332031 14.332031 10 16 10 Z\"></path></svg>",
               "text": "Account",
               "action_to": "account"
             }
@@ -482,7 +482,7 @@
             "type": "action",
             "disabled": true,
             "settings": {
-              "icon": "<svg viewbox=\"0 0 30 30\" class=\"icon icon-cart\" enable-background=\"new 0 0 30 30\"><g><path d=\"M20,6V5c0-2.761-2.239-5-5-5s-5,2.239-5,5v1H4v24h22V6H20z M12,5c0-1.657,1.343-3,3-3s3,1.343,3,3v1h-6V5z M24,28H6V8h4v3    h2V8h6v3h2V8h4V28z\"><\/path><\/g><\/svg>",
+              "icon": "<svg viewbox=\"0 0 30 30\" class=\"icon icon-cart\" enable-background=\"new 0 0 30 30\"><g><path d=\"M20,6V5c0-2.761-2.239-5-5-5s-5,2.239-5,5v1H4v24h22V6H20z M12,5c0-1.657,1.343-3,3-3s3,1.343,3,3v1h-6V5z M24,28H6V8h4v3    h2V8h6v3h2V8h4V28z\"></path></g></svg>",
               "text": "Cart",
               "action_to": "cart"
             }
@@ -513,9 +513,24 @@
             "type": "menu-1",
             "settings": {
               "show_banner": false,
-              "heading": "CANDLES",
+              "heading": "Best Sellers",
               "url": "#",
               "menu": "test-menu-1",
+              "label": "",
+              "icon": "",
+              "show_custom_style": false,
+              "text_color": "#000000",
+              "label_bg_color": "#000000",
+              "label_text_color": "#ffffff"
+            }
+          },
+          "c52874dc-e1b2-47fc-b98d-e387fde5711b": {
+            "type": "menu-1",
+            "settings": {
+              "show_banner": false,
+              "heading": "Seasonal Scents",
+              "url": "#",
+              "menu": "",
               "label": "",
               "icon": "",
               "show_custom_style": false,
@@ -529,22 +544,7 @@
             "settings": {
               "show_banner": false,
               "heading": "BUNDLE & SAVE",
-              "url": "shopify:\/\/collections\/bundles",
-              "menu": "",
-              "label": "",
-              "icon": "",
-              "show_custom_style": false,
-              "text_color": "#000000",
-              "label_bg_color": "#000000",
-              "label_text_color": "#ffffff"
-            }
-          },
-          "c52874dc-e1b2-47fc-b98d-e387fde5711b": {
-            "type": "menu-1",
-            "settings": {
-              "show_banner": false,
-              "heading": "SEASONAL SCENTS",
-              "url": "shopify:\/\/collections\/seasonal-scents",
+              "url": "shopify://collections/bundles",
               "menu": "",
               "label": "",
               "icon": "",
@@ -574,7 +574,7 @@
             "settings": {
               "show_banner": false,
               "heading": "SAME-DAY GIFTING",
-              "url": "shopify:\/\/pages\/same-day-gifting",
+              "url": "shopify://pages/same-day-gifting",
               "menu": "",
               "label": "",
               "icon": "",
@@ -617,8 +617,8 @@
         },
         "block_order": [
           "32a5a3ab-3967-4d9b-a9a9-cdc87bec6641",
-          "78124338-291a-4228-93f1-73f8a53a356e",
           "c52874dc-e1b2-47fc-b98d-e387fde5711b",
+          "78124338-291a-4228-93f1-73f8a53a356e",
           "f53ca8ed-b57c-4730-97e5-a381e92c78c7",
           "menu_1_QwVbRh",
           "92f0be40-5079-474b-bd77-8e44dfdf1f2f",
@@ -630,7 +630,7 @@
           "bg_color": "#000000",
           "bg_color_gradient": "",
           "text_color_active": "#232323",
-          "bg_color_active": "#FCF9EF",
+          "bg_color_active": "#fcf9ef",
           "bg_color_gradient_active": "",
           "image_type": "jpg",
           "image_style": "circle",
@@ -665,7 +665,7 @@
           "bg_color": "#000000",
           "bg_color_gradient": "",
           "text_color_active": "#000000",
-          "bg_color_active": "#FCF9EF",
+          "bg_color_active": "#fcf9ef",
           "bg_color_gradient_active": "",
           "image_type": "jpg",
           "image_style": "circle",
@@ -700,7 +700,7 @@
           "bg_color": "#000000",
           "bg_color_gradient": "",
           "text_color_active": "#000000",
-          "bg_color_active": "#FCF9EF",
+          "bg_color_active": "#fcf9ef",
           "bg_color_gradient_active": "",
           "image_type": "jpg",
           "image_style": "circle",
@@ -731,42 +731,42 @@
     "content_for_index": [],
     "blocks": {
       "14952540001915115444": {
-        "type": "shopify:\/\/apps\/upcart-cart-drawer\/blocks\/app-embed\/af3da5fb-f5f7-40ec-8273-41bf50059d4b",
+        "type": "shopify://apps/upcart-cart-drawer/blocks/app-embed/af3da5fb-f5f7-40ec-8273-41bf50059d4b",
         "disabled": false,
         "settings": {}
       },
       "855628211100114053": {
-        "type": "shopify:\/\/apps\/klaviyo-email-marketing-sms\/blocks\/klaviyo-onsite-embed\/2632fe16-c075-4321-a88b-50b567f42507",
+        "type": "shopify://apps/klaviyo-email-marketing-sms/blocks/klaviyo-onsite-embed/2632fe16-c075-4321-a88b-50b567f42507",
         "disabled": false,
         "settings": {}
       },
       "14479319785270113485": {
-        "type": "shopify:\/\/apps\/zapiet-pickup-delivery\/blocks\/app-embed\/5599aff0-8af1-473a-a372-ecd72a32b4d5",
+        "type": "shopify://apps/zapiet-pickup-delivery/blocks/app-embed/5599aff0-8af1-473a-a372-ecd72a32b4d5",
         "disabled": false,
         "settings": {}
       },
       "2567389343055140935": {
-        "type": "shopify:\/\/apps\/microsoft-clarity\/blocks\/clarity_js\/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
+        "type": "shopify://apps/microsoft-clarity/blocks/clarity_js/31c3d126-8116-4b4a-8ba1-baeda7c4aeea",
         "disabled": false,
         "settings": {}
       },
       "17676059084223943535": {
-        "type": "shopify:\/\/apps\/triplewhale\/blocks\/triple_pixel_snippet\/483d496b-3f1a-4609-aea7-8eee3b6b7a2a",
+        "type": "shopify://apps/triplewhale/blocks/triple_pixel_snippet/483d496b-3f1a-4609-aea7-8eee3b6b7a2a",
         "disabled": false,
         "settings": {}
       },
       "6176556142592085346": {
-        "type": "shopify:\/\/apps\/justuno-email-sms-pop-ups\/blocks\/star_rating\/ea1f1a23-7069-4266-a6e1-df04f87c7e94",
+        "type": "shopify://apps/justuno-email-sms-pop-ups/blocks/star_rating/ea1f1a23-7069-4266-a6e1-df04f87c7e94",
         "disabled": false,
         "settings": {}
       },
       "14060646107696862457": {
-        "type": "shopify:\/\/apps\/judge-me-reviews\/blocks\/judgeme_core\/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
         "disabled": false,
         "settings": {}
       },
       "7079518687644006178": {
-        "type": "shopify:\/\/apps\/checkout-blocks\/blocks\/app-embed\/b0024ca5-9de8-4bf0-a92f-cd0783877ae2",
+        "type": "shopify://apps/checkout-blocks/blocks/app-embed/b0024ca5-9de8-4bf0-a92f-cd0783877ae2",
         "disabled": true,
         "settings": {
           "utm_id": true,
