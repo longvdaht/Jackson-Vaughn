@@ -279,7 +279,7 @@
       {%- if settings.display_text_size -%}
         {%- assign variant_size = product_card_product.options_by_name['Size'].values | size -%}
         {%- if variant_size > 0 -%}
-          <span class="text-size text-{{ settings.product_content_text_align }}">{{ 'products.product.more_sizes' | t }}</span>
+          <span class="more-size text-size text-{{ settings.product_content_text_align }}">{{ 'products.product.more_sizes' | t }}</span>
         {%- endif -%}
       {%- endif -%}
 
