@@ -18,7 +18,7 @@
             "image_slide": "shopify://shop_images/06.22.22JV_Beckley205_1.jpg",
             "image_slide_mb": "shopify://shop_images/06.22.22JV_Beckley205_mobile.png",
             "alignment": "left",
-            "alignment_mb": "left",
+            "alignment_mb": "center",
             "enable_custom_position": false,
             "custom_horizontal": "",
             "custom_vertical": "",
