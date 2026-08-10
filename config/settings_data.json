@@ -588,7 +588,7 @@
             "type": "menu-1",
             "settings": {
               "show_banner": false,
-              "heading": "ABOUT US",
+              "heading": "About",
               "url": "",
               "menu": "about-us-mobile-menu",
               "label": "",
