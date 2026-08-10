@@ -539,6 +539,21 @@
               "label_text_color": "#ffffff"
             }
           },
+          "78124338-291a-4228-93f1-73f8a53a356e": {
+            "type": "menu-1",
+            "settings": {
+              "show_banner": false,
+              "heading": "Bundles",
+              "url": "#",
+              "menu": "",
+              "label": "",
+              "icon": "",
+              "show_custom_style": false,
+              "text_color": "#000000",
+              "label_bg_color": "#000000",
+              "label_text_color": "#ffffff"
+            }
+          },
           "f53ca8ed-b57c-4730-97e5-a381e92c78c7": {
             "type": "menu-1",
             "settings": {
@@ -554,41 +569,11 @@
               "label_text_color": "#ffffff"
             }
           },
-          "78124338-291a-4228-93f1-73f8a53a356e": {
-            "type": "menu-1",
-            "settings": {
-              "show_banner": false,
-              "heading": "BUNDLE & SAVE",
-              "url": "shopify://collections/bundles",
-              "menu": "",
-              "label": "",
-              "icon": "",
-              "show_custom_style": false,
-              "text_color": "#000000",
-              "label_bg_color": "#000000",
-              "label_text_color": "#ffffff"
-            }
-          },
-          "menu_1_QwVbRh": {
-            "type": "menu-1",
-            "settings": {
-              "show_banner": false,
-              "heading": "SAME-DAY GIFTING",
-              "url": "shopify://pages/same-day-gifting",
-              "menu": "",
-              "label": "",
-              "icon": "",
-              "show_custom_style": false,
-              "text_color": "#000000",
-              "label_bg_color": "#000000",
-              "label_text_color": "#ffffff"
-            }
-          },
           "92f0be40-5079-474b-bd77-8e44dfdf1f2f": {
             "type": "menu-1",
             "settings": {
               "show_banner": false,
-              "heading": "ACCESSORIES",
+              "heading": "Accessories",
               "url": "",
               "menu": "extras-mobile-menu",
               "label": "",
@@ -613,16 +598,32 @@
               "label_bg_color": "#000000",
               "label_text_color": "#ffffff"
             }
+          },
+          "menu_1_QwVbRh": {
+            "type": "menu-1",
+            "disabled": true,
+            "settings": {
+              "show_banner": false,
+              "heading": "SAME-DAY GIFTING",
+              "url": "shopify://pages/same-day-gifting",
+              "menu": "",
+              "label": "",
+              "icon": "",
+              "show_custom_style": false,
+              "text_color": "#000000",
+              "label_bg_color": "#000000",
+              "label_text_color": "#ffffff"
+            }
           }
         },
         "block_order": [
           "32a5a3ab-3967-4d9b-a9a9-cdc87bec6641",
           "c52874dc-e1b2-47fc-b98d-e387fde5711b",
-          "f53ca8ed-b57c-4730-97e5-a381e92c78c7",
           "78124338-291a-4228-93f1-73f8a53a356e",
-          "menu_1_QwVbRh",
+          "f53ca8ed-b57c-4730-97e5-a381e92c78c7",
           "92f0be40-5079-474b-bd77-8e44dfdf1f2f",
-          "menu_1_4Dt7Cf"
+          "menu_1_4Dt7Cf",
+          "menu_1_QwVbRh"
         ],
         "settings": {
           "heading": "",
