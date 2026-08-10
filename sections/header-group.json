@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "type": "header",
   "name": "Header Group",
@@ -17,7 +8,7 @@
         "0d1ad32e-d832-4f02-a011-f373b33430b1": {
           "type": "announcement",
           "settings": {
-            "text": "<p>FREE SHIPPING ON ORDERS OVER $80</p>",
+            "text": "<p>FREE SHIPPING ON ORDERS OVER $80<\/p>",
             "btn_color": "#26292d",
             "btn_border_color": "#ffffff",
             "btn_bg_color": "#ffffff",
@@ -28,7 +19,7 @@
           "type": "announcement",
           "disabled": true,
           "settings": {
-            "text": "<p>ENJOY FREE SHIPPING ON ORDERS OVER $50</p>",
+            "text": "<p>ENJOY FREE SHIPPING ON ORDERS OVER $50<\/p>",
             "btn_color": "#26292d",
             "btn_border_color": "#ffffff",
             "btn_bg_color": "#ffffff",
@@ -105,7 +96,7 @@
           "type": "logo",
           "settings": {
             "logo_position": "always",
-            "logo": "shopify://shop_images/jv.svg",
+            "logo": "shopify:\/\/shop_images\/jv.svg",
             "logo_width": 300,
             "logo_width_fixed": 100,
             "logo_text": "Glasso",
@@ -213,10 +204,10 @@
             "menu_text_left": "",
             "menu_text_left_sale": "",
             "show_banner_1": true,
-            "banner_1": "shopify://shop_images/test.png",
+            "banner_1": "shopify:\/\/shop_images\/test.png",
             "banner_url_1": "",
             "show_banner_2": true,
-            "banner_2": "shopify://shop_images/test.png",
+            "banner_2": "shopify:\/\/shop_images\/test.png",
             "banner_url_2": "",
             "show_az_brand": false,
             "az_brand_title": "All Brands A-Z",
@@ -251,7 +242,7 @@
           "type": "menu",
           "settings": {
             "color": "#b78c47",
-            "menu_tab_bg": "#000000"
+            "menu_tab_bg": "#FCF9EF"
           }
         },
         "163e2cb5-14f2-4af6-9ac3-77193c082f53": {
@@ -263,7 +254,7 @@
         "550fbd21-75fb-4051-9dee-77d91b5239f0": {
           "type": "logo",
           "settings": {
-            "logo_mobile": "shopify://shop_images/logo2_1ac94bdf-5f26-43ab-9b9d-f103af98ef10.png",
+            "logo_mobile": "shopify:\/\/shop_images\/logo2_1ac94bdf-5f26-43ab-9b9d-f103af98ef10.png",
             "logo_width_mobile": 150,
             "logo_text": "",
             "logo_font_size": 20,
