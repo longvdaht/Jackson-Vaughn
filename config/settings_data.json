@@ -539,13 +539,13 @@
               "label_text_color": "#ffffff"
             }
           },
-          "78124338-291a-4228-93f1-73f8a53a356e": {
+          "f53ca8ed-b57c-4730-97e5-a381e92c78c7": {
             "type": "menu-1",
             "settings": {
               "show_banner": false,
-              "heading": "BUNDLE & SAVE",
-              "url": "shopify://collections/bundles",
-              "menu": "",
+              "heading": "Gifts",
+              "url": "",
+              "menu": "give-a-gift-mobile",
               "label": "",
               "icon": "",
               "show_custom_style": false,
@@ -554,13 +554,13 @@
               "label_text_color": "#ffffff"
             }
           },
-          "f53ca8ed-b57c-4730-97e5-a381e92c78c7": {
+          "78124338-291a-4228-93f1-73f8a53a356e": {
             "type": "menu-1",
             "settings": {
               "show_banner": false,
-              "heading": "GIVE A GIFT",
-              "url": "",
-              "menu": "give-a-gift-mobile",
+              "heading": "BUNDLE & SAVE",
+              "url": "shopify://collections/bundles",
+              "menu": "",
               "label": "",
               "icon": "",
               "show_custom_style": false,
@@ -618,8 +618,8 @@
         "block_order": [
           "32a5a3ab-3967-4d9b-a9a9-cdc87bec6641",
           "c52874dc-e1b2-47fc-b98d-e387fde5711b",
-          "78124338-291a-4228-93f1-73f8a53a356e",
           "f53ca8ed-b57c-4730-97e5-a381e92c78c7",
+          "78124338-291a-4228-93f1-73f8a53a356e",
           "menu_1_QwVbRh",
           "92f0be40-5079-474b-bd77-8e44dfdf1f2f",
           "menu_1_4Dt7Cf"
