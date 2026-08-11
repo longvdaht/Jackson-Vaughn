@@ -180,6 +180,7 @@
         },
         "icon_with_text_3wdLTF": {
           "type": "icon-with-text",
+          "disabled": true,
           "settings": {
             "heading_color": "#232323",
             "description_color": "#232323",
