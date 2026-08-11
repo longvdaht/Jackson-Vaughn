@@ -1697,7 +1697,7 @@
     margin: 0;
     white-space: nowrap;
     min-width: 108px;
-    /* text-transform: uppercase; */
+    text-transform: capitalize;
 }
 
 .productView-scentProfile .value {
