@@ -1,0 +1,1350 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "2e8c7c14-a0ad-4930-a1d8-3def05310426": {
+          "type": "breadcrumb",
+          "settings": {
+            "breadcrumb_layout": "full",
+            "breadcrumb_alignment": "left",
+            "breadcrumb_bg": "rgba(0,0,0,0)",
+            "breadcrumb_gradient": "",
+            "breadcrumb_bg_mb": "rgba(0,0,0,0)",
+            "breadcrumb_gradient_mb": "",
+            "breadcrumb_mg_top_desktop": 10,
+            "breadcrumb_mg_top_mobile": 0,
+            "breadcrumb_mg_bottom_desktop": 20,
+            "breadcrumb_mg_bottom_mobile": 0
+          }
+        },
+        "b0ea69b7-8a54-4a3c-9abd-0fcceeabaaa0": {
+          "type": "title",
+          "settings": {
+            "fontsize_text": 40,
+            "fontsize_text_mb": 32,
+            "color_title": "#232323",
+            "spacing_top": 0,
+            "spacing_bottom": 6
+          }
+        },
+        "product_text_nWQ6Vw": {
+          "type": "product_text",
+          "settings": {
+            "text": "{{ product.metafields.custom.subtitle.value }}",
+            "text_icon": "",
+            "text_description": "",
+            "fontsize_text": 14,
+            "content_spacing": 0,
+            "custom_block_align": "left",
+            "color_title": "#a35334",
+            "background_color_block": "rgba(0,0,0,0)",
+            "background_gradient_color_block": "",
+            "spacing_top": 0,
+            "spacing_bottom": 0
+          }
+        },
+        "judge_me_reviews_preview_badge_UzFtEX": {
+          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        },
+        "scent_profile_GB7jrK": {
+          "type": "scent_profile",
+          "settings": {
+            "label_family": "{{ product.metafields.custom.product_scent_family.value }}",
+            "label_notes": "{{ product.metafields.custom.product_scent_notes.value }}",
+            "label_feels": "{{ product.metafields.custom.product_scent_feels_like.value }}",
+            "text_color": "#232323",
+            "font_size_desktop": 15,
+            "font_size_mobile": 15,
+            "throw_level": "{{ product.metafields.custom.product_throw_level.value }}",
+            "alignment": "left",
+            "spacing_top": 24,
+            "spacing_bottom": 0,
+            "spacing_top_mb": 24,
+            "spacing_bottom_mb": 0,
+            "padding": 0
+          }
+        },
+        "bd3a641e-98d0-4da1-ab57-d5e4b0391995": {
+          "type": "countdown",
+          "disabled": true,
+          "settings": {
+            "spacing_top": 0,
+            "spacing_bottom": 20
+          }
+        },
+        "d98e243b-3682-495a-965a-1c7f7d460880": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "show_variant_image_group": false,
+            "enable_border_top": false,
+            "enable_border_bottom": false,
+            "color_border": "#e6e6e6",
+            "spacing_top": 24,
+            "spacing_bottom": 24,
+            "spacing_top_mb": 24,
+            "spacing_bottom_mb": 24
+          }
+        },
+        "d97e417a-941b-4a5d-bef3-a651adb918d8": {
+          "type": "variant_description",
+          "settings": {
+            "spacing_top": 0,
+            "spacing_bottom": 0
+          }
+        },
+        "faa2b3e6-c0a1-4269-baa6-d2605efe4c05": {
+          "type": "quantity_selector",
+          "settings": {
+            "qty_style": "1",
+            "qty_layout": "1",
+            "spacing_top": 0,
+            "spacing_bottom": 0
+          }
+        },
+        "f1b31d90-1e43-4948-9fe3-97ba43f6fb34": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": false,
+            "show_payment_terms": true,
+            "spacing_top": 0,
+            "spacing_bottom": 0,
+            "atc_text": "",
+            "atc_animation": "none",
+            "atc_color": "#ffffff",
+            "atc_border_color": "#232323",
+            "atc_bg_color": "#232323",
+            "atc_bg_color_gradient": "",
+            "atc_color_hover": "#232323",
+            "atc_border_color_hover": "#232323",
+            "atc_bg_color_hover": "#ffffff",
+            "atc_bg_color_gradient_hover": "",
+            "atc_note": "",
+            "atc_note_color": "#232323",
+            "bin_color": "#232323",
+            "bin_border_color": "#acacac",
+            "bin_bg_color": "#ffffff",
+            "bin_bg_color_gradient": "",
+            "bin_color_hover": "#ffffff",
+            "bin_border_color_hover": "#232323",
+            "bin_bg_color_hover": "#232323",
+            "bin_bg_color_hover_gradient": ""
+          }
+        },
+        "custom_liquid_f9zt8H": {
+          "type": "custom_liquid",
+          "disabled": true,
+          "settings": {
+            "custom_liquid": "{%- liquid assign preorder_product = all_products['texas-summer'] -%}\n{%- for preordervariant in preorder_product.variants -%}\n  {%- if preordervariant.inventory_policy == 'continue' -%}\n    {%- assign has_continue_policy = true -%}\n    {%- break -%}\n  {%- endif -%}\n{%- endfor -%}\n{%- if preorder_product.tags contains 'dtc_oos' and product.title contains 'Summer' and has_continue_policy -%}\n<div class=\"preorder_message\">\nPRE-ORDER | SHIPS WEEK OF JULY 3RD\n</div>\n<input type=\"hidden\" name=\"__properties[Pre-Order]\" \n value=\"Ships the week of July 3rd\">\n{%- endif -%}\n{% style %}\n.preorder_message {\n font-weight: 600;\n    padding-bottom: 25px;\n    text-align: center;\n    color: #36402d;\n    font-size: 1.18em;\n}\n.productView-moreItem:has(+ .preorder_message ){\npadding-bottom: 0 !important;\n}\n{% endstyle %}"
+          }
+        },
+        "683f2b15-db3b-4f63-8d0f-e688cc678581": {
+          "type": "customer_viewing",
+          "disabled": true,
+          "settings": {
+            "customer_viewing_number": "283, 100, 59, 11, 14, 185, 193, 165, 50, 38, 99, 112, 46, 10, 125, 200, 250, 18",
+            "customer_viewing_time": 5,
+            "spacing_top": 0,
+            "spacing_bottom": 22
+          }
+        },
+        "19de9abb-17c8-4d67-941d-b32706ed06fd": {
+          "type": "pickup_availability",
+          "disabled": true,
+          "settings": {
+            "show_pickup_availability": true,
+            "spacing_top": 0,
+            "spacing_bottom": 27
+          }
+        },
+        "10093fcf-2053-47e9-bedb-841bb0d046fa": {
+          "type": "trust_image",
+          "disabled": true,
+          "settings": {
+            "show_trust_image": true,
+            "spacing_top": 0,
+            "spacing_bottom": 0
+          }
+        },
+        "icon_with_text_3wdLTF": {
+          "type": "icon-with-text",
+          "settings": {
+            "heading_color": "#232323",
+            "description_color": "#232323",
+            "spacing_top": 0,
+            "spacing_bottom": 24,
+            "image_1": "shopify://shop_images/1_c81cc88a-553b-4ff0-b2df-729e50b5cd31.png",
+            "heading_1": "<p>Hand-Poured</p>",
+            "description_1": "",
+            "link_1": "",
+            "image_2": "shopify://shop_images/2_bae98721-445d-46dc-976f-090cdde049c8.png",
+            "heading_2": "<p>Clean burn</p>",
+            "description_2": "",
+            "link_2": "",
+            "image_3": "shopify://shop_images/3_6f00e22a-42f0-40e3-b028-95b592db853e.png",
+            "heading_3": "<p>Long-Lasting</p>",
+            "description_3": "",
+            "link_3": "",
+            "image_4": "shopify://shop_images/4_34e46691-b2f3-4a1c-8174-cfa5eadac6a7.png",
+            "heading_4": "<p>designer candles</p>",
+            "description_4": "",
+            "link_4": ""
+          }
+        },
+        "bd066b80-c8e3-4f3e-8280-b27fbf6e9423": {
+          "type": "description",
+          "settings": {
+            "open_tab_mobile": true,
+            "title": "Description",
+            "enable_btn_show_more": false,
+            "maximum_des_to_show": 300
+          }
+        },
+        "custom_cx63PF": {
+          "type": "custom",
+          "settings": {
+            "tab_display": "accordion",
+            "open_tab_mobile": false,
+            "title": "Details",
+            "type": "metafield",
+            "content": "",
+            "enable_btn_show_more": false,
+            "maximum_des_to_show": 300,
+            "product_custom_source": "key_text",
+            "product_tab_key_metafield": "tab_detail_mf"
+          }
+        },
+        "b9d6eb19-10f4-41f8-bfdc-ea10e8b3182a": {
+          "type": "custom",
+          "settings": {
+            "tab_display": "popup",
+            "open_tab_mobile": false,
+            "title": "Candle Care 101",
+            "type": "all",
+            "content": "<p>LET'S START WITH THE WICK Before each burn, trim the wick to ¼ of an inch using a wick trimmer for a safe, even burn, and increased candle life. Before each burn remove debris and buildup to avoid excess smoke. Keep the wick centered in the container.</p> <p>BURN, BABY, BURN When you burn, allow the candle wax to melt to the edges of the glass every time to prevent tunneling. This is especially important during your first burn!</p> <p>SAFETY FIRST Never leave a lit candle unattended, and don’t burn your candle for more than 3-4 hours at a time. Protect the surface below your candle from heat by placing your candle on a coaster.</p> \n<p>STOP, LOOK, AND LISTEN Do not burn your candle if there is less than ½ inch of wax remaining in the glass. Burning a candle without enough wax can overheat the jar.</p>",
+            "enable_btn_show_more": false,
+            "maximum_des_to_show": 300,
+            "product_custom_source": "dynamic",
+            "product_tab_key_metafield": ""
+          }
+        },
+        "3d9ea84d-5527-4bce-abe6-5debef3ec955": {
+          "type": "custom",
+          "settings": {
+            "tab_display": "popup",
+            "open_tab_mobile": false,
+            "title": "Shipping & Returns",
+            "type": "all",
+            "content": "<p>SHIPPING Orders normally ship within 1-2 business days. Once your package is picked up by our carrier, transit times typically range between 1-5 business days, depending on delivery destination. You will receive a confirmation email when your label is created.</p>\n<p>RETURN POLICY All returns must be processed within 30 days of receiving the order. If you are not 100% satisfied with your Jackson Vaughn order, please contact our dedicated Support Team at orders@jacksonvaughn.com with your order number (found on your order confirmation email) and we'll help to initiate a return or exchange.</p>",
+            "enable_btn_show_more": false,
+            "maximum_des_to_show": 300,
+            "product_custom_source": "dynamic",
+            "product_tab_key_metafield": ""
+          }
+        },
+        "rich_text_DPWhFd": {
+          "type": "rich_text",
+          "settings": {
+            "text": "<h3>The Jackson Vaughn Promise</h3><p>We started with a single candle, gifted to people we cared about. More than two decades later, that same warmth goes into everything we make.</p>",
+            "content_spacing": 15,
+            "custom_block_align": "center",
+            "background_color_block": "#ebe7de",
+            "background_gradient_color_block": "",
+            "spacing_top": 24,
+            "spacing_bottom": 0
+          }
+        },
+        "19ab1d9f-74b2-4c76-bf2e-1bc749e5c2a3": {
+          "type": "share",
+          "disabled": true,
+          "settings": {
+            "show_share": true,
+            "share_layout": "2",
+            "spacing_top": 0,
+            "spacing_bottom": 0
+          }
+        },
+        "a86220cf-8641-4e06-87d3-b5ffa195501b": {
+          "type": "custom_information",
+          "disabled": true,
+          "settings": {
+            "icon": "<svg aria-hidden=\"true\" focusable=\"false\" data-prefix=\"fal\" data-icon=\"shipping-fast\" role=\"img\" xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 640 512\"><path fill=\"currentColor\" d=\"M280 192c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8H40c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8h240zm352 192h-24V275.9c0-16.8-6.8-33.3-18.8-45.2l-83.9-83.9c-11.8-12-28.3-18.8-45.2-18.8H416V78.6c0-25.7-22.2-46.6-49.4-46.6H113.4C86.2 32 64 52.9 64 78.6V96H8c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8h240c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8H96V78.6c0-8.1 7.8-14.6 17.4-14.6h253.2c9.6 0 17.4 6.5 17.4 14.6V384H207.6C193 364.7 170 352 144 352c-18.1 0-34.6 6.2-48 16.4V288H64v144c0 44.2 35.8 80 80 80s80-35.8 80-80c0-5.5-.6-10.8-1.6-16h195.2c-1.1 5.2-1.6 10.5-1.6 16 0 44.2 35.8 80 80 80s80-35.8 80-80c0-5.5-.6-10.8-1.6-16H632c4.4 0 8-3.6 8-8v-16c0-4.4-3.6-8-8-8zm-488 96c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm272-320h44.1c8.4 0 16.7 3.4 22.6 9.4l83.9 83.9c.8.8 1.1 1.9 1.8 2.8H416V160zm80 320c-26.5 0-48-21.5-48-48s21.5-48 48-48 48 21.5 48 48-21.5 48-48 48zm80-96h-16.4C545 364.7 522 352 496 352s-49 12.7-63.6 32H416v-96h160v96zM256 248v-16c0-4.4-3.6-8-8-8H8c-4.4 0-8 3.6-8 8v16c0 4.4 3.6 8 8 8h240c4.4 0 8-3.6 8-8z\"></path></svg>",
+            "text": "Free Shipping over $80",
+            "color_title": "#232323",
+            "text_description": "<p>Free standard shipping on orders over $80</p>",
+            "color_des": "#4d4d4d",
+            "content_popup": "",
+            "fontsize_text": 12,
+            "spacing_top": 0,
+            "spacing_bottom": 12
+          }
+        },
+        "058d88b7-6cce-4aae-a5c4-b8193bbdfa7f": {
+          "type": "custom_information",
+          "disabled": true,
+          "settings": {
+            "icon": "<svg aria-hidden=\"true\" focusable=\"false\" data-prefix=\"fal\" data-icon=\"shield-alt\" role=\"img\" xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 512 512\">\n    <path fill=\"currentColor\" d=\"M466.5 83.7l-192-80a48.15 48.15 0 0 0-36.9 0l-192 80C27.7 91.1 16 108.6 16 128c0 198.5 114.5 335.7 221.5 380.3 11.8 4.9 25.1 4.9 36.9 0C360.1 472.6 496 349.3 496 128c0-19.4-11.7-36.9-29.5-44.3zM262.2 478.8c-4 1.6-8.4 1.6-12.3 0C152 440 48 304 48 128c0-6.5 3.9-12.3 9.8-14.8l192-80c3.9-1.6 8.4-1.6 12.3 0l192 80c6 2.5 9.9 8.3 9.8 14.8.1 176-103.9 312-201.7 350.8zM256 411V100l-142.7 59.5c10.1 120.1 77.1 215 142.7 251.5zm-32-66.8c-36.4-39.9-65.8-97.8-76.1-164.5L224 148z\"></path>\n</svg>",
+            "text": "Hassle Free Returns",
+            "color_title": "#232323",
+            "text_description": "",
+            "color_des": "#4d4d4d",
+            "content_popup": "",
+            "fontsize_text": 12,
+            "spacing_top": 0,
+            "spacing_bottom": 14
+          }
+        },
+        "36addb13-cd73-4713-a15c-7d846c4724e7": {
+          "type": "custom_information",
+          "disabled": true,
+          "settings": {
+            "icon": "<svg aria-hidden=\"true\" focusable=\"false\" data-prefix=\"fal\" data-icon=\"exclamation-triangle\" role=\"img\" xmlns=\"http://www.w3.org/2000/svg\" viewbox=\"0 0 576 512\"><path fill=\"currentColor\" d=\"M270.2 160h35.5c3.4 0 6.1 2.8 6 6.2l-7.5 196c-.1 3.2-2.8 5.8-6 5.8h-20.5c-3.2 0-5.9-2.5-6-5.8l-7.5-196c-.1-3.4 2.6-6.2 6-6.2zM288 388c-15.5 0-28 12.5-28 28s12.5 28 28 28 28-12.5 28-28-12.5-28-28-28zm281.5 52L329.6 24c-18.4-32-64.7-32-83.2 0L6.5 440c-18.4 31.9 4.6 72 41.6 72H528c36.8 0 60-40 41.5-72zM528 480H48c-12.3 0-20-13.3-13.9-24l240-416c6.1-10.6 21.6-10.7 27.7 0l240 416c6.2 10.6-1.5 24-13.8 24z\"></path></svg>",
+            "text": "Covid-19 Shipping Delay Notice",
+            "color_title": "#232323",
+            "text_description": "",
+            "color_des": "#999999",
+            "content_popup": "<div class=\"halo-text-format\">\n\t\t\t\t\t\t\t\t<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>\n\t\t\t\t\t\t\t</div>",
+            "fontsize_text": 12,
+            "spacing_top": 0,
+            "spacing_bottom": 0
+          }
+        },
+        "1180d91b-75f9-49d9-a9db-2b9f5a49408d": {
+          "type": "complementary_products",
+          "settings": {
+            "show_complementary_product": true,
+            "complementary_product_title": "Pairs well with:",
+            "complementary_product_arrows": false,
+            "complementary_product_dots": true,
+            "complementary_product_layout": "1",
+            "complementary_product_limit_1": 1,
+            "complementary_product_limit_2": 1,
+            "complementary_product_object": "none",
+            "spacing_top": 24,
+            "spacing_bottom": 0
+          }
+        }
+      },
+      "block_order": [
+        "2e8c7c14-a0ad-4930-a1d8-3def05310426",
+        "b0ea69b7-8a54-4a3c-9abd-0fcceeabaaa0",
+        "product_text_nWQ6Vw",
+        "judge_me_reviews_preview_badge_UzFtEX",
+        "scent_profile_GB7jrK",
+        "bd3a641e-98d0-4da1-ab57-d5e4b0391995",
+        "d98e243b-3682-495a-965a-1c7f7d460880",
+        "d97e417a-941b-4a5d-bef3-a651adb918d8",
+        "faa2b3e6-c0a1-4269-baa6-d2605efe4c05",
+        "f1b31d90-1e43-4948-9fe3-97ba43f6fb34",
+        "custom_liquid_f9zt8H",
+        "683f2b15-db3b-4f63-8d0f-e688cc678581",
+        "19de9abb-17c8-4d67-941d-b32706ed06fd",
+        "10093fcf-2053-47e9-bedb-841bb0d046fa",
+        "icon_with_text_3wdLTF",
+        "bd066b80-c8e3-4f3e-8280-b27fbf6e9423",
+        "custom_cx63PF",
+        "b9d6eb19-10f4-41f8-bfdc-ea10e8b3182a",
+        "3d9ea84d-5527-4bce-abe6-5debef3ec955",
+        "rich_text_DPWhFd",
+        "19ab1d9f-74b2-4c76-bf2e-1bc749e5c2a3",
+        "a86220cf-8641-4e06-87d3-b5ffa195501b",
+        "058d88b7-6cce-4aae-a5c4-b8193bbdfa7f",
+        "36addb13-cd73-4713-a15c-7d846c4724e7",
+        "1180d91b-75f9-49d9-a9db-2b9f5a49408d"
+      ],
+      "settings": {
+        "container": "default",
+        "padding_full_width": 0,
+        "show_sticky_info": true,
+        "mg_top_desktop": 0,
+        "mg_top_tablet": 0,
+        "mg_top_mobile": 0,
+        "mg_bottom_desktop": 0,
+        "mg_bottom_tablet": 0,
+        "mg_bottom_mobile": 0,
+        "main_image_arrows_desktop": false,
+        "main_image_arrows_mobile": false,
+        "main_image_counter_mobile": false,
+        "main_image_enable_parallax_mb": false,
+        "main_image_show_zoom_icon_mb": false,
+        "main_image_position": "left",
+        "main_image_layout": "2",
+        "main_image_show_custom_cursor": false,
+        "count_color": "#191919",
+        "icon_color": "#000000",
+        "show_thumbnail_mobile": true,
+        "thumnail_layout": "3",
+        "thumbnail_to_show": 5,
+        "show_sidebar": false,
+        "sidebar_collapse": "collapse",
+        "enable_sticky": false,
+        "sidebar_layout": "layout_1",
+        "sidebar_collapse_default": "expand",
+        "sidebar_position": "left",
+        "sidebar_heading_font": "font_1",
+        "sidebar_heading_font_size": 14,
+        "sidebar_heading_font_weight": "700",
+        "sidebar_heading_text_transform": "uppercase",
+        "product_image_ratio": "square",
+        "portrait_aspect_ratio": 148,
+        "zoomed_image": true,
+        "media_fit": "unset",
+        "product_image_popup": "fancybox",
+        "video_layout": "thumbnail",
+        "show_badge": false,
+        "show_qty": true,
+        "show_subtotal": true,
+        "subtotal_style": "2",
+        "use_direct_checkout_button": false,
+        "show_sticky_add_to_cart": true,
+        "enable_sticky_add_to_cart_always_mobile": false,
+        "show_sticky_vendor": false,
+        "sticky_atc_layout": "1",
+        "show_tab": true,
+        "tab_layout": "vertical",
+        "tab_layout_mobile": "vertical",
+        "icon_style_layout": "style_1",
+        "title_font_size": 15,
+        "title_font_size_mb": 15,
+        "font_weight_title": "600",
+        "title_text_transform": "uppercase",
+        "title_padding_top_bottom": 15,
+        "tab_border_color": "#d3d3d3",
+        "tab_border_color_rgb": "",
+        "show_product_bundle": true,
+        "background_color": "#f8f8f8",
+        "padding_top": 30,
+        "padding_top_tablet": 30,
+        "padding_top_mobile": 30,
+        "padding_bottom": 70,
+        "padding_bottom_tablet": 40,
+        "padding_bottom_mobile": 30,
+        "block_title": "Frequently Bought Together",
+        "block_title_align": "center",
+        "block_dots": false,
+        "block_arrows": true,
+        "product_style": "2",
+        "block_image_ratio": "adapt",
+        "bundle_discount": true,
+        "bundle_discount_text": "Get a [discount]% discount buying these products together",
+        "bundle_discount_text_color": "#232323",
+        "total_btn_color": "#ffffff",
+        "total_btn_border": "#232323",
+        "total_btn_bg": "#232323",
+        "total_btn_bg_gradient": "",
+        "total_btn_color_hover": "#232323",
+        "total_btn_border_hover": "#232323",
+        "total_btn_bg_hover": "#ffffff",
+        "total_btn_bg_gradient_hover": ""
+      }
+    },
+    "custom_icon_features_PnL3aG": {
+      "type": "custom-icon-features",
+      "blocks": {
+        "icon_block_X9WWH6": {
+          "type": "icon_block",
+          "settings": {
+            "icon_image": "shopify://shop_images/image.png",
+            "heading": "Hand-Poured",
+            "description": "<p>crafted in small<br/>batches in Texas</p>",
+            "link": ""
+          }
+        },
+        "icon_block_FEncTF": {
+          "type": "icon_block",
+          "settings": {
+            "icon_image": "shopify://shop_images/image22.png",
+            "heading": "Clean burn",
+            "description": "<p>artisan soy wax blend, <br/>natural cotton wick</p>",
+            "link": ""
+          }
+        },
+        "icon_block_jzmDhw": {
+          "type": "icon_block",
+          "settings": {
+            "icon_image": "shopify://shop_images/image3_b5f1375c-c483-4fd7-9231-c91275ba6f7a.png",
+            "heading": "Long-Lasting",
+            "description": "<p>up to 60 hours of<br/> rich, even burn time</p>",
+            "link": ""
+          }
+        },
+        "icon_block_QnN9R3": {
+          "type": "icon_block",
+          "settings": {
+            "icon_image": "shopify://shop_images/image4_92b6c070-42d6-4ccb-85a2-a2372b725fd7.png",
+            "heading": "designer candles",
+            "description": "<p>crafted by award-winning<br/> interior designers</p>",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "icon_block_X9WWH6",
+        "icon_block_FEncTF",
+        "icon_block_jzmDhw",
+        "icon_block_QnN9R3"
+      ],
+      "disabled": true,
+      "name": "Icon Features",
+      "settings": {
+        "container": "container",
+        "padding_full_width": 0,
+        "content_align": "center",
+        "brand_bg": "#fcf9ef",
+        "brand_bg_gradient": "",
+        "gap_desktop": 24,
+        "gap_mobile": 12,
+        "hide_description_mobile": true,
+        "icon_size": 72,
+        "icon_size_mb": 72,
+        "color_heading": "#232323",
+        "fontsize_heading": 15,
+        "fontsize_heading_mb": 15,
+        "color_des": "#232323",
+        "fontsize_des": 14,
+        "mg_top_desktop": 65,
+        "mg_top_tablet": 65,
+        "mg_top_mobile": 65,
+        "mg_bottom_desktop": 65,
+        "mg_bottom_tablet": 65,
+        "mg_bottom_mobile": 65
+      }
+    },
+    "jv_highlight_QY4BUB": {
+      "type": "jv-highlight",
+      "blocks": {
+        "note_nrtYBi": {
+          "type": "note",
+          "disabled": true,
+          "settings": {
+            "icon_image": "shopify://shop_images/icon1.png",
+            "label": "Fresh Texas Peaches",
+            "content": "<p>Top notes of juicy, sun-warmed peaches picked at peak ripeness.</p>"
+          }
+        },
+        "note_8hncf9": {
+          "type": "note",
+          "disabled": true,
+          "settings": {
+            "icon_image": "shopify://shop_images/icon2_48376915-5ed4-431e-9346-3f23a609e70f.png",
+            "label": "Sun Ripened Apricot",
+            "content": "<p>A soft, golden heart of sweet apricot rounds out the fruit.</p>"
+          }
+        },
+        "note_CqxjpJ": {
+          "type": "note",
+          "disabled": true,
+          "settings": {
+            "icon_image": "shopify://shop_images/icon3.png",
+            "label": "Warm Patchouli",
+            "content": "<p>Grounded by an earthy base of warm patchouli for lasting depth.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "note_nrtYBi",
+        "note_8hncf9",
+        "note_CqxjpJ"
+      ],
+      "name": "JV - Highlight",
+      "settings": {
+        "image": "shopify://shop_images/aeed7711631f7449c879864078550788c1adb9b4.jpg",
+        "image_position": "left",
+        "eyebrow": "TEXAS SUMMER",
+        "heading": "Fragrance Notes",
+        "panel_bg": "#a35334",
+        "text_color": "#ffffff"
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "display_product_block": true,
+        "product_block_container": "fullwidth",
+        "padding_full_width": 0,
+        "enable_border_top": false,
+        "enable_border_bottom": false,
+        "color_border_bottom": "#e8e8e8",
+        "border_style": "container",
+        "mg_top_desktop": 65,
+        "mg_top_tablet": 55,
+        "mg_top_mobile": 50,
+        "mg_bottom_desktop": 65,
+        "mg_bottom_tablet": 55,
+        "mg_bottom_mobile": 50,
+        "product_block_layout": "slider",
+        "product_bg": "rgba(0,0,0,0)",
+        "style_block_header": "style1",
+        "product_block_title": "You May Also Like",
+        "enable_border_title": false,
+        "mg_top_title": 0,
+        "mg_bottom_title": 24,
+        "mg_bottom_title_desktop": 30,
+        "fontsize_title": 24,
+        "fontsize_title_mb": 24,
+        "color_title": "#232323",
+        "border_color_title": "#232323",
+        "product_block_title_align": "center",
+        "product_block_limit": 10,
+        "grid_gap": 30,
+        "product_block_per_row": "4",
+        "product_block_swipe_on_mobile": true,
+        "product_block_dots": false,
+        "product_block_dots_mb": false,
+        "product_block_arrows": false,
+        "product_block_arrows_mb": false,
+        "product_block_show": "4",
+        "product_block_per_view": "4",
+        "show_half": true,
+        "scroll_height": 4,
+        "scroll_track_bg": "#f1f1f1",
+        "scroll_thumb_color": "#000000",
+        "scroll_thumb_hover_color": "#444444",
+        "enable_hover_drag_icon": true,
+        "enable_layout_special": false,
+        "bg_card": "#ffffff",
+        "padding_card": 15,
+        "border_radius_card": 5,
+        "border_layout_card": "full",
+        "border_width_card": 5,
+        "border_color_card": "#f0f1f4"
+      }
+    },
+    "jv_gallery_kN93qU": {
+      "type": "jv-gallery",
+      "blocks": {
+        "image_z3zE4i": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/745f038e0998a3efd364155cd2c20d3d1fe6b323.jpg",
+            "link": ""
+          }
+        },
+        "image_TcrMap": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/7b66b120b42ec72e16642e469cdd90d33ba7fc97.jpg",
+            "link": ""
+          }
+        },
+        "image_Kt4gNJ": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/3afe48d029d5b875d480f20553924af6b55fcfd4.jpg",
+            "link": ""
+          }
+        },
+        "image_Fe4CQn": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/9bd7a2d4bbb8f3df2dbcda93bbd6f6aca56d80ef.jpg",
+            "link": ""
+          }
+        },
+        "image_bgqxA9": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/916c76aa51c337ee8339b2a4574d25ea54891380.jpg",
+            "link": ""
+          }
+        },
+        "image_HeWbCK": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/745f038e0998a3efd364155cd2c20d3d1fe6b323.jpg",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_z3zE4i",
+        "image_TcrMap",
+        "image_Kt4gNJ",
+        "image_Fe4CQn",
+        "image_bgqxA9",
+        "image_HeWbCK"
+      ],
+      "name": "JV - Gallery",
+      "settings": {
+        "heading": "From Our Home To Yours",
+        "heading_size": 24,
+        "heading_size_mobile": 24,
+        "heading_gap": 30,
+        "per_view_desktop": 5,
+        "edge_peek": 40,
+        "enable_loop": false,
+        "show_arrows": false,
+        "show_dots": false,
+        "autoplay": false,
+        "autoplay_speed": 4,
+        "image_ratio": "3 / 4",
+        "image_radius": 10,
+        "background_color": "#fcf9ef",
+        "heading_color": "#232323",
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "padding_top_mobile": 48,
+        "padding_bottom_mobile": 40,
+        "border_top_width": 1,
+        "border_top_color": "#d3d3d3"
+      }
+    },
+    "video_block_wDxqn7": {
+      "type": "video-block",
+      "name": "t:sections.video.presets.name",
+      "settings": {
+        "container": "fullwidth",
+        "spotlight_bg": "#fff",
+        "spotlight_bg_gradient": "",
+        "video_block_title": "",
+        "color_title": "#232323",
+        "fontsize_title": 16,
+        "fontsize_title_mb": 22,
+        "margin_bottom_title": 45,
+        "video_block_des": "",
+        "color_des": "#3c3c3c",
+        "fontsize_des": 16,
+        "title_align": "center",
+        "cover_image": "shopify://shop_images/6c51d3003592212b33cec89359a04dc44b8fe77f.jpg",
+        "autoplay": false,
+        "video_height": "54",
+        "video_height_mb": "100%",
+        "style_video": "youtube",
+        "video_url": "",
+        "video_url_mb": "",
+        "url_mp4": "",
+        "url_mp4_mb": "",
+        "description": "",
+        "full_width": false,
+        "position_icon": "center",
+        "heading": "",
+        "font_size_heading": 40,
+        "font_size_heading_mb": 24,
+        "margin_bottom_heading": 20,
+        "color_heading": "#232323",
+        "text": "",
+        "font_size_des": 12,
+        "font_size_des_mb": 12,
+        "margin_bottom_des": 35,
+        "color_des_content": "#232323",
+        "content_width": 475,
+        "align": "center",
+        "position": "left",
+        "btn_text": "",
+        "link": "",
+        "button_width": 235,
+        "button_color": "#fff",
+        "button_border": "#232323",
+        "button_background": "#232323",
+        "button_background_gradient": "",
+        "button_color_hover": "#fff",
+        "button_border_hover": "#232323",
+        "button_background_hover": "#232323",
+        "button_background_gradient_hover": "",
+        "mg_top_desktop": 0,
+        "mg_top_tablet": 0,
+        "mg_top_mobile": 0,
+        "mg_bottom_desktop": 0,
+        "mg_bottom_tablet": 0,
+        "mg_bottom_mobile": 0
+      }
+    },
+    "jv_candle_care_yKPTEe": {
+      "type": "jv-candle-care",
+      "blocks": {
+        "care_item_HAUD49": {
+          "type": "care_item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/a8584e210cb992a5d3109934847da945bac9c247.jpg",
+            "heading": "Let’s Start With The Wick",
+            "description": "<p>Before each burn, trim the wick to ¼ of an inch using a wick trimmer for a safe, even burn, and increased candle life. Before each burn remove debris and buildup to avoid excess smoke. Keep the wick centered in the container.</p>",
+            "link_label": "Shop Wick Trimmers",
+            "link": "#"
+          }
+        },
+        "care_item_qt8gYU": {
+          "type": "care_item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/265a3841deb5f332f889040ac22dbf129c9f33f8.jpg",
+            "heading": "Burn, Baby, Burn",
+            "description": "<p>When you burn, allow the candle wax to melt to the edges of the glass every time to prevent tunneling. This is especially important during your first burn!</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "care_item_tpgJR6": {
+          "type": "care_item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/4d578cc9158cc6e6c481b1b8e90eb2f6801f0764.jpg",
+            "heading": "Safety First",
+            "description": "<p>Never leave a lit candle unattended, and don’t burn your candle for more than 3-4 hours at a time. Protect the surface below your candle from heat by placing your candle on a coaster.</p>",
+            "link_label": "Shop Candle Trays",
+            "link": "#"
+          }
+        },
+        "care_item_XQBmeb": {
+          "type": "care_item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/0dcfb6541d0e5f806ac82ae7171fbf381a8e4c71.png",
+            "heading": "Stop, Look, and Listen",
+            "description": "<p>Do not burn your candle if there is less than ½ inch of wax remaining in the glass. Burning a candle without enough wax can overheat the jar.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "care_item_HAUD49",
+        "care_item_qt8gYU",
+        "care_item_tpgJR6",
+        "care_item_XQBmeb"
+      ],
+      "name": "JV - Candle Care",
+      "settings": {
+        "heading": "Candle Care 101",
+        "image": "shopify://shop_images/98db3e590adab54115f3694083036ee525c6d92d.png",
+        "hide_on_mb": true,
+        "container": "container",
+        "padding_full_width": 0,
+        "image_max_width": 500,
+        "column_gap": 38,
+        "row_gap": 24,
+        "thumb_size": 150,
+        "image_radius": 10,
+        "image_ratio": "custom",
+        "image_ratio_custom": "5 / 8",
+        "per_view_mobile": 1.3,
+        "mobile_space": 12,
+        "media_gap_mobile": 24,
+        "heading_size": 40,
+        "heading_size_mobile": 40,
+        "heading_gap": 24,
+        "heading_gap_mobile": 24,
+        "row_title_size": 18,
+        "row_title_size_mobile": 18,
+        "row_text_size": 15,
+        "background_color": "#fcf9ef",
+        "heading_color": "#232323",
+        "text_color": "#232323",
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "padding_top_mobile": 64,
+        "padding_bottom_mobile": 64,
+        "border_top_width": 1,
+        "border_top_color": "#d3d3d3"
+      }
+    },
+    "17836282550cec3aba": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_x6Cr3b": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "real_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_x6Cr3b"
+      ],
+      "custom_css": [
+        "{padding: 0 2em;}",
+        ".jm-reviewer-info__name-cluster[data-v-6a854929] {flex-wrap: wrap;}",
+        ".jm-media-preview {display: none;}",
+        "p.jm-text.jm-text--align-center.jm-review-widget-header__title {font-family: Petrona, serif; font-size: clamp(24px, 5vw, 32px);}",
+        ".jm-cluster p.jm-text,.jm-cluster button.jm-voting-controls__button {font-size: 75%;}",
+        ".jdgm-tablist__list button {font-family: \"Dosis\";}"
+      ],
+      "settings": {
+        "include_margins": false
+      }
+    },
+    "jv_press_63LxeE": {
+      "type": "jv-press",
+      "blocks": {
+        "press_item_adJxPm": {
+          "type": "press_item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Texas_Heritage_Logo_bf189311-790a-4b50-87ed-94ab14d4e11d.png",
+            "description": "<p>“Jackson Vaughn candles bring a little Texas into any home with aromas that capture the spirit of the Lone Star State.”</p>",
+            "link": "https://www.dallasobserver.com/best-of-dallas/2024/shopping-and-services/best-candles-that-smell-like-texas-20599851/"
+          }
+        },
+        "press_item_RepLQ8": {
+          "type": "press_item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Texas_Heritage_Logo_bf189311-790a-4b50-87ed-94ab14d4e11d.png",
+            "description": "<p>“Jackson Vaughn candles bring a little Texas into any home with aromas that capture the spirit of the Lone Star State.”</p>",
+            "link": "https://blog.txfb-ins.com/last-minute-texas-gift-guide/"
+          }
+        },
+        "press_item_8J8KkX": {
+          "type": "press_item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Logo1.png",
+            "description": "<p>““Dallas” is one of the beloved neighborhood candle shop’s bestsellers for good reason.”</p>",
+            "link": "https://www.papercitymag.com/holiday/dallas-valentines-day-gifts/?fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnGjgUhBSfvHZSWDx2HAY9LSA47jsnD19kYHThdV44STNMNBS5SG_dE2tRUmM_aem_VGjBNG7HO0maf7LV3FMvwg"
+          }
+        },
+        "press_item_GVggay": {
+          "type": "press_item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Logo2_63ed4fd2-d17c-4c03-8750-7cb44163fc7e.png",
+            "description": "<p>“A family-owned business known for their vast candle collection, cozy home goods, and holiday items.”</p>",
+            "link": "https://www.instagram.com/p/DXpB0TdFP54/?hl=en&img_index=14"
+          }
+        },
+        "press_item_N4PtYG": {
+          "type": "press_item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Logo3_4d877d3b-71bd-4ee2-ae35-f92fd50f391f.png",
+            "description": "<p>“Our dream was to collaborate with By Jackson Vaughn, and you could pinch us because we still can’t believe it came true!”</p>",
+            "link": "https://www.dallasites101.com/blog/post/the-101-candle-collection-with-society-by-jackson-vaughn/"
+          }
+        },
+        "press_item_43tQGJ": {
+          "type": "press_item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Logo_531bd46f-48bc-4535-830a-b9ebfbabab22.png",
+            "description": "<p>“For the scent obsessed. This hand-poured artisan soy wax-blend candle features a natural cotton wick, available in nine or 16 ounce jars for a 40-60 hour burn time.”</p>",
+            "link": "https://oakcliff.advocatemag.com/2024/11/oak-cliff-gift-guide-2024/"
+          }
+        }
+      },
+      "block_order": [
+        "press_item_adJxPm",
+        "press_item_RepLQ8",
+        "press_item_8J8KkX",
+        "press_item_GVggay",
+        "press_item_N4PtYG",
+        "press_item_43tQGJ"
+      ],
+      "name": "JV - Press",
+      "settings": {
+        "heading": "As Seen In",
+        "heading_size": 24,
+        "heading_size_mobile": 24,
+        "heading_spacing": 1,
+        "heading_gap": 30,
+        "per_view_desktop": 4,
+        "per_view_tablet": 3,
+        "per_view_mobile": 1.4,
+        "edge_peek": 120,
+        "item_gap": 36,
+        "enable_loop": true,
+        "show_arrows": false,
+        "show_dots": false,
+        "autoplay": false,
+        "autoplay_speed": 4,
+        "logo_height": 54,
+        "logo_gap": 12,
+        "text_size": 14,
+        "text_align": "left",
+        "background_color": "#fcf9ef",
+        "heading_color": "#232323",
+        "text_color": "#232323",
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "padding_top_mobile": 48,
+        "padding_bottom_mobile": 48,
+        "border_top_width": 1,
+        "border_top_color": "#d3d3d3",
+        "border_bottom_width": 1,
+        "border_bottom_color": "#d3d3d3"
+      }
+    },
+    "custom_image_banner_DBDbHK": {
+      "type": "custom-image-banner-3",
+      "blocks": {
+        "large_img_MrkbiU": {
+          "type": "largeImg",
+          "disabled": true,
+          "settings": {
+            "item_width": "20%",
+            "item_border_radirus": 10,
+            "item_spacing": 0,
+            "image": "shopify://shop_images/83086d0aa6381d520343f35ddf62571749024f87.png",
+            "title_align": "left",
+            "align_items": "bottom",
+            "align_items_spacing": 20,
+            "align_items_spacing_lr": 25,
+            "sub_title": "",
+            "border_sub_title": false,
+            "color_sub_title": "#ffffff",
+            "fontsize_sub_title": 18,
+            "mg_bottom_sub_title": 10,
+            "title": "Bundle & Save",
+            "color_title": "#ffffff",
+            "fontsize_title": 24,
+            "fontsize_title_mb": 20,
+            "mg_bottom_title": 10,
+            "mg_bottom_title_mb": 5,
+            "enable_style_italic": false,
+            "des": "Shop bundles and save up to 25%",
+            "color_des": "#ffffff",
+            "fontsize_des": 16,
+            "mg_bottom_des": 20,
+            "mg_bottom_des_mb": 20,
+            "button": "Shop Now",
+            "link": "",
+            "fontsize_btn": 16,
+            "button_full_width": false,
+            "disable_border_radius": false,
+            "button_width": 190,
+            "color_button": "#232323",
+            "border_color_button": "#fcf9ef",
+            "bg_color_button": "#fcf9ef",
+            "bg_gradient_color_button": "",
+            "color_button_hover": "#fff",
+            "border_color_button_hover": "#232323",
+            "bg_color_button_hover": "#232323",
+            "bg_gradient_color_button_hover": "",
+            "bg_opacity_button": 1,
+            "btn_text_transform": "uppercase",
+            "btn_icon": "",
+            "image_behavior": "none"
+          }
+        },
+        "large_img_AgGdnr": {
+          "type": "largeImg",
+          "disabled": true,
+          "settings": {
+            "item_width": "20%",
+            "item_border_radirus": 10,
+            "item_spacing": 0,
+            "image": "shopify://shop_images/532f6617a4f822c01e5676958075899a5a808ae2.jpg",
+            "title_align": "left",
+            "align_items": "bottom",
+            "align_items_spacing": 20,
+            "align_items_spacing_lr": 25,
+            "sub_title": "",
+            "border_sub_title": false,
+            "color_sub_title": "#ffffff",
+            "fontsize_sub_title": 18,
+            "mg_bottom_sub_title": 10,
+            "title": "Seasonal Scents",
+            "color_title": "#ffffff",
+            "fontsize_title": 24,
+            "fontsize_title_mb": 20,
+            "mg_bottom_title": 10,
+            "mg_bottom_title_mb": 5,
+            "enable_style_italic": false,
+            "des": "Shop bundles and save up to 25%",
+            "color_des": "#ffffff",
+            "fontsize_des": 16,
+            "mg_bottom_des": 20,
+            "mg_bottom_des_mb": 20,
+            "button": "Shop Now",
+            "link": "",
+            "fontsize_btn": 16,
+            "button_full_width": false,
+            "disable_border_radius": false,
+            "button_width": 190,
+            "color_button": "#232323",
+            "border_color_button": "#fcf9ef",
+            "bg_color_button": "#fcf9ef",
+            "bg_gradient_color_button": "",
+            "color_button_hover": "#fff",
+            "border_color_button_hover": "#232323",
+            "bg_color_button_hover": "#232323",
+            "bg_gradient_color_button_hover": "",
+            "bg_opacity_button": 1,
+            "btn_text_transform": "uppercase",
+            "btn_icon": "",
+            "image_behavior": "none"
+          }
+        },
+        "large_img_zQXnGb": {
+          "type": "largeImg",
+          "disabled": true,
+          "settings": {
+            "item_width": "20%",
+            "item_border_radirus": 10,
+            "item_spacing": 0,
+            "image": "shopify://shop_images/f796d6d34cec2925eac1b25fd309a7fd6be81608.jpg",
+            "title_align": "left",
+            "align_items": "bottom",
+            "align_items_spacing": 20,
+            "align_items_spacing_lr": 25,
+            "sub_title": "",
+            "border_sub_title": false,
+            "color_sub_title": "#ffffff",
+            "fontsize_sub_title": 18,
+            "mg_bottom_sub_title": 10,
+            "title": "Give A Gift",
+            "color_title": "#ffffff",
+            "fontsize_title": 24,
+            "fontsize_title_mb": 20,
+            "mg_bottom_title": 10,
+            "mg_bottom_title_mb": 5,
+            "enable_style_italic": false,
+            "des": "Gifts they’ll bring home",
+            "color_des": "#ffffff",
+            "fontsize_des": 16,
+            "mg_bottom_des": 20,
+            "mg_bottom_des_mb": 20,
+            "button": "Shop Now",
+            "link": "#",
+            "fontsize_btn": 16,
+            "button_full_width": false,
+            "disable_border_radius": false,
+            "button_width": 190,
+            "color_button": "#232323",
+            "border_color_button": "#fcf9ef",
+            "bg_color_button": "#fcf9ef",
+            "bg_gradient_color_button": "",
+            "color_button_hover": "#fff",
+            "border_color_button_hover": "#232323",
+            "bg_color_button_hover": "#232323",
+            "bg_gradient_color_button_hover": "",
+            "bg_opacity_button": 1,
+            "btn_text_transform": "uppercase",
+            "btn_icon": "",
+            "image_behavior": "none"
+          }
+        },
+        "large_img_MY4Q8X": {
+          "type": "largeImg",
+          "disabled": true,
+          "settings": {
+            "item_width": "20%",
+            "item_border_radirus": 10,
+            "item_spacing": 0,
+            "image": "shopify://shop_images/00aa1e42515265e9a085c4f79e2b21f49caa3b9c.png",
+            "title_align": "left",
+            "align_items": "bottom",
+            "align_items_spacing": 20,
+            "align_items_spacing_lr": 25,
+            "sub_title": "",
+            "border_sub_title": false,
+            "color_sub_title": "#ffffff",
+            "fontsize_sub_title": 18,
+            "mg_bottom_sub_title": 10,
+            "title": "Home Fragrances",
+            "color_title": "#ffffff",
+            "fontsize_title": 24,
+            "fontsize_title_mb": 20,
+            "mg_bottom_title": 10,
+            "mg_bottom_title_mb": 5,
+            "enable_style_italic": false,
+            "des": "Freshen any space, flame-free",
+            "color_des": "#ffffff",
+            "fontsize_des": 16,
+            "mg_bottom_des": 20,
+            "mg_bottom_des_mb": 20,
+            "button": "Shop Now",
+            "link": "",
+            "fontsize_btn": 16,
+            "button_full_width": false,
+            "disable_border_radius": false,
+            "button_width": 190,
+            "color_button": "#232323",
+            "border_color_button": "#fcf9ef",
+            "bg_color_button": "#fcf9ef",
+            "bg_gradient_color_button": "",
+            "color_button_hover": "#fff",
+            "border_color_button_hover": "#232323",
+            "bg_color_button_hover": "#232323",
+            "bg_gradient_color_button_hover": "",
+            "bg_opacity_button": 1,
+            "btn_text_transform": "uppercase",
+            "btn_icon": "",
+            "image_behavior": "none"
+          }
+        },
+        "large_img_CthnNp": {
+          "type": "largeImg",
+          "disabled": true,
+          "settings": {
+            "item_width": "20%",
+            "item_border_radirus": 10,
+            "item_spacing": 0,
+            "image": "shopify://shop_images/304996dccb28f1330ef8e1ba454e0f44ec7cf9f7.png",
+            "title_align": "left",
+            "align_items": "bottom",
+            "align_items_spacing": 20,
+            "align_items_spacing_lr": 25,
+            "sub_title": "",
+            "border_sub_title": false,
+            "color_sub_title": "#ffffff",
+            "fontsize_sub_title": 18,
+            "mg_bottom_sub_title": 10,
+            "title": "Candle Accessories",
+            "color_title": "#ffffff",
+            "fontsize_title": 24,
+            "fontsize_title_mb": 20,
+            "mg_bottom_title": 10,
+            "mg_bottom_title_mb": 5,
+            "enable_style_italic": false,
+            "des": "Essential tools for every candle ritual",
+            "color_des": "#ffffff",
+            "fontsize_des": 16,
+            "mg_bottom_des": 20,
+            "mg_bottom_des_mb": 20,
+            "button": "Shop Now",
+            "link": "",
+            "fontsize_btn": 16,
+            "button_full_width": false,
+            "disable_border_radius": false,
+            "button_width": 190,
+            "color_button": "#232323",
+            "border_color_button": "#fcf9ef",
+            "bg_color_button": "#fcf9ef",
+            "bg_gradient_color_button": "",
+            "color_button_hover": "#fff",
+            "border_color_button_hover": "#232323",
+            "bg_color_button_hover": "#232323",
+            "bg_gradient_color_button_hover": "",
+            "bg_opacity_button": 1,
+            "btn_text_transform": "uppercase",
+            "btn_icon": "",
+            "image_behavior": "none"
+          }
+        }
+      },
+      "block_order": [
+        "large_img_MrkbiU",
+        "large_img_AgGdnr",
+        "large_img_zQXnGb",
+        "large_img_MY4Q8X",
+        "large_img_CthnNp"
+      ],
+      "name": "Custom Image Banner JV",
+      "settings": {
+        "container": "fullwidth",
+        "padding_full_width": 20,
+        "custom_image_banner_block_swipe_on_mobile": "slider",
+        "use_swiper": true,
+        "item_distance": 12,
+        "equalize_image_height": true,
+        "image_ratio": "267/404",
+        "custom_image_banner_bg": "#fcf9ef",
+        "custom_image_banner_bg_gradient": "",
+        "title_align": "center",
+        "custom_image_banner_title": "More to Discover",
+        "enable_border_title": false,
+        "color_title": "#232323",
+        "fontsize_title": 24,
+        "fontsize_title_mb": 24,
+        "margin_bottom_title": 30,
+        "custom_image_banner_des": "",
+        "color_des": "#3c3c3c",
+        "fontsize_des": 16,
+        "mg_top_desktop": 65,
+        "mg_top_tablet": 50,
+        "mg_top_mobile": 50,
+        "mg_bottom_desktop": 65,
+        "mg_bottom_tablet": 65,
+        "mg_bottom_mobile": 65
+      }
+    },
+    "product-recently-viewed": {
+      "type": "product-recently-viewed",
+      "disabled": true,
+      "settings": {
+        "display_product_recently_viewed": true,
+        "product_recently_viewed_container": "container",
+        "padding_full_width": 0,
+        "enable_border_top": true,
+        "enable_border_bottom": false,
+        "color_border_bottom": "#e8e8e8",
+        "border_style": "container",
+        "mg_top_desktop": 80,
+        "mg_top_tablet": 50,
+        "mg_top_mobile": 30,
+        "mg_bottom_desktop": 0,
+        "mg_bottom_tablet": 0,
+        "mg_bottom_mobile": 0,
+        "product_recently_viewed_layout": "scroll",
+        "product_bg": "rgba(0,0,0,0)",
+        "product_bg_gradient": "",
+        "style_block_header": "style1",
+        "product_recently_viewed_title": "Recently Viewed Products",
+        "enable_border_title": false,
+        "mg_top_title": 27,
+        "mg_bottom_title": 3,
+        "fontsize_title": 18,
+        "fontsize_title_mb": 18,
+        "border_color_title": "#232323",
+        "color_title": "#232323",
+        "product_recently_viewed_title_align": "center",
+        "product_recently_viewed_limit": 10,
+        "product_recently_viewed_image_ratio": "adapt",
+        "grid_gap": 30,
+        "product_recently_viewed_per_row": "4",
+        "product_recently_viewed_swipe_on_mobile": true,
+        "product_recently_viewed_dots": false,
+        "product_recently_viewed_dots_mb": true,
+        "product_recently_viewed_arrows": true,
+        "product_recently_viewed_arrows_mb": false,
+        "product_recently_viewed_show": "4",
+        "product_block_per_view": "4",
+        "show_half": true,
+        "scroll_height": 4,
+        "scroll_track_bg": "#f1f1f1",
+        "scroll_thumb_color": "#000000",
+        "scroll_thumb_hover_color": "#444444",
+        "enable_hover_drag_icon": false,
+        "enable_layout_special": false,
+        "bg_card": "#ffffff",
+        "padding_card": 15,
+        "border_radius_card": 5,
+        "border_layout_card": "full",
+        "border_width_card": 5,
+        "border_color_card": "#f0f1f4"
+      }
+    },
+    "17839812280a5dd347": {
+      "type": "apps",
+      "disabled": true,
+      "settings": {
+        "include_margins": false
+      }
+    }
+  },
+  "order": [
+    "main",
+    "custom_icon_features_PnL3aG",
+    "jv_highlight_QY4BUB",
+    "product-recommendations",
+    "jv_gallery_kN93qU",
+    "video_block_wDxqn7",
+    "jv_candle_care_yKPTEe",
+    "17836282550cec3aba",
+    "jv_press_63LxeE",
+    "custom_image_banner_DBDbHK",
+    "product-recently-viewed",
+    "17839812280a5dd347"
+  ]
+}
