@@ -15,9 +15,9 @@
         "image_eK8iRq": {
           "type": "image",
           "settings": {
-            "image_slide": "shopify://shop_images/Untitled_design_6.jpg",
-            "image_slide_mb": "shopify://shop_images/gilded_fall.jpg",
-            "alignment": "left",
+            "image_slide": "shopify://shop_images/GildedFall_Desktop.jpg",
+            "image_slide_mb": "shopify://shop_images/GildedFall_Mobile.jpg",
+            "alignment": "right",
             "alignment_mb": "center",
             "enable_custom_position": false,
             "custom_horizontal": "",
@@ -51,7 +51,7 @@
             "border_sub_heading": "none",
             "sub_title_position": "sub_title_above",
             "color_sub_heading": "#fff",
-            "heading": "Embrace Texas Summer",
+            "heading": "The Gilded Fall Collection",
             "letter_spacing_heading": "",
             "enable_border_heading": false,
             "font_style_heading": "normal",
