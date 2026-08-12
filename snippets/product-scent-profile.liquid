@@ -15,28 +15,28 @@
   {% assign scent = block.settings %}
   
   <div class="scent-profile-container" style="--text-color: {{ scent.text_color }}; --font-size-mb: {{ scent.font_size_mobile }}px; --font-size: {{ scent.font_size_desktop }}px;">
-    {% if scent.label_family %}
+    {% if scent.label_family != blank %}
       <div class="scent-family scent_row">
         <span class="label">{{ 'products.product.scent_family' | t }}:</span>
         <p class="value">{{ scent.label_family }}</p>
       </div>
     {% endif %}
 
-    {% if scent.label_notes %}
+    {% if scent.label_notes != blank %}
       <div class="scent-notes scent_row">
         <span class="label">{{ 'products.product.scent_notes' | t }}:</span>
         <p class="value">{{ scent.label_notes }}</p>
       </div>
     {% endif %}
 
-    {% if scent.label_feels %}
+    {% if scent.label_feels != blank %}
       <div class="feels-like scent_row">
         <span class="label">{{ 'products.product.feels_like' | t }}:</span>
         <p class="value">{{ scent.label_feels }}</p>
       </div>
     {% endif %}
-
-    {% if scent.throw_level %}
+    
+    {% if scent.throw_level != blank %}
       <div class="throw-level scent_row">
         <span class="label">{{ 'products.product.throw' | t }}:</span>
         <div class="throw-visualization">
