@@ -247,7 +247,7 @@
             "open_tab_mobile": false,
             "title": "Shipping & Returns",
             "type": "all",
-            "content": "<p>SHIPPING</p><p>Orders normally ship within 1-2 business days. Once your package is picked up by our carrier, transit times typically range between 1-5 business days, depending on delivery destination. You will receive a confirmation email when your label is created.</p><p>RETURN POLICY</p><p>All returns must be processed within 30 days of receiving the order. If you are not 100% satisfied with your Jackson Vaughn order, please contact our dedicated Support Team at orders@jacksonvaughn.com with your order number (found on your order confirmation email) and we'll help to initiate a return or exchange.</p>",
+            "content": "<p>SHIPPING<br/></p><p>Orders normally ship within 1-2 business days. Once your package is picked up by our carrier, transit times typically range between 1-5 business days, depending on delivery destination. You will receive a confirmation email when your label is created.<br/></p><p>RETURN POLICY<br/></p><p>All returns must be processed within 30 days of receiving the order. If you are not 100% satisfied with your Jackson Vaughn order, please contact our dedicated Support Team at orders@jacksonvaughn.com with your order number (found on your order confirmation email) and we'll help to initiate a return or exchange.</p>",
             "enable_btn_show_more": false,
             "maximum_des_to_show": 300,
             "product_custom_source": "dynamic",
