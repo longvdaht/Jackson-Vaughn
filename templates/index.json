@@ -452,6 +452,29 @@
         "product_tabs_fYFmVy": {
           "type": "ProductTabs",
           "settings": {
+            "title": "<b>New!</b> Gilded Fall",
+            "collection": "gilded-fall",
+            "enable_shop_all_button": true,
+            "shop_all_button_text": "Shop All",
+            "shop_all_button_width": 200,
+            "shop_all_margin_top": 30,
+            "shop_all_font_size": 14,
+            "shop_all_text_transform": "uppercase",
+            "shop_all_border_width": 1,
+            "shop_all_border_radius": 0,
+            "shop_all_color": "#ffffff",
+            "shop_all_bg_color": "#232323",
+            "shop_all_bg_gradient": "",
+            "shop_all_border_color": "#232323",
+            "shop_all_color_hover": "#232323",
+            "shop_all_bg_color_hover": "#ffffff",
+            "shop_all_bg_gradient_hover": "",
+            "shop_all_border_color_hover": "#232323"
+          }
+        },
+        "product_tabs_QAxNcN": {
+          "type": "ProductTabs",
+          "settings": {
             "title": "Smells Like Summer",
             "collection": "summer-scents",
             "enable_shop_all_button": true,
@@ -521,6 +544,7 @@
       },
       "block_order": [
         "product_tabs_fYFmVy",
+        "product_tabs_QAxNcN",
         "product_tabs_kz9qBd",
         "product_tabs_zPXLjr"
       ],
