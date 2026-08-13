@@ -401,7 +401,7 @@
         "portrait_aspect_ratio": 148,
         "zoomed_image": false,
         "media_fit": "unset",
-        "product_image_popup": "fancybox",
+        "product_image_popup": "none",
         "video_layout": "thumbnail",
         "show_badge": false,
         "show_qty": true,
