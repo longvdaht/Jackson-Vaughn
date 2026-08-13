@@ -257,7 +257,7 @@
         "rich_text_DPWhFd": {
           "type": "rich_text",
           "settings": {
-            "text": "<h3>The Jackson Vaughn Promise</h3><p>We started with a single candle, gifted to people we cared about. More than two decades later, that same warmth goes into everything we make.</p>",
+            "text": "<h3>The Jackson Vaughn Promise</h3><p>For more than two decades, our family has made candles meant to be lived with and loved. We want you to love yours, too. Light it, live with it, love it. <a href=\"/policies/refund-policy\" target=\"_blank\" title=\"Refund Policy\">And if you don’t, we’ll make it right.</a></p>",
             "content_spacing": 15,
             "custom_block_align": "center",
             "background_color_block": "#ebe7de",
