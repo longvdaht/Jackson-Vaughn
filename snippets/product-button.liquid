@@ -39,7 +39,31 @@
     if block.settings.atc_text != blank
         assign atc_text = block.settings.atc_text
     endif
+
+    # Compare-at price on the ATC button, rendered server-side so products WITHOUT
+    # variants (no JS variant-change event) still show the strikethrough. For
+    # products with variants, variants.js updates this on change to keep it in sync.
+    assign show_compare_on_atc = false
+    assign cmp = current_variant.compare_at_price
+    if cmp and cmp > current_variant.price
+        assign show_compare_on_atc = true
+        assign compare_total = cmp | times: 1 | money
+        assign compare_total = compare_total | strip_html
+    endif
 -%}
+{%- capture atc_subtotal_html -%}
+    {%- assign subtotal_clean = subtotal | strip_html -%}
+    {%- if show_compare_on_atc -%}
+        {%- comment -%} The `t` filter HTML-escapes interpolated values, so we
+          translate with a plain-text token first, then swap the token for the
+          strikethrough markup with `replace` (which does not escape). {%- endcomment -%}
+        {%- assign atc_translated = 'products.product.sub_total' | t: value: '@@PRICE@@' -%}
+        {%- capture atc_price_html -%}<s class="atc-compare-price">{{ compare_total }}</s> <span class="atc-current-price">{{ subtotal_clean }}</span>{%- endcapture -%}
+        {{ atc_translated | replace: '@@PRICE@@', atc_price_html }}
+    {%- else -%}
+        {{ 'products.product.sub_total' | t: value: subtotal_clean }}
+    {%- endif -%}
+{%- endcapture -%}
 <div class="productView-buttons">
     {%- if gift_card_recipient_feature_active -%}
       {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
@@ -98,9 +122,7 @@
                                             <button type="submit" name="add" data-btn-addToCart data-inventory-quantity="{{ current_variant.inventory_quantity }}" data-available="{{ allowOutStockSale }}" class="product-form__submit button button--primary an-{{ atc_animation }}{% if first_inventory == 0 %} button-text-change{% else %}{% if show_subtotal_text %} button-text-change{% endif %}{% endif %}{% if settings.animations_hover_elements == '3d-lift' or settings.animations_hover_elements == 'vertical-lift' %} button-not-animation{% endif %}" id="product-add-to-cart">
                                                 {%- if current_variant.available -%}
                                                     {%- if show_subtotal_text and subtotal_style == '2' -%}
-                                                        {%- assign subtotal = subtotal | strip_html -%}
-
-                                                        {{ 'products.product.sub_total' | t : value : subtotal }}
+                                                        {{ atc_subtotal_html }}
                                                     {%- else -%}
                                                         {{ atc_text }}
                                                     {%- endif -%}
@@ -111,8 +133,7 @@
                                         {%- else -%}
                                             <button type="submit" name="add" data-btn-addToCart class="product-form__submit button button--secondary an-{{ atc_animation }}{% if show_subtotal_text %} button-text-change{% endif %}{% if settings.animations_hover_elements == '3d-lift' or settings.animations_hover_elements == 'vertical-lift' %} button-not-animation{% endif %}" id="product-add-to-cart">
                                                 {%- if show_subtotal_text and subtotal_style == '2' -%}
-                                                    {%- assign subtotal = subtotal | strip_html -%}
-                                                    {{ 'products.product.sub_total' | t : value : subtotal }}
+                                                    {{ atc_subtotal_html }}
                                                 {%- else -%}
                                                     {{ atc_text }}
                                                 {%- endif -%}
