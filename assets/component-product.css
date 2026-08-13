@@ -1697,12 +1697,12 @@
     margin: 0;
     white-space: nowrap;
     min-width: 108px;
-    text-transform: capitalize;
+    text-transform: none;
 }
 
 .productView-scentProfile .value {
     margin: 0;
-    text-transform: capitalize;
+    text-transform: none;
 }
 
 .productView-scentProfile .throw-bars {
