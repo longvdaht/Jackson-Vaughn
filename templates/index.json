@@ -383,10 +383,30 @@
     "ff18b815-4959-40e0-b060-845f519607d8": {
       "type": "announcement-bar",
       "blocks": {
+        "announcement_QVkYdQ": {
+          "type": "announcement",
+          "settings": {
+            "text": "<p>FAMILY-OWNED</p>",
+            "btn_color": "#f84248",
+            "btn_border_color": "#ffffff",
+            "btn_bg_color": "#ffffff",
+            "btn_bg_color_gradient": ""
+          }
+        },
+        "announcement_7XxjJW": {
+          "type": "announcement",
+          "settings": {
+            "text": "<p>NATURAL COTTON WICK</p>",
+            "btn_color": "#f84248",
+            "btn_border_color": "#ffffff",
+            "btn_bg_color": "#ffffff",
+            "btn_bg_color_gradient": ""
+          }
+        },
         "template--15149438042227__ff18b815-4959-40e0-b060-845f519607d8-announcement-1": {
           "type": "announcement",
           "settings": {
-            "text": "<p>HAND POURED IN TEXAS</p>",
+            "text": "<p>HAND-POURED</p>",
             "btn_color": "#f84248",
             "btn_border_color": "#ffffff",
             "btn_bg_color": "#ffffff",
@@ -396,7 +416,7 @@
         "announcement_Kt9KBH": {
           "type": "announcement",
           "settings": {
-            "text": "<p>NON-TOXIC</p>",
+            "text": "<p>CLEAN BURN</p>",
             "btn_color": "#f84248",
             "btn_border_color": "#ffffff",
             "btn_bg_color": "#ffffff",
@@ -406,7 +426,7 @@
         "announcement_biqW6e": {
           "type": "announcement",
           "settings": {
-            "text": "<p>COTTON WICK</p>",
+            "text": "<p>LONG LASTING</p>",
             "btn_color": "#f84248",
             "btn_border_color": "#ffffff",
             "btn_bg_color": "#ffffff",
@@ -416,7 +436,7 @@
         "announcement_eJi7Ab": {
           "type": "announcement",
           "settings": {
-            "text": "<p>SOY WAX BLEND</p>",
+            "text": "<p>DESIGNER CANDLES</p>",
             "btn_color": "#f84248",
             "btn_border_color": "#ffffff",
             "btn_bg_color": "#ffffff",
@@ -425,6 +445,8 @@
         }
       },
       "block_order": [
+        "announcement_QVkYdQ",
+        "announcement_7XxjJW",
         "template--15149438042227__ff18b815-4959-40e0-b060-845f519607d8-announcement-1",
         "announcement_Kt9KBH",
         "announcement_biqW6e",
@@ -555,7 +577,7 @@
         "product_bg": "#fcf9ef",
         "product_bg_gradient": "",
         "product_block_layout": "grid",
-        "product_block_title": "Featured Smells",
+        "product_block_title": "Featured Scents",
         "fontsize_title": 30,
         "fontsize_title_mb": 21,
         "mg_bottom_title": 30,
@@ -2966,7 +2988,7 @@
             "mg_bottom_title": 5,
             "mg_bottom_title_mb": 5,
             "enable_style_italic": false,
-            "des": "Summer's not over. Shop our Texas Summer collection.",
+            "des": "Shop our best-selling peach-scented candle.",
             "color_des": "#ffffff",
             "fontsize_des": 16,
             "mg_bottom_des": 20,
@@ -3014,7 +3036,7 @@
             "mg_bottom_title": 5,
             "mg_bottom_title_mb": 5,
             "enable_style_italic": false,
-            "des": "Hand poured with heart. Made to be shared.",
+            "des": "Give a curated gift that lasts.",
             "color_des": "#ffffff",
             "fontsize_des": 16,
             "mg_bottom_des": 20,
