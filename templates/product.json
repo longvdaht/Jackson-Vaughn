@@ -568,60 +568,6 @@
         "text_color": "#ffffff"
       }
     },
-    "product-recommendations": {
-      "type": "product-recommendations",
-      "settings": {
-        "display_product_block": true,
-        "product_block_container": "fullwidth",
-        "padding_full_width": 0,
-        "enable_border_top": false,
-        "enable_border_bottom": false,
-        "color_border_bottom": "#e8e8e8",
-        "border_style": "container",
-        "mg_top_desktop": 65,
-        "mg_top_tablet": 55,
-        "mg_top_mobile": 50,
-        "mg_bottom_desktop": 65,
-        "mg_bottom_tablet": 55,
-        "mg_bottom_mobile": 50,
-        "product_block_layout": "slider",
-        "product_bg": "rgba(0,0,0,0)",
-        "style_block_header": "style1",
-        "product_block_title": "You May Also Like",
-        "enable_border_title": false,
-        "mg_top_title": 0,
-        "mg_bottom_title": 24,
-        "mg_bottom_title_desktop": 30,
-        "fontsize_title": 24,
-        "fontsize_title_mb": 24,
-        "color_title": "#232323",
-        "border_color_title": "#232323",
-        "product_block_title_align": "center",
-        "product_block_limit": 10,
-        "grid_gap": 30,
-        "product_block_per_row": "4",
-        "product_block_swipe_on_mobile": true,
-        "product_block_dots": false,
-        "product_block_dots_mb": false,
-        "product_block_arrows": false,
-        "product_block_arrows_mb": false,
-        "product_block_show": "4",
-        "product_block_per_view": "4",
-        "show_half": true,
-        "scroll_height": 4,
-        "scroll_track_bg": "#f1f1f1",
-        "scroll_thumb_color": "#000000",
-        "scroll_thumb_hover_color": "#444444",
-        "enable_hover_drag_icon": true,
-        "enable_layout_special": false,
-        "bg_card": "#ffffff",
-        "padding_card": 15,
-        "border_radius_card": 5,
-        "border_layout_card": "full",
-        "border_width_card": 5,
-        "border_color_card": "#f0f1f4"
-      }
-    },
     "jv_gallery_kN93qU": {
       "type": "jv-gallery",
       "blocks": {
@@ -705,6 +651,188 @@
         "padding_bottom_mobile": 40,
         "border_top_width": 1,
         "border_top_color": "#d3d3d3"
+      }
+    },
+    "jv_press_63LxeE": {
+      "type": "jv-press",
+      "blocks": {
+        "press_item_adJxPm": {
+          "type": "press_item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Texas_Heritage_Logo_bf189311-790a-4b50-87ed-94ab14d4e11d.png",
+            "description": "<p>“Jackson Vaughn candles bring a little Texas into any home with aromas that capture the spirit of the Lone Star State.”</p>",
+            "link": "https://www.dallasobserver.com/best-of-dallas/2024/shopping-and-services/best-candles-that-smell-like-texas-20599851/"
+          }
+        },
+        "press_item_RepLQ8": {
+          "type": "press_item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Texas_Heritage_Logo_bf189311-790a-4b50-87ed-94ab14d4e11d.png",
+            "description": "<p>“Jackson Vaughn candles bring a little Texas into any home with aromas that capture the spirit of the Lone Star State.”</p>",
+            "link": "https://blog.txfb-ins.com/last-minute-texas-gift-guide/"
+          }
+        },
+        "press_item_8J8KkX": {
+          "type": "press_item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Logo1.png",
+            "description": "<p>““Dallas” is one of the beloved neighborhood candle shop’s bestsellers for good reason.”</p>",
+            "link": "https://www.papercitymag.com/holiday/dallas-valentines-day-gifts/?fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnGjgUhBSfvHZSWDx2HAY9LSA47jsnD19kYHThdV44STNMNBS5SG_dE2tRUmM_aem_VGjBNG7HO0maf7LV3FMvwg"
+          }
+        },
+        "press_item_GVggay": {
+          "type": "press_item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Logo2_63ed4fd2-d17c-4c03-8750-7cb44163fc7e.png",
+            "description": "<p>“A family-owned business known for their vast candle collection, cozy home goods, and holiday items.”</p>",
+            "link": "https://www.instagram.com/p/DXpB0TdFP54/?hl=en&img_index=14"
+          }
+        },
+        "press_item_N4PtYG": {
+          "type": "press_item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Logo3_4d877d3b-71bd-4ee2-ae35-f92fd50f391f.png",
+            "description": "<p>“Our dream was to collaborate with By Jackson Vaughn, and you could pinch us because we still can’t believe it came true!”</p>",
+            "link": "https://www.dallasites101.com/blog/post/the-101-candle-collection-with-society-by-jackson-vaughn/"
+          }
+        },
+        "press_item_43tQGJ": {
+          "type": "press_item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Logo_531bd46f-48bc-4535-830a-b9ebfbabab22.png",
+            "description": "<p>“For the scent obsessed. This hand-poured artisan soy wax-blend candle features a natural cotton wick, available in nine or 16 ounce jars for a 40-60 hour burn time.”</p>",
+            "link": "https://oakcliff.advocatemag.com/2024/11/oak-cliff-gift-guide-2024/"
+          }
+        }
+      },
+      "block_order": [
+        "press_item_adJxPm",
+        "press_item_RepLQ8",
+        "press_item_8J8KkX",
+        "press_item_GVggay",
+        "press_item_N4PtYG",
+        "press_item_43tQGJ"
+      ],
+      "name": "JV - Press",
+      "settings": {
+        "heading": "As Seen In",
+        "heading_size": 24,
+        "heading_size_mobile": 24,
+        "heading_spacing": 1,
+        "heading_gap": 30,
+        "per_view_desktop": 4,
+        "per_view_tablet": 3,
+        "per_view_mobile": 1.4,
+        "edge_peek": 120,
+        "item_gap": 36,
+        "enable_loop": true,
+        "show_arrows": false,
+        "show_dots": false,
+        "autoplay": false,
+        "autoplay_speed": 4,
+        "logo_height": 54,
+        "logo_gap": 12,
+        "text_size": 14,
+        "text_align": "left",
+        "background_color": "#fcf9ef",
+        "heading_color": "#232323",
+        "text_color": "#232323",
+        "padding_top": 64,
+        "padding_bottom": 64,
+        "padding_top_mobile": 48,
+        "padding_bottom_mobile": 48,
+        "border_top_width": 1,
+        "border_top_color": "#d3d3d3",
+        "border_bottom_width": 1,
+        "border_bottom_color": "#d3d3d3"
+      }
+    },
+    "17836282550cec3aba": {
+      "type": "apps",
+      "blocks": {
+        "judge_me_reviews_review_widget_x6Cr3b": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "real_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_x6Cr3b"
+      ],
+      "custom_css": [
+        "{padding: 0 2em;}",
+        ".jm-reviewer-info__name-cluster[data-v-6a854929] {flex-wrap: wrap;}",
+        ".jm-media-preview {display: none;}",
+        "p.jm-text.jm-text--align-center.jm-review-widget-header__title {font-family: Petrona, serif; font-size: clamp(24px, 5vw, 32px);}",
+        ".jm-cluster p.jm-text,.jm-cluster button.jm-voting-controls__button {font-size: 75%;}",
+        ".jdgm-tablist__list button {font-family: \"Dosis\";}"
+      ],
+      "settings": {
+        "include_margins": false
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "display_product_block": true,
+        "product_block_container": "fullwidth",
+        "padding_full_width": 0,
+        "enable_border_top": false,
+        "enable_border_bottom": false,
+        "color_border_bottom": "#e8e8e8",
+        "border_style": "container",
+        "mg_top_desktop": 65,
+        "mg_top_tablet": 55,
+        "mg_top_mobile": 50,
+        "mg_bottom_desktop": 65,
+        "mg_bottom_tablet": 55,
+        "mg_bottom_mobile": 50,
+        "product_block_layout": "slider",
+        "product_bg": "rgba(0,0,0,0)",
+        "style_block_header": "style1",
+        "product_block_title": "You May Also Like",
+        "enable_border_title": false,
+        "mg_top_title": 0,
+        "mg_bottom_title": 24,
+        "mg_bottom_title_desktop": 30,
+        "fontsize_title": 24,
+        "fontsize_title_mb": 24,
+        "color_title": "#232323",
+        "border_color_title": "#232323",
+        "product_block_title_align": "center",
+        "product_block_limit": 10,
+        "grid_gap": 30,
+        "product_block_per_row": "4",
+        "product_block_swipe_on_mobile": true,
+        "product_block_dots": false,
+        "product_block_dots_mb": false,
+        "product_block_arrows": false,
+        "product_block_arrows_mb": false,
+        "product_block_show": "4",
+        "product_block_per_view": "4",
+        "show_half": true,
+        "scroll_height": 4,
+        "scroll_track_bg": "#f1f1f1",
+        "scroll_thumb_color": "#000000",
+        "scroll_thumb_hover_color": "#444444",
+        "enable_hover_drag_icon": true,
+        "enable_layout_special": false,
+        "bg_card": "#ffffff",
+        "padding_card": 15,
+        "border_radius_card": 5,
+        "border_layout_card": "full",
+        "border_width_card": 5,
+        "border_color_card": "#f0f1f4"
       }
     },
     "video_block_wDxqn7": {
@@ -856,140 +984,11 @@
         "border_top_color": "#d3d3d3"
       }
     },
-    "17836282550cec3aba": {
-      "type": "apps",
-      "blocks": {
-        "judge_me_reviews_review_widget_x6Cr3b": {
-          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {
-            "review_data": "real_data",
-            "max_width": 1200,
-            "show_shop_reviews": false,
-            "empty_state": "empty_widget"
-          }
-        }
-      },
-      "block_order": [
-        "judge_me_reviews_review_widget_x6Cr3b"
-      ],
-      "custom_css": [
-        "{padding: 0 2em;}",
-        ".jm-reviewer-info__name-cluster[data-v-6a854929] {flex-wrap: wrap;}",
-        ".jm-media-preview {display: none;}",
-        "p.jm-text.jm-text--align-center.jm-review-widget-header__title {font-family: Petrona, serif; font-size: clamp(24px, 5vw, 32px);}",
-        ".jm-cluster p.jm-text,.jm-cluster button.jm-voting-controls__button {font-size: 75%;}",
-        ".jdgm-tablist__list button {font-family: \"Dosis\";}"
-      ],
-      "settings": {
-        "include_margins": false
-      }
-    },
-    "jv_press_63LxeE": {
-      "type": "jv-press",
-      "blocks": {
-        "press_item_adJxPm": {
-          "type": "press_item",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/Texas_Heritage_Logo_bf189311-790a-4b50-87ed-94ab14d4e11d.png",
-            "description": "<p>“Jackson Vaughn candles bring a little Texas into any home with aromas that capture the spirit of the Lone Star State.”</p>",
-            "link": "https://www.dallasobserver.com/best-of-dallas/2024/shopping-and-services/best-candles-that-smell-like-texas-20599851/"
-          }
-        },
-        "press_item_RepLQ8": {
-          "type": "press_item",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/Texas_Heritage_Logo_bf189311-790a-4b50-87ed-94ab14d4e11d.png",
-            "description": "<p>“Jackson Vaughn candles bring a little Texas into any home with aromas that capture the spirit of the Lone Star State.”</p>",
-            "link": "https://blog.txfb-ins.com/last-minute-texas-gift-guide/"
-          }
-        },
-        "press_item_8J8KkX": {
-          "type": "press_item",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/Logo1.png",
-            "description": "<p>““Dallas” is one of the beloved neighborhood candle shop’s bestsellers for good reason.”</p>",
-            "link": "https://www.papercitymag.com/holiday/dallas-valentines-day-gifts/?fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnGjgUhBSfvHZSWDx2HAY9LSA47jsnD19kYHThdV44STNMNBS5SG_dE2tRUmM_aem_VGjBNG7HO0maf7LV3FMvwg"
-          }
-        },
-        "press_item_GVggay": {
-          "type": "press_item",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/Logo2_63ed4fd2-d17c-4c03-8750-7cb44163fc7e.png",
-            "description": "<p>“A family-owned business known for their vast candle collection, cozy home goods, and holiday items.”</p>",
-            "link": "https://www.instagram.com/p/DXpB0TdFP54/?hl=en&img_index=14"
-          }
-        },
-        "press_item_N4PtYG": {
-          "type": "press_item",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/Logo3_4d877d3b-71bd-4ee2-ae35-f92fd50f391f.png",
-            "description": "<p>“Our dream was to collaborate with By Jackson Vaughn, and you could pinch us because we still can’t believe it came true!”</p>",
-            "link": "https://www.dallasites101.com/blog/post/the-101-candle-collection-with-society-by-jackson-vaughn/"
-          }
-        },
-        "press_item_43tQGJ": {
-          "type": "press_item",
-          "disabled": true,
-          "settings": {
-            "image": "shopify://shop_images/Logo_531bd46f-48bc-4535-830a-b9ebfbabab22.png",
-            "description": "<p>“For the scent obsessed. This hand-poured artisan soy wax-blend candle features a natural cotton wick, available in nine or 16 ounce jars for a 40-60 hour burn time.”</p>",
-            "link": "https://oakcliff.advocatemag.com/2024/11/oak-cliff-gift-guide-2024/"
-          }
-        }
-      },
-      "block_order": [
-        "press_item_adJxPm",
-        "press_item_RepLQ8",
-        "press_item_8J8KkX",
-        "press_item_GVggay",
-        "press_item_N4PtYG",
-        "press_item_43tQGJ"
-      ],
-      "name": "JV - Press",
-      "settings": {
-        "heading": "As Seen In",
-        "heading_size": 24,
-        "heading_size_mobile": 24,
-        "heading_spacing": 1,
-        "heading_gap": 30,
-        "per_view_desktop": 4,
-        "per_view_tablet": 3,
-        "per_view_mobile": 1.4,
-        "edge_peek": 120,
-        "item_gap": 36,
-        "enable_loop": true,
-        "show_arrows": false,
-        "show_dots": false,
-        "autoplay": false,
-        "autoplay_speed": 4,
-        "logo_height": 54,
-        "logo_gap": 12,
-        "text_size": 14,
-        "text_align": "left",
-        "background_color": "#fcf9ef",
-        "heading_color": "#232323",
-        "text_color": "#232323",
-        "padding_top": 64,
-        "padding_bottom": 64,
-        "padding_top_mobile": 48,
-        "padding_bottom_mobile": 48,
-        "border_top_width": 1,
-        "border_top_color": "#d3d3d3",
-        "border_bottom_width": 1,
-        "border_bottom_color": "#d3d3d3"
-      }
-    },
     "custom_image_banner_DBDbHK": {
       "type": "custom-image-banner-3",
       "blocks": {
         "large_img_MrkbiU": {
           "type": "largeImg",
-          "disabled": true,
           "settings": {
             "item_width": "20%",
             "item_border_radirus": 10,
@@ -1038,7 +1037,6 @@
         },
         "large_img_AgGdnr": {
           "type": "largeImg",
-          "disabled": true,
           "settings": {
             "item_width": "20%",
             "item_border_radirus": 10,
@@ -1087,7 +1085,6 @@
         },
         "large_img_zQXnGb": {
           "type": "largeImg",
-          "disabled": true,
           "settings": {
             "item_width": "20%",
             "item_border_radirus": 10,
@@ -1136,7 +1133,6 @@
         },
         "large_img_MY4Q8X": {
           "type": "largeImg",
-          "disabled": true,
           "settings": {
             "item_width": "20%",
             "item_border_radirus": 10,
@@ -1185,7 +1181,6 @@
         },
         "large_img_CthnNp": {
           "type": "largeImg",
-          "disabled": true,
           "settings": {
             "item_width": "20%",
             "item_border_radirus": 10,
@@ -1337,12 +1332,12 @@
     "main",
     "custom_icon_features_PnL3aG",
     "jv_highlight_QY4BUB",
-    "product-recommendations",
     "jv_gallery_kN93qU",
+    "jv_press_63LxeE",
+    "17836282550cec3aba",
+    "product-recommendations",
     "video_block_wDxqn7",
     "jv_candle_care_yKPTEe",
-    "17836282550cec3aba",
-    "jv_press_63LxeE",
     "custom_image_banner_DBDbHK",
     "product-recently-viewed",
     "17839812280a5dd347"
