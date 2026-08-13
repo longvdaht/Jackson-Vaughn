@@ -399,7 +399,7 @@
         "sidebar_heading_text_transform": "uppercase",
         "product_image_ratio": "square",
         "portrait_aspect_ratio": 148,
-        "zoomed_image": true,
+        "zoomed_image": false,
         "media_fit": "unset",
         "product_image_popup": "fancybox",
         "video_layout": "thumbnail",
