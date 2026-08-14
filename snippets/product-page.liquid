@@ -989,13 +989,26 @@
                     %}
                   </div>
                 {%- when 'scent_profile' -%}
-                  <div class="productView-moreItem productView-scentProfile{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger {% if share_layout == '3' %}animate--fade-in{% else %}animate--slide-in{% endif %}{% endif %}" 
-                      style="--spacing-top: {{ spacing_top | append: 'px' }};--spacing-bottom: {{ spacing_bottom | append: 'px' }};--spacing-top-mb: {{ spacing_top | append: 'px' }};--spacing-bottom-mb: {{ spacing_bottom | append: 'px' }}">
-                    {% render 'product-scent-profile'
-                      , block: block
-                      , product: product
-                    %}
-                  </div>
+                  {%- comment -%}
+                    Show the block if ANY scent field has a value (not just family),
+                    so a filled Notes/Feels/Throw still renders when Family is empty.
+                    Strip each value because dynamic sources for empty metafields can
+                    render as whitespace rather than a true blank. If all are empty,
+                    the wrapper is skipped so it doesn't take up padding.
+                  {%- endcomment -%}
+                  {%- assign sp_family = block.settings.label_family | strip -%}
+                  {%- assign sp_notes  = block.settings.label_notes  | strip -%}
+                  {%- assign sp_feels  = block.settings.label_feels  | strip -%}
+                  {%- assign sp_throw  = block.settings.throw_level   | strip -%}
+                  {%- if sp_family != blank or sp_notes != blank or sp_feels != blank or sp_throw != blank -%}
+                    <div class="productView-moreItem productView-scentProfile{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger {% if share_layout == '3' %}animate--fade-in{% else %}animate--slide-in{% endif %}{% endif %}" 
+                        style="--spacing-top: {{ spacing_top | append: 'px' }};--spacing-bottom: {{ spacing_bottom | append: 'px' }};--spacing-top-mb: {{ spacing_top | append: 'px' }};--spacing-bottom-mb: {{ spacing_bottom | append: 'px' }}">
+                      {% render 'product-scent-profile'
+                        , block: block
+                        , product: product
+                      %}
+                    </div>
+                  {%- endif -%}
                 {%- when 'meta' -%}
                   {%- liquid
                     assign show_sold_in = block.settings.show_sold_in
