@@ -989,15 +989,13 @@
                     %}
                   </div>
                 {%- when 'scent_profile' -%}
-                  {%- if block.settings.label_family != blank -%}
-                    <div class="productView-moreItem productView-scentProfile{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger {% if share_layout == '3' %}animate--fade-in{% else %}animate--slide-in{% endif %}{% endif %}" 
-                        style="--spacing-top: {{ spacing_top | append: 'px' }};--spacing-bottom: {{ spacing_bottom | append: 'px' }};--spacing-top-mb: {{ spacing_top | append: 'px' }};--spacing-bottom-mb: {{ spacing_bottom | append: 'px' }}">
-                      {% render 'product-scent-profile'
-                        , block: block
-                        , product: product
-                      %}
-                    </div>
-                  {%- endif -%}
+                  <div class="productView-moreItem productView-scentProfile{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger {% if share_layout == '3' %}animate--fade-in{% else %}animate--slide-in{% endif %}{% endif %}" 
+                      style="--spacing-top: {{ spacing_top | append: 'px' }};--spacing-bottom: {{ spacing_bottom | append: 'px' }};--spacing-top-mb: {{ spacing_top | append: 'px' }};--spacing-bottom-mb: {{ spacing_bottom | append: 'px' }}">
+                    {% render 'product-scent-profile'
+                      , block: block
+                      , product: product
+                    %}
+                  </div>
                 {%- when 'meta' -%}
                   {%- liquid
                     assign show_sold_in = block.settings.show_sold_in

@@ -59,7 +59,7 @@
                                     {%- endif -%}
                                 {% endif %}
                             </legend>
-                            <div class="variant-wrapper">
+                            <div class="variant-wrapper {% if product.variants.size > 3 %}wrapper-multi-items{% endif %}">
                                 {%- assign values = '' -%}
                                 {%- liquid
                                     assign variants_available_arr = product.variants | map: 'available'
