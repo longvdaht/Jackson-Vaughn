@@ -1,53 +1,62 @@
 {% comment %}
   snippets/scent-profile-block.liquid
-  
+
   Simplified version:
   - Fixed bar throw style
   - Simplified settings
   - Responsive font sizes
   - Clean text color
-  
+
+  Values come from product metafields via dynamic sources. Because a dynamic
+  source for an empty metafield can render as whitespace (not a true blank),
+  each value is `strip`-ped before the blank check so empty fields are hidden.
+
   How to use:
   {% include 'scent-profile-block', block: block %}
 {% endcomment %}
 
 <div class="scent-profile-block" {{ block.shopify_attributes }}>
   {% assign scent = block.settings %}
-  
+
+  {%- assign scent_family = scent.label_family | strip -%}
+  {%- assign scent_notes  = scent.label_notes  | strip -%}
+  {%- assign scent_feels  = scent.label_feels  | strip -%}
+  {%- assign scent_throw  = scent.throw_level  | strip -%}
+
   <div class="scent-profile-container" style="--text-color: {{ scent.text_color }}; --font-size-mb: {{ scent.font_size_mobile }}px; --font-size: {{ scent.font_size_desktop }}px;">
-    {% if scent.label_family != blank %}
+    {% if scent_family != blank %}
       <div class="scent-family scent_row">
         <span class="label">{{ 'products.product.scent_family' | t }}:</span>
-        <p class="value">{{ scent.label_family }}</p>
+        <p class="value">{{ scent_family }}</p>
       </div>
     {% endif %}
 
-    {% if scent.label_notes != blank %}
+    {% if scent_notes != blank %}
       <div class="scent-notes scent_row">
         <span class="label">{{ 'products.product.scent_notes' | t }}:</span>
-        <p class="value">{{ scent.label_notes }}</p>
+        <p class="value">{{ scent_notes }}</p>
       </div>
     {% endif %}
 
-    {% if scent.label_feels != blank %}
+    {% if scent_feels != blank %}
       <div class="feels-like scent_row">
         <span class="label">{{ 'products.product.feels_like' | t }}:</span>
-        <p class="value">{{ scent.label_feels }}</p>
+        <p class="value">{{ scent_feels }}</p>
       </div>
     {% endif %}
-    
-    {% if scent.throw_level != blank %}
+
+    {% if scent_throw != blank %}
       <div class="throw-level scent_row">
         <span class="label">{{ 'products.product.throw' | t }}:</span>
         <div class="throw-visualization">
-          {% assign throw_level = scent.throw_level | times: 1 %}
+          {% assign throw_level = scent_throw | times: 1 %}
 
           <div class="throw-bars">
             {% for i in (1..5) %}
               <div class="throw-bar {% if i <= throw_level %}filled{% endif %}"></div>
             {% endfor %}
           </div>
-          <p class="throw-text visually-hidden">{{ scent.throw_level }}/5</p>
+          <p class="throw-text visually-hidden">{{ scent_throw }}/5</p>
         </div>
       </div>
     {% endif %}
