@@ -296,6 +296,7 @@
       "quick_shop": "Quick Add",
       "select": "Select a {{ name }}",
       "shop_now": "Shop Now",
+      "ships_free": "Ships free",
       "select_options": "Choose Options",
       "select_options_plus": "+ Select Options",
       "sub_total": "Add To Cart • {{ value }}",

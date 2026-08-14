@@ -30,7 +30,19 @@
                             assign swatch_type = settings.swatch_type
                             assign option_index = forloop.index0
                         -%}
-                        <fieldset class="{{ option.name | downcase }} js product-form__input{% if is_swatch %} product-form__swatch{% endif %} clearfix" data-product-attribute="set-rectangle" data-option-index="{{ forloop.index0 }}">
+                        {%- liquid
+                            # "Ships Free" label: show above a Bundle option value when the
+                            # variant for (this value x currently-selected other options) is
+                            # priced above the free-shipping threshold. JS updates this live
+                            # when the shopper changes any option.
+                            assign ships_free_threshold = 8000
+                            assign is_bundle_option = false
+                            assign opt_name_dc = option.name | downcase
+                            if opt_name_dc contains 'bundle'
+                                assign is_bundle_option = true
+                            endif
+                        -%}
+                        <fieldset class="{{ option.name | downcase }} js product-form__input{% if is_swatch %} product-form__swatch{% endif %} clearfix" data-product-attribute="set-rectangle" data-option-index="{{ forloop.index0 }}"{% if is_bundle_option %} data-ships-free-option data-ships-free-threshold="{{ ships_free_threshold }}"{% endif %}>
                             <legend class="form__label">
                                 <div class="option-wrapper">
                                     {{ option.name | append: ':' }}
@@ -59,7 +71,7 @@
                                     {%- endif -%}
                                 {% endif %}
                             </legend>
-                            <div class="variant-wrapper {% if product.variants.size > 3 %}wrapper-multi-items{% endif %}">
+                            <div class="variant-wrapper {% if option.values.size > 3 %}wrapper-multi-items{% endif %}">
                                 {%- assign values = '' -%}
                                 {%- liquid
                                     assign variants_available_arr = product.variants | map: 'available'
@@ -162,6 +174,56 @@
                                             </label>
                                         {%- else -%}   
                                             <label class="product-form__label {{ option_stock }}" for="option-{{ product.id }}-{{ option.name }}-{{ forloop.index0 }}" data-variant-id="{{ variant.id }}">
+                                                {%- if is_bundle_option -%}
+                                                    {%- liquid
+                                                        # Find the variant matching this bundle value combined with the
+                                                        # other currently-selected options, then compare its price.
+                                                        assign sf_price = 0
+                                                        for v in product.variants
+                                                            assign match = true
+                                                            if option.position == 1
+                                                                unless v.option1 == value
+                                                                    assign match = false
+                                                                endunless
+                                                                if product.options.size >= 2 and v.option2 != product.selected_or_first_available_variant.option2
+                                                                    assign match = false
+                                                                endif
+                                                                if product.options.size >= 3 and v.option3 != product.selected_or_first_available_variant.option3
+                                                                    assign match = false
+                                                                endif
+                                                            elsif option.position == 2
+                                                                unless v.option2 == value
+                                                                    assign match = false
+                                                                endunless
+                                                                if v.option1 != product.selected_or_first_available_variant.option1
+                                                                    assign match = false
+                                                                endif
+                                                                if product.options.size >= 3 and v.option3 != product.selected_or_first_available_variant.option3
+                                                                    assign match = false
+                                                                endif
+                                                            elsif option.position == 3
+                                                                unless v.option3 == value
+                                                                    assign match = false
+                                                                endunless
+                                                                if v.option1 != product.selected_or_first_available_variant.option1
+                                                                    assign match = false
+                                                                endif
+                                                                if v.option2 != product.selected_or_first_available_variant.option2
+                                                                    assign match = false
+                                                                endif
+                                                            endif
+                                                            if match
+                                                                assign sf_price = v.price
+                                                                break
+                                                            endif
+                                                        endfor
+                                                        assign show_ships_free = false
+                                                        if sf_price > ships_free_threshold
+                                                            assign show_ships_free = true
+                                                        endif
+                                                    -%}
+                                                    <span class="ships-free-label" data-ships-free-label data-option-value="{{ value | escape }}"{% unless show_ships_free %} hidden{% endunless %}>{{ 'products.product.ships_free' | t: default: 'Ships Free' }}</span>
+                                                {%- endif -%}
                                                 <span class="text">
                                                     {{ value }}
                                                     {%- if burn_hours != blank -%}

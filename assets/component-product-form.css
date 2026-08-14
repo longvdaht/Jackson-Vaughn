@@ -80,6 +80,12 @@
     vertical-align: top;
     cursor: pointer;
     margin: 0;
+    position: relative;
+}
+
+.ships-free-label {
+    position: absolute;
+    top: -24px;
 }
 
 .variant-wrapper {
