@@ -81,11 +81,7 @@
     cursor: pointer;
     margin: 0;
     position: relative;
-}
-
-.ships-free-label {
-    position: absolute;
-    top: -24px;
+    text-align: center;
 }
 
 .variant-wrapper {
