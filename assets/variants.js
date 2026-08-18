@@ -21,13 +21,14 @@ class VariantSelects extends HTMLElement {
             this.updateAttribute(false, !this.currentVariant.available);
         }
         this.updateVariantStatuses();
+        this.updateShipsFree();
     }
-    
     onVariantChange(event) {
         this.updateOptions();
         this.updateMasterId();
         this.updatePickupAvailability();
         this.updateVariantStatuses();
+        this.updateShipsFree();
       
         if (!this.currentVariant) {
             this.updateAttribute(true);
@@ -50,6 +51,47 @@ class VariantSelects extends HTMLElement {
     updateOptions() {
         this.options = Array.from(this.querySelectorAll('select'), (select) => select.value);
     }
+
+    // Toggle the "Ships Free" label above each Bundle option value based on the
+    // price of (that value × the other currently-selected options) vs threshold.
+    updateShipsFree() {
+        const fieldset = this.querySelector('[data-ships-free-option]');
+        if (!fieldset) return;
+
+        const threshold = parseInt(fieldset.getAttribute('data-ships-free-threshold'), 10) || 8000;
+        const optionIndex = parseInt(fieldset.getAttribute('data-option-index'), 10);
+        if (Number.isNaN(optionIndex)) return;
+
+        const variants = this.getVariantData();
+        if (!variants || !variants.length) return;
+
+        // The currently selected option values (radio inputs), by option index.
+        const selected = [];
+        this.querySelectorAll('fieldset[data-option-index]').forEach((fs) => {
+            const idx = parseInt(fs.getAttribute('data-option-index'), 10);
+            const checked = fs.querySelector('input[type="radio"]:checked');
+            if (!Number.isNaN(idx) && checked) selected[idx] = checked.value;
+        });
+
+        fieldset.querySelectorAll('[data-ships-free-label]').forEach((labelEl) => {
+            const value = labelEl.getAttribute('data-option-value');
+
+            // Find the variant whose bundle-option value == this value AND whose
+            // other options match the current selection.
+            const match = variants.find((v) => {
+                if (v.options[optionIndex] !== value) return false;
+                for (let i = 0; i < v.options.length; i++) {
+                    if (i === optionIndex) continue;
+                    if (selected[i] != null && v.options[i] !== selected[i]) return false;
+                }
+                return true;
+            });
+
+            const free = match && typeof match.price === 'number' && match.price > threshold;
+            labelEl.hidden = !free;
+        });
+    }
+
 
     decodeOptions() {
         this.options = this.options.map(option => {
@@ -705,13 +747,8 @@ class VariantSelects extends HTMLElement {
             option.querySelector('[data-header-option]').innerText = option.querySelector(':checked').value;
             const checkedOption = option.querySelector(':checked');
             if (checkedOption) {
-                const burnEl = option.querySelector('.data-burn-hours');
-                if (burnEl) {
-                    const burnTime = checkedOption.dataset.burnTime;
-                    burnEl.innerText = burnTime || '';
-                    const burnWrapper = burnEl.closest('.burn-time-info');
-                    if (burnWrapper) burnWrapper.classList.toggle('hidden', !burnTime);
-                }
+                var burnEl = option.querySelector('.data-burn-hours');
+                if (burnEl) burnEl.innerText = checkedOption.dataset.burnTime;
             }
             if (index === 0 && inputLength > 1) return;
             const optionInputs = [...option.querySelectorAll('input[type="radio"], option')]

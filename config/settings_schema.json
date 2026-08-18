@@ -219,6 +219,13 @@
         }]
     },
     {
+        "type": "number",
+        "id": "ships_free_threshold",
+        "label": "Free shipping threshold",
+        "default": 80,
+        "info": "Enter the free shipping threshold in dollars."
+    },
+    {
         "type": "header",
         "content": "t:settings_schema.multiple_layouts.settings.general.blog_layout"
     },
