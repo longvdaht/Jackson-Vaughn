@@ -162,6 +162,7 @@
     "show_sale_badge": false,
     "sale_badge_type": "text",
     "show_custom_badge": false,
+    "show_free_shipping_badge": false,
     "point_product_swatch_custom": "30px",
     "show_action": true,
     "quick_shop_type": "1",
