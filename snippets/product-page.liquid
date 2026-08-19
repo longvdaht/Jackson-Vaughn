@@ -1240,13 +1240,17 @@
                     %}
                   </div>
                 {%- when 'bundle_product_list' -%}
-                  <div class="productView-moreItem productView-moreItem-product-positive_vibes{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="--spacing-top: {{ spacing_top | append: 'px' }};
-                                            --spacing-bottom: {{ spacing_bottom | append: 'px' }}">
-                    {% render 'product-bundle-list'
-                      , block: block
-                      , product: product
-                    %}
-                  </div>
+                  {%- assign bundle_data = block.settings.bundle_product_list -%}
+                  
+                  {%- if bundle_data.size > 0 -%}
+                    <div class="productView-moreItem productView-moreItem-product-bundle__list{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="--spacing-top: {{ spacing_top | append: 'px' }};
+                                              --spacing-bottom: {{ spacing_bottom | append: 'px' }}">
+                      {% render 'product-bundle-list'
+                        , block: block
+                        , product: product
+                      %}
+                    </div>
+                  {% endif %}
                 {%- when 'perks' -%}
                   {% unless has_product_combo %}
                     <div class="productView-moreItem{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="--spacing-top: {{ spacing_top | append: 'px' }};

@@ -15,9 +15,6 @@
 
 {%- liquid
   assign bundle_products = block.settings.bundle_product_list
-  if bundle_products == blank or bundle_products.size == 0
-    break
-  endif
   assign bundle_heading = heading | default: 'Included in this bundle'
   assign slider_id = 'BundleSlider-' | append: block.id
 -%}
@@ -33,7 +30,7 @@
 
   <div class="product-bundle__slider swiper" id="{{ slider_id }}">
     <div class="swiper-wrapper">
-      {%- for product in bundle_products -%}
+      {%- for product in bundle_products limit: 5 -%}
         <div class="swiper-slide product-bundle__slide">
           <a
             href="{{ product.url }}"
