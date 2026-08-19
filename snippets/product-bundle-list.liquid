@@ -1,0 +1,100 @@
+{% comment %}
+  Renders the products included in a bundle, between the product header and ATC.
+
+  Accepts:
+  - block: {Object} the `bundle_product_list` block
+  - heading: {String} optional label override
+
+  Usage:
+  {% render 'product-bundle', block: block %}
+{% endcomment %}
+<link rel="stylesheet" href="{{ 'product-bundle-list.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'product-bundle-list.css' | asset_url | stylesheet_tag }}</noscript>
+   
+<script src="{{ 'product-bundle-list.js' | asset_url }}" defer="defer"></script>
+
+{%- liquid
+  assign bundle_products = block.settings.bundle_product_list
+  if bundle_products == blank or bundle_products.size == 0
+    break
+  endif
+  assign bundle_heading = heading | default: 'Included in this bundle'
+  assign slider_id = 'BundleSlider-' | append: block.id
+-%}
+
+<bundle-slider
+  class="product-bundle"
+  data-slider-id="{{ slider_id }}"
+>
+  <p class="product-bundle__heading">
+    {{ bundle_heading }}
+    <span class="product-bundle__count">({{ bundle_products.size }})</span>
+  </p>
+
+  <div class="product-bundle__slider swiper" id="{{ slider_id }}">
+    <div class="swiper-wrapper">
+      {%- for product in bundle_products -%}
+        <div class="swiper-slide product-bundle__slide">
+          <a
+            href="{{ product.url }}"
+            class="product-bundle__card"
+            aria-label="{{ product.title | escape }}"
+          >
+            <div class="product-bundle__media">
+              {%- if product.featured_media -%}
+                {{
+                  product.featured_media
+                  | image_url: width: 300
+                  | image_tag:
+                    class: 'product-bundle__image',
+                    widths: '100, 150, 200, 300',
+                    sizes: '96px',
+                    loading: 'lazy',
+                    alt: product.featured_media.alt | default: product.title | escape
+                }}
+              {%- else -%}
+                {{ 'product-1' | placeholder_svg_tag: 'product-bundle__image placeholder' }}
+              {%- endif -%}
+
+              {%- unless product.available -%}
+                <span class="product-bundle__badge">
+                  {{- 'products.product.sold_out' | t -}}
+                </span>
+              {%- endunless -%}
+            </div>
+
+            <span class="product-bundle__title">{{ product.title }}</span>
+
+            <span class="product-bundle__price">
+              {%- if product.compare_at_price > product.price -%}
+                <span class="product-bundle__price-sale">{{ product.price | money }}</span>
+                <s class="product-bundle__price-was">{{ product.compare_at_price | money }}</s>
+              {%- else -%}
+                {{ product.price | money }}
+              {%- endif -%}
+            </span>
+          </a>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+
+  <button
+    type="button"
+    class="product-bundle__nav product-bundle__nav--prev"
+    aria-label="{{ 'general.slider.previous_slide' | t }}"
+    data-bundle-prev
+    hidden
+  >
+    {% render 'icon-caret' %}
+  </button>
+  <button
+    type="button"
+    class="product-bundle__nav product-bundle__nav--next"
+    aria-label="{{ 'general.slider.next_slide' | t }}"
+    data-bundle-next
+    hidden
+  >
+    {% render 'icon-caret' %}
+  </button>
+</bundle-slider>
