@@ -1164,6 +1164,43 @@
             ]
         },
         {
+        "type": "bundle_product_list",
+        "name": "Bundle product list",
+        "limit": 1,
+            "settings": [
+                {
+                    "type": "product_list",
+                    "id": "bundle_product_list",
+                    "label": "Bundle product list",
+                    "limit": 5
+                },
+                 {
+                    "type": "header",
+                    "content": "t:sections.main-product.settings.general.spacing"
+                },
+                {
+                    "type": "range",
+                    "id": "spacing_top",
+                    "label": "t:sections.general.settings.aligmnent.options__5",
+                    "min": 0,
+                    "max": 100,
+                    "step": 1,
+                    "unit": "t:sections.layout.mg_desktop.unit",
+                    "default": 0
+                },
+                {
+                    "type": "range",
+                    "id": "spacing_bottom",
+                    "label": "t:sections.general.settings.aligmnent.options__6",
+                    "min": 0,
+                    "max": 100,
+                    "step": 1,
+                    "unit": "t:sections.layout.mg_desktop.unit",
+                    "default": 0
+                }
+            ]
+        },
+        {
             "type": "vendor",
             "name": "t:sections.main-product.settings.general.vendor",
             "limit": 1,
