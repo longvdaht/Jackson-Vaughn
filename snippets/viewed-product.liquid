@@ -1,0 +1,104 @@
+{% comment %} START KLAVIYO VIEWED PRODUCT {% endcomment %}
+ <script type="text/javascript">
+ var _learnq = _learnq || [];
+
+{% if product.type contains 'Candle' %}
+{% assign scent_family = nil %}
+{% if product.metafields.custom.product_scent_family != blank %}
+    {%- assign scent_family = product.metafields.custom.product_scent_family -%}
+{% endif %}
+
+{% assign scent_feel = nil %}
+{% if product.metafields.custom.product_scent_feels_like != blank %}
+    {%- assign scent_feel = product.metafields.custom.product_scent_feels_like -%}
+{% endif %}
+
+{% assign scent_note_image = nil %}
+{% if product.metafields.custom.product_highlight_section != blank %}
+    {%- assign scent_note_image = product.metafields.custom.product_highlight_section.value.image.value | image_url -%}
+{% endif %}
+
+
+{% assign scent_notes_index = nil %}
+{% for option in product.options_with_values %}
+  {% if option.name == 'Scent Notes' %}
+    {%- capture scent_index -%}option{{ forloop.index }}{%- endcapture -%}
+    {%- assign scent_notes_index = product.selected_or_first_available_variant[scent_index]| replace: ' | ', ', ' -%}
+  {% elsif product.metafields.custom.product_scent_notes != blank %}
+    {%- assign scent_notes_index = product.metafields.custom.product_scent_notes -%}
+  {% else %}
+    {% for tag in product.tags %}
+      {%- assign tag_prefix = tag | slice: 0, 12 -%}
+      {% if tag_prefix == 'scent-notes-' %}
+        {%- assign scent_notes_index = tag| remove_first: 'scent-notes-'| replace: '_', ', ' -%}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+{% endif %}
+
+{% if product.type contains 'Bundle' %}
+{% assign candles_included_index = nil %}
+{% for option in product.options_with_values %}
+  {% if option.name == 'Candles Included' %}
+    {%- capture bundle_index -%}option{{ forloop.index }}{%- endcapture -%}
+    {%- assign candles_included_index = product.selected_or_first_available_variant[bundle_index]| replace: ' | ', ', ' -%}
+  {% else %}
+    {% for tag in product.tags %}
+      {% assign tag_prefix = tag | slice: 0, 14 %}
+      {% if tag_prefix == 'candle-bundle-' %}
+        {%- assign candles_included_index = tag| remove_first: 'candle-bundle-'| replace: '_', ', ' -%}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+{% endif %}
+
+{% assign scent_extras = nil %}
+{% if scent_notes_index == nil and candles_included_index == nil and scent_feel == nil and scent_note_image == nil %}
+  {% assign scent_extras = "none" %}
+{% endif %}
+
+  var item = {
+    "ProductName": {{ product.title | json }},
+    "ProductID": {{ product.id | json }},
+    "ProductType": {{ product.type | json }},
+    "Categories": {{ product.collections | map: 'title' | json }},
+    "ImageURL": "https:{{ product.featured_image.src | img_url: 'grande' }}",
+    "URL": "{{ shop.secure_url }}{{ product.url }}",
+    "Brand": {{ product.vendor | json }},
+    "Price": {{ product.price | money_without_currency | remove: ',' | json }},
+    "CompareAtPrice": {{ product.selected_or_first_available_variant.compare_at_price | money_without_currency | remove: ',' | json }},
+    "Tags":{{ product.tags | json }}{% if scent_extras == "none" %},{% endif %}
+   {% if scent_notes_index %},"ScentNotes":"{{ scent_notes_index }}"{% endif %}
+   {% if candles_included_index %},"CandleBundle":"{{ candles_included_index }}"{% endif %}
+   {% if scent_feel %},"ScentFeel":"{{ scent_feel }}"{% endif %}
+   {% if scent_family %},"ScentFamily":"{{ scent_family }}"{% endif %}
+   {% if scent_note_image %},"ScentImageURL":"https:{{ scent_note_image }}"{% endif %}
+  };
+  console.log(item);
+
+  _learnq.push(["track", "Viewed Product", item]);
+  _learnq.push(["trackViewedItem", {
+    "Title": item.ProductName,
+    "ItemId": item.ProductID,
+    "Categories": item.Categories,
+    "ImageUrl": item.ImageURL,
+    "Url": item.URL,
+    "Type":item.ProductType,
+    "Tags": item.Tags,
+  {% if scent_notes_index %}"ScentNotes": item.ScentNotes,{% endif %}
+  {% if candles_included_index %}"CandleBundle": item.CandleBundle,{% endif %}
+  {% if scent_feel %}"ScentFeel": item.ScentFeel,{% endif %}
+  {% if scent_family %}"ScentFamily": item.ScentFamily,{% endif %}
+  {% if scent_note_image %}"ScentImageURL": item.ScentImageURL,{% endif %}     
+    "Metadata": {
+      "Brand": item.Brand,
+      "Price": item.Price,
+      "CompareAtPrice": item.CompareAtPrice                 
+    }
+  }]);
+</script>
+{% comment %} END KLAVIYO VIEWED PRODUCT {% endcomment %}
