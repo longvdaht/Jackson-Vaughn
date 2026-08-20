@@ -187,7 +187,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
             {%- endif -%}
         </div>
-        
+        {% if request.page_type == 'product' %}
+                    {% render 'viewed-product' %}
+        {%- endif -%}
         {% render 'halo-sidebar' %}
 
         {%- if settings.enable_following_cursor -%}
