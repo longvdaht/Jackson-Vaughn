@@ -42,14 +42,16 @@
 
     {% if scent_feels != blank %}
       <div class="feels-like scent_row">
-        <span class="label">{{ 'products.product.feels_like' | t | default: 'Feels like' }}:</span>
+        {% comment %} <span class="label">{{ 'products.product.feels_like' | t | default: 'Feels like' }}:</span> {% endcomment %}
+        <span class="label">Feels like:</span>
         <p class="value">{{ scent_feels }}</p>
       </div>
     {% endif %}
 
     {% if scent_throw != blank %}
       <div class="throw-level scent_row">
-        <span class="label">{{ 'products.product.throw' | t | default: 'Throw' }}:</span>
+        {% comment %} <span class="label">{{ 'products.product.throw' | t | default: 'Throw' }}:</span> {% endcomment %}
+        <span class="label">Throw:</span>
         <div class="throw-visualization">
           {% assign throw_level = scent_throw | times: 1 %}
 
