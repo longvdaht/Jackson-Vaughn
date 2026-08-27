@@ -34,7 +34,8 @@
 
     {% if scent_notes != blank %}
       <div class="scent-notes scent_row">
-        <span class="label">{{ 'products.product.scent_notes' | t | default: 'Scent notes' }}:</span>
+        {% comment %} <span class="label">{{ 'products.product.scent_notes' | t | default: 'Scent notes' }}:</span> {% endcomment %}
+        <span class="label">Scent notes:</span>
         <p class="value">{{ scent_notes }}</p>
       </div>
     {% endif %}
