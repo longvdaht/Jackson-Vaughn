@@ -26,7 +26,8 @@
   <div class="scent-profile-container" style="--text-color: {{ scent.text_color }}; --font-size-mb: {{ scent.font_size_mobile }}px; --font-size: {{ scent.font_size_desktop }}px;">
     {% if scent_family != blank %}
       <div class="scent-family scent_row">
-        <span class="label">{{ 'products.product.scent_family' | t | default: 'Scent family' }}:</span>
+        {% comment %} <span class="label">{{ 'products.product.scent_family' | t | default: 'Scent family' }}:</span> {% endcomment %}
+        <span class="label">Scent family:</span>
         <p class="value">{{ scent_family }}</p>
       </div>
     {% endif %}
