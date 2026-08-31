@@ -1,0 +1,505 @@
+{%- comment -%}
+  Rivo: How It Works — RESTYLE-IN-PLACE. Title, sub-line and each step's
+  number/title/description stay backend copy. Guest steps now render as a
+  simple numbered-circle row (Mack Weldon style) instead of photo tiles.
+  Covers guest steps, the member activity table + points expiry, the My
+  Rewards sibling, and the reward/points modals (global, unscoped).
+{%- endcomment -%}
+
+{%- assign m_pt_d = section.settings.pad_top_desktop | plus: 0.0 -%}
+{%- assign m_pb_d = section.settings.pad_bottom_desktop | plus: 0.0 -%}
+{%- assign pt_d = section.settings.pad_base | times: m_pt_d | round -%}
+{%- assign pb_d = section.settings.pad_base | times: m_pb_d | round -%}
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Dosis:wght@400;500;600;700&display=swap');
+
+  .jv-hiw-{{ section.id }} {
+    position: relative; background: #C79A4B;
+    opacity: 0; animation: jv-hiw-reveal-{{ section.id }} .01s linear 1.5s forwards;
+  }
+  .jv-hiw-{{ section.id }}.is-ready { opacity: 1; animation: none; }
+  @keyframes jv-hiw-reveal-{{ section.id }} { to { opacity: 1; } }
+  .jv-hiw-{{ section.id }}.jv-hiw--member { background: #FAF6EC; }
+
+  /* Guest-only: the :not() is load-bearing — unqualified, this hides the
+     activity table FROM MEMBERS, i.e. the whole section. */
+  .jv-hiw-{{ section.id }}:not(.jv-hiw--member) .rivo-activity,
+  .jv-hiw-{{ section.id }}:not(.jv-hiw--member) .rivo-lp-customer-activity,
+  .jv-hiw-{{ section.id }}:not(.jv-hiw--member) .rivo-points-expiry,
+  .jv-hiw-{{ section.id }}:not(.jv-hiw--member) .rivo-lp-section-subheading {
+    display: none !important;
+  }
+  .jv-hiw-{{ section.id }}.jv-hiw--member .rivo-how-it-works-steps {
+    display: none !important;
+  }
+
+  .jv-hiw-{{ section.id }} .rivo-lp-section-title,
+  .jv-hiw-{{ section.id }} .rivo-lp-section-title span {
+    font-family: "Petrona", serif !important;
+    font-weight: 600 !important; color: #1D1A16 !important;
+    letter-spacing: -.01em !important; text-transform: uppercase;
+    text-align: center !important; text-wrap: balance;
+  }
+  .jv-hiw-{{ section.id }} .rivo-lp-section-title em,
+  .jv-hiw-{{ section.id }} .rivo-lp-section-title i { color: #B8542F !important; font-style: italic !important; }
+  .jv-hiw-{{ section.id }} .rivo-lp-section-subtitle {
+    font-family: "Dosis", sans-serif !important;
+    color: rgba(29,26,22,.72) !important; font-size: 16px !important; line-height: 1.7 !important;
+    text-align: center !important; max-width: 560px !important; margin: 14px auto 0 !important;
+  }
+  .jv-hiw-{{ section.id }}.jv-hiw--member .rivo-lp-section-title,
+  .jv-hiw-{{ section.id }}.jv-hiw--member .rivo-lp-section-title span {
+    color: #1D1A16 !important; text-transform: none; text-align: left !important;
+  }
+  .jv-hiw-{{ section.id }}.jv-hiw--member .rivo-lp-section-subtitle {
+    color: #6B6252 !important; text-align: left !important; margin: 0 !important; max-width: none !important;
+  }
+
+  /* ---- guest steps: simple numbered-circle row, no photography ---- */
+  .jv-hiw-{{ section.id }} .rivo-how-it-works-steps {
+    display: grid !important; grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 8px !important; max-width: 980px !important; margin: 64px auto 0 !important; padding: 0 !important;
+  }
+  .jv-hiw-{{ section.id }} .rivo-first-step,
+  .jv-hiw-{{ section.id }} .rivo-second-step,
+  .jv-hiw-{{ section.id }} .rivo-third-step {
+    position: relative !important; display: flex !important; flex-direction: column !important;
+    align-items: center !important; aspect-ratio: auto !important; min-height: 0 !important;
+    padding: 0 28px !important; margin: 0 !important; background: transparent !important;
+    border: none !important; border-radius: 0 !important; overflow: visible !important; text-align: center !important;
+  }
+  .jv-hiw-{{ section.id }} .rivo-first-step:not(:last-child)::after,
+  .jv-hiw-{{ section.id }} .rivo-second-step:not(:last-child)::after {
+    content: ''; position: absolute; top: 33px; left: calc(50% + 33px);
+    width: calc(100% - 66px); height: 1px; background: rgba(29,26,22,.22);
+  }
+  .jv-hiw-{{ section.id }} .rivo-step-bg,
+  .jv-hiw-{{ section.id }} .rivo-step-overlay { display: none !important; }
+  .jv-hiw-{{ section.id }} .rivo-how-it-works-step-number {
+    position: static !important; display: flex !important; align-items: center !important;
+    justify-content: center !important; width: 66px !important; height: 66px !important;
+    margin: 0 0 26px !important; border: 1px solid rgba(29,26,22,.4) !important; border-radius: 50% !important;
+    background: transparent !important; color: #1D1A16 !important; font-family: "Petrona", serif !important;
+    font-size: 24px !important; font-weight: 600 !important; letter-spacing: 0 !important; text-transform: none !important;
+    z-index: 1;
+  }
+  .jv-hiw-{{ section.id }} .rivo-how-it-works-step-title {
+    position: static !important; margin: 0 0 10px !important; color: #1D1A16 !important;
+    font-family: "Petrona", serif !important; font-weight: 600 !important; font-size: 22px !important;
+    text-align: center !important; text-wrap: balance;
+  }
+  .jv-hiw-{{ section.id }} .rivo-how-it-works-step-subtitle {
+    position: static !important; max-width: 260px !important; margin: 0 !important;
+    color: rgba(29,26,22,.72) !important; font-family: "Dosis", sans-serif !important;
+    font-size: 15px !important; line-height: 1.6 !important; text-align: center !important;
+  }
+
+  @media only screen and (max-width: 880px) {
+    .jv-hiw-{{ section.id }} .rivo-how-it-works-steps {
+      grid-template-columns: 1fr !important; gap: 40px !important; margin-top: 44px !important;
+    }
+    .jv-hiw-{{ section.id }} .rivo-first-step::after,
+    .jv-hiw-{{ section.id }} .rivo-second-step::after { display: none !important; }
+  }
+
+  /* ---- member: activity table ---- */
+  .jv-hiw-{{ section.id }}.jv-hiw--member .rivo-lp-customer-activity {
+    background: #FFFFFF !important; border: 1px solid #E4DCC8 !important;
+    border-radius: 8px !important; overflow: hidden !important;
+  }
+  .jv-hiw-{{ section.id }} .rivo-activity table {
+    width: 100% !important; table-layout: fixed !important; border-collapse: collapse !important;
+    font-family: "Dosis", sans-serif !important;
+  }
+  .jv-hiw-{{ section.id }} .rivo-activity thead tr {
+    background: #1D1A16 !important;
+  }
+  .jv-hiw-{{ section.id }} .rivo-activity thead th {
+    color: #FAF6EC !important; font-size: 12px !important; letter-spacing: .07em !important;
+    text-transform: uppercase !important; font-weight: 700 !important;
+    padding: 14px 18px !important; text-align: left !important; border: none !important;
+  }
+  .jv-hiw-{{ section.id }} .rivo-activity tbody td {
+    padding: 14px 18px !important; border-bottom: 1px solid #E4DCC8 !important;
+    font-size: 14.5px !important; color: #2A251E !important;
+  }
+  .jv-hiw-{{ section.id }} .rivo-activity tbody tr:last-child td { border-bottom: none !important; }
+  /* No font-variant-numeric here — Dosis Bold isn't confirmed to ship a
+     tabular figure set, and a silent no-op is worse than not asking. */
+  .jv-hiw-{{ section.id }} .rivo-activity td.jv-pts-col,
+  .jv-hiw-{{ section.id }} .rivo-activity th.jv-pts-col {
+    text-align: right !important;
+    color: #B8542F !important; font-weight: 700 !important;
+  }
+  .jv-hiw-{{ section.id }} .rivo-points-expiry {
+    font-family: "Dosis", sans-serif !important; font-size: 13px !important;
+    color: #8B8272 !important; margin-top: 12px !important;
+  }
+
+  /* ---- My Rewards (member-only sibling of this block) ---- */
+  /* Never set `display` on .rivo-lp-cards-container — Alpine owns it. Lay the
+     row out with gap + wrap and give each card a fixed flex-basis instead. */
+  .jv-hiw-{{ section.id }} #rivo-lp-my-rewards .rivo-lp-cards-container {
+    flex-wrap: wrap !important; gap: 16px !important; margin-top: 20px !important;
+  }
+  .jv-hiw-{{ section.id }} #rivo-lp-my-rewards .rivo-card {
+    background: #FFFFFF !important; border: 1px solid #E4DCC8 !important;
+    border-radius: 8px !important; padding: 22px 20px !important;
+    display: flex !important; flex-direction: column !important; gap: 8px !important;
+    flex: 1 1 220px !important; min-width: 0 !important;
+  }
+  .jv-hiw-{{ section.id }} #rivo-lp-my-rewards .rivo-card-title {
+    font-family: "Petrona", serif !important; font-size: 18px !important; color: #1D1A16 !important;
+  }
+  .jv-hiw-{{ section.id }} #rivo-lp-my-rewards .rivo-card-description {
+    font-family: "Dosis", sans-serif !important; font-size: 14px !important; color: #6B6252 !important;
+  }
+
+  .jv-hiw-{{ section.id }} .jv-editor-note {
+    font-family: "Dosis", sans-serif; color: #1D1A16; text-align: center; padding: 40px 24px;
+  }
+</style>
+
+{%- comment -%} Every Liquid-derived value lives here, never a Liquid tag inline
+  in a JS expression — it can't be syntax-checked. {%- endcomment -%}
+<script type="application/json" id="jv-hiw-cfg-{{ section.id }}">
+  {
+    "ledeFallback": {{ section.settings.lede_fallback | default: '' | json }},
+    "pad": { "topD": {{ pt_d }}, "botD": {{ pb_d }} }
+  }
+</script>
+
+<div class="jv-hiw-{{ section.id }} jv-hiw{% if customer %} jv-hiw--member{% endif %}"
+     id="jv-hiw-{{ section.id }}" data-jv-root
+     {%- if customer %} data-jv-member="1"{% endif %}>
+  {%- for block in section.blocks -%}
+    {% render block %}
+  {%- endfor -%}
+
+  {%- if request.design_mode -%}
+    <div class="jv-editor-note" data-jv-note hidden>
+      Rivo's How It Works block isn't rendering. Enable it in Rivo &rarr; Loyalty page. Theme editor only.
+    </div>
+  {%- endif -%}
+</div>
+
+<script>
+(function () {
+  var root = document.getElementById('jv-hiw-{{ section.id }}');
+  if (!root) { return; }
+
+  var cfgEl = document.getElementById('jv-hiw-cfg-{{ section.id }}');
+  var cfg;
+  try { cfg = JSON.parse(cfgEl.textContent); } catch (e) { return; }
+
+  var busy = false;
+
+  /* Site-wide standard (repeat verbatim in every section file): 1440px
+     container, 24px desktop inset / 20px mobile. */
+  var JV_CONTAINER_MAX = 1440;
+  var JV_INSET_D = 24;
+  var JV_INSET_M = 20;
+
+  function hard(el, props) {
+    if (!el) { return; }
+    for (var k in props) {
+      if (Object.prototype.hasOwnProperty.call(props, k)) {
+        el.style.setProperty(k, props[k], 'important');
+      }
+    }
+  }
+  function first(scope, list) {
+    for (var i = 0; i < list.length; i++) {
+      if (!list[i]) { continue; }
+      var el = null;
+      try { el = scope.querySelector(list[i]); } catch (e) { el = null; }
+      if (el) { return el; }
+    }
+    return null;
+  }
+  function all(scope, list) {
+    for (var i = 0; i < list.length; i++) {
+      if (!list[i]) { continue; }
+      var els = [];
+      try { els = scope.querySelectorAll(list[i]); } catch (e) { els = []; }
+      if (els.length) { return [].slice.call(els); }
+    }
+    return [];
+  }
+  function txt(el) { return el ? (el.textContent || '').replace(/\s+/g, ' ').trim() : ''; }
+
+  /* Server flag is the authority. A DOM sniff alone is not safe — Rivo ships
+     an empty activity node to guests too. */
+  function memberDom() {
+    return !!first(root, ['.rivo-activity', '.rivo-lp-customer-activity', '.rivo-points-expiry']);
+  }
+  function stepDom() {
+    return !!first(root, ['.rivo-how-it-works-steps', '.rivo-first-step']);
+  }
+  function isMember() {
+    if (root.getAttribute('data-jv-member') === '1') { return true; }
+    return memberDom() && !stepDom();
+  }
+
+  /* Reset the WHOLE wrapper chain — #rivo-lp-explainer, .rivo-lp-section,
+     .rivo-content-wrapper and .rivo-lp-content each cap their own width from
+     an id/class rule. Leaving any one of them uncapped is what produced the
+     narrow, over-inset row: Rivo's own default width, not ours. */
+  function widenContainer(rivoRoot, wide) {
+    var UNCAP = {
+      'max-width': 'none', 'width': '100%', 'margin': '0',
+      'box-sizing': 'border-box', 'background': 'none', 'background-color': 'transparent'
+    };
+    hard(rivoRoot, UNCAP);
+    all(rivoRoot, ['.rivo-lp-section', '.rivo-content-wrapper']).forEach(function (el) { hard(el, UNCAP); });
+
+    var content = first(rivoRoot, ['.rivo-lp-content']);
+    if (content) {
+      hard(content, UNCAP);
+      hard(content, {
+        'max-width': JV_CONTAINER_MAX + 'px', 'margin-left': 'auto', 'margin-right': 'auto',
+        'padding-left': (wide ? JV_INSET_D : JV_INSET_M) + 'px',
+        'padding-right': (wide ? JV_INSET_D : JV_INSET_M) + 'px'
+      });
+    }
+  }
+
+  /* Tags the points column so the last-column-right-align + tabular-nums
+     rules apply without guessing at nth-child (Alpine templates shift it). */
+  function tagPointsColumn(rivoRoot) {
+    var table = first(rivoRoot, ['.rivo-activity table']);
+    if (!table) { return; }
+    var headRow = table.querySelector('thead tr');
+    if (headRow) {
+      var ths = [].slice.call(headRow.children);
+      ths.forEach(function (th) {
+        if (/points?/i.test(txt(th))) { th.classList.add('jv-pts-col'); }
+      });
+      var idx = ths.findIndex(function (th) { return th.classList.contains('jv-pts-col'); });
+      if (idx > -1) {
+        table.querySelectorAll('tbody tr').forEach(function (tr) {
+          var cell = tr.children[idx];
+          if (cell) { cell.classList.add('jv-pts-col'); }
+        });
+      }
+    }
+  }
+
+  /* .rivo-points-expiry inherits the content wrapper's width, not the
+     table's — cap and inset it to match whatever it captions. */
+  function alignPointsExpiry(rivoRoot) {
+    var expiry = rivoRoot.querySelector('.rivo-points-expiry');
+    var table = first(rivoRoot, ['.rivo-activity table', '.rivo-lp-customer-activity']);
+    if (!expiry || !table) { return; }
+    var w = table.getBoundingClientRect().width;
+    if (w) { hard(expiry, { 'max-width': w + 'px', 'margin-left': '0', 'margin-right': '0' }); }
+  }
+
+  function apply() {
+    var note = root.querySelector('[data-jv-note]');
+    var rivoRoot = first(root, ['#rivo-lp-explainer', '[id*="rivo-lp-explainer"]']) || root;
+    var head = first(rivoRoot, ['.rivo-lp-section-title', '[class*="section-title"]']);
+    var sub = first(rivoRoot, ['.rivo-lp-section-subtitle', '[class*="section-subtitle"]']);
+
+    var wide = window.matchMedia('(min-width: 1100px)').matches;
+    hard(root, {
+      'padding-top': (wide ? cfg.pad.topD : 48) + 'px',
+      'padding-bottom': (wide ? cfg.pad.botD : 48) + 'px'
+    });
+    widenContainer(rivoRoot, wide);
+
+    if (isMember()) {
+      root.classList.add('jv-hiw--member');
+      if (note) { note.hidden = true; }
+      busy = true;
+      tagPointsColumn(rivoRoot);
+      alignPointsExpiry(rivoRoot);
+      root.classList.add('is-ready');
+      requestAnimationFrame(function () { busy = false; });
+      return true;
+    }
+
+    if (!head) { if (note) { note.hidden = false; } return false; }
+    if (note) { note.hidden = true; }
+
+    busy = true;
+
+    if (sub && !txt(sub) && cfg.ledeFallback) {
+      sub.setAttribute('data-jv-fallback', '');
+      sub.textContent = cfg.ledeFallback;
+      hard(sub, { 'display': 'block', 'visibility': 'visible', 'opacity': '1', 'height': 'auto', 'max-height': 'none', 'overflow': 'visible' });
+    }
+
+    root.classList.add('is-ready');
+    requestAnimationFrame(function () { busy = false; });
+    return true;
+  }
+
+  var tries = 0;
+  var timer = setInterval(function () {
+    tries++;
+    if (apply() || tries >= 60) { clearInterval(timer); }
+  }, 100);
+
+  /* characterData matters — points/marks print via x-text on both the
+     activity table and the guest steps. */
+  var mo = new MutationObserver(function () { if (busy) { return; } apply(); });
+  mo.observe(root, { childList: true, subtree: true, characterData: true });
+
+  document.addEventListener('shopify:section:load', function (e) {
+    if (e.target && e.target.contains(root)) { apply(); }
+  });
+
+  function repaint() {
+    var rivoRoot = first(root, ['#rivo-lp-explainer']) || root;
+    var wide = window.matchMedia('(min-width: 1100px)').matches;
+    busy = true;
+    widenContainer(rivoRoot, wide);
+    if (isMember()) { alignPointsExpiry(rivoRoot); }
+    requestAnimationFrame(function () { busy = false; });
+  }
+  ['(min-width: 750px)', '(min-width: 1100px)'].forEach(function (q) {
+    var mq = window.matchMedia(q);
+    if (mq.addEventListener) { mq.addEventListener('change', repaint); }
+    else if (mq.addListener) { mq.addListener(repaint); }
+  });
+  window.addEventListener('resize', function () {
+    clearTimeout(window.__jvHiwResize);
+    window.__jvHiwResize = setTimeout(repaint, 120);
+  });
+
+  apply();
+})();
+</script>
+
+{%- comment -%}
+  Reward / points modals are portalled to the template root, outside this
+  section's DOM — style UNSCOPED, and keep this the ONLY file that owns it.
+{%- endcomment -%}
+<style>
+  #points-purchase-modal .rivo-modal__container,
+  #way-to-redeem-modal .rivo-modal__container,
+  #way-to-earn-modal .rivo-modal__container {
+    background: #FAF6EC !important; border-radius: 10px !important;
+    font-family: "Dosis", sans-serif !important; position: relative !important;
+    max-width: 440px !important; padding: 0 !important;
+  }
+  #points-purchase-modal header.rivo-modal__header,
+  #way-to-redeem-modal header.rivo-modal__header,
+  #way-to-earn-modal header.rivo-modal__header {
+    height: 0 !important; min-height: 0 !important; padding: 0 !important; margin: 0 !important; border: none !important;
+  }
+  #points-purchase-modal button.rivo-modal__close,
+  #way-to-redeem-modal button.rivo-modal__close,
+  #way-to-earn-modal button.rivo-modal__close {
+    position: absolute !important; top: 16px !important; right: 16px !important;
+    width: 32px !important; height: 32px !important; border-radius: 50% !important;
+    background: #FFFFFF !important; border: 1px solid #E4DCC8 !important; color: #1D1A16 !important;
+  }
+  /* Glyph is a ::before — no inline reach; only offsets are cleared here. */
+  #points-purchase-modal button.rivo-modal__close::before,
+  #way-to-redeem-modal button.rivo-modal__close::before,
+  #way-to-earn-modal button.rivo-modal__close::before {
+    position: static !important; color: #1D1A16 !important;
+  }
+  #points-purchase-modal main.rivo-modal__content,
+  #way-to-redeem-modal main.rivo-modal__content,
+  #way-to-earn-modal main.rivo-modal__content {
+    padding-top: 40px !important; padding-right: 32px !important;
+    padding-bottom: 32px !important; padding-left: 32px !important;
+  }
+  #points-purchase-modal .rivo-modal-title-icon svg,
+  #way-to-redeem-modal .rivo-modal-title-icon svg,
+  #way-to-earn-modal .rivo-modal-title-icon svg {
+    width: 44px !important; height: 44px !important;
+  }
+  #points-purchase-modal .rivo-modal-title-icon svg g,
+  #points-purchase-modal .rivo-modal-title-icon svg path,
+  #way-to-redeem-modal .rivo-modal-title-icon svg g,
+  #way-to-redeem-modal .rivo-modal-title-icon svg path,
+  #way-to-earn-modal .rivo-modal-title-icon svg g,
+  #way-to-earn-modal .rivo-modal-title-icon svg path {
+    fill: #B8542F !important;
+  }
+  #points-purchase-modal .rivo-modal-title,
+  #way-to-redeem-modal .rivo-modal-title,
+  #way-to-earn-modal .rivo-modal-title {
+    font-family: "Petrona", serif !important; font-weight: 600 !important;
+    font-size: 22px !important; color: #1D1A16 !important;
+  }
+  #points-purchase-modal .rivo-modal-subtitle,
+  #way-to-redeem-modal .rivo-modal-subtitle,
+  #way-to-earn-modal .rivo-modal-subtitle {
+    font-family: "Dosis", sans-serif !important; font-size: 14px !important; color: #6B6252 !important;
+  }
+  #points-purchase-modal p.rivo-modal-p,
+  #way-to-redeem-modal p.rivo-modal-p,
+  #way-to-earn-modal p.rivo-modal-p {
+    font-family: "Dosis", sans-serif !important; font-size: 15px !important;
+    line-height: 1.6 !important; color: #2A251E !important;
+  }
+  #points-purchase-modal .rivo-copy-coupon,
+  #way-to-redeem-modal .rivo-copy-coupon,
+  #way-to-earn-modal .rivo-copy-coupon {
+    display: flex !important; gap: 8px !important; margin: 16px 0 !important;
+  }
+  #points-purchase-modal input.rivo-coupon-code,
+  #way-to-redeem-modal input.rivo-coupon-code,
+  #way-to-earn-modal input.rivo-coupon-code {
+    font-family: "Dosis", sans-serif !important; font-variant-numeric: tabular-nums !important;
+    background: #FFFFFF !important; border: 1px solid #E4DCC8 !important; border-radius: 4px !important;
+    color: #1D1A16 !important; padding: 10px 12px !important; box-sizing: border-box !important;
+  }
+  #points-purchase-modal button.rivo-copy-button,
+  #way-to-redeem-modal button.rivo-copy-button,
+  #way-to-earn-modal button.rivo-copy-button {
+    background: #1D1A16 !important; color: #FAF6EC !important; border: none !important;
+    border-radius: 4px !important; padding: 10px 16px !important; font-weight: 700 !important;
+    font-family: "Dosis", sans-serif !important;
+  }
+  #points-purchase-modal a.rivo-modal-button.rivo-modal__btn--primary,
+  #way-to-redeem-modal a.rivo-modal-button.rivo-modal__btn--primary,
+  #way-to-earn-modal a.rivo-modal-button.rivo-modal__btn--primary {
+    background: #C79A4B !important; color: #1D1A16 !important; border: none !important;
+    border-radius: 3px !important; font-family: "Dosis", sans-serif !important;
+    font-weight: 700 !important; padding: 14px 20px !important; box-sizing: border-box !important;
+    display: flex !important; align-items: center !important; justify-content: center !important;
+    width: 100% !important;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Rivo: How It Works v5",
+  "tag": "section",
+  "class": "jv-hiw-section",
+  "settings": [
+    { "type": "header", "content": "Fallback" },
+    { "type": "text", "id": "lede_fallback", "label": "Sub-line fallback", "info": "Shown only when Rivo's sub-line is empty." },
+
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "pad_base", "label": "Spacing base unit", "min": 8, "max": 40, "step": 4, "default": 24, "unit": "px" },
+    {
+      "type": "select", "id": "pad_top_desktop", "label": "Space above (desktop)", "default": "3.5",
+      "options": [
+        { "value": "0",   "label": "None" },
+        { "value": "1",   "label": "1x" },
+        { "value": "2",   "label": "2x" },
+        { "value": "3.5", "label": "3.5x" }
+      ]
+    },
+    {
+      "type": "select", "id": "pad_bottom_desktop", "label": "Space below (desktop)", "default": "3.5",
+      "options": [
+        { "value": "0",   "label": "None" },
+        { "value": "1",   "label": "1x" },
+        { "value": "2",   "label": "2x" },
+        { "value": "3.5", "label": "3.5x" }
+      ]
+    }
+  ],
+  "blocks": [ { "type": "@app" } ],
+  "presets": [ { "name": "Rivo: How It Works" } ]
+}
+{% endschema %}
