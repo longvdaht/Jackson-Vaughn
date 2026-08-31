@@ -1,0 +1,750 @@
+{%- comment -%} Rivo VIP tier comparison mirror. Install in Shopify sections/. {%- endcomment -%}
+
+{%- assign m_pt_d = section.settings.vip_pad_top_d | plus: 0.0 -%}
+{%- assign m_pb_d = section.settings.vip_pad_bottom_d | plus: 0.0 -%}
+{%- assign m_pt_m = section.settings.vip_pad_top_m | plus: 0.0 -%}
+{%- assign m_pb_m = section.settings.vip_pad_bottom_m | plus: 0.0 -%}
+{%- assign pt_d = section.settings.vip_pad_base | times: m_pt_d | round -%}
+{%- assign pb_d = section.settings.vip_pad_base | times: m_pb_d | round -%}
+{%- assign pt_m = section.settings.vip_pad_base | times: m_pt_m | round -%}
+{%- assign pb_m = section.settings.vip_pad_base | times: m_pb_m | round -%}
+{%- assign cta_url = section.settings.vip_cta_link -%}
+{%- if cta_url == blank -%}{%- assign cta_url = routes.all_products_collection_url -%}{%- endif -%}
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Dosis:wght@400;500;600;700&display=swap');
+
+  .jv-vip-{{ section.id }} {
+    --jv-tier-count: 3; /* real count set inline on .jv-vip-mirror by JS; this is only the pre-JS fallback */
+    position: relative;
+    overflow: hidden;
+    background: {{ section.settings.vip_background }};
+    color: {{ section.settings.vip_ink }};
+    opacity: 0;
+    animation: jv-vip-reveal-{{ section.id }} .01s linear 1.5s forwards;
+  }
+  .jv-vip-{{ section.id }}.is-ready { opacity: 1; animation: none; }
+  @keyframes jv-vip-reveal-{{ section.id }} { to { opacity: 1; } }
+
+  .jv-vip-{{ section.id }} .jv-vip-head {
+    max-width: 1040px;
+    margin: 0 auto 56px;
+    text-align: center;
+  }
+  .jv-vip-{{ section.id }} .rivo-lp-section-title,
+  .jv-vip-{{ section.id }} .rivo-lp-section-title span {
+    max-width: 940px !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    color: {{ section.settings.vip_ink }} !important;
+    font-family: "Petrona", serif !important;
+    font-size: 58px !important;
+    font-weight: 600 !important;
+    letter-spacing: -.025em !important;
+    line-height: 1.04 !important;
+    text-align: center !important;
+    text-wrap: balance;
+  }
+  .jv-vip-{{ section.id }} .rivo-lp-section-subtitle,
+  .jv-vip-{{ section.id }} .rivo-lp-section-subtitle span {
+    max-width: 860px !important;
+    margin: 0 auto !important;
+    padding-top: 24px !important;
+    padding-right: 0 !important;
+    padding-bottom: 0 !important;
+    padding-left: 0 !important;
+    color: {{ section.settings.vip_muted }} !important;
+    font-family: "Dosis", sans-serif !important;
+    font-size: 17px !important;
+    font-weight: 400 !important;
+    letter-spacing: .01em !important;
+    line-height: 1.65 !important;
+    text-align: center !important;
+  }
+
+  .jv-vip-{{ section.id }} .jv-vip-source-clipped {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    clip-path: inset(50%) !important;
+    white-space: nowrap !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  .jv-vip-{{ section.id }} .jv-vip-mirror {
+    position: relative;
+    width: 100%;
+    max-width: 1248px;
+    margin: 0 auto;
+  }
+  .jv-vip-{{ section.id }} .jv-vip-track {
+    display: grid;
+    grid-template-columns: repeat(var(--jv-tier-count), minmax(0, 1fr));
+    align-items: start;
+    justify-content: center;
+    gap: 28px;
+    width: 100%;
+  }
+  .jv-vip-{{ section.id }} .jv-tier-card {
+    position: relative;
+    min-width: 0;
+    margin-top: 20px;
+    padding-top: 48px;
+    padding-right: 48px;
+    padding-bottom: 44px;
+    padding-left: 48px;
+    overflow: visible;
+    border: 1px solid {{ section.settings.vip_line }};
+    border-radius: {{ section.settings.vip_card_radius }}px;
+    background: {{ section.settings.vip_card_light }};
+    color: {{ section.settings.vip_ink }};
+    box-shadow: none;
+    text-align: left;
+  }
+  .jv-vip-{{ section.id }} .jv-tier-card.is-featured {
+    border-color: {{ section.settings.vip_card_dark }};
+    background: {{ section.settings.vip_card_dark }};
+    color: {{ section.settings.vip_card_dark_text }};
+    box-shadow: 0 24px 54px rgba(29, 26, 22, .14);
+  }
+  .jv-vip-{{ section.id }} .jv-top-tier-badge {
+    position: absolute;
+    top: -21px;
+    left: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 38px;
+    padding: 8px 18px;
+    border-radius: 2px;
+    background: {{ section.settings.vip_accent }};
+    color: {{ section.settings.vip_button_text }};
+    font-family: "Dosis", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .11em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+  .jv-vip-{{ section.id }} .jv-current-badge {
+    display: inline-flex;
+    align-items: center;
+    min-height: 25px;
+    margin-left: 10px;
+    padding: 4px 9px;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    font-family: "Dosis", sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    line-height: 1;
+    text-transform: uppercase;
+    vertical-align: middle;
+  }
+  .jv-vip-{{ section.id }} .jv-tier-name {
+    margin: 0;
+    color: {{ section.settings.vip_muted }};
+    font-family: "Dosis", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .13em;
+    line-height: 1.3;
+    text-transform: uppercase;
+  }
+  .jv-vip-{{ section.id }} .is-featured .jv-tier-name { color: {{ section.settings.vip_accent }}; }
+  .jv-vip-{{ section.id }} .jv-tier-threshold {
+    margin: 20px 0 0;
+    color: inherit;
+    font-family: "Petrona", serif;
+    font-size: 48px;
+    font-weight: 600;
+    letter-spacing: -.02em;
+    line-height: 1;
+    text-wrap: balance;
+  }
+  .jv-vip-{{ section.id }} .jv-tier-rule {
+    width: 100%;
+    height: 1px;
+    margin: 34px 0 0;
+    background: {{ section.settings.vip_line }};
+  }
+  .jv-vip-{{ section.id }} .is-featured .jv-tier-rule { background: rgba(250, 246, 236, .2); }
+  .jv-vip-{{ section.id }} .jv-tier-perks {
+    display: grid;
+    gap: 22px;
+    margin: 0;
+    padding-top: 38px;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    list-style: none;
+  }
+  .jv-vip-{{ section.id }} .jv-tier-perk {
+    position: relative;
+    margin: 0;
+    padding: 0 0 0 36px;
+    color: inherit;
+    font-family: "Dosis", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: .01em;
+    line-height: 1.55;
+  }
+  .jv-vip-{{ section.id }} .jv-tier-perk::before {
+    content: '✓';
+    position: absolute;
+    top: -.05em;
+    left: 0;
+    color: {{ section.settings.vip_member_accent }};
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1;
+  }
+  .jv-vip-{{ section.id }} .is-featured .jv-tier-perk::before { color: {{ section.settings.vip_accent }}; }
+  .jv-vip-{{ section.id }} .jv-tier-perk-value {
+    display: block;
+    margin-top: 3px;
+    color: {{ section.settings.vip_muted }};
+    font-size: 14px;
+  }
+  .jv-vip-{{ section.id }} .is-featured .jv-tier-perk-value { color: {{ section.settings.vip_card_dark_muted }}; }
+  .jv-vip-{{ section.id }} .jv-tier-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 56px;
+    margin-top: 42px;
+    padding: 12px 24px;
+    border: 1px solid {{ section.settings.vip_accent }};
+    border-radius: 2px;
+    background: {{ section.settings.vip_accent }};
+    color: {{ section.settings.vip_button_text }};
+    font-family: "Dosis", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .035em;
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    transition: transform .2s ease, filter .2s ease;
+  }
+  .jv-vip-{{ section.id }} .jv-tier-cta:hover { transform: translateY(-2px); filter: brightness(1.04); }
+  .jv-vip-{{ section.id }} .jv-tier-cta:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+
+  .jv-vip-{{ section.id }} .rivo-vip-tier-progress-container {
+    max-width: 1248px !important;
+    margin: 0 auto 34px !important;
+    font-family: "Dosis", sans-serif !important;
+  }
+  .jv-vip-{{ section.id }} .jv-vip-editor-note {
+    padding: 40px 24px;
+    color: {{ section.settings.vip_ink }};
+    font-family: "Dosis", sans-serif;
+    text-align: center;
+  }
+
+  @media (max-width: 899px) {
+    .jv-vip-{{ section.id }} .jv-vip-track { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+    .jv-vip-{{ section.id }} .jv-tier-card {
+      padding-top: 44px; padding-right: 32px; padding-bottom: 36px; padding-left: 32px;
+    }
+    .jv-vip-{{ section.id }} .jv-top-tier-badge { left: 32px; }
+    .jv-vip-{{ section.id }} .rivo-lp-section-title,
+    .jv-vip-{{ section.id }} .rivo-lp-section-title span { font-size: 44px !important; }
+  }
+  @media (max-width: 599px) {
+    .jv-vip-{{ section.id }} .jv-vip-head { margin-bottom: 36px; }
+    .jv-vip-{{ section.id }} .rivo-lp-section-title,
+    .jv-vip-{{ section.id }} .rivo-lp-section-title span { font-size: 40px !important; }
+    .jv-vip-{{ section.id }} .rivo-lp-section-subtitle,
+    .jv-vip-{{ section.id }} .rivo-lp-section-subtitle span { padding-top: 18px !important; font-size: 16px !important; }
+    .jv-vip-{{ section.id }} .jv-tier-card {
+      padding-top: 42px; padding-right: 24px; padding-bottom: 30px; padding-left: 24px;
+    }
+    .jv-vip-{{ section.id }} .jv-top-tier-badge { left: 24px; }
+    .jv-vip-{{ section.id }} .jv-tier-threshold { font-size: 40px; }
+    .jv-vip-{{ section.id }} .jv-tier-perks { gap: 18px; padding-top: 30px; }
+    .jv-vip-{{ section.id }} .jv-tier-perk { padding-left: 30px; font-size: 15px; }
+  }
+</style>
+
+<script type="application/json" id="jv-vip-cfg-{{ section.id }}">
+  {
+    "ledeFallback": {{ section.settings.vip_lede_fallback | json }},
+    "featuredBadge": {{ section.settings.vip_featured_badge | json }},
+    "currentBadge": {{ section.settings.vip_current_badge | json }},
+    "ctaLabel": {{ section.settings.vip_cta_label | json }},
+    "ctaUrl": {{ cta_url | json }},
+    "yesTokens": {{ section.settings.vip_yes_tokens | json }},
+    "pad": {
+      "topD": {{ pt_d }}, "botD": {{ pb_d }},
+      "topM": {{ pt_m }}, "botM": {{ pb_m }}
+    },
+    "colors": {
+      "background": {{ section.settings.vip_background | json }},
+      "ink": {{ section.settings.vip_ink | json }},
+      "muted": {{ section.settings.vip_muted | json }},
+      "cardLight": {{ section.settings.vip_card_light | json }},
+      "cardDark": {{ section.settings.vip_card_dark | json }},
+      "line": {{ section.settings.vip_line | json }},
+      "accent": {{ section.settings.vip_accent | json }}
+    },
+    "selectors": {
+      "root": {{ section.settings.vip_sel_root | json }},
+      "content": {{ section.settings.vip_sel_content | json }},
+      "title": {{ section.settings.vip_sel_title | json }},
+      "subtitle": {{ section.settings.vip_sel_subtitle | json }},
+      "container": {{ section.settings.vip_sel_container | json }},
+      "table": {{ section.settings.vip_sel_table | json }}
+    }
+  }
+</script>
+
+<div class="jv-vip-{{ section.id }} jv-vip{% if customer %} jv-vip--member{% endif %}"
+     id="jv-vip-{{ section.id }}" data-jv-vip-root
+     {%- if customer %} data-jv-member="1"{%- endif %}>
+  {%- for block in section.blocks -%}
+    {% render block %}
+  {%- endfor -%}
+
+  {%- if request.design_mode -%}
+    <div class="jv-vip-editor-note" data-jv-vip-note hidden>
+      Rivo's VIP Tiers block isn't rendering. Enable it in Rivo &rarr; Loyalty page. Theme editor only.
+    </div>
+  {%- endif -%}
+</div>
+
+<script>
+(function () {
+  var root = document.getElementById('jv-vip-{{ section.id }}');
+  if (!root) { return; }
+
+  var cfgEl = document.getElementById('jv-vip-cfg-{{ section.id }}');
+  var cfg;
+  try { cfg = JSON.parse(cfgEl.textContent); } catch (e) { return; }
+
+  var busy = false;
+  var lastSig = null;
+  var resizeTimer = null;
+
+  function hard(el, props) {
+    if (!el) { return; }
+    for (var key in props) {
+      if (Object.prototype.hasOwnProperty.call(props, key)) {
+        el.style.setProperty(key, props[key], 'important');
+      }
+    }
+  }
+
+  function first(scope, selectors) {
+    for (var i = 0; i < selectors.length; i++) {
+      if (!selectors[i]) { continue; }
+      try {
+        var found = scope.querySelector(selectors[i]);
+        if (found) { return found; }
+      } catch (e) {}
+    }
+    return null;
+  }
+
+  function text(el) {
+    return el ? (el.textContent || '').replace(/\s+/g, ' ').trim() : '';
+  }
+
+  function normal(value) {
+    return String(value || '').toLowerCase().replace(/\s+/g, ' ').trim();
+  }
+
+  function escapeHtml(value) {
+    return String(value || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  function columnKey(el) {
+    if (!el) { return ''; }
+    for (var i = 0; i < el.classList.length; i++) {
+      if (/^rivo-tier-column-/.test(el.classList[i])) { return el.classList[i]; }
+    }
+    return '';
+  }
+
+  function yesTokens() {
+    return String(cfg.yesTokens || '').split(',').map(normal).filter(Boolean);
+  }
+
+  var EMPTY = ['', '-', '–', '—', 'n/a', 'na', 'no', 'false'];
+  function valueIncluded(cell, raw) {
+    if (cell.querySelector('.rivo-tier-no-mark, [class*="no-mark"]')) { return false; }
+    if (EMPTY.indexOf(normal(raw)) === -1) { return true; }
+    return !!cell.querySelector('svg, [class*="check"], [class*="yes"]');
+  }
+
+  function currentTierText(rivoRoot) {
+    return text(first(rivoRoot, [
+      '.rivo-progress-current-tier-label',
+      '[class*="current-tier-label"]',
+      '[data-current-tier]:not([data-current-tier="false"])'
+    ]));
+  }
+
+  function sourceIsCurrent(head) {
+    if (!head) { return false; }
+    if (head.getAttribute('aria-current') === 'true') { return true; }
+    if (head.querySelector('[aria-current="true"]')) { return true; }
+    var classes = ' ' + String(head.className || '') + ' ';
+    if (/(^|\s)(is-)?(current|active)(\s|$)/i.test(classes)) { return true; }
+    return !!head.querySelector('[data-current-tier="true"], [data-tier-status="current"]');
+  }
+
+  function extractTiers(table, rivoRoot) {
+    var heads = Array.prototype.slice.call(table.querySelectorAll('.rivo-vip-tier-table-thead-tier-cell'));
+    var perkNames = Array.prototype.slice.call(table.querySelectorAll('.rivo-vip-tier-table-row-perk-name'));
+    var values = Array.prototype.slice.call(table.querySelectorAll('.rivo-vip-tier-table-row-perk-value'));
+    var yes = yesTokens();
+    var currentText = normal(currentTierText(rivoRoot));
+    var tiers = [];
+
+    for (var i = 0; i < heads.length; i++) {
+      var key = columnKey(heads[i]);
+      var tierValues = values.filter(function (cell) {
+        return key ? cell.classList.contains(key) : false;
+      });
+      var name = text(first(heads[i], ['.rivo-th-tier-name', '[class*="tier-name"]'])) || text(heads[i]);
+      var threshold = text(first(heads[i], ['.rivo-th-tier-threshold', '[class*="tier-threshold"]']));
+      var perks = [];
+
+      for (var j = 0; j < tierValues.length; j++) {
+        var raw = text(tierValues[j]);
+        if (!valueIncluded(tierValues[j], raw)) { continue; }
+        var perkName = text(perkNames[j]);
+        if (!perkName) { continue; }
+        perks.push({
+          name: perkName,
+          value: yes.indexOf(normal(raw)) === -1 ? raw : ''
+        });
+      }
+
+      var current = sourceIsCurrent(heads[i]);
+      if (!current && currentText && normal(name)) {
+        current = currentText.indexOf(normal(name)) !== -1;
+      }
+      tiers.push({ name: name, threshold: threshold, perks: perks, current: current, index: i });
+    }
+    return tiers;
+  }
+
+  function tierMarkup(tier, count) {
+    var featured = tier.index === count - 1;
+    var topBadge = featured && cfg.featuredBadge
+      ? '<span class="jv-top-tier-badge">' + escapeHtml(cfg.featuredBadge) + '</span>' : '';
+    var currentBadge = tier.current && cfg.currentBadge
+      ? '<span class="jv-current-badge">' + escapeHtml(cfg.currentBadge) + '</span>' : '';
+    var perks = tier.perks.map(function (perk) {
+      var value = perk.value
+        ? '<span class="jv-tier-perk-value">' + escapeHtml(perk.value) + '</span>' : '';
+      return '<li class="jv-tier-perk"><span>' + escapeHtml(perk.name) + value + '</span></li>';
+    }).join('');
+    var cta = featured && cfg.ctaLabel && cfg.ctaUrl
+      ? '<a class="jv-tier-cta" href="' + escapeHtml(cfg.ctaUrl) + '">' + escapeHtml(cfg.ctaLabel) + '</a>' : '';
+
+    return '<article class="jv-tier-card' + (featured ? ' is-featured' : '') +
+      (tier.current ? ' is-current' : '') + '">' + topBadge +
+        '<p class="jv-tier-name">' + escapeHtml(tier.name) + currentBadge + '</p>' +
+        (tier.threshold ? '<p class="jv-tier-threshold">' + escapeHtml(tier.threshold) + '</p>' : '') +
+        '<div class="jv-tier-rule" aria-hidden="true"></div>' +
+        '<ul class="jv-tier-perks">' + perks + '</ul>' + cta +
+      '</article>';
+  }
+
+  function renderMirror(table, rivoRoot, sourceContainer) {
+    var tiers = extractTiers(table, rivoRoot);
+    if (!tiers.length) { return false; }
+
+    var mirror = rivoRoot.querySelector('[data-jv-vip-mirror]');
+    if (!mirror) {
+      mirror = document.createElement('div');
+      mirror.className = 'jv-vip-mirror';
+      mirror.setAttribute('data-jv-vip-mirror', '');
+      if (sourceContainer && sourceContainer.parentNode) {
+        sourceContainer.parentNode.insertBefore(mirror, sourceContainer);
+      } else {
+        table.parentNode.insertBefore(mirror, table);
+      }
+    }
+    mirror.style.setProperty('--jv-tier-count', String(Math.min(tiers.length, 3)));
+    mirror.innerHTML = '<div class="jv-vip-track">' + tiers.map(function (tier) {
+      return tierMarkup(tier, tiers.length);
+    }).join('') + '</div>';
+    return true;
+  }
+
+  function clipSources(rivoRoot, table, sourceContainer) {
+    var nodes = Array.prototype.slice.call(rivoRoot.querySelectorAll(
+      'table, thead, tbody, [class*="tier-table"], [class*="tier-column"]'
+    ));
+    if (sourceContainer) { nodes.push(sourceContainer); }
+    nodes.forEach(function (node) {
+      if (node.closest('[data-jv-vip-mirror]')) { return; }
+      node.classList.add('jv-vip-source-clipped');
+      node.setAttribute('aria-hidden', 'true');
+      hard(node, {
+        'position': 'absolute', 'width': '1px', 'height': '1px',
+        'margin': '0', 'padding': '0', 'overflow': 'hidden',
+        'clip-path': 'inset(50%)', 'white-space': 'nowrap',
+        'opacity': '0', 'pointer-events': 'none'
+      });
+    });
+  }
+
+  function uncap(scope) {
+    var nodes = scope.querySelectorAll(
+      '[id^="rivo-"], .rivo-lp-section, .rivo-content-wrapper, .rivo-lp-content, [class*="vip-tier"]'
+    );
+    nodes.forEach(function (node) {
+      if (node.closest('[data-jv-vip-mirror]')) { return; }
+      hard(node, {
+        'max-width': 'none', 'min-width': '0', 'box-sizing': 'border-box',
+        'background': 'transparent', 'background-color': 'transparent'
+      });
+    });
+  }
+
+  function ensureHead(rivoRoot, title, subtitle) {
+    var head = rivoRoot.querySelector('[data-jv-vip-head]');
+    if (!head) {
+      head = document.createElement('div');
+      head.className = 'jv-vip-head';
+      head.setAttribute('data-jv-vip-head', '');
+      title.parentNode.insertBefore(head, title);
+    }
+    if (title.parentNode !== head) { head.appendChild(title); }
+    if (subtitle && subtitle.parentNode !== head) { head.appendChild(subtitle); }
+    if (subtitle && !text(subtitle) && cfg.ledeFallback) {
+      subtitle.textContent = cfg.ledeFallback;
+    }
+    return head;
+  }
+
+  function paintProgress(rivoRoot) {
+    var progress = rivoRoot.querySelector('.rivo-vip-tier-progress-container');
+    if (!progress) { return; }
+    hard(progress, {
+      'max-width': '1248px', 'width': '100%',
+      'margin': '0 auto 34px', 'padding': '24px 28px',
+      'background': cfg.colors.cardLight, 'background-color': cfg.colors.cardLight,
+      'color': cfg.colors.ink,
+      'border': '1px solid ' + cfg.colors.line,
+      'border-radius': '10px', 'box-shadow': 'none',
+      'box-sizing': 'border-box', 'text-align': 'left'
+    });
+  }
+
+  function paint(rivoRoot, content, title, subtitle, head) {
+    var desktop = window.matchMedia('(min-width: 900px)').matches;
+    uncap(rivoRoot);
+    hard(root, {
+      'background': cfg.colors.background,
+      'padding-top': (desktop ? cfg.pad.topD : cfg.pad.topM) + 'px',
+      'padding-bottom': (desktop ? cfg.pad.botD : cfg.pad.botM) + 'px'
+    });
+    hard(rivoRoot, {
+      'width': '100%', 'max-width': 'none',
+      'margin': '0', 'padding': '0',
+      'background': 'transparent', 'background-color': 'transparent',
+      'box-sizing': 'border-box'
+    });
+    hard(content, {
+      'width': 'calc(100% - ' + (desktop ? 48 : 40) + 'px)',
+      'max-width': '1280px',
+      'margin': '0 auto', 'padding': '0',
+      'background': 'transparent', 'background-color': 'transparent',
+      'color': cfg.colors.ink,
+      'box-sizing': 'border-box', 'text-align': 'center'
+    });
+    hard(head, {
+      'width': '100%', 'max-width': '1040px',
+      'margin': desktop ? '0 auto 56px' : '0 auto 36px',
+      'padding': '0', 'text-align': 'center'
+    });
+    hard(title, {
+      'width': '100%', 'max-width': '940px',
+      'margin': '0 auto', 'padding': '0',
+      'color': cfg.colors.ink,
+      'font-family': '"Petrona", serif',
+      'font-size': desktop ? '58px' : '40px',
+      'font-weight': '600', 'line-height': '1.04',
+      'letter-spacing': '-.025em', 'text-align': 'center'
+    });
+    title.querySelectorAll('span').forEach(function (span) {
+      hard(span, {
+        'color': cfg.colors.ink,
+        'font-family': '"Petrona", serif',
+        'font-size': desktop ? '58px' : '40px',
+        'font-weight': '600', 'line-height': '1.04',
+        'letter-spacing': '-.025em'
+      });
+    });
+    if (subtitle && text(subtitle)) {
+      hard(subtitle, {
+        'display': 'block', 'visibility': 'visible', 'opacity': '1',
+        'width': '100%', 'max-width': '860px',
+        'height': 'auto', 'max-height': 'none',
+        'margin': '0 auto',
+        'padding': desktop ? '24px 0 0' : '18px 0 0',
+        'color': cfg.colors.muted,
+        'font-family': '"Dosis", sans-serif',
+        'font-size': desktop ? '17px' : '16px',
+        'font-weight': '400', 'line-height': '1.65',
+        'overflow': 'visible', 'clip-path': 'none', 'text-align': 'center'
+      });
+      subtitle.querySelectorAll('span').forEach(function (span) {
+        hard(span, {
+          'color': cfg.colors.muted,
+          'font-family': '"Dosis", sans-serif',
+          'font-size': desktop ? '17px' : '16px',
+          'font-weight': '400', 'line-height': '1.65'
+        });
+      });
+    }
+    paintProgress(rivoRoot);
+  }
+
+  function apply(force) {
+    if (busy) { return false; }
+    var note = root.querySelector('[data-jv-vip-note]');
+    var s = cfg.selectors;
+    var rivoRoot = first(root, [s.root, '#rivo-vip-tiers', '[id*="vip-tier"]']);
+    if (!rivoRoot) { if (note) { note.hidden = false; } return false; }
+
+    var content = first(rivoRoot, [s.content, '.rivo-lp-content', '.rivo-content-wrapper']) || rivoRoot;
+    var title = first(rivoRoot, [s.title, '.rivo-lp-section-title', '[class*="section-title"]']);
+    var subtitle = first(rivoRoot, [s.subtitle, '.rivo-lp-section-subtitle', '[class*="section-subtitle"]']);
+    var sourceContainer = first(rivoRoot, [
+      s.container, '.rivo-vip-tier-container', '[class*="vip-tier-container"]:not([class*="progress"])'
+    ]);
+    var table = first(rivoRoot, [s.table, '.rivo-vip-tier-table', 'table']);
+    if (!title || !table) { if (note) { note.hidden = false; } return false; }
+    if (note) { note.hidden = true; }
+
+    var sig = [text(title), text(subtitle), text(table), currentTierText(rivoRoot)].join('|');
+    busy = true;
+    var head = ensureHead(rivoRoot, title, subtitle);
+    if (force || sig !== lastSig) {
+      lastSig = sig;
+      renderMirror(table, rivoRoot, sourceContainer);
+    }
+    clipSources(rivoRoot, table, sourceContainer);
+    paint(rivoRoot, content, title, subtitle, head);
+    root.classList.add('is-ready');
+    requestAnimationFrame(function () { busy = false; });
+    return true;
+  }
+
+  var tries = 0;
+  var timer = setInterval(function () {
+    tries += 1;
+    if (apply(false) || tries >= 60) { clearInterval(timer); }
+  }, 100);
+
+  var observer = new MutationObserver(function () {
+    if (!busy) { apply(false); }
+  });
+  observer.observe(root, { childList: true, subtree: true, characterData: true });
+
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () { apply(true); }, 120);
+  });
+  document.addEventListener('shopify:section:load', function (event) {
+    if (event.target && event.target.contains(root)) { lastSig = null; apply(true); }
+  });
+
+  apply(false);
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Rivo: VIP Cards v1",
+  "tag": "section",
+  "class": "jv-vip-cards-section",
+  "settings": [
+    { "type": "header", "content": "Content" },
+    { "type": "textarea", "id": "vip_lede_fallback", "label": "Description fallback", "default": "Join our VIP loyalty program to unlock exclusive rewards available only to members.", "info": "Only used if the Rivo subtitle is empty." },
+    { "type": "text", "id": "vip_featured_badge", "label": "Top-tier badge", "default": "Top tier" },
+    { "type": "text", "id": "vip_current_badge", "label": "Current-tier badge", "default": "Your tier" },
+    { "type": "text", "id": "vip_cta_label", "label": "Top-tier button label", "default": "Shop toward Curator" },
+    { "type": "url", "id": "vip_cta_link", "label": "Top-tier button link" },
+    { "type": "text", "id": "vip_yes_tokens", "label": "Included-value words", "default": "yes,true,included,available,✓,✔", "info": "Comma-separated values Rivo may use instead of a checkmark." },
+
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "vip_background", "label": "Section background", "default": "#FAF6EC" },
+    { "type": "color", "id": "vip_ink", "label": "Main text", "default": "#26211B" },
+    { "type": "color", "id": "vip_muted", "label": "Muted text", "default": "#756D61" },
+    { "type": "color", "id": "vip_card_light", "label": "Member card", "default": "#FFFFFF" },
+    { "type": "color", "id": "vip_card_dark", "label": "Top-tier card", "default": "#1D1A16" },
+    { "type": "color", "id": "vip_card_dark_text", "label": "Top-tier text", "default": "#FAF6EC" },
+    { "type": "color", "id": "vip_card_dark_muted", "label": "Top-tier muted text", "default": "#C7C2B8" },
+    { "type": "color", "id": "vip_line", "label": "Lines and borders", "default": "#DED4C3" },
+    { "type": "color", "id": "vip_accent", "label": "Top-tier accent", "default": "#C79A4B" },
+    { "type": "color", "id": "vip_member_accent", "label": "Member checkmarks", "default": "#C85B32" },
+    { "type": "color", "id": "vip_button_text", "label": "Button text", "default": "#1D1A16" },
+    { "type": "range", "id": "vip_card_radius", "label": "Card corner radius", "min": 0, "max": 24, "step": 2, "default": 12, "unit": "px" },
+
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "vip_pad_base", "label": "Spacing base unit", "min": 8, "max": 40, "step": 4, "default": 24, "unit": "px" },
+    {
+      "type": "select", "id": "vip_pad_top_d", "label": "Space above (desktop)", "default": "4",
+      "options": [
+        { "value": "0", "label": "None" }, { "value": "1", "label": "1x" },
+        { "value": "2", "label": "2x" }, { "value": "3", "label": "3x" },
+        { "value": "4", "label": "4x" }, { "value": "5", "label": "5x" }
+      ]
+    },
+    {
+      "type": "select", "id": "vip_pad_bottom_d", "label": "Space below (desktop)", "default": "4",
+      "options": [
+        { "value": "0", "label": "None" }, { "value": "1", "label": "1x" },
+        { "value": "2", "label": "2x" }, { "value": "3", "label": "3x" },
+        { "value": "4", "label": "4x" }, { "value": "5", "label": "5x" }
+      ]
+    },
+    {
+      "type": "select", "id": "vip_pad_top_m", "label": "Space above (mobile)", "default": "3",
+      "options": [
+        { "value": "0", "label": "None" }, { "value": "1", "label": "1x" },
+        { "value": "2", "label": "2x" }, { "value": "3", "label": "3x" },
+        { "value": "4", "label": "4x" }
+      ]
+    },
+    {
+      "type": "select", "id": "vip_pad_bottom_m", "label": "Space below (mobile)", "default": "3",
+      "options": [
+        { "value": "0", "label": "None" }, { "value": "1", "label": "1x" },
+        { "value": "2", "label": "2x" }, { "value": "3", "label": "3x" },
+        { "value": "4", "label": "4x" }
+      ]
+    },
+
+    { "type": "header", "content": "Advanced Rivo selectors" },
+    { "type": "text", "id": "vip_sel_root", "label": "Rivo block", "default": "#rivo-vip-tiers" },
+    { "type": "text", "id": "vip_sel_content", "label": "Content wrapper", "default": ".rivo-lp-content" },
+    { "type": "text", "id": "vip_sel_title", "label": "Title", "default": ".rivo-lp-section-title" },
+    { "type": "text", "id": "vip_sel_subtitle", "label": "Subtitle", "default": ".rivo-lp-section-subtitle" },
+    { "type": "text", "id": "vip_sel_container", "label": "Tier table wrapper", "default": ".rivo-vip-tier-container" },
+    { "type": "text", "id": "vip_sel_table", "label": "Tier table", "default": ".rivo-vip-tier-table" }
+  ],
+  "blocks": [ { "type": "@app" } ],
+  "presets": [ { "name": "Rivo: VIP Cards" } ]
+}
+{% endschema %}
