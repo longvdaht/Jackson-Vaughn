@@ -12,10 +12,455 @@
     "rivo-loyalty-landing-page": {
       "type": "rivo-loyalty-landing-page",
       "settings": {
+        "primary_color": "#000000",
+        "secondary_color": "#ffffff",
+        "page_background_color": "",
+        "rivo_icon_color": "#000000",
+        "title_font_style": "inherit",
+        "title_font_family": "",
+        "subtitle_font_family": "",
+        "section_title_font_color": "#000000",
+        "section_subtitle_font_color": "#000000",
+        "page_max_width": 960,
+        "section_title_font_size": 32,
+        "section_title_font_weight": 600,
+        "section_subtitle_font_size": 18,
+        "section_subtitle_font_weight": 400,
+        "section_padding": 40,
+        "card_background_color": "#ffffff",
+        "card_font_color": "#000000",
+        "card_title_font_size": 18,
+        "card_title_font_weight": 600,
+        "card_subtitle_font_size": 16,
+        "card_subtitle_font_weight": 500,
+        "card_icon_size": 44,
+        "card_container_max_width": 960,
+        "card_order": "stacked",
+        "corner_type": "rounded",
+        "modal_background_color": "#ffffff",
+        "modal_font_color": "#000000",
+        "modal_icon_color": "#000000",
+        "modal_icon_position_top": 15,
+        "modal_icon_position_right": 15,
+        "modal_login_title_font_size": 22,
+        "modal_title_font_size": 22,
+        "modal_subtitle_font_size": 16,
+        "modal_body_font_size": 16,
+        "modal_icon_size": 44,
+        "vip_desktop_progress_bar_width": 50,
+        "vip_table_tier_td_border_top": "none",
+        "custom_css": "/* Referral host width reset. Add to the theme stylesheet, not the Rivo campaign field. */\n.page-width:has(#rivo-lp-referral-campaign),\n.page-width__inner:has(#rivo-lp-referral-campaign) {\n  width: 100% !important;\n  max-width: none !important;\n  margin: 0 !important;\n  padding: 0 !important;\n}\n\n#rivo-lp-referral-campaign,\n#rivo-lp-referral-campaign > .rivo-lp-content,\n#rivo-lp-referral-campaign [id^='rivo-referral-campaign-'],\n#rivo-lp-referral-campaign iframe[id^='rivo-referral-container-'] {\n  display: block !important;\n  width: 100% !important;\n  max-width: none !important;\n  margin: 0 !important;\n  padding: 0 !important;\n  border: 0 !important;\n}\n\n@media (min-width: 1051px) {\n  #rivo-lp-referral-campaign iframe[id^='rivo-referral-container-'] {\n    height: 650px !important;\n    min-height: 650px !important;\n    max-height: 650px !important;\n  }\n}\n\n@media (min-width: 751px) and (max-width: 1050px) {\n  #rivo-lp-referral-campaign iframe[id^='rivo-referral-container-'] {\n    height: 620px !important;\n    min-height: 620px !important;\n    max-height: 620px !important;\n  }\n}"
+      }
+    },
+    "rivo_hero_RUzAi3": {
+      "type": "rivo-hero",
+      "blocks": {
+        "rivo_loyalty_rewards_referrals_lp_header_zdChVQ": {
+          "type": "shopify://apps/rivo-loyalty-rewards-referrals/blocks/lp-header/580e9665-b2cd-4dbc-b6ba-6445ac9e6871",
+          "settings": {
+            "rivo_hero_image": "shopify://shop_images/08.31.22JV_Beckley103.png",
+            "rivo_hero_background_color_enabled": false,
+            "background_color": "",
+            "rivo_banner_desktop_height": 400,
+            "rivo_banner_text_container_desktop_padding_top": 100,
+            "rivo_banner_text_container_desktop_max_width": 100,
+            "rivo_banner_text_container_desktop_button_gap": 10,
+            "rivo_hero_banner_text_padding": 15,
+            "rivo_banner_image_desktop_brightness": 50,
+            "rivo_banner_text_container_desktop_background_color": "#ffffff",
+            "rivo_banner_text_container_desktop_font_color": "#000000",
+            "rivo_banner_title_desktop_font_size": 32,
+            "rivo_banner_subtitle_desktop_font_size": 16,
+            "rivo_banner_card_desktop_position": "left",
+            "rivo_banner_desktop_text_align": "left",
+            "rivo_banner_mobile_height": 400,
+            "rivo_banner_text_container_mobile_padding_top": 50,
+            "rivo_banner_image_mobile_brightness": 100,
+            "rivo_banner_mobile_text_container_position": "stacked",
+            "rivo_banner_text_container_mobile_background_color": "#ffffff",
+            "rivo_banner_text_container_mobile_font_color": "#000000",
+            "rivo_banner_text_container_mobile_button_gap": 10,
+            "rivo_banner_title_mobile_font_size": 32,
+            "rivo_banner_subtitle_mobile_font_size": 16,
+            "rivo_banner_card_mobile_position": "left",
+            "rivo_banner_mobile_text_align": "left"
+          }
+        }
+      },
+      "block_order": [
+        "rivo_loyalty_rewards_referrals_lp_header_zdChVQ"
+      ],
+      "name": "Rivo: Hero",
+      "settings": {
+        "eyebrow": "Introducing Hearth Circle",
+        "lede_fallback": "",
+        "overlay_strength": 70,
+        "min_height": 640,
+        "mobile_image_height_v3": 300,
+        "mobile_image_position_v2": "center center",
+        "stat1_num": "5%",
+        "stat1_label": "back in points, every order",
+        "stat2_num": "150 pts",
+        "stat2_label": "just for joining in",
+        "stat3_num": "$0",
+        "stat3_label": "to become a member"
+      }
+    },
+    "rivo_hiw_6674Nw": {
+      "type": "rivo-hiw",
+      "blocks": {
+        "rivo_loyalty_rewards_referrals_lp_how_it_works_zpekYA": {
+          "type": "shopify://apps/rivo-loyalty-rewards-referrals/blocks/lp-how-it-works/580e9665-b2cd-4dbc-b6ba-6445ac9e6871",
+          "settings": {
+            "background_color": "",
+            "section_title_font_color": "",
+            "section_subtitle_font_color": "",
+            "step_number_title_font_size": 26,
+            "step_number_subtitle_font_size": 16,
+            "step_font_color": "",
+            "step_number_type": "border",
+            "step_image_height": 200,
+            "step_1_image": "shopify://shop_images/JV_260821_5.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "rivo_loyalty_rewards_referrals_lp_how_it_works_zpekYA"
+      ],
+      "name": "Rivo: How It Works",
+      "settings": {
+        "lede_fallback": "",
+        "pad_base": 24,
+        "pad_top_desktop": "3.5",
+        "pad_bottom_desktop": "3.5"
+      }
+    },
+    "rivo_ways_to_earn_mFdRjB": {
+      "type": "rivo-ways-to-earn",
+      "blocks": {
+        "rivo_loyalty_rewards_referrals_lp_ways_to_earn_DjiLdV": {
+          "type": "shopify://apps/rivo-loyalty-rewards-referrals/blocks/lp-ways-to-earn/580e9665-b2cd-4dbc-b6ba-6445ac9e6871",
+          "settings": {
+            "background_color": "",
+            "section_title_font_color": "",
+            "section_subtitle_font_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "rivo_loyalty_rewards_referrals_lp_ways_to_earn_DjiLdV"
+      ],
+      "name": "Rivo: Ways to Earn",
+      "settings": {
+        "eyebrow": "Ways to earn",
+        "lede_fallback": "",
+        "pad_base": 24,
+        "pad_top_desktop": "3.5",
+        "pad_bottom_desktop": "3.5"
+      }
+    },
+    "rivo_ways_to_redeem_UWArf4": {
+      "type": "rivo-ways-to-redeem",
+      "blocks": {
+        "rivo_loyalty_rewards_referrals_lp_ways_to_redeem_HRjctW": {
+          "type": "shopify://apps/rivo-loyalty-rewards-referrals/blocks/lp-ways-to-redeem/580e9665-b2cd-4dbc-b6ba-6445ac9e6871",
+          "settings": {
+            "background_color": "",
+            "section_title_font_color": "",
+            "section_subtitle_font_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "rivo_loyalty_rewards_referrals_lp_ways_to_redeem_HRjctW"
+      ],
+      "name": "Rivo: Ways to Redeem",
+      "settings": {
+        "marquee_item_1_v2": "Refer a friend, give a candle",
+        "marquee_item_2_v2": "Points redeemable in-store, all 5 locations",
+        "marquee_item_3_v2": "150 points just for joining",
+        "marquee_label_v2": "Loyalty program highlights",
+        "marquee_speed_v2": 30,
+        "marquee_bg_v2": "#c79a4b",
+        "marquee_text_v2": "#1d1a16",
+        "marquee_star_v2": "#7c6337",
+        "eyebrow": "Redeem",
+        "lede_fallback": "",
+        "cta_label": "Redeem your points",
+        "image": "shopify://shop_images/Jackson_Vaughn_March-15_1.webp",
+        "image_alt": "Reward products",
+        "image_placeholder": "Choose an image in the section settings",
+        "image_position": "center center",
+        "image_radius": 14,
+        "gradient_left": "#1d1a16",
+        "gradient_right": "#343a2e",
+        "text_color": "#faf6ec",
+        "muted_color": "#c7c2b8",
+        "accent_color": "#c79a4b",
+        "button_text_color": "#1d1a16",
+        "pad_base": 24,
+        "pad_top_desktop": "3.5",
+        "pad_bottom_desktop": "3.5",
+        "pad_top_mobile": "3",
+        "pad_bottom_mobile": "3",
+        "sel_root": "#rivo-ways-to-redeem",
+        "sel_content": ".rivo-lp-content",
+        "sel_title": ".rivo-lp-section-title",
+        "sel_subtitle": ".rivo-lp-section-subtitle",
+        "sel_cards": ".rivo-lp-cards-container"
+      }
+    },
+    "rivo_vip_zPKcxP": {
+      "type": "rivo-vip",
+      "blocks": {
+        "rivo_loyalty_rewards_referrals_lp_vip_tiers_HYh3Ya": {
+          "type": "shopify://apps/rivo-loyalty-rewards-referrals/blocks/lp-vip-tiers/580e9665-b2cd-4dbc-b6ba-6445ac9e6871",
+          "settings": {
+            "background_color": "",
+            "section_title_font_color": "",
+            "section_subtitle_font_color": "",
+            "progress_bar_enabled": false,
+            "progress_bar_style": "single_column",
+            "progress_bar_label_style": "below",
+            "vip_table_perk_background_color": "",
+            "vip_table_perk_font_color": "",
+            "vip_table_first_tier_column_background_color": "",
+            "vip_table_second_tier_column_background_color": "",
+            "vip_table_third_tier_column_background_color": "",
+            "vip_table_active_tier_column_background_color": "",
+            "vip_table_th_background_color_enabled": false,
+            "vip_table_active_tier_background_color_enabled": true,
+            "vip_table_tier_icon_size": 50,
+            "vip_table_tier_name_font_size": 22,
+            "vip_table_tier_threshold_font_size": 14,
+            "vip_table_tier_body_font_size": 14,
+            "vip_table_body_padding": 15,
+            "vip_table_padding_top": 60,
+            "vip_table_tier_thead_padding_top": 20,
+            "vip_table_tier_thead_padding_bottom": 20,
+            "vip_table_tier_name_padding": 10,
+            "vip_table_tier_td_border_bottom": "1px solid #000000"
+          }
+        }
+      },
+      "block_order": [
+        "rivo_loyalty_rewards_referrals_lp_vip_tiers_HYh3Ya"
+      ],
+      "name": "Rivo: VIP Cards",
+      "settings": {
+        "vip_lede_fallback": "Join our VIP loyalty program to unlock exclusive rewards available only to members.",
+        "vip_featured_badge": "Top tier",
+        "vip_current_badge": "Your tier",
+        "vip_cta_label": "Shop toward Curator",
+        "vip_cta_link": "",
+        "vip_yes_tokens": "yes,true,included,available,✓,✔",
+        "vip_background": "#faf6ec",
+        "vip_ink": "#26211b",
+        "vip_muted": "#756d61",
+        "vip_card_light": "#ffffff",
+        "vip_card_dark": "#1d1a16",
+        "vip_card_dark_text": "#faf6ec",
+        "vip_card_dark_muted": "#c7c2b8",
+        "vip_line": "#ded4c3",
+        "vip_accent": "#c79a4b",
+        "vip_member_accent": "#c85b32",
+        "vip_button_text": "#1d1a16",
+        "vip_card_radius": 12,
+        "vip_pad_base": 24,
+        "vip_pad_top_d": "4",
+        "vip_pad_bottom_d": "4",
+        "vip_pad_top_m": "3",
+        "vip_pad_bottom_m": "3",
+        "vip_sel_root": "#rivo-vip-tiers",
+        "vip_sel_content": ".rivo-lp-content",
+        "vip_sel_title": ".rivo-lp-section-title",
+        "vip_sel_subtitle": ".rivo-lp-section-subtitle",
+        "vip_sel_container": ".rivo-vip-tier-container",
+        "vip_sel_table": ".rivo-vip-tier-table"
+      }
+    },
+    "1787611164b5be0142": {
+      "type": "apps",
+      "blocks": {
+        "rivo_loyalty_rewards_referrals_lp_referral_campaign_CwTeaD": {
+          "type": "shopify://apps/rivo-loyalty-rewards-referrals/blocks/lp-referral-campaign/580e9665-b2cd-4dbc-b6ba-6445ac9e6871",
+          "settings": {
+            "background_color": "",
+            "referral_campaign_id": ""
+          }
+        }
+      },
+      "block_order": [
+        "rivo_loyalty_rewards_referrals_lp_referral_campaign_CwTeaD"
+      ],
+      "settings": {
+        "include_margins": false
+      }
+    },
+    "rivo_faq_i9rMNx": {
+      "type": "rivo-faq",
+      "blocks": {
+        "faq_Qy87jP": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I join the loyalty program?",
+            "answer": "<p>Simply sign up to create your account and start earning rewards!</p>"
+          }
+        },
+        "faq_DdE6C3": {
+          "type": "faq",
+          "settings": {
+            "question": "How can I earn points?",
+            "answer": "<p>Earn points by signing up, making purchases, and more! Check out the “Ways to Earn” section for details.</p>"
+          }
+        },
+        "faq_Da8dBn": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I redeem my points?",
+            "answer": "<p>Log in, visit your dashboard, and visit the “Ways to Redeem” section to redeem your points for rewards.</p>"
+          }
+        },
+        "faq_HgECbF": {
+          "type": "faq",
+          "settings": {
+            "question": "Where can I see my points balance?",
+            "answer": "<p>Log in to your account! Your points balance will be highlighted at the top of the page.</p>"
+          }
+        },
+        "faq_Rg64Dc": {
+          "type": "faq",
+          "settings": {
+            "question": "Do my points expire?",
+            "answer": "<p>Points will expire after one year if there isn’t any account activity.</p>"
+          }
+        },
+        "faq_hKKyrU": {
+          "type": "faq",
+          "settings": {
+            "question": "Do my rewards expire?",
+            "answer": "<p>Rewards will not expire once they are activated in the account.</p>"
+          }
+        },
+        "faq_TKTfXx": {
+          "type": "faq",
+          "settings": {
+            "question": "What happens to my points if I return a purchase?",
+            "answer": "<p>If you return a purchase, the points you earned for that purchase will be deducted from your account.</p>"
+          }
+        },
+        "faq_ryGnfH": {
+          "type": "faq",
+          "settings": {
+            "question": "When do I get my birthday gift?",
+            "answer": "<p>On your birthday! The only instance in which birthday points will be delayed until next year is if your birthday is within 30 days from the day you entered it.</p>"
+          }
+        },
+        "faq_D4VKX7": {
+          "type": "faq",
+          "settings": {
+            "question": "I forgot to use my points at Checkout, can I apply them retroactively?",
+            "answer": "<p>No, unfortunately points cannot be redeemed on an order after the purchase has been completed.</p>"
+          }
+        },
+        "referral_Xe4dUc": {
+          "type": "referral",
+          "settings": {
+            "question": "How does the Refer a Friend program work?",
+            "answer": "<p>When you refer a friend, they will receive a link to purchase with a special discount that will automatically apply to their first order, and you’ll receive a reward too!</p>"
+          }
+        },
+        "referral_rbiDTU": {
+          "type": "referral",
+          "settings": {
+            "question": "How do I refer a friend?",
+            "answer": "<p>Enter your email address and share your unique referral link with friends and family. They can use the link to make their first purchase, and their discount will automatically be applied at checkout.</p>"
+          }
+        },
+        "referral_fdBWnR": {
+          "type": "referral",
+          "settings": {
+            "question": "How do I track the number of referrals I’ve made?",
+            "answer": "<p>Enter your name and email above, then click My Stats. From there, you can send yourself an email which will contain your stats.</p>"
+          }
+        },
+        "referral_YeV9BR": {
+          "type": "referral",
+          "settings": {
+            "question": "Is there a limit to how many people I can refer?",
+            "answer": "<p>No, there is no limit to the number of people you can refer. You can refer as many friends as you like, and you'll get a reward for each successful referral!</p>"
+          }
+        },
+        "referral_QBXV7p": {
+          "type": "referral",
+          "settings": {
+            "question": "How does my friend get the discount?",
+            "answer": "<p>When your friend uses your unique referral link, the discount will automatically be applied to their first order at checkout.</p>"
+          }
+        },
+        "referral_X8KdaX": {
+          "type": "referral",
+          "settings": {
+            "question": "Can I refer friends who are already customers?",
+            "answer": "<p>The referral friend reward is only valid for new customers.</p>"
+          }
+        },
+        "referral_RXyPf9": {
+          "type": "referral",
+          "settings": {
+            "question": "How will I know if my friend has made a purchase?",
+            "answer": "<p>You'll receive an email notification once your friend completes their first order using your referral link.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_Qy87jP",
+        "faq_DdE6C3",
+        "faq_Da8dBn",
+        "faq_HgECbF",
+        "faq_Rg64Dc",
+        "faq_hKKyrU",
+        "faq_TKTfXx",
+        "faq_ryGnfH",
+        "faq_D4VKX7",
+        "referral_Xe4dUc",
+        "referral_rbiDTU",
+        "referral_fdBWnR",
+        "referral_YeV9BR",
+        "referral_QBXV7p",
+        "referral_X8KdaX",
+        "referral_RXyPf9"
+      ],
+      "name": "Rivo: FAQs",
+      "settings": {
+        "faq_title_v1": "Frequently asked questions",
+        "faq_intro_v1": "<p>Everything you need to know about points, rewards, and referrals.</p>",
+        "faq_show_referral_v2": false,
+        "faq_group_headings_v1": true,
+        "faq_open_first_v1": false,
+        "faq_loyalty_label_v1": "Loyalty",
+        "faq_referral_label_v1": "Referrals",
+        "faq_background_v1": "#faf6ec",
+        "faq_text_v1": "#26211b",
+        "faq_muted_v1": "#756d61",
+        "faq_accent_v1": "#c79a4b",
+        "faq_line_v1": "#ded4c3",
+        "faq_pad_base_v1": 24,
+        "faq_pad_top_d_v1": "4",
+        "faq_pad_bottom_d_v1": "4",
+        "faq_pad_top_m_v1": "3",
+        "faq_pad_bottom_m_v1": "3"
       }
     }
   },
   "order": [
-    "rivo-loyalty-landing-page"
+    "rivo-loyalty-landing-page",
+    "rivo_hero_RUzAi3",
+    "rivo_hiw_6674Nw",
+    "rivo_ways_to_earn_mFdRjB",
+    "rivo_ways_to_redeem_UWArf4",
+    "rivo_vip_zPKcxP",
+    "1787611164b5be0142",
+    "rivo_faq_i9rMNx"
   ]
 }
