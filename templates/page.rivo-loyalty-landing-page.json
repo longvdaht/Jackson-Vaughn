@@ -345,18 +345,19 @@
           "type": "faq",
           "settings": {
             "question": "Where can I see my points balance?",
-            "answer": "<p>Log in to your account! Your points balance will be highlighted at the top of the page.</p>"
+            "answer": "<p>Log in to your account, and your points balance will be highlighted at the top of the page.</p>"
           }
         },
         "faq_Rg64Dc": {
           "type": "faq",
           "settings": {
             "question": "Do my points expire?",
-            "answer": "<p>Points will expire after one year if there isn’t any account activity.</p>"
+            "answer": "<p>Points will expire one year after date earned.</p><p>Example: You earn 38 points on an order from September 1st, those 38 points will expire on September 1st the following year.</p>"
           }
         },
         "faq_hKKyrU": {
           "type": "faq",
+          "disabled": true,
           "settings": {
             "question": "Do my rewards expire?",
             "answer": "<p>Rewards will not expire once they are activated in the account.</p>"
