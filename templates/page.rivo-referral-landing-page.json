@@ -1,0 +1,254 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "rivo-loyalty-landing-page": {
+      "type": "rivo-loyalty-landing-page",
+      "settings": {
+        "primary_color": "#000000",
+        "secondary_color": "#ffffff",
+        "page_background_color": "",
+        "rivo_icon_color": "#000000",
+        "title_font_style": "inherit",
+        "title_font_family": "",
+        "subtitle_font_family": "",
+        "section_title_font_color": "#000000",
+        "section_subtitle_font_color": "#000000",
+        "page_max_width": 960,
+        "section_title_font_size": 32,
+        "section_title_font_weight": 600,
+        "section_subtitle_font_size": 18,
+        "section_subtitle_font_weight": 400,
+        "section_padding": 40,
+        "card_background_color": "#ffffff",
+        "card_font_color": "#000000",
+        "card_title_font_size": 18,
+        "card_title_font_weight": 600,
+        "card_subtitle_font_size": 16,
+        "card_subtitle_font_weight": 500,
+        "card_icon_size": 44,
+        "card_container_max_width": 960,
+        "card_order": "stacked",
+        "corner_type": "rounded",
+        "modal_background_color": "#ffffff",
+        "modal_font_color": "#000000",
+        "modal_icon_color": "#000000",
+        "modal_icon_position_top": 15,
+        "modal_icon_position_right": 15,
+        "modal_login_title_font_size": 22,
+        "modal_title_font_size": 22,
+        "modal_subtitle_font_size": 16,
+        "modal_body_font_size": 16,
+        "modal_icon_size": 44,
+        "vip_desktop_progress_bar_width": 50,
+        "vip_table_tier_td_border_top": "none",
+        "custom_css": "/* Referral host width reset. Add to the theme stylesheet, not the Rivo campaign field. */\n.page-width:has(#rivo-lp-referral-campaign),\n.page-width__inner:has(#rivo-lp-referral-campaign) {\n  width: 100% !important;\n  max-width: none !important;\n  margin: 0 !important;\n  padding: 0 !important;\n}\n\n#rivo-lp-referral-campaign,\n#rivo-lp-referral-campaign > .rivo-lp-content,\n#rivo-lp-referral-campaign [id^='rivo-referral-campaign-'],\n#rivo-lp-referral-campaign iframe[id^='rivo-referral-container-'] {\n  display: block !important;\n  width: 100% !important;\n  max-width: none !important;\n  margin: 0 !important;\n  padding: 0 !important;\n  border: 0 !important;\n}\n\n@media (min-width: 1051px) {\n  #rivo-lp-referral-campaign iframe[id^='rivo-referral-container-'] {\n    height: 650px !important;\n    min-height: 650px !important;\n    max-height: 650px !important;\n  }\n}\n\n@media (min-width: 751px) and (max-width: 1050px) {\n  #rivo-lp-referral-campaign iframe[id^='rivo-referral-container-'] {\n    height: 620px !important;\n    min-height: 620px !important;\n    max-height: 620px !important;\n  }\n}"
+      }
+    },
+    "1787611164b5be0142": {
+      "type": "apps",
+      "blocks": {
+        "rivo_loyalty_rewards_referrals_lp_referral_campaign_CwTeaD": {
+          "type": "shopify://apps/rivo-loyalty-rewards-referrals/blocks/lp-referral-campaign/580e9665-b2cd-4dbc-b6ba-6445ac9e6871",
+          "settings": {
+            "background_color": "",
+            "referral_campaign_id": ""
+          }
+        }
+      },
+      "block_order": [
+        "rivo_loyalty_rewards_referrals_lp_referral_campaign_CwTeaD"
+      ],
+      "settings": {
+        "include_margins": false
+      }
+    },
+    "rivo_hiw_referral_ct4qzq": {
+      "type": "rivo-hiw-referral",
+      "name": "Referral: How It Works",
+      "settings": {
+        "eyebrow": "Refer a friend",
+        "heading": "Give a free candle. Get 100 points.",
+        "intro": "<p>Share something they’ll love. When your friend orders through your link, you both get rewarded.</p>",
+        "step_1_title": "Share your link",
+        "step_1_description": "Send your personal referral link to a friend.",
+        "step_2_title": "They get a free candle",
+        "step_2_description": "They buy any candle or bundle and get another candle free.",
+        "step_3_title": "You get 100 points",
+        "step_3_description": "Once their qualifying order is complete, 100 points are added to your account.",
+        "padding_top_desktop": 88,
+        "padding_bottom_desktop": 88,
+        "padding_top_mobile": 56,
+        "padding_bottom_mobile": 56
+      }
+    },
+    "rivo_faq_i9rMNx": {
+      "type": "rivo-faq",
+      "blocks": {
+        "faq_Qy87jP": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I join the loyalty program?",
+            "answer": "<p>Simply sign up to create your account and start earning rewards!</p>"
+          }
+        },
+        "faq_DdE6C3": {
+          "type": "faq",
+          "settings": {
+            "question": "How can I earn points?",
+            "answer": "<p>Earn points by signing up, making purchases, and more! Check out the “Ways to Earn” section for details.</p>"
+          }
+        },
+        "faq_Da8dBn": {
+          "type": "faq",
+          "settings": {
+            "question": "How do I redeem my points?",
+            "answer": "<p>Log in, visit your dashboard, and visit the “Ways to Redeem” section to redeem your points for rewards.</p>"
+          }
+        },
+        "faq_HgECbF": {
+          "type": "faq",
+          "settings": {
+            "question": "Where can I see my points balance?",
+            "answer": "<p>Log in to your account! Your points balance will be highlighted at the top of the page.</p>"
+          }
+        },
+        "faq_Rg64Dc": {
+          "type": "faq",
+          "settings": {
+            "question": "Do my points expire?",
+            "answer": "<p>Points will expire after one year if there isn’t any account activity.</p>"
+          }
+        },
+        "faq_hKKyrU": {
+          "type": "faq",
+          "settings": {
+            "question": "Do my rewards expire?",
+            "answer": "<p>Rewards will not expire once they are activated in the account.</p>"
+          }
+        },
+        "faq_TKTfXx": {
+          "type": "faq",
+          "settings": {
+            "question": "What happens to my points if I return a purchase?",
+            "answer": "<p>If you return a purchase, the points you earned for that purchase will be deducted from your account.</p>"
+          }
+        },
+        "faq_ryGnfH": {
+          "type": "faq",
+          "settings": {
+            "question": "When do I get my birthday gift?",
+            "answer": "<p>On your birthday! The only instance in which birthday points will be delayed until next year is if your birthday is within 30 days from the day you entered it.</p>"
+          }
+        },
+        "faq_D4VKX7": {
+          "type": "faq",
+          "settings": {
+            "question": "I forgot to use my points at Checkout, can I apply them retroactively?",
+            "answer": "<p>No, unfortunately points cannot be redeemed on an order after the purchase has been completed.</p>"
+          }
+        },
+        "referral_Xe4dUc": {
+          "type": "referral",
+          "settings": {
+            "question": "How does the Refer a Friend program work?",
+            "answer": "<p>When you refer a friend, they will receive a link to purchase with a special discount that will automatically apply to their first order, and you’ll receive a reward too!</p>"
+          }
+        },
+        "referral_rbiDTU": {
+          "type": "referral",
+          "settings": {
+            "question": "How do I refer a friend?",
+            "answer": "<p>Enter your email address and share your unique referral link with friends and family. They can use the link to make their first purchase, and their discount will automatically be applied at checkout.</p>"
+          }
+        },
+        "referral_fdBWnR": {
+          "type": "referral",
+          "settings": {
+            "question": "How do I track the number of referrals I’ve made?",
+            "answer": "<p>Enter your name and email above, then click My Stats. From there, you can send yourself an email which will contain your stats.</p>"
+          }
+        },
+        "referral_YeV9BR": {
+          "type": "referral",
+          "settings": {
+            "question": "Is there a limit to how many people I can refer?",
+            "answer": "<p>No, there is no limit to the number of people you can refer. You can refer as many friends as you like, and you'll get a reward for each successful referral!</p>"
+          }
+        },
+        "referral_QBXV7p": {
+          "type": "referral",
+          "settings": {
+            "question": "How does my friend get the discount?",
+            "answer": "<p>When your friend uses your unique referral link, the discount will automatically be applied to their first order at checkout.</p>"
+          }
+        },
+        "referral_X8KdaX": {
+          "type": "referral",
+          "settings": {
+            "question": "Can I refer friends who are already customers?",
+            "answer": "<p>The referral friend reward is only valid for new customers.</p>"
+          }
+        },
+        "referral_RXyPf9": {
+          "type": "referral",
+          "settings": {
+            "question": "How will I know if my friend has made a purchase?",
+            "answer": "<p>You'll receive an email notification once your friend completes their first order using your referral link.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_Qy87jP",
+        "faq_DdE6C3",
+        "faq_Da8dBn",
+        "faq_HgECbF",
+        "faq_Rg64Dc",
+        "faq_hKKyrU",
+        "faq_TKTfXx",
+        "faq_ryGnfH",
+        "faq_D4VKX7",
+        "referral_Xe4dUc",
+        "referral_rbiDTU",
+        "referral_fdBWnR",
+        "referral_YeV9BR",
+        "referral_QBXV7p",
+        "referral_X8KdaX",
+        "referral_RXyPf9"
+      ],
+      "name": "Rivo: FAQs",
+      "settings": {
+        "faq_title_v1": "Frequently asked questions",
+        "faq_intro_v1": "<p>Everything you need to know about points, rewards, and referrals.</p>",
+        "faq_show_referral_v2": true,
+        "faq_group_headings_v1": true,
+        "faq_open_first_v1": false,
+        "faq_loyalty_label_v1": "Loyalty",
+        "faq_referral_label_v1": "Referrals",
+        "faq_background_v1": "#faf6ec",
+        "faq_text_v1": "#26211b",
+        "faq_muted_v1": "#756d61",
+        "faq_accent_v1": "#c79a4b",
+        "faq_line_v1": "#ded4c3",
+        "faq_pad_base_v1": 24,
+        "faq_pad_top_d_v1": "4",
+        "faq_pad_bottom_d_v1": "4",
+        "faq_pad_top_m_v1": "3",
+        "faq_pad_bottom_m_v1": "3"
+      }
+    }
+  },
+  "order": [
+    "rivo-loyalty-landing-page",
+    "1787611164b5be0142",
+    "rivo_hiw_referral_ct4qzq",
+    "rivo_faq_i9rMNx"
+  ]
+}
