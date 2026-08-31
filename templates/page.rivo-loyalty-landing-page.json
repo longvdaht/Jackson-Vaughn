@@ -320,6 +320,13 @@
     "rivo_faq_i9rMNx": {
       "type": "rivo-faq",
       "blocks": {
+        "faq_xiajK3": {
+          "type": "faq",
+          "settings": {
+            "question": "Do I earn points on my in-store orders?",
+            "answer": "<p>Yup! Just make sure to give the staff member your email at checkout. </p>"
+          }
+        },
         "faq_Qy87jP": {
           "type": "faq",
           "settings": {
@@ -435,6 +442,7 @@
         }
       },
       "block_order": [
+        "faq_xiajK3",
         "faq_Qy87jP",
         "faq_DdE6C3",
         "faq_Da8dBn",
