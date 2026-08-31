@@ -1,0 +1,337 @@
+{%- comment -%} Loyalty and referral FAQ accordion. Install in Shopify sections/. {%- endcomment -%}
+
+{%- assign faq_top_d = section.settings.faq_pad_base_v1 | times: section.settings.faq_pad_top_d_v1 | round -%}
+{%- assign faq_bottom_d = section.settings.faq_pad_base_v1 | times: section.settings.faq_pad_bottom_d_v1 | round -%}
+{%- assign faq_top_m = section.settings.faq_pad_base_v1 | times: section.settings.faq_pad_top_m_v1 | round -%}
+{%- assign faq_bottom_m = section.settings.faq_pad_base_v1 | times: section.settings.faq_pad_bottom_m_v1 | round -%}
+{%- assign faq_active_set = 'loyalty' -%}
+{%- assign faq_active_label = section.settings.faq_loyalty_label_v1 -%}
+{%- if section.settings.faq_show_referral_v2 -%}
+  {%- assign faq_active_set = 'referral' -%}
+  {%- assign faq_active_label = section.settings.faq_referral_label_v1 -%}
+{%- endif -%}
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Dosis:wght@400;500;600;700&display=swap');
+
+  .jv-faq-{{ section.id }} {
+    position: relative;
+    background: {{ section.settings.faq_background_v1 }};
+    color: {{ section.settings.faq_text_v1 }};
+  }
+  .jv-faq-{{ section.id }} .jv-faq-inner {
+    width: calc(100% - 48px);
+    max-width: 1280px;
+    margin: 0 auto;
+    padding-top: {{ faq_top_d }}px;
+    padding-bottom: {{ faq_bottom_d }}px;
+  }
+  .jv-faq-{{ section.id }} .jv-faq-head {
+    max-width: 900px;
+    margin: 0 auto 58px;
+    text-align: center;
+  }
+  .jv-faq-{{ section.id }} .jv-faq-title {
+    margin: 0;
+    color: {{ section.settings.faq_text_v1 }};
+    font-family: "Petrona", serif;
+    font-size: 58px;
+    font-weight: 600;
+    letter-spacing: -.025em;
+    line-height: 1.04;
+    text-wrap: balance;
+  }
+  .jv-faq-{{ section.id }} .jv-faq-intro {
+    max-width: 680px;
+    margin: 22px auto 0;
+    color: {{ section.settings.faq_muted_v1 }};
+    font-family: "Dosis", sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  .jv-faq-{{ section.id }} .jv-faq-list {
+    max-width: 980px;
+    margin: 0 auto;
+    border-bottom: 1px solid {{ section.settings.faq_line_v1 }};
+  }
+  .jv-faq-{{ section.id }} .jv-faq-group-title {
+    margin: 48px 0 18px;
+    color: {{ section.settings.faq_accent_v1 }};
+    font-family: "Dosis", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .13em;
+    line-height: 1.3;
+    text-transform: uppercase;
+  }
+  .jv-faq-{{ section.id }} .jv-faq-group-title:first-child { margin-top: 0; }
+  .jv-faq-{{ section.id }} .jv-faq-item {
+    border-top: 1px solid {{ section.settings.faq_line_v1 }};
+  }
+  .jv-faq-{{ section.id }} .jv-faq-question {
+    display: grid;
+    grid-template-columns: 42px minmax(0, 1fr) 30px;
+    align-items: center;
+    gap: 20px;
+    min-height: 86px;
+    margin: 0;
+    padding: 20px 0;
+    color: {{ section.settings.faq_text_v1 }};
+    cursor: pointer;
+    list-style: none;
+  }
+  .jv-faq-{{ section.id }} .jv-faq-question::-webkit-details-marker { display: none; }
+  .jv-faq-{{ section.id }} .jv-faq-number {
+    color: {{ section.settings.faq_accent_v1 }};
+    font-family: "Dosis", sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    line-height: 1;
+  }
+  .jv-faq-{{ section.id }} .jv-faq-question-text {
+    font-family: "Petrona", serif;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -.01em;
+    line-height: 1.3;
+    text-wrap: balance;
+  }
+  .jv-faq-{{ section.id }} .jv-faq-icon {
+    position: relative;
+    display: block;
+    width: 24px;
+    height: 24px;
+  }
+  .jv-faq-{{ section.id }} .jv-faq-icon::before,
+  .jv-faq-{{ section.id }} .jv-faq-icon::after {
+    content: '';
+    position: absolute;
+    top: 11px;
+    left: 3px;
+    width: 18px;
+    height: 1px;
+    background: {{ section.settings.faq_accent_v1 }};
+    transition: transform .2s ease;
+  }
+  .jv-faq-{{ section.id }} .jv-faq-icon::after { transform: rotate(90deg); }
+  .jv-faq-{{ section.id }} details[open] .jv-faq-icon::after { transform: rotate(0); }
+  .jv-faq-{{ section.id }} .jv-faq-answer {
+    max-width: 760px;
+    margin: 0 0 30px 62px;
+    color: {{ section.settings.faq_muted_v1 }};
+    font-family: "Dosis", sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+  }
+  .jv-faq-{{ section.id }} .jv-faq-answer p { margin: 0; }
+  .jv-faq-{{ section.id }} .jv-faq-question:focus-visible {
+    outline: 2px solid {{ section.settings.faq_accent_v1 }};
+    outline-offset: 5px;
+  }
+
+  @media (max-width: 749px) {
+    .jv-faq-{{ section.id }} .jv-faq-inner {
+      width: calc(100% - 40px);
+      padding-top: {{ faq_top_m }}px;
+      padding-bottom: {{ faq_bottom_m }}px;
+    }
+    .jv-faq-{{ section.id }} .jv-faq-head { margin-bottom: 38px; }
+    .jv-faq-{{ section.id }} .jv-faq-title { font-size: 40px; }
+    .jv-faq-{{ section.id }} .jv-faq-intro { margin-top: 18px; font-size: 16px; }
+    .jv-faq-{{ section.id }} .jv-faq-question {
+      grid-template-columns: 32px minmax(0, 1fr) 24px;
+      gap: 12px;
+      min-height: 76px;
+      padding: 18px 0;
+    }
+    .jv-faq-{{ section.id }} .jv-faq-question-text { font-size: 19px; }
+    .jv-faq-{{ section.id }} .jv-faq-answer { margin: 0 0 26px 44px; font-size: 15px; }
+  }
+</style>
+
+<section class="jv-faq-{{ section.id }}" id="jv-faq-{{ section.id }}" data-jv-faq-root>
+  <div class="jv-faq-inner">
+    <header class="jv-faq-head">
+      <h2 class="jv-faq-title">{{ section.settings.faq_title_v1 | escape }}</h2>
+      {%- if section.settings.faq_intro_v1 != blank -%}
+        <div class="jv-faq-intro">{{ section.settings.faq_intro_v1 }}</div>
+      {%- endif -%}
+    </header>
+
+    <div class="jv-faq-list">
+      {%- assign shown_count = 0 -%}
+      {%- if section.settings.faq_group_headings_v1 -%}
+        <h3 class="jv-faq-group-title">{{ faq_active_label | escape }}</h3>
+      {%- endif -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'faq' -%}
+          {%- assign block_group = 'loyalty' -%}
+        {%- else -%}
+          {%- assign block_group = 'referral' -%}
+        {%- endif -%}
+        {%- if block_group == faq_active_set -%}
+          {%- assign shown_count = shown_count | plus: 1 -%}
+          <details class="jv-faq-item" data-jv-faq-item data-faq-group="{{ block_group }}" {{ block.shopify_attributes }}{% if section.settings.faq_open_first_v1 and shown_count == 1 %} open{% endif %}>
+            <summary class="jv-faq-question">
+              <span class="jv-faq-number">{% if shown_count < 10 %}0{% endif %}{{ shown_count }}</span>
+              <span class="jv-faq-question-text">{{ block.settings.question | escape }}</span>
+              <span class="jv-faq-icon" aria-hidden="true"></span>
+            </summary>
+            <div class="jv-faq-answer">{{ block.settings.answer }}</div>
+          </details>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {%- assign first_json_item = true -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'faq' -%}
+        {%- assign json_group = 'loyalty' -%}
+      {%- else -%}
+        {%- assign json_group = 'referral' -%}
+      {%- endif -%}
+      {%- if json_group == faq_active_set -%}
+        {%- unless first_json_item -%},{%- endunless -%}
+        {
+          "@type": "Question",
+          "name": {{ block.settings.question | strip_html | json }},
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": {{ block.settings.answer | strip_html | json }}
+          }
+        }
+        {%- assign first_json_item = false -%}
+      {%- endif -%}
+    {%- endfor -%}
+  ]
+}
+</script>
+
+<script>
+(function () {
+  var root = document.getElementById('jv-faq-{{ section.id }}');
+  if (!root) { return; }
+  var items = Array.prototype.slice.call(root.querySelectorAll('[data-jv-faq-item]'));
+  var changing = false;
+  items.forEach(function (item) {
+    item.addEventListener('toggle', function () {
+      if (changing || !item.open) { return; }
+      changing = true;
+      items.forEach(function (other) {
+        if (other !== item) { other.open = false; }
+      });
+      requestAnimationFrame(function () { changing = false; });
+    });
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Rivo: FAQs v2",
+  "tag": "section",
+  "class": "jv-faq-section",
+  "settings": [
+    { "type": "header", "content": "Content" },
+    { "type": "text", "id": "faq_title_v1", "label": "Title", "default": "Frequently asked questions" },
+    { "type": "richtext", "id": "faq_intro_v1", "label": "Introduction", "default": "<p>Everything you need to know about points, rewards, and referrals.</p>" },
+    { "type": "checkbox", "id": "faq_show_referral_v2", "label": "Show referral FAQs instead", "default": false },
+    { "type": "checkbox", "id": "faq_group_headings_v1", "label": "Show group headings", "default": true },
+    { "type": "checkbox", "id": "faq_open_first_v1", "label": "Open the first answer", "default": false },
+    { "type": "text", "id": "faq_loyalty_label_v1", "label": "Loyalty group label", "default": "Loyalty" },
+    { "type": "text", "id": "faq_referral_label_v1", "label": "Referral group label", "default": "Referrals" },
+
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "faq_background_v1", "label": "Background", "default": "#FAF6EC" },
+    { "type": "color", "id": "faq_text_v1", "label": "Question text", "default": "#26211B" },
+    { "type": "color", "id": "faq_muted_v1", "label": "Answer text", "default": "#756D61" },
+    { "type": "color", "id": "faq_accent_v1", "label": "Accent", "default": "#C79A4B" },
+    { "type": "color", "id": "faq_line_v1", "label": "Divider lines", "default": "#DED4C3" },
+
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "faq_pad_base_v1", "label": "Spacing base unit", "min": 8, "max": 40, "step": 4, "default": 24, "unit": "px" },
+    {
+      "type": "select", "id": "faq_pad_top_d_v1", "label": "Space above (desktop)", "default": "4",
+      "options": [
+        { "value": "0", "label": "None" }, { "value": "1", "label": "1x" },
+        { "value": "2", "label": "2x" }, { "value": "3", "label": "3x" },
+        { "value": "4", "label": "4x" }, { "value": "5", "label": "5x" }
+      ]
+    },
+    {
+      "type": "select", "id": "faq_pad_bottom_d_v1", "label": "Space below (desktop)", "default": "4",
+      "options": [
+        { "value": "0", "label": "None" }, { "value": "1", "label": "1x" },
+        { "value": "2", "label": "2x" }, { "value": "3", "label": "3x" },
+        { "value": "4", "label": "4x" }, { "value": "5", "label": "5x" }
+      ]
+    },
+    {
+      "type": "select", "id": "faq_pad_top_m_v1", "label": "Space above (mobile)", "default": "3",
+      "options": [
+        { "value": "0", "label": "None" }, { "value": "1", "label": "1x" },
+        { "value": "2", "label": "2x" }, { "value": "3", "label": "3x" },
+        { "value": "4", "label": "4x" }
+      ]
+    },
+    {
+      "type": "select", "id": "faq_pad_bottom_m_v1", "label": "Space below (mobile)", "default": "3",
+      "options": [
+        { "value": "0", "label": "None" }, { "value": "1", "label": "1x" },
+        { "value": "2", "label": "2x" }, { "value": "3", "label": "3x" },
+        { "value": "4", "label": "4x" }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "Loyalty FAQ",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "How do I join the loyalty program?" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Simply sign up to create your account and start earning rewards!</p>" }
+      ]
+    },
+    {
+      "type": "referral",
+      "name": "Referral FAQ",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "How does the Refer a Friend program work?" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>When you refer a friend, they will receive a link to purchase with a special discount that will automatically apply to their first order, and you’ll receive a reward too!</p>" }
+      ]
+    }
+  ],
+  "max_blocks": 30,
+  "presets": [
+    {
+      "name": "Rivo: FAQs v2",
+      "blocks": [
+        { "type": "faq", "settings": { "question": "How do I join the loyalty program?", "answer": "<p>Simply sign up to create your account and start earning rewards!</p>" } },
+        { "type": "faq", "settings": { "question": "How can I earn points?", "answer": "<p>Earn points by signing up, making purchases, and more! Check out the “Ways to Earn” section for details.</p>" } },
+        { "type": "faq", "settings": { "question": "How do I redeem my points?", "answer": "<p>Log in, visit your dashboard, and visit the “Ways to Redeem” section to redeem your points for rewards.</p>" } },
+        { "type": "faq", "settings": { "question": "Where can I see my points balance?", "answer": "<p>Log in to your account! Your points balance will be highlighted at the top of the page.</p>" } },
+        { "type": "faq", "settings": { "question": "Do my points expire?", "answer": "<p>Points will expire after one year if there isn’t any account activity.</p>" } },
+        { "type": "faq", "settings": { "question": "Do my rewards expire?", "answer": "<p>Rewards will not expire once they are activated in the account.</p>" } },
+        { "type": "faq", "settings": { "question": "What happens to my points if I return a purchase?", "answer": "<p>If you return a purchase, the points you earned for that purchase will be deducted from your account.</p>" } },
+        { "type": "faq", "settings": { "question": "When do I get my birthday gift?", "answer": "<p>On your birthday! The only instance in which birthday points will be delayed until next year is if your birthday is within 30 days from the day you entered it.</p>" } },
+        { "type": "faq", "settings": { "question": "I forgot to use my points at Checkout, can I apply them retroactively?", "answer": "<p>No, unfortunately points cannot be redeemed on an order after the purchase has been completed.</p>" } },
+        { "type": "referral", "settings": { "question": "How does the Refer a Friend program work?", "answer": "<p>When you refer a friend, they will receive a link to purchase with a special discount that will automatically apply to their first order, and you’ll receive a reward too!</p>" } },
+        { "type": "referral", "settings": { "question": "How do I refer a friend?", "answer": "<p>Enter your email address and share your unique referral link with friends and family. They can use the link to make their first purchase, and their discount will automatically be applied at checkout.</p>" } },
+        { "type": "referral", "settings": { "question": "How do I track the number of referrals I’ve made?", "answer": "<p>Enter your name and email above, then click My Stats. From there, you can send yourself an email which will contain your stats.</p>" } },
+        { "type": "referral", "settings": { "question": "Is there a limit to how many people I can refer?", "answer": "<p>No, there is no limit to the number of people you can refer. You can refer as many friends as you like, and you'll get a reward for each successful referral!</p>" } },
+        { "type": "referral", "settings": { "question": "How does my friend get the discount?", "answer": "<p>When your friend uses your unique referral link, the discount will automatically be applied to their first order at checkout.</p>" } },
+        { "type": "referral", "settings": { "question": "Can I refer friends who are already customers?", "answer": "<p>The referral friend reward is only valid for new customers.</p>" } },
+        { "type": "referral", "settings": { "question": "How will I know if my friend has made a purchase?", "answer": "<p>You'll receive an email notification once your friend completes their first order using your referral link.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
