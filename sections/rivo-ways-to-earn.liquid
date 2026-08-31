@@ -1,0 +1,668 @@
+{%- comment -%} Rivo Ways to Earn responsive grid.
+Install as sections/rivo-ways-to-earn-grid-v10.liquid. {%- endcomment -%}
+
+{%- assign m_pt_d = section.settings.pad_top_desktop | plus: 0.0 -%}
+{%- assign m_pb_d = section.settings.pad_bottom_desktop | plus: 0.0 -%}
+{%- assign pt_d = section.settings.pad_base | times: m_pt_d | round -%}
+{%- assign pb_d = section.settings.pad_base | times: m_pb_d | round -%}
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Dosis:wght@400;500;600;700&display=swap');
+
+  .jv-wte-{{ section.id }} {
+    position: relative;
+    background: {{ section.settings.section_bg_grid_v10 }};
+    opacity: 0;
+    animation: jv-wte-reveal-{{ section.id }} .01s linear 1.5s forwards;
+  }
+  .jv-wte-{{ section.id }}.is-ready { opacity: 1; animation: none; }
+  @keyframes jv-wte-reveal-{{ section.id }} { to { opacity: 1; } }
+
+  .jv-wte-{{ section.id }} .rivo-lp-section-title,
+  .jv-wte-{{ section.id }} .rivo-lp-section-title span {
+    max-width: 680px !important;
+    margin: 0 !important;
+    color: {{ section.settings.section_text_grid_v10 }} !important;
+    font-family: "Petrona", serif !important;
+    font-size: 58px !important;
+    font-weight: 500 !important;
+    letter-spacing: -.02em !important;
+    line-height: 1.04 !important;
+    text-align: left !important;
+    text-wrap: balance;
+  }
+  .jv-wte-{{ section.id }} .rivo-lp-section-title em,
+  .jv-wte-{{ section.id }} .rivo-lp-section-title i {
+    color: {{ section.settings.accent_grid_v10 }} !important;
+    font-style: italic !important;
+  }
+  .jv-wte-{{ section.id }} .rivo-lp-section-subtitle {
+    max-width: 500px !important;
+    margin: 0 !important;
+    padding-top: 15px !important;
+    padding-right: 0 !important;
+    padding-bottom: 0 !important;
+    padding-left: 0 !important;
+    color: {{ section.settings.muted_text_grid_v10 }} !important;
+    font-family: "Dosis", sans-serif !important;
+    font-size: 16px !important;
+    line-height: 1.65 !important;
+    text-align: left !important;
+  }
+  .jv-wte-{{ section.id }} .jv-eyebrow {
+    margin: 0 0 24px;
+    color: {{ section.settings.accent_grid_v10 }};
+    font-family: "Petrona", serif;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 500;
+    letter-spacing: .02em;
+  }
+
+  .jv-wte-{{ section.id }} .rivo-card {
+    isolation: isolate;
+    transition: border-color .25s ease, transform .25s ease;
+  }
+  .jv-wte-{{ section.id }} .rivo-card::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(199,154,75,.09), transparent 42%);
+    content: "";
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s ease;
+  }
+  .jv-wte-{{ section.id }} .rivo-card:hover { transform: translateY(-3px); }
+  .jv-wte-{{ section.id }} .rivo-card:hover::before { opacity: 1; }
+  .jv-wte-{{ section.id }} .rivo-card:focus-within {
+    outline: 2px solid {{ section.settings.accent_grid_v10 }};
+    outline-offset: 3px;
+  }
+  .jv-wte-{{ section.id }} .rivo-card-title {
+    order: 2;
+    margin: 0 !important;
+    color: {{ section.settings.section_text_grid_v10 }} !important;
+    font-family: "Petrona", serif !important;
+    font-size: 22px !important;
+    font-weight: 600 !important;
+    line-height: 1.2 !important;
+    text-align: left !important;
+  }
+  .jv-wte-{{ section.id }} .rivo-card-description {
+    order: 1;
+    margin: 0 !important;
+    color: {{ section.settings.accent_grid_v10 }} !important;
+    font-family: "Dosis", sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    letter-spacing: .1em !important;
+    line-height: 1.2 !important;
+    text-align: left !important;
+    text-transform: uppercase !important;
+  }
+  .jv-wte-{{ section.id }} .jv-card-copy {
+    order: 3;
+    max-width: 34ch;
+    margin: 0;
+    color: {{ section.settings.muted_text_grid_v10 }};
+    font-family: "Dosis", sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: .01em;
+    line-height: 1.55;
+    text-align: left;
+  }
+  .jv-wte-{{ section.id }} .rivo-arrow-icon {
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    opacity: 0 !important;
+    overflow: hidden !important;
+    clip-path: inset(50%) !important;
+    pointer-events: none !important;
+  }
+  .jv-wte-{{ section.id }} .rivo-completed {
+    color: {{ section.settings.accent_grid_v10 }} !important;
+    font-family: "Dosis", sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    letter-spacing: .08em !important;
+    text-transform: uppercase !important;
+  }
+  .jv-wte-{{ section.id }} .jv-editor-note {
+    padding-top: 40px;
+    padding-right: 24px;
+    padding-bottom: 40px;
+    padding-left: 24px;
+    color: {{ section.settings.section_text_grid_v10 }};
+    font-family: "Dosis", sans-serif;
+    text-align: center;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .jv-wte-{{ section.id }} .rivo-card,
+    .jv-wte-{{ section.id }} .rivo-card::before { transition: none; }
+    .jv-wte-{{ section.id }} .rivo-card:hover { transform: none; }
+  }
+
+  @media (max-width: 749px) {
+    .jv-wte-{{ section.id }} .rivo-lp-section-title,
+    .jv-wte-{{ section.id }} .rivo-lp-section-title span {
+      font-size: 40px !important;
+    }
+    .jv-wte-{{ section.id }} .rivo-lp-section-subtitle {
+      margin: 0 !important;
+      padding-top: 15px !important;
+      padding-right: 0 !important;
+      padding-bottom: 0 !important;
+      padding-left: 0 !important;
+    }
+    .jv-wte-{{ section.id }} .rivo-card-title {
+      font-size: 18px !important;
+      line-height: 1.18 !important;
+      overflow-wrap: anywhere;
+    }
+    .jv-wte-{{ section.id }} .rivo-card-description {
+      font-size: 10px !important;
+      letter-spacing: .07em !important;
+      line-height: 1.3 !important;
+      overflow-wrap: anywhere;
+    }
+    .jv-wte-{{ section.id }} .jv-card-copy {
+      max-width: none;
+      font-size: 13px;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+    }
+  }
+</style>
+
+<script type="application/json" id="jv-wte-cfg-{{ section.id }}">
+  {
+    "eyebrow": {{ section.settings.eyebrow | default: '' | json }},
+    "ledeFallback": {{ section.settings.lede_fallback | default: '' | json }},
+    "pad": { "topD": {{ pt_d }}, "botD": {{ pb_d }} },
+    "gridGap": {{ section.settings.grid_gap_v10 | default: 28 }},
+    "mobileGridGap": {{ section.settings.mobile_grid_gap_v10 | default: 12 }},
+    "cardMinHeight": {{ section.settings.card_min_height_v10 | default: 280 }},
+    "mobileCardMinHeight": {{ section.settings.mobile_card_min_height_v10 | default: 300 }},
+    "colors": {
+      "section": {{ section.settings.section_bg_grid_v10 | json }},
+      "card": {{ section.settings.card_bg_grid_v10 | json }},
+      "border": {{ section.settings.card_border_grid_v10 | json }},
+      "text": {{ section.settings.section_text_grid_v10 | json }},
+      "muted": {{ section.settings.muted_text_grid_v10 | json }},
+      "accent": {{ section.settings.accent_grid_v10 | json }}
+    },
+    "descriptions": [
+      { "keywords": "sign up,create your account", "text": {{ section.settings.desc_signup_v10 | json }} },
+      { "keywords": "subscribe to emails,subscribe to email", "text": {{ section.settings.desc_email_v10 | json }} },
+      { "keywords": "subscribe to sms,subscribe to texts,subscribe to text", "text": {{ section.settings.desc_sms_v10 | json }} },
+      { "keywords": "place an order", "text": {{ section.settings.desc_order_v10 | json }} },
+      { "keywords": "celebrate a birthday,birthday", "text": {{ section.settings.desc_birthday_v10 | json }} },
+      { "keywords": "post a product review,write a review,product review", "text": {{ section.settings.desc_review_v10 | json }} },
+      { "keywords": "like page on facebook,facebook", "text": {{ section.settings.desc_facebook_v10 | json }} },
+      { "keywords": "follow on instagram,instagram", "text": {{ section.settings.desc_instagram_v10 | json }} },
+      { "keywords": "follow on tiktok,tiktok", "text": {{ section.settings.desc_tiktok_v10 | json }} },
+      { "keywords": "refer a friend,refer", "text": {{ section.settings.desc_refer_v10 | json }} }
+    ]
+  }
+</script>
+
+<div class="jv-wte-{{ section.id }} jv-wte" id="jv-wte-{{ section.id }}" data-jv-root>
+  {%- for block in section.blocks -%}
+    {% render block %}
+  {%- endfor -%}
+
+  {%- if request.design_mode -%}
+    <div class="jv-editor-note" data-jv-note hidden>
+      Rivo's Ways to Earn block isn't rendering. Enable it in Rivo &rarr; Loyalty page. Theme editor only.
+    </div>
+  {%- endif -%}
+</div>
+
+<script>
+(function () {
+  var root = document.getElementById('jv-wte-{{ section.id }}');
+  if (!root) { return; }
+
+  var cfgEl = document.getElementById('jv-wte-cfg-{{ section.id }}');
+  var cfg;
+  try { cfg = JSON.parse(cfgEl.textContent); } catch (e) { return; }
+
+  var busy = false;
+  var lastSig = null;
+  var JV_CONTAINER_MAX = 1280;
+  var JV_INSET_D = 24;
+  var JV_INSET_M = 20;
+
+  function hard(el, props) {
+    if (!el) { return; }
+    for (var k in props) {
+      if (Object.prototype.hasOwnProperty.call(props, k)) {
+        el.style.setProperty(k, props[k], 'important');
+      }
+    }
+  }
+
+  function first(scope, list) {
+    for (var i = 0; i < list.length; i++) {
+      if (!list[i]) { continue; }
+      var el = null;
+      try { el = scope.querySelector(list[i]); } catch (e) { el = null; }
+      if (el) { return el; }
+    }
+    return null;
+  }
+
+  function all(scope, list) {
+    for (var i = 0; i < list.length; i++) {
+      if (!list[i]) { continue; }
+      var els = [];
+      try { els = scope.querySelectorAll(list[i]); } catch (e) { els = []; }
+      if (els.length) { return [].slice.call(els); }
+    }
+    return [];
+  }
+
+  function txt(el) {
+    return el ? (el.textContent || '').replace(/\s+/g, ' ').trim() : '';
+  }
+
+  function signature(nodes) {
+    var value = '';
+    for (var i = 0; i < nodes.length; i++) { value += txt(nodes[i]) + '|'; }
+    return value;
+  }
+
+  function columnsNow() {
+    if (window.matchMedia('(max-width: 749px)').matches) { return 2; }
+    if (window.matchMedia('(max-width: 1099px)').matches) { return 2; }
+    return 3;
+  }
+
+  function widenContainer(rivoRoot, wide) {
+    var uncap = {
+      'max-width': 'none',
+      'width': '100%',
+      'margin': '0',
+      'padding': '0',
+      'box-sizing': 'border-box',
+      'background': 'none',
+      'background-color': 'transparent'
+    };
+
+    hard(rivoRoot, uncap);
+    all(rivoRoot, ['.rivo-lp-section']).forEach(function (el) { hard(el, uncap); });
+    all(rivoRoot, ['.rivo-content-wrapper']).forEach(function (el) { hard(el, uncap); });
+
+    var content = first(rivoRoot, ['.rivo-lp-content']);
+    if (content) {
+      hard(content, uncap);
+      hard(content, {
+        'max-width': JV_CONTAINER_MAX + 'px',
+        'margin-left': 'auto',
+        'margin-right': 'auto',
+        'padding-left': (wide ? JV_INSET_D : JV_INSET_M) + 'px',
+        'padding-right': (wide ? JV_INSET_D : JV_INSET_M) + 'px',
+        'text-align': 'left',
+        'align-items': 'flex-start'
+      });
+    }
+  }
+
+  function descriptionFor(title) {
+    var lower = title.toLowerCase();
+    var entries = cfg.descriptions || [];
+    for (var i = 0; i < entries.length; i++) {
+      var keywords = (entries[i].keywords || '').split(',');
+      for (var j = 0; j < keywords.length; j++) {
+        var keyword = keywords[j].trim().toLowerCase();
+        if (keyword && lower.indexOf(keyword) > -1) { return entries[i].text || ''; }
+      }
+    }
+    return '';
+  }
+
+  function injectDescriptions(cards) {
+    cards.forEach(function (card) {
+      var body = first(card, ['.rivo-card-body', '[class*="card-body"]']);
+      var title = first(card, ['.rivo-card-title', '[class*="card-title"]']);
+      if (!body || !title) { return; }
+
+      var copy = body.querySelector('.jv-card-copy');
+      if (!copy) {
+        copy = document.createElement('span');
+        copy.className = 'jv-card-copy';
+        body.appendChild(copy);
+      }
+      copy.textContent = descriptionFor(txt(title));
+      hard(copy, {
+        'order': '3',
+        'margin': '0',
+        'color': cfg.colors.muted,
+        'text-align': 'left'
+      });
+    });
+  }
+
+  function paintCardsContainer(container) {
+    var columns = columnsNow();
+    var mobile = window.matchMedia('(max-width: 749px)').matches;
+    var gap = mobile ? (cfg.mobileGridGap || 12) : (cfg.gridGap || 28);
+    var basis = columns === 1 ? '100%' :
+      (columns === 2 ? 'calc((100% - ' + gap + 'px) / 2)' :
+        'calc((100% - ' + (gap * 2) + 'px) / 3)');
+    var display = window.getComputedStyle(container).display;
+    var isGrid = display.indexOf('grid') > -1;
+
+    hard(container, {
+      'grid-template-columns': isGrid ? 'repeat(' + columns + ', minmax(0, 1fr))' : '',
+      'grid-auto-flow': isGrid ? 'row' : '',
+      'grid-auto-columns': isGrid ? 'auto' : '',
+      'grid-auto-rows': isGrid ? '1fr' : '',
+      'flex-wrap': isGrid ? '' : 'wrap',
+      'gap': gap + 'px',
+      'width': '100%',
+      'max-width': 'none',
+      'margin-top': mobile ? '40px' : '58px',
+      'margin-right': '0',
+      'margin-bottom': '0',
+      'margin-left': '0',
+      'padding': '0',
+      'overflow-x': 'visible',
+      'overflow-y': 'visible',
+      'scroll-snap-type': 'none',
+      'justify-content': 'flex-start',
+      'justify-items': 'stretch',
+      'align-items': 'stretch',
+      'align-content': 'stretch',
+      'text-align': 'left'
+    });
+
+    container.scrollLeft = 0;
+    return { isGrid: isGrid, basis: basis };
+  }
+
+  function paintCards(cards, layout) {
+    var mobile = window.matchMedia('(max-width: 749px)').matches;
+    cards.forEach(function (card) {
+      hard(card, {
+        'background': cfg.colors.card,
+        'border': '1px solid ' + cfg.colors.border,
+        'border-radius': '8px',
+        'padding': mobile ? '22px 16px' : '36px 38px',
+        'height': 'auto',
+        'min-height': (mobile ? cfg.mobileCardMinHeight : cfg.cardMinHeight) + 'px',
+        'max-height': 'none',
+        'display': 'flex',
+        'flex-direction': 'column',
+        'align-items': 'flex-start',
+        'justify-content': 'flex-start',
+        'gap': '0',
+        'flex': layout.isGrid ? 'none' : '0 0 ' + layout.basis,
+        'flex-basis': layout.isGrid ? 'auto' : layout.basis,
+        'width': layout.isGrid ? '100%' : layout.basis,
+        'max-width': layout.isGrid ? 'none' : layout.basis,
+        'min-width': '0',
+        'margin': '0',
+        'box-sizing': 'border-box',
+        'position': 'relative',
+        'text-align': 'left',
+        'scroll-snap-align': 'none'
+      });
+
+      var icon = card.querySelector('.rivo-card-icon');
+      if (icon) {
+        hard(icon, {
+          'position': 'absolute',
+          'width': '1px',
+          'height': '1px',
+          'margin': '-1px',
+          'padding': '0',
+          'opacity': '0',
+          'overflow': 'hidden',
+          'clip-path': 'inset(50%)',
+          'pointer-events': 'none'
+        });
+      }
+
+      var body = first(card, ['.rivo-card-body', '[class*="card-body"]']);
+      var title = first(card, ['.rivo-card-title', '[class*="card-title"]']);
+      var points = first(card, ['.rivo-card-description', '.rivo-card-points', '[class*="card-point"]']);
+
+      hard(body, {
+        'display': 'flex',
+        'flex-direction': 'column',
+        'align-items': 'flex-start',
+        'width': '100%',
+        'max-width': 'none',
+        'gap': '14px',
+        'margin': '0',
+        'padding': '0',
+        'text-align': 'left'
+      });
+      hard(points, {
+        'order': '1',
+        'margin': '0',
+        'color': cfg.colors.accent,
+        'text-align': 'left'
+      });
+      hard(title, {
+        'order': '2',
+        'margin': '0',
+        'color': cfg.colors.text,
+        'text-align': 'left'
+      });
+
+      var arrow = card.querySelector('.rivo-arrow-icon');
+      hard(arrow, {
+        'width': '0',
+        'height': '0',
+        'margin': '0',
+        'padding': '0',
+        'opacity': '0',
+        'overflow': 'hidden',
+        'clip-path': 'inset(50%)',
+        'pointer-events': 'none'
+      });
+    });
+  }
+
+  function apply() {
+    var note = root.querySelector('[data-jv-note]');
+    var rivoRoot = first(root, ['#rivo-ways-to-earn', '[id*="rivo-ways-to-earn"]']) || root;
+    var head = first(rivoRoot, ['.rivo-lp-section-title', '[class*="section-title"]']);
+    var sub = first(rivoRoot, ['.rivo-lp-section-subtitle', '[class*="section-subtitle"]']);
+    var container = first(rivoRoot, ['.rivo-lp-cards-container']);
+
+    if (!head) {
+      if (note) { note.hidden = false; }
+      return false;
+    }
+    if (note) { note.hidden = true; }
+
+    var cards = container ? all(container, ['.rivo-card']) : [];
+    var sigNodes = [head, sub];
+    cards.forEach(function (card) {
+      sigNodes.push(first(card, ['.rivo-card-title', '[class*="card-title"]']));
+      sigNodes.push(first(card, ['.rivo-card-description', '.rivo-card-points', '[class*="card-point"]']));
+    });
+    var sig = signature(sigNodes) + '|' + cards.length;
+    if (sig === lastSig) {
+      root.classList.add('is-ready');
+      return true;
+    }
+    lastSig = sig;
+    busy = true;
+
+    var wide = window.matchMedia('(min-width: 1100px)').matches;
+    hard(root, {
+      'padding-top': (wide ? cfg.pad.topD : 48) + 'px',
+      'padding-bottom': (wide ? cfg.pad.botD : 48) + 'px',
+      'background': cfg.colors.section,
+      'text-align': 'left'
+    });
+    widenContainer(rivoRoot, wide);
+
+    if (head.parentElement) {
+      hard(head.parentElement, {
+        'align-items': 'flex-start',
+        'gap': '0',
+        'margin-left': '0',
+        'margin-right': '0',
+        'text-align': 'left'
+      });
+    }
+    hard(head, {
+      'margin-left': '0',
+      'margin-right': '0',
+      'color': cfg.colors.text,
+      'text-align': 'left'
+    });
+    hard(sub, {
+      'margin': '0',
+      'padding': '15px 0 0',
+      'color': cfg.colors.muted,
+      'text-align': 'left'
+    });
+
+    if (cfg.eyebrow && head.parentElement && !head.parentElement.querySelector('.jv-eyebrow')) {
+      var eyebrow = document.createElement('div');
+      eyebrow.className = 'jv-eyebrow';
+      eyebrow.textContent = cfg.eyebrow;
+      head.parentElement.insertBefore(eyebrow, head);
+    }
+
+    if (sub && !txt(sub) && cfg.ledeFallback) {
+      sub.setAttribute('data-jv-fallback', '');
+      sub.textContent = cfg.ledeFallback;
+      hard(sub, {
+        'display': 'block',
+        'visibility': 'visible',
+        'opacity': '1',
+        'height': 'auto',
+        'max-height': 'none',
+        'overflow': 'visible'
+      });
+    }
+
+    if (container && cards.length) {
+      injectDescriptions(cards);
+      var layout = paintCardsContainer(container);
+      paintCards(cards, layout);
+    }
+
+    root.classList.add('is-ready');
+    requestAnimationFrame(function () { busy = false; });
+    return true;
+  }
+
+  function repaint() {
+    var rivoRoot = first(root, ['#rivo-ways-to-earn', '[id*="rivo-ways-to-earn"]']) || root;
+    var wide = window.matchMedia('(min-width: 1100px)').matches;
+    busy = true;
+    widenContainer(rivoRoot, wide);
+
+    var container = first(rivoRoot, ['.rivo-lp-cards-container']);
+    var cards = container ? all(container, ['.rivo-card']) : [];
+    if (container && cards.length) {
+      var layout = paintCardsContainer(container);
+      paintCards(cards, layout);
+    }
+    requestAnimationFrame(function () { busy = false; });
+  }
+
+  var tries = 0;
+  var timer = setInterval(function () {
+    tries++;
+    if (apply() || tries >= 60) { clearInterval(timer); }
+  }, 100);
+
+  var mo = new MutationObserver(function () {
+    if (busy) { return; }
+    apply();
+  });
+  mo.observe(root, { childList: true, subtree: true, characterData: true });
+
+  document.addEventListener('shopify:section:load', function (event) {
+    if (event.target && event.target.contains(root)) {
+      lastSig = null;
+      apply();
+    }
+  });
+
+  ['(min-width: 750px)', '(min-width: 1100px)'].forEach(function (query) {
+    var mq = window.matchMedia(query);
+    if (mq.addEventListener) { mq.addEventListener('change', repaint); }
+    else if (mq.addListener) { mq.addListener(repaint); }
+  });
+
+  apply();
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Rivo: Earn Grid v10",
+  "tag": "section",
+  "class": "jv-wte-section",
+  "settings": [
+    { "type": "header", "content": "Section intro" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow text", "default": "Ways to earn" },
+    { "type": "text", "id": "lede_fallback", "label": "Sub-line fallback", "info": "Shown only when Rivo's sub-line is empty." },
+
+    { "type": "header", "content": "Card descriptions" },
+    { "type": "textarea", "id": "desc_signup_v10", "label": "Sign up", "default": "Create an account to start earning points on every qualifying action." },
+    { "type": "textarea", "id": "desc_email_v10", "label": "Subscribe to emails", "default": "Get first word on new scents, seasonal drops, and in-store events." },
+    { "type": "textarea", "id": "desc_sms_v10", "label": "Subscribe to SMS", "default": "Be first to hear about restocks, offers, and limited releases." },
+    { "type": "textarea", "id": "desc_order_v10", "label": "Place an order", "default": "Earn points automatically every time you shop with us." },
+    { "type": "textarea", "id": "desc_birthday_v10", "label": "Celebrate a birthday", "default": "Add your birthday and enjoy a points bonus when your day arrives." },
+    { "type": "textarea", "id": "desc_review_v10", "label": "Post a product review", "default": "Share your thoughts after a purchase and earn points for your review." },
+    { "type": "textarea", "id": "desc_facebook_v10", "label": "Like page on Facebook", "default": "Connect with us on Facebook and earn points in one quick click." },
+    { "type": "textarea", "id": "desc_instagram_v10", "label": "Follow on Instagram", "default": "Follow along on Instagram for launches, inspiration, and more." },
+    { "type": "textarea", "id": "desc_tiktok_v10", "label": "Follow on TikTok", "default": "Join us on TikTok for product stories, tips, and behind-the-scenes moments." },
+    { "type": "textarea", "id": "desc_refer_v10", "label": "Refer a friend", "default": "Give a friend something to discover and earn points when they join." },
+
+    { "type": "header", "content": "Grid" },
+    { "type": "range", "id": "card_min_height_v10", "label": "Minimum card height", "min": 220, "max": 340, "step": 10, "default": 280, "unit": "px" },
+    { "type": "range", "id": "grid_gap_v10", "label": "Space between cards", "min": 12, "max": 40, "step": 4, "default": 28, "unit": "px" },
+    { "type": "range", "id": "mobile_card_min_height_v10", "label": "Mobile card height", "min": 220, "max": 340, "step": 10, "default": 300, "unit": "px" },
+    { "type": "range", "id": "mobile_grid_gap_v10", "label": "Mobile space between cards", "min": 8, "max": 24, "step": 4, "default": 12, "unit": "px" },
+
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "section_bg_grid_v10", "label": "Section background", "default": "#1D1A16" },
+    { "type": "color", "id": "card_bg_grid_v10", "label": "Card background", "default": "#29251F" },
+    { "type": "color", "id": "card_border_grid_v10", "label": "Card border", "default": "#433E36" },
+    { "type": "color", "id": "section_text_grid_v10", "label": "Main text", "default": "#FAF6EC" },
+    { "type": "color", "id": "muted_text_grid_v10", "label": "Muted text", "default": "#B8B2A8" },
+    { "type": "color", "id": "accent_grid_v10", "label": "Accent", "default": "#C79A4B" },
+
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "pad_base", "label": "Spacing base unit", "min": 8, "max": 40, "step": 4, "default": 24, "unit": "px" },
+    {
+      "type": "select", "id": "pad_top_desktop", "label": "Space above (desktop)", "default": "3.5",
+      "options": [
+        { "value": "0", "label": "None" },
+        { "value": "1", "label": "1x" },
+        { "value": "2", "label": "2x" },
+        { "value": "3.5", "label": "3.5x" }
+      ]
+    },
+    {
+      "type": "select", "id": "pad_bottom_desktop", "label": "Space below (desktop)", "default": "3.5",
+      "options": [
+        { "value": "0", "label": "None" },
+        { "value": "1", "label": "1x" },
+        { "value": "2", "label": "2x" },
+        { "value": "3.5", "label": "3.5x" }
+      ]
+    }
+  ],
+  "blocks": [ { "type": "@app" } ],
+  "presets": [ { "name": "Rivo: Ways to Earn Grid" } ]
+}
+{% endschema %}
