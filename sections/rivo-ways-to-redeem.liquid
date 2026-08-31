@@ -1,0 +1,645 @@
+{%- comment -%} Rivo Ways to Redeem split CTA. Install in Shopify sections/. {%- endcomment -%}
+
+{%- assign m_pt_d = section.settings.pad_top_desktop | plus: 0.0 -%}
+{%- assign m_pb_d = section.settings.pad_bottom_desktop | plus: 0.0 -%}
+{%- assign m_pt_m = section.settings.pad_top_mobile | plus: 0.0 -%}
+{%- assign m_pb_m = section.settings.pad_bottom_mobile | plus: 0.0 -%}
+{%- assign pt_d = section.settings.pad_base | times: m_pt_d | round -%}
+{%- assign pb_d = section.settings.pad_base | times: m_pb_d | round -%}
+{%- assign pt_m = section.settings.pad_base | times: m_pt_m | round -%}
+{%- assign pb_m = section.settings.pad_base | times: m_pb_m | round -%}
+{%- if section.settings.image != blank -%}
+  {%- assign media_url = section.settings.image | image_url: width: 1800 -%}
+{%- else -%}
+  {%- assign media_url = '' -%}
+{%- endif -%}
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Dosis:wght@400;500;600;700&display=swap');
+
+  .jv-wtr-{{ section.id }} {
+    position: relative;
+    overflow: hidden;
+    color: {{ section.settings.text_color }};
+    background: linear-gradient(112deg, {{ section.settings.gradient_left }} 0%, {{ section.settings.gradient_right }} 100%);
+    opacity: 0;
+    animation: jv-wtr-reveal-{{ section.id }} .01s linear 1.5s forwards;
+  }
+  .jv-wtr-{{ section.id }}.is-ready { opacity: 1; animation: none; }
+  @keyframes jv-wtr-reveal-{{ section.id }} { to { opacity: 1; } }
+
+  .jv-wtr-{{ section.id }} .jv-redeem-marquee {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    overflow: hidden;
+    background: {{ section.settings.marquee_bg_v2 }};
+    color: {{ section.settings.marquee_text_v2 }};
+  }
+  .jv-wtr-{{ section.id }} .jv-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: jv-marquee-scroll-{{ section.id }} {{ section.settings.marquee_speed_v2 }}s linear infinite;
+    will-change: transform;
+  }
+  .jv-wtr-{{ section.id }} .jv-marquee-group {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: space-around;
+    min-width: 100vw;
+    min-height: 78px;
+  }
+  .jv-wtr-{{ section.id }} .jv-marquee-item {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 48px;
+    padding: 0 32px;
+    font-family: "Petrona", serif;
+    font-size: 24px;
+    font-style: italic;
+    font-weight: 500;
+    letter-spacing: -.01em;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+  .jv-wtr-{{ section.id }} .jv-marquee-item::after {
+    content: '✦';
+    color: {{ section.settings.marquee_star_v2 }};
+    font-size: 22px;
+    font-style: normal;
+  }
+  @keyframes jv-marquee-scroll-{{ section.id }} {
+    to { transform: translate3d(-50%, 0, 0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .jv-wtr-{{ section.id }} .jv-marquee-track { animation-play-state: paused; }
+  }
+
+  .jv-wtr-{{ section.id }} .jv-redeem-copy {
+    position: relative;
+    z-index: 2;
+    min-width: 0;
+    align-self: center;
+  }
+  .jv-wtr-{{ section.id }} .jv-redeem-eyebrow {
+    margin: 0 0 22px;
+    color: {{ section.settings.accent_color }};
+    font-family: "Petrona", serif;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 500;
+    letter-spacing: .02em;
+    line-height: 1.3;
+  }
+  .jv-wtr-{{ section.id }} .rivo-lp-section-title,
+  .jv-wtr-{{ section.id }} .rivo-lp-section-title span {
+    max-width: 640px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    color: {{ section.settings.text_color }} !important;
+    font-family: "Petrona", serif !important;
+    font-size: 58px !important;
+    font-weight: 600 !important;
+    letter-spacing: -.025em !important;
+    line-height: 1.02 !important;
+    text-align: left !important;
+    text-wrap: balance;
+  }
+  .jv-wtr-{{ section.id }} .rivo-lp-section-subtitle {
+    max-width: 560px !important;
+    margin: 0 !important;
+    padding-top: 24px !important;
+    padding-right: 0 !important;
+    padding-bottom: 0 !important;
+    padding-left: 0 !important;
+    color: {{ section.settings.muted_color }} !important;
+    font-family: "Dosis", sans-serif !important;
+    font-size: 17px !important;
+    font-weight: 400 !important;
+    letter-spacing: .01em !important;
+    line-height: 1.65 !important;
+    text-align: left !important;
+  }
+  .jv-wtr-{{ section.id }} .jv-redeem-media {
+    position: relative;
+    min-width: 0;
+    min-height: 440px;
+    overflow: hidden;
+    border: 1px solid rgba(250, 246, 236, .18);
+    border-radius: {{ section.settings.image_radius }}px;
+    background:
+      radial-gradient(circle at 72% 24%, rgba(199, 154, 75, .28), transparent 38%),
+      linear-gradient(145deg, rgba(250, 246, 236, .09), rgba(250, 246, 236, .02));
+  }
+  .jv-wtr-{{ section.id }} .jv-redeem-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 440px;
+    object-fit: cover;
+    object-position: {{ section.settings.image_position }};
+  }
+  .jv-wtr-{{ section.id }} .jv-image-placeholder {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 28px;
+    color: {{ section.settings.muted_color }};
+    font-family: "Dosis", sans-serif;
+    font-size: 14px;
+    letter-spacing: .04em;
+    text-align: center;
+  }
+
+  .jv-wtr-{{ section.id }} .rivo-lp-cards-container {
+    margin-top: 34px !important;
+  }
+  .jv-wtr-{{ section.id }} .rivo-card {
+    transition: transform .2s ease, filter .2s ease;
+  }
+  .jv-wtr-{{ section.id }} .rivo-card:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.04);
+  }
+  .jv-wtr-{{ section.id }} .rivo-card:focus-visible {
+    outline: 2px solid {{ section.settings.text_color }} !important;
+    outline-offset: 4px !important;
+  }
+  .jv-wtr-{{ section.id }} .jv-redeem-cta-label {
+    position: relative;
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: {{ section.settings.button_text_color }};
+    font-family: "Dosis", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .035em;
+    line-height: 1.2;
+    text-align: center;
+  }
+  .jv-wtr-{{ section.id }} .jv-editor-note {
+    padding: 36px 24px;
+    color: {{ section.settings.text_color }};
+    font-family: "Dosis", sans-serif;
+    text-align: center;
+  }
+
+  @media (max-width: 899px) {
+    .jv-wtr-{{ section.id }} .rivo-lp-section-title,
+    .jv-wtr-{{ section.id }} .rivo-lp-section-title span { font-size: 44px !important; }
+    .jv-wtr-{{ section.id }} .jv-redeem-media,
+    .jv-wtr-{{ section.id }} .jv-redeem-media img { min-height: 360px; }
+  }
+  @media (max-width: 599px) {
+    .jv-wtr-{{ section.id }} .jv-redeem-eyebrow { margin-bottom: 16px; }
+    .jv-wtr-{{ section.id }} .rivo-lp-section-title,
+    .jv-wtr-{{ section.id }} .rivo-lp-section-title span { font-size: 40px !important; }
+    .jv-wtr-{{ section.id }} .rivo-lp-section-subtitle { padding-top: 18px !important; font-size: 16px !important; }
+    .jv-wtr-{{ section.id }} .rivo-lp-cards-container { margin-top: 28px !important; }
+    .jv-wtr-{{ section.id }} .jv-redeem-media,
+    .jv-wtr-{{ section.id }} .jv-redeem-media img { min-height: 300px; }
+  }
+</style>
+
+<script type="application/json" id="jv-wtr-cfg-{{ section.id }}">
+  {
+    "eyebrow": {{ section.settings.eyebrow | default: '' | json }},
+    "ledeFallback": {{ section.settings.lede_fallback | default: '' | json }},
+    "ctaLabel": {{ section.settings.cta_label | default: 'Redeem your points' | json }},
+    "imageUrl": {{ media_url | json }},
+    "imageAlt": {{ section.settings.image_alt | default: '' | json }},
+    "imagePlaceholder": {{ section.settings.image_placeholder | default: 'Choose an image in the section settings' | json }},
+    "colors": {
+      "left": {{ section.settings.gradient_left | json }},
+      "right": {{ section.settings.gradient_right | json }},
+      "accent": {{ section.settings.accent_color | json }},
+      "buttonText": {{ section.settings.button_text_color | json }}
+    },
+    "pad": {
+      "topD": {{ pt_d }}, "botD": {{ pb_d }},
+      "topM": {{ pt_m }}, "botM": {{ pb_m }}
+    },
+    "selectors": {
+      "root": {{ section.settings.sel_root | json }},
+      "content": {{ section.settings.sel_content | json }},
+      "title": {{ section.settings.sel_title | json }},
+      "subtitle": {{ section.settings.sel_subtitle | json }},
+      "cards": {{ section.settings.sel_cards | json }}
+    }
+  }
+</script>
+
+<div class="jv-wtr-{{ section.id }} jv-wtr" id="jv-wtr-{{ section.id }}" data-jv-wtr-root>
+  <div class="jv-redeem-marquee" role="region" aria-label={{ section.settings.marquee_label_v2 | json }}>
+    <div class="jv-marquee-track">
+      {%- for repeat in (1..2) -%}
+        <div class="jv-marquee-group"{% if repeat == 2 %} aria-hidden="true"{% endif %}>
+          <span class="jv-marquee-item">{{ section.settings.marquee_item_1_v2 | escape }}</span>
+          <span class="jv-marquee-item">{{ section.settings.marquee_item_2_v2 | escape }}</span>
+          <span class="jv-marquee-item">{{ section.settings.marquee_item_3_v2 | escape }}</span>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+
+  {%- for block in section.blocks -%}
+    {% render block %}
+  {%- endfor -%}
+
+  {%- if request.design_mode -%}
+    <div class="jv-editor-note" data-jv-note hidden>
+      Rivo's Ways to Redeem block isn't rendering. Enable it in Rivo &rarr; Loyalty page. Theme editor only.
+    </div>
+  {%- endif -%}
+</div>
+
+<script>
+(function () {
+  var root = document.getElementById('jv-wtr-{{ section.id }}');
+  if (!root) { return; }
+
+  var cfgEl = document.getElementById('jv-wtr-cfg-{{ section.id }}');
+  var cfg;
+  try { cfg = JSON.parse(cfgEl.textContent); } catch (e) { return; }
+
+  var busy = false;
+  var lastSig = null;
+  var resizeTimer = null;
+
+  function hard(el, props) {
+    if (!el) { return; }
+    for (var key in props) {
+      if (Object.prototype.hasOwnProperty.call(props, key)) {
+        el.style.setProperty(key, props[key], 'important');
+      }
+    }
+  }
+
+  function first(scope, selectors) {
+    for (var i = 0; i < selectors.length; i++) {
+      if (!selectors[i]) { continue; }
+      try {
+        var found = scope.querySelector(selectors[i]);
+        if (found) { return found; }
+      } catch (e) {}
+    }
+    return null;
+  }
+
+  function all(scope, selectors) {
+    for (var i = 0; i < selectors.length; i++) {
+      if (!selectors[i]) { continue; }
+      try {
+        var found = scope.querySelectorAll(selectors[i]);
+        if (found.length) { return Array.prototype.slice.call(found); }
+      } catch (e) {}
+    }
+    return [];
+  }
+
+  function text(el) {
+    return el ? (el.textContent || '').replace(/\s+/g, ' ').trim() : '';
+  }
+
+  function signature(nodes) {
+    return nodes.map(function (node) { return text(node); }).join('|');
+  }
+
+  function clip(el) {
+    hard(el, {
+      'position': 'absolute',
+      'width': '1px', 'height': '1px',
+      'min-width': '0', 'min-height': '0',
+      'margin': '0', 'padding': '0',
+      'opacity': '0', 'overflow': 'hidden',
+      'clip-path': 'inset(50%)',
+      'pointer-events': 'none'
+    });
+  }
+
+  function uncap(scope) {
+    var nodes = scope.querySelectorAll(
+      '[id^="rivo-"], .rivo-lp-section, .rivo-content-wrapper, .rivo-lp-content, .rivo-card-body'
+    );
+    for (var i = 0; i < nodes.length; i++) {
+      hard(nodes[i], { 'max-width': 'none', 'min-width': '0', 'box-sizing': 'border-box' });
+    }
+  }
+
+  function ensureLayout(content, title, subtitle, container) {
+    var copy = content.querySelector('[data-jv-redeem-copy]');
+    if (!copy) {
+      copy = document.createElement('div');
+      copy.className = 'jv-redeem-copy';
+      copy.setAttribute('data-jv-redeem-copy', '');
+      content.insertBefore(copy, content.firstChild);
+    }
+
+    var eyebrow = copy.querySelector('[data-jv-redeem-eyebrow]');
+    if (!eyebrow) {
+      eyebrow = document.createElement('p');
+      eyebrow.className = 'jv-redeem-eyebrow';
+      eyebrow.setAttribute('data-jv-redeem-eyebrow', '');
+      copy.appendChild(eyebrow);
+    }
+    eyebrow.textContent = cfg.eyebrow;
+    eyebrow.hidden = !cfg.eyebrow;
+
+    if (title && title.parentNode !== copy) { copy.appendChild(title); }
+    if (subtitle && subtitle.parentNode !== copy) { copy.appendChild(subtitle); }
+    if (container && container.parentNode !== copy) { copy.appendChild(container); }
+
+    if (subtitle && !text(subtitle) && cfg.ledeFallback) {
+      subtitle.textContent = cfg.ledeFallback;
+    }
+
+    var media = content.querySelector('[data-jv-redeem-media]');
+    if (!media) {
+      media = document.createElement('div');
+      media.className = 'jv-redeem-media';
+      media.setAttribute('data-jv-redeem-media', '');
+      content.appendChild(media);
+    }
+
+    var currentUrl = media.getAttribute('data-image-url') || '';
+    if (currentUrl !== cfg.imageUrl) {
+      media.innerHTML = '';
+      media.setAttribute('data-image-url', cfg.imageUrl);
+      if (cfg.imageUrl) {
+        var image = document.createElement('img');
+        image.src = cfg.imageUrl;
+        image.alt = cfg.imageAlt;
+        image.loading = 'lazy';
+        image.decoding = 'async';
+        media.appendChild(image);
+      } else {
+        var placeholder = document.createElement('span');
+        placeholder.className = 'jv-image-placeholder';
+        placeholder.textContent = cfg.imagePlaceholder;
+        media.appendChild(placeholder);
+      }
+    }
+
+    return { copy: copy, media: media };
+  }
+
+  function styleCard(card) {
+    var nativeTitle = text(first(card, ['.rivo-card-title', '[class*="card-title"]']));
+    var nativeDescription = text(first(card, ['.rivo-card-description', '[class*="card-description"]']));
+    var accessible = cfg.ctaLabel;
+    if (nativeTitle) { accessible += ': ' + nativeTitle; }
+    if (nativeDescription) { accessible += ', ' + nativeDescription; }
+
+    var label = card.querySelector('[data-jv-redeem-cta]');
+    if (!label) {
+      label = document.createElement('span');
+      label.className = 'jv-redeem-cta-label';
+      label.setAttribute('data-jv-redeem-cta', '');
+      card.appendChild(label);
+    }
+    label.textContent = cfg.ctaLabel;
+    card.setAttribute('aria-label', accessible);
+    card.setAttribute('title', nativeTitle || cfg.ctaLabel);
+
+    hard(card, {
+      'position': 'relative',
+      'display': 'inline-flex',
+      'align-items': 'center', 'justify-content': 'center',
+      'flex': '0 0 auto',
+      'width': 'auto', 'max-width': '100%',
+      'min-width': '220px', 'min-height': '56px', 'height': '56px',
+      'margin': '0', 'padding': '0 28px', 'gap': '0',
+      'border': '1px solid ' + cfg.colors.accent,
+      'border-radius': '2px',
+      'background': cfg.colors.accent,
+      'background-color': cfg.colors.accent,
+      'box-shadow': 'none',
+      'color': cfg.colors.buttonText,
+      'cursor': 'pointer', 'box-sizing': 'border-box',
+      'text-align': 'center', '-webkit-appearance': 'none', 'appearance': 'none'
+    });
+
+    clip(card.querySelector('.rivo-card-icon'));
+    clip(card.querySelector('.rivo-card-body'));
+    clip(card.querySelector('.rivo-arrow-icon'));
+    clip(card.querySelector('.rivo-completed'));
+  }
+
+  function paint(rivoRoot, content, title, subtitle, container, cards) {
+    var desktop = window.matchMedia('(min-width: 900px)').matches;
+    var layout = ensureLayout(content, title, subtitle, container);
+
+    uncap(rivoRoot);
+    hard(root, {
+      'background': 'linear-gradient(112deg, ' + cfg.colors.left + ' 0%, ' + cfg.colors.right + ' 100%)',
+      'padding-top': '0', 'padding-bottom': '0'
+    });
+    hard(rivoRoot, {
+      'width': '100%', 'max-width': 'none',
+      'margin': '0',
+      'padding-top': (desktop ? cfg.pad.topD : cfg.pad.topM) + 'px',
+      'padding-bottom': (desktop ? cfg.pad.botD : cfg.pad.botM) + 'px',
+      'padding-left': '0', 'padding-right': '0',
+      'background': 'transparent', 'background-color': 'transparent',
+      'box-sizing': 'border-box'
+    });
+    hard(content, {
+      'display': 'grid',
+      'grid-template-columns': desktop ? 'minmax(0, .9fr) minmax(420px, 1.1fr)' : 'minmax(0, 1fr)',
+      'align-items': 'center',
+      'column-gap': desktop ? '72px' : '0',
+      'row-gap': desktop ? '0' : '40px',
+      'width': 'calc(100% - ' + (desktop ? 48 : 40) + 'px)',
+      'max-width': '1280px',
+      'margin': '0 auto', 'padding': '0',
+      'box-sizing': 'border-box', 'text-align': 'left'
+    });
+    hard(layout.copy, {
+      'grid-column': '1', 'grid-row': '1',
+      'width': '100%', 'max-width': '640px',
+      'margin': '0', 'padding': '0', 'text-align': 'left'
+    });
+    hard(layout.media, {
+      'grid-column': desktop ? '2' : '1',
+      'grid-row': desktop ? '1' : '2',
+      'width': '100%', 'margin': '0',
+      'align-self': 'stretch', 'box-sizing': 'border-box'
+    });
+    hard(title, {
+      'width': '100%', 'max-width': '640px',
+      'margin': '0', 'padding': '0', 'text-align': 'left'
+    });
+    hard(subtitle, {
+      'width': '100%', 'max-width': '560px',
+      'margin': '0', 'padding': desktop ? '24px 0 0' : '18px 0 0',
+      'text-align': 'left'
+    });
+    hard(container, {
+      'justify-content': 'flex-start', 'align-items': 'flex-start',
+      'width': '100%', 'max-width': 'none',
+      'margin': desktop ? '34px 0 0' : '28px 0 0',
+      'padding': '0', 'gap': '12px',
+      'overflow': 'visible', 'text-align': 'left'
+    });
+
+    cards.forEach(styleCard);
+  }
+
+  function apply(force) {
+    if (busy) { return false; }
+    var note = root.querySelector('[data-jv-note]');
+    var s = cfg.selectors;
+    var rivoRoot = first(root, [s.root, '#rivo-ways-to-redeem', '[id*="ways-to-redeem"]']);
+    if (!rivoRoot) { if (note) { note.hidden = false; } return false; }
+
+    var content = first(rivoRoot, [s.content, '.rivo-lp-content', '.rivo-content-wrapper']);
+    var title = first(rivoRoot, [s.title, '.rivo-lp-section-title', '[class*="section-title"]']);
+    var subtitle = first(rivoRoot, [s.subtitle, '.rivo-lp-section-subtitle', '[class*="section-subtitle"]']);
+    var container = first(rivoRoot, [s.cards, '.rivo-lp-cards-container', '[class*="cards-container"]']);
+    var cards = container ? all(container, ['.rivo-card']) : [];
+
+    if (!content || !title || !container || !cards.length) {
+      if (note) { note.hidden = false; }
+      return false;
+    }
+    if (note) { note.hidden = true; }
+
+    var sigNodes = [title, subtitle];
+    cards.forEach(function (card) {
+      sigNodes.push(first(card, ['.rivo-card-title', '[class*="card-title"]']));
+      sigNodes.push(first(card, ['.rivo-card-description', '[class*="card-description"]']));
+    });
+    var sig = signature(sigNodes) + '|' + cards.length + '|' + window.innerWidth;
+    if (!force && sig === lastSig) {
+      root.classList.add('is-ready');
+      return true;
+    }
+
+    lastSig = sig;
+    busy = true;
+    try { paint(rivoRoot, content, title, subtitle, container, cards); }
+    catch (e) { console.warn('[jv-wtr] paint failed', e); }
+    root.classList.add('is-ready');
+    requestAnimationFrame(function () { busy = false; });
+    return true;
+  }
+
+  var tries = 0;
+  var timer = setInterval(function () {
+    tries += 1;
+    if (apply(false) || tries >= 60) { clearInterval(timer); }
+  }, 100);
+
+  var observer = new MutationObserver(function () {
+    if (!busy) { apply(false); }
+  });
+  observer.observe(root, { childList: true, subtree: true, characterData: true });
+
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () { lastSig = null; apply(true); }, 120);
+  });
+  document.addEventListener('shopify:section:load', function (event) {
+    if (event.target && event.target.contains(root)) { lastSig = null; apply(true); }
+  });
+
+  apply(false);
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Rivo: Redeem CTA v2",
+  "tag": "section",
+  "class": "jv-redeem-cta-section",
+  "settings": [
+    { "type": "header", "content": "Moving marquee" },
+    { "type": "text", "id": "marquee_item_1_v2", "label": "Message 1", "default": "Refer a friend, give a candle" },
+    { "type": "text", "id": "marquee_item_2_v2", "label": "Message 2", "default": "Points redeemable in-store, all 5 locations" },
+    { "type": "text", "id": "marquee_item_3_v2", "label": "Message 3", "default": "150 points just for joining" },
+    { "type": "text", "id": "marquee_label_v2", "label": "Accessibility label", "default": "Loyalty program highlights" },
+    { "type": "range", "id": "marquee_speed_v2", "label": "Animation duration", "min": 10, "max": 60, "step": 5, "default": 30, "unit": "s" },
+    { "type": "color", "id": "marquee_bg_v2", "label": "Marquee background", "default": "#C79A4B" },
+    { "type": "color", "id": "marquee_text_v2", "label": "Marquee text", "default": "#1D1A16" },
+    { "type": "color", "id": "marquee_star_v2", "label": "Separator", "default": "#7C6337" },
+
+    { "type": "header", "content": "Content" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Ways to redeem" },
+    { "type": "textarea", "id": "lede_fallback", "label": "Description fallback", "default": "Turn your points into savings on your next order.", "info": "Only used if the Rivo subtitle is empty." },
+    { "type": "text", "id": "cta_label", "label": "Button label", "default": "Redeem your points" },
+
+    { "type": "header", "content": "Right-side image" },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "image_alt", "label": "Image alt text", "default": "Reward products" },
+    { "type": "text", "id": "image_placeholder", "label": "Empty image message", "default": "Choose an image in the section settings" },
+    {
+      "type": "select", "id": "image_position", "label": "Image position", "default": "center center",
+      "options": [
+        { "value": "center center", "label": "Center" },
+        { "value": "center top", "label": "Top" },
+        { "value": "center bottom", "label": "Bottom" },
+        { "value": "left center", "label": "Left" },
+        { "value": "right center", "label": "Right" }
+      ]
+    },
+    { "type": "range", "id": "image_radius", "label": "Image corner radius", "min": 0, "max": 32, "step": 2, "default": 14, "unit": "px" },
+
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "gradient_left", "label": "Gradient left", "default": "#1D1A16" },
+    { "type": "color", "id": "gradient_right", "label": "Gradient right", "default": "#343A2E" },
+    { "type": "color", "id": "text_color", "label": "Heading color", "default": "#FAF6EC" },
+    { "type": "color", "id": "muted_color", "label": "Description color", "default": "#C7C2B8" },
+    { "type": "color", "id": "accent_color", "label": "Accent and button", "default": "#C79A4B" },
+    { "type": "color", "id": "button_text_color", "label": "Button text", "default": "#1D1A16" },
+
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "pad_base", "label": "Spacing base unit", "min": 8, "max": 40, "step": 4, "default": 24, "unit": "px" },
+    {
+      "type": "select", "id": "pad_top_desktop", "label": "Space above (desktop)", "default": "4",
+      "options": [
+        { "value": "0", "label": "None" }, { "value": "1", "label": "1x" },
+        { "value": "2", "label": "2x" }, { "value": "3", "label": "3x" },
+        { "value": "4", "label": "4x" }, { "value": "5", "label": "5x" }
+      ]
+    },
+    {
+      "type": "select", "id": "pad_bottom_desktop", "label": "Space below (desktop)", "default": "4",
+      "options": [
+        { "value": "0", "label": "None" }, { "value": "1", "label": "1x" },
+        { "value": "2", "label": "2x" }, { "value": "3", "label": "3x" },
+        { "value": "4", "label": "4x" }, { "value": "5", "label": "5x" }
+      ]
+    },
+    {
+      "type": "select", "id": "pad_top_mobile", "label": "Space above (mobile)", "default": "3",
+      "options": [
+        { "value": "0", "label": "None" }, { "value": "1", "label": "1x" },
+        { "value": "2", "label": "2x" }, { "value": "3", "label": "3x" },
+        { "value": "4", "label": "4x" }
+      ]
+    },
+    {
+      "type": "select", "id": "pad_bottom_mobile", "label": "Space below (mobile)", "default": "3",
+      "options": [
+        { "value": "0", "label": "None" }, { "value": "1", "label": "1x" },
+        { "value": "2", "label": "2x" }, { "value": "3", "label": "3x" },
+        { "value": "4", "label": "4x" }
+      ]
+    },
+
+    { "type": "header", "content": "Advanced Rivo selectors" },
+    { "type": "text", "id": "sel_root", "label": "Rivo block", "default": "#rivo-ways-to-redeem" },
+    { "type": "text", "id": "sel_content", "label": "Content wrapper", "default": ".rivo-lp-content" },
+    { "type": "text", "id": "sel_title", "label": "Title", "default": ".rivo-lp-section-title" },
+    { "type": "text", "id": "sel_subtitle", "label": "Subtitle", "default": ".rivo-lp-section-subtitle" },
+    { "type": "text", "id": "sel_cards", "label": "Cards container", "default": ".rivo-lp-cards-container" }
+  ],
+  "blocks": [ { "type": "@app" } ],
+  "presets": [ { "name": "Rivo: Redeem CTA" } ]
+}
+{% endschema %}
