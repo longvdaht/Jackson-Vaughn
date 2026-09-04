@@ -1,0 +1,99 @@
+{%- comment -%}
+  Custom Product Card Review Rating (Pure Liquid)
+  Usage: {% render 'product-card-review', product_card_product: product_card_product %}
+{%- endcomment -%}
+{%- liquid
+  assign current_product = product_card_product | default: product
+  if current_product == blank
+    break
+  endif
+
+  assign rating_val = nil
+  assign rating_cnt = nil
+
+  if current_product.metafields.reviews.rating.value != blank
+    assign rating_val = current_product.metafields.reviews.rating.value.rating | default: current_product.metafields.reviews.rating.value
+    assign rating_cnt = current_product.metafields.reviews.rating_count
+  elsif current_product.metafields.judgeme.badge != blank
+    assign j_badge = current_product.metafields.judgeme.badge
+
+    if j_badge contains "data-average-rating='"
+      assign rating_val = j_badge | split: "data-average-rating='" | last | split: "'" | first
+    elsif j_badge contains 'data-average-rating="'
+      assign rating_val = j_badge | split: 'data-average-rating="' | last | split: '"' | first
+    elsif j_badge contains "data-score='"
+      assign rating_val = j_badge | split: "data-score='" | last | split: "'" | first
+    elsif j_badge contains 'data-score="'
+      assign rating_val = j_badge | split: 'data-score="' | last | split: '"' | first
+    endif
+
+    if j_badge contains "data-number-of-reviews='"
+      assign rating_cnt = j_badge | split: "data-number-of-reviews='" | last | split: "'" | first
+    elsif j_badge contains 'data-number-of-reviews="'
+      assign rating_cnt = j_badge | split: 'data-number-of-reviews="' | last | split: '"' | first
+    endif
+  endif
+
+  assign rating_cnt = rating_cnt | plus: 0
+  assign rating_val = rating_val | plus: 0
+
+  if rating_cnt <= 0 or rating_val <= 0
+    break
+  endif
+
+  assign rating_float = rating_val | round: 1
+  assign rating_parts = rating_float | append: '' | split: '.'
+  if rating_parts.size == 1
+    assign rating_display = rating_parts[0] | append: '.0'
+  else
+    assign rating_display = rating_parts[0] | append: '.' | append: rating_parts[1]
+  endif
+
+  if rating_cnt >= 1000000
+    assign m = rating_cnt | divided_by: 1000000
+    assign r_m = rating_cnt | modulo: 1000000
+    assign k = r_m | divided_by: 1000
+    assign r_k = r_m | modulo: 1000
+    if k < 10
+      assign k = '00' | append: k
+    elsif k < 100
+      assign k = '0' | append: k
+    endif
+    if r_k < 10
+      assign r_k = '00' | append: r_k
+    elsif r_k < 100
+      assign r_k = '0' | append: r_k
+    endif
+    assign count_display = m | append: ',' | append: k | append: ',' | append: r_k
+  elsif rating_cnt >= 1000
+    assign k = rating_cnt | divided_by: 1000
+    assign r = rating_cnt | modulo: 1000
+    if r < 10
+      assign r = '00' | append: r
+    elsif r < 100
+      assign r = '0' | append: r
+    endif
+    assign count_display = k | append: ',' | append: r
+  else
+    assign count_display = rating_cnt
+  endif
+-%}
+
+<div class="card-review-wrapper">
+  <a
+    href="{{ current_product.url }}"
+    class="card-review-custom"
+    aria-label="{{ rating_display }} out of 5 stars with {{ count_display }} reviews"
+    tabindex="-1"
+  >
+    <span class="card-review__icon" aria-hidden="true">
+      <svg class="icon icon-star" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+      </svg>
+    </span>
+    <span class="card-review__text">
+      <span class="card-review__rating">{{ rating_display }}</span>
+      <span class="card-review__count">({{ count_display }})</span>
+    </span>
+  </a>
+</div>
