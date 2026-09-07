@@ -116,7 +116,7 @@
                     {%- endif -%}
                 </button>
             {%- else -%}
-                <button type="submit" name="add" data-btn-addToCart class="product-form__submit button button--secondary an-{{ atc_animation }}{% if show_subtotal_text %} button-text-change{% endif %}" id="product-add-to-cart-{{ product.id }}">
+                <button type="submit" name="add" data-btn-addToCart class="product-form__submit button an-{{ atc_animation }}{% if show_subtotal_text %} button-text-change{% endif %}" id="product-add-to-cart-{{ product.id }}">
                     {%- if show_subtotal_text and subtotal_style == '2' -%}
                         {%- assign subtotal = subtotal | strip_html -%}
                         {{ 'products.product.sub_total' | t : value : subtotal }}
