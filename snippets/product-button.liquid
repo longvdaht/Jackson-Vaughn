@@ -65,10 +65,6 @@
     {%- endif -%}
 {%- endcapture -%}
 <div class="productView-buttons">
-    {%- if gift_card_recipient_feature_active -%}
-      {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
-    {%- endif -%}
-
     {%- assign product_form_installment_id = 'product-form-installment-' | append: product.id -%}
     {%- form 'product', product, id: product_form_installment_id, class: 'installment caption-large' -%}
         <input type="hidden" name="id" value="{{ current_variant.id }}">
@@ -79,6 +75,16 @@
     {%- assign product_form_id = 'product-form-' | append: product.id -%}
     <product-form class="productView-form product-form{% if sticky_add_to_cart_always_mb %} always-on-mobile{% endif %}">
         {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+            {%- comment -%}
+              The recipient fields have to live INSIDE this form. Both add-to-cart paths build
+              their payload from the form element itself (FormData in theme.js, serializeForm in
+              product-form.js), so fields rendered outside it never reach /cart/add and Shopify
+              falls back to emailing the gift card to the checkout email. Rendering here also
+              hands the snippet the real `form` object it needs for `form.errors`.
+            {%- endcomment -%}
+            {%- if gift_card_recipient_feature_active -%}
+                {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
+            {%- endif -%}
             <div class="productView-group">
                 {%- if check_show_qty == 'show_qty_2' -%}
                     {%- if show_subtotal_text and subtotal_style == '1' -%}
