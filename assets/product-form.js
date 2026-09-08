@@ -16,8 +16,24 @@ class ProductForm extends HTMLElement {
         submitButton.setAttribute('disabled', true);
         submitButton.classList.add('loading');
 
+        // serializeForm flattens line item properties into bracketed keys
+        // ("properties[Recipient email]"). /cart/add.js only parses those from a
+        // form-encoded body, not from JSON, so nest them back under `properties`
+        // and drop the blanks left behind by an unused gift card recipient form.
+        const formValues = JSON.parse(serializeForm(this.form));
+        const properties = {};
+
+        Object.entries(formValues).forEach(([key, value]) => {
+            const match = key.match(/^properties\[(.+)\]$/);
+            if (!match) return;
+
+            delete formValues[key];
+            if (value !== '') properties[match[1]] = value;
+        });
+
         const body = JSON.stringify({
-            ...JSON.parse(serializeForm(this.form)),
+            ...formValues,
+            ...(Object.keys(properties).length ? { properties } : {}),
             sections: this.cartNotification.getSectionsToRender().map((section) => section.id),
             sections_url: window.location.pathname
         });
