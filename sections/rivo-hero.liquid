@@ -1,0 +1,409 @@
+{%- comment -%} Rivo hero restyled in place with a continuous mobile background.
+Install as sections/rivo-hero.liquid. {%- endcomment -%}
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Dosis:wght@400;500;600;700&display=swap');
+
+  .jv-hero-{{ section.id }} {
+    position: relative;
+    overflow: hidden;
+    background: #1D1A16;
+    color: #FAF6EC;
+    opacity: 0;
+    animation: jv-hero-reveal-{{ section.id }} .01s linear 1.5s forwards;
+  }
+  .jv-hero-{{ section.id }}.is-ready { opacity: 1; animation: none; }
+  @keyframes jv-hero-reveal-{{ section.id }} { to { opacity: 1; } }
+
+  .jv-hero-{{ section.id }} .shopify-block,
+  .jv-hero-{{ section.id }} [class*="shopify-block"] {
+    margin: 0 !important;
+    padding: 0 !important;
+    min-height: 0 !important;
+    height: auto !important;
+    background: transparent !important;
+  }
+
+  .jv-hero-{{ section.id }} .jv-hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .jv-hero-{{ section.id }} .jv-hero-eyebrow {
+    width: fit-content;
+    margin: 0 0 28px;
+    padding: 11px 18px;
+    border: 1px solid rgba(250,246,236,.45);
+    border-radius: 2px;
+    color: #C79A4B;
+    font: 700 12px/1.3 "Dosis", sans-serif;
+    letter-spacing: .16em;
+    text-align: left;
+    text-transform: uppercase;
+  }
+  .jv-hero-{{ section.id }} .rivo-hero-title,
+  .jv-hero-{{ section.id }} .rivo-hero-title span {
+    margin: 0 !important;
+    color: #FAF6EC !important;
+    font-family: "Petrona", serif !important;
+    font-size: clamp(52px, 5.3vw, 78px) !important;
+    font-weight: 500 !important;
+    line-height: .98 !important;
+    letter-spacing: -.035em !important;
+    text-align: left !important;
+    text-wrap: balance;
+  }
+  .jv-hero-{{ section.id }} .rivo-hero-description {
+    width: 100% !important;
+    max-width: 610px !important;
+    margin: 30px 0 0 !important;
+    padding: 0 !important;
+    color: rgba(250,246,236,.82) !important;
+    font-family: "Dosis", sans-serif !important;
+    font-size: 19px !important;
+    font-weight: 400 !important;
+    line-height: 1.6 !important;
+    letter-spacing: .015em !important;
+    text-align: left !important;
+  }
+  .jv-hero-{{ section.id }} .rivo-hero-buttons {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 12px !important;
+    width: 100% !important;
+    margin: 34px 0 0 !important;
+  }
+  .jv-hero-{{ section.id }} .rivo-hero-buttons a {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 190px !important;
+    min-height: 54px !important;
+    padding: 14px 26px !important;
+    border: 1px solid #C79A4B !important;
+    border-radius: 3px !important;
+    background: #C79A4B !important;
+    color: #1D1A16 !important;
+    -webkit-text-fill-color: #1D1A16 !important;
+    font: 700 15px/1 "Dosis", sans-serif !important;
+    letter-spacing: .04em !important;
+    text-decoration: none !important;
+  }
+  .jv-hero-{{ section.id }} .rivo-hero-buttons > *:nth-child(2) a,
+  .jv-hero-{{ section.id }} .rivo-hero-buttons > a:nth-child(2) {
+    background: transparent !important;
+    color: #FAF6EC !important;
+    -webkit-text-fill-color: #FAF6EC !important;
+  }
+
+  .jv-hero-{{ section.id }} .jv-hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    order: 2;
+    width: 100%;
+    margin: 72px 0 0;
+    border-top: 1px solid rgba(250,246,236,.25);
+  }
+  .jv-hero-{{ section.id }} .jv-hero-stat {
+    min-width: 0;
+    padding-top: 28px;
+    padding-right: 36px;
+    padding-bottom: 0; /* deliberate: stat sits flush with the row's own bottom edge */
+    padding-left: 36px;
+    border-left: 1px solid rgba(250,246,236,.25);
+    text-align: left;
+  }
+  .jv-hero-{{ section.id }} .jv-hero-stat:first-child {
+    padding-left: 0;
+    border-left: 0;
+  }
+  .jv-hero-{{ section.id }} .jv-hero-stat-number {
+    display: block;
+    color: #C79A4B;
+    font: 500 44px/1 "Petrona", serif;
+    letter-spacing: -.025em;
+  }
+  .jv-hero-{{ section.id }} .jv-hero-stat-label {
+    display: block;
+    margin-top: 8px;
+    color: rgba(250,246,236,.78);
+    font: 500 15px/1.45 "Dosis", sans-serif;
+    letter-spacing: .035em;
+  }
+
+  @media (max-width: 749px) {
+    .jv-hero-{{ section.id }} .jv-hero-eyebrow {
+      margin-bottom: 24px;
+      padding: 9px 12px;
+      font-size: 10.5px;
+      letter-spacing: .14em;
+    }
+    .jv-hero-{{ section.id }} .rivo-hero-title,
+    .jv-hero-{{ section.id }} .rivo-hero-title span {
+      max-width: 10ch !important;
+      font-size: clamp(40px, 12vw, 52px) !important;
+      line-height: .96 !important;
+    }
+    .jv-hero-{{ section.id }} .rivo-hero-description {
+      max-width: none !important;
+      margin-top: 24px !important;
+      font-size: 17px !important;
+      line-height: 1.55 !important;
+    }
+    .jv-hero-{{ section.id }} .rivo-hero-buttons {
+      flex-direction: column !important;
+      align-items: stretch !important;
+      gap: 12px !important;
+      margin-top: 30px !important;
+    }
+    .jv-hero-{{ section.id }} .rivo-hero-buttons > *,
+    .jv-hero-{{ section.id }} .rivo-hero-buttons a {
+      width: 100% !important;
+      min-width: 0 !important;
+      margin: 0 !important;
+    }
+    .jv-hero-{{ section.id }} .jv-hero-stats {
+      grid-template-columns: 1fr;
+      margin-top: 46px;
+    }
+    .jv-hero-{{ section.id }} .jv-hero-stat,
+    .jv-hero-{{ section.id }} .jv-hero-stat:first-child {
+      display: grid;
+      grid-template-columns: minmax(92px, auto) 1fr;
+      align-items: center;
+      gap: 18px;
+      padding: 20px 0;
+      border-top: 1px solid rgba(250,246,236,.2);
+      border-left: 0;
+    }
+    .jv-hero-{{ section.id }} .jv-hero-stat:first-child { border-top: 0; }
+    .jv-hero-{{ section.id }} .jv-hero-stat-number { font-size: 36px; }
+    .jv-hero-{{ section.id }} .jv-hero-stat-label { margin-top: 0; }
+  }
+</style>
+
+<script type="application/json" id="jv-hero-cfg-{{ section.id }}">
+  {
+    "eyebrow": {{ section.settings.eyebrow | json }},
+    "ledeFallback": {{ section.settings.lede_fallback | json }},
+    "overlay": {{ section.settings.overlay_strength | divided_by: 100.0 | json }},
+    "minHeight": {{ section.settings.min_height | json }},
+    "mobileImageHeight": {{ section.settings.mobile_image_height_v3 | json }},
+    "mobilePosition": {{ section.settings.mobile_image_position_v2 | json }},
+    "stats": [
+      { "number": {{ section.settings.stat1_num | json }}, "label": {{ section.settings.stat1_label | json }} },
+      { "number": {{ section.settings.stat2_num | json }}, "label": {{ section.settings.stat2_label | json }} },
+      { "number": {{ section.settings.stat3_num | json }}, "label": {{ section.settings.stat3_label | json }} }
+    ]
+  }
+</script>
+
+<div class="jv-hero-{{ section.id }}" id="jv-hero-{{ section.id }}" data-jv-root>
+  {%- for block in section.blocks -%}
+    {% render block %}
+  {%- endfor -%}
+  {%- if request.design_mode -%}
+    <div data-jv-note hidden>Enable the Rivo hero block to display this section.</div>
+  {%- endif -%}
+</div>
+
+<script>
+(function () {
+  var root = document.getElementById('jv-hero-{{ section.id }}');
+  var cfgEl = document.getElementById('jv-hero-cfg-{{ section.id }}');
+  if (!root || !cfgEl) { return; }
+  var cfg;
+  try { cfg = JSON.parse(cfgEl.textContent); } catch (e) { return; }
+  var busy = false;
+
+  function hard(el, props) {
+    if (!el) { return; }
+    Object.keys(props).forEach(function (key) {
+      el.style.setProperty(key, props[key], 'important');
+    });
+  }
+  function first(scope, selectors) {
+    for (var i = 0; i < selectors.length; i++) {
+      var el = null;
+      try { el = scope.querySelector(selectors[i]); } catch (e) { el = null; }
+      if (el) { return el; }
+    }
+    return null;
+  }
+  function text(el) {
+    return el ? (el.textContent || '').replace(/\s+/g, ' ').trim() : '';
+  }
+
+  function buildEyebrow(textColumn) {
+    if (!textColumn || !cfg.eyebrow) { return; }
+    var eyebrow = root.querySelector('[data-jv-eyebrow]');
+    if (!eyebrow) {
+      eyebrow = document.createElement('p');
+      eyebrow.className = 'jv-hero-eyebrow';
+      eyebrow.setAttribute('data-jv-eyebrow', '');
+      textColumn.insertBefore(eyebrow, textColumn.firstChild);
+    }
+    eyebrow.textContent = cfg.eyebrow;
+  }
+
+  function buildStats(content) {
+    if (!content) { return; }
+    var stats = root.querySelector('[data-jv-stats]');
+    if (!stats) {
+      stats = document.createElement('div');
+      stats.className = 'jv-hero-stats';
+      stats.setAttribute('data-jv-stats', '');
+      content.appendChild(stats);
+    }
+    stats.innerHTML = '';
+    cfg.stats.forEach(function (item) {
+      if (!item.number && !item.label) { return; }
+      var stat = document.createElement('div');
+      stat.className = 'jv-hero-stat';
+      var number = document.createElement('span');
+      number.className = 'jv-hero-stat-number';
+      number.textContent = item.number;
+      var label = document.createElement('span');
+      label.className = 'jv-hero-stat-label';
+      label.textContent = item.label;
+      stat.appendChild(number);
+      stat.appendChild(label);
+      stats.appendChild(stat);
+    });
+  }
+
+  function paint() {
+    var rivoRoot = first(root, ['#rivo-lp-header', '[id*="rivo-lp-header"]']);
+    if (!rivoRoot) { return false; }
+    var media = first(rivoRoot, ['.rivo-hero-banner-media', '[class*="banner-media"]']);
+    var image = media ? media.querySelector('img') : null;
+    var content = first(rivoRoot, ['.rivo-lp-content', '[class*="lp-content"]']);
+    var wrapper = first(rivoRoot, ['.rivo-hero-banner-wrapper', '[class*="banner-wrapper"]']);
+    var textColumn = first(rivoRoot, ['.rivo-hero-banner-text', '[class*="banner-text"]']);
+    var title = first(rivoRoot, ['.rivo-hero-title', 'h1']);
+    var description = first(rivoRoot, ['.rivo-hero-description', '[class*="hero-description"]']);
+    var buttons = first(rivoRoot, ['.rivo-hero-buttons', '[class*="hero-buttons"]']);
+    var mobile = window.matchMedia('(max-width: 749px)').matches;
+    var note = root.querySelector('[data-jv-note]');
+    if (note) { note.hidden = true; }
+
+    busy = true;
+    hard(root, { 'height': 'auto', 'min-height': mobile ? '0' : cfg.minHeight + 'px', 'overflow': 'hidden' });
+    hard(rivoRoot, {
+      'position': 'relative', 'height': 'auto', 'min-height': mobile ? '0' : cfg.minHeight + 'px',
+      'width': '100%', 'max-width': 'none', 'margin': '0', 'padding': '0',
+      'overflow': 'hidden', 'background': '#1D1A16', 'display': 'block'
+    });
+    hard(media, {
+      'display': 'block', 'position': mobile ? 'relative' : 'absolute',
+      'inset': mobile ? 'auto' : '0', 'z-index': '0',
+      'width': '100%', 'height': mobile ? cfg.mobileImageHeight + 'px' : '100%',
+      'min-height': mobile ? cfg.mobileImageHeight + 'px' : '100%',
+      'max-height': mobile ? cfg.mobileImageHeight + 'px' : 'none',
+      'margin': '0', 'padding': '0', 'overflow': 'hidden', 'transform': 'none'
+    });
+    hard(image, {
+      'display': 'block', 'width': '100%', 'height': '100%', 'min-height': '100%',
+      'object-fit': 'cover', 'object-position': mobile ? cfg.mobilePosition : 'center center'
+    });
+
+    var overlay = root.querySelector('[data-jv-overlay]');
+    if (!overlay) {
+      overlay = document.createElement('span');
+      overlay.className = 'jv-hero-overlay';
+      overlay.setAttribute('data-jv-overlay', '');
+      rivoRoot.appendChild(overlay);
+    }
+    hard(overlay, {
+      'top': '0', 'right': '0', 'bottom': mobile ? 'auto' : '0', 'left': '0',
+      'height': mobile ? cfg.mobileImageHeight + 'px' : 'auto',
+      'background': mobile
+        ? 'linear-gradient(180deg, rgba(29,26,22,' + (cfg.overlay * .35) + ') 0%, rgba(29,26,22,' + Math.min(.86, cfg.overlay) + ') 100%)'
+        : 'linear-gradient(90deg, rgba(29,26,22,' + Math.min(.96, cfg.overlay + .12) + ') 0%, rgba(29,26,22,' + (cfg.overlay * .45) + ') 72%, rgba(29,26,22,' + (cfg.overlay * .25) + ') 100%)'
+    });
+
+    hard(content, {
+      'position': 'relative', 'z-index': '2', 'display': 'flex', 'flex-direction': 'column',
+      'align-items': 'stretch', 'justify-content': 'center', 'width': '100%', 'max-width': '1440px',
+      'min-height': mobile ? '0' : cfg.minHeight + 'px', 'height': 'auto',
+      'margin-left': 'auto', 'margin-right': 'auto',
+      'padding': mobile ? '42px 24px 38px' : '96px 24px 58px',
+      'background': mobile ? '#1D1A16' : 'transparent', 'box-sizing': 'border-box', 'text-align': 'left'
+    });
+    hard(wrapper, {
+      'position': 'relative', 'z-index': '2', 'width': '100%', 'max-width': 'none',
+      'order': '1', 'margin': '0', 'padding': '0', 'background': 'transparent', 'text-align': 'left'
+    });
+    hard(textColumn, {
+      'display': 'flex', 'flex-direction': 'column', 'align-items': 'flex-start',
+      'width': '100%', 'max-width': mobile ? 'none' : '720px',
+      'margin': '0', 'padding': '0', 'gap': '0', 'background': 'transparent', 'text-align': 'left'
+    });
+    hard(title, { 'width': '100%', 'text-align': 'left', 'margin': '0' });
+    hard(description, { 'width': '100%', 'text-align': 'left' });
+    hard(buttons, { 'width': '100%', 'justify-content': 'flex-start' });
+
+    if (description && !text(description) && cfg.ledeFallback) {
+      description.textContent = cfg.ledeFallback;
+      hard(description, { 'display': 'block', 'visibility': 'visible', 'opacity': '1' });
+    }
+    buildEyebrow(textColumn);
+    buildStats(content);
+    root.classList.add('is-ready');
+    requestAnimationFrame(function () { busy = false; });
+    return true;
+  }
+
+  var tries = 0;
+  var timer = setInterval(function () {
+    tries += 1;
+    if (paint() || tries >= 60) { clearInterval(timer); }
+  }, 100);
+  var observer = new MutationObserver(function () {
+    if (!busy) { paint(); }
+  });
+  observer.observe(root, { childList: true, subtree: true, characterData: true });
+  window.addEventListener('resize', function () { paint(); }, { passive: true });
+  document.addEventListener('shopify:section:load', function (event) {
+    if (event.target && event.target.contains(root)) { paint(); }
+  });
+  paint();
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Rivo: Hero mobile v3",
+  "tag": "section",
+  "class": "jv-hero-section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Introducing Hearth Circle" },
+    { "type": "textarea", "id": "lede_fallback", "label": "Description fallback" },
+    { "type": "range", "id": "overlay_strength", "label": "Background darkness", "min": 20, "max": 90, "step": 5, "default": 70, "unit": "%" },
+    { "type": "range", "id": "min_height", "label": "Desktop minimum height", "min": 480, "max": 900, "step": 20, "default": 640, "unit": "px" },
+    { "type": "range", "id": "mobile_image_height_v3", "label": "Mobile image height", "min": 220, "max": 440, "step": 20, "default": 300, "unit": "px" },
+    {
+      "type": "select", "id": "mobile_image_position_v2", "label": "Mobile image position", "default": "center center",
+      "options": [
+        { "value": "center center", "label": "Center" },
+        { "value": "left center", "label": "Left" },
+        { "value": "right center", "label": "Right" },
+        { "value": "center top", "label": "Top" },
+        { "value": "center bottom", "label": "Bottom" }
+      ]
+    },
+    { "type": "header", "content": "Statistics" },
+    { "type": "text", "id": "stat1_num", "label": "Statistic 1 number", "default": "5%" },
+    { "type": "text", "id": "stat1_label", "label": "Statistic 1 label", "default": "back in points, every order" },
+    { "type": "text", "id": "stat2_num", "label": "Statistic 2 number", "default": "150 pts" },
+    { "type": "text", "id": "stat2_label", "label": "Statistic 2 label", "default": "just for joining in" },
+    { "type": "text", "id": "stat3_num", "label": "Statistic 3 number", "default": "$0" },
+    { "type": "text", "id": "stat3_label", "label": "Statistic 3 label", "default": "to become a member" }
+  ],
+  "blocks": [ { "type": "@app" } ],
+  "presets": [ { "name": "Rivo: Hero" } ]
+}
+{% endschema %}

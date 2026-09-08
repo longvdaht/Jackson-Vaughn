@@ -100,7 +100,7 @@
         "mobile_image_position_v2": "center center",
         "stat1_num": "5%",
         "stat1_label": "back in points, every order",
-        "stat2_num": "150 pts",
+        "stat2_num": "150 points",
         "stat2_label": "just for joining in",
         "stat3_num": "$0",
         "stat3_label": "to become a member"
@@ -152,7 +152,7 @@
       ],
       "name": "Rivo: Ways to Earn",
       "settings": {
-        "eyebrow": "Ways to earn",
+        "eyebrow": "Ways to Earn",
         "lede_fallback": "",
         "desc_signup_v10": "Create an account to start earning points on every qualifying action.",
         "desc_email_v10": "Get first word on new scents, seasonal drops, and in-store events.",
@@ -204,7 +204,7 @@
         "marquee_bg_v2": "#c79a4b",
         "marquee_text_v2": "#1d1a16",
         "marquee_star_v2": "#7c6337",
-        "eyebrow": "Redeem",
+        "eyebrow": "Your Points, You Pick",
         "lede_fallback": "",
         "cta_label": "REDEEM YOUR POINTS",
         "image": "shopify://shop_images/Jackson_Vaughn_March-15_1.webp",
@@ -271,7 +271,7 @@
         "vip_lede_fallback": "Join our VIP loyalty program to unlock exclusive rewards available only to members.",
         "vip_featured_badge": "Top tier",
         "vip_current_badge": "Your tier",
-        "vip_cta_label": "Shop toward Curator",
+        "vip_cta_label": "",
         "vip_cta_link": "",
         "vip_yes_tokens": "yes,true,included,available,✓,✔",
         "vip_background": "#faf6ec",
@@ -327,25 +327,32 @@
             "answer": "<p>Yup! Just make sure to give the staff member your email at checkout. </p>"
           }
         },
+        "faq_W7PaWp": {
+          "type": "faq",
+          "settings": {
+            "question": "Why is my Curator status free shipping not showing at checkout?",
+            "answer": "<p>Your status is tied to your email address. Make sure to enter the email used to create your rewards account at checkout then your \"Rewards Perk: Free Ground Shipping!\" will automatically apply.</p>"
+          }
+        },
         "faq_Qy87jP": {
           "type": "faq",
           "settings": {
             "question": "How do I join the loyalty program?",
-            "answer": "<p>Simply sign up to create your account and start earning rewards!</p>"
+            "answer": "<p>Simply <a href=\"https://www.jacksonvaughn.com/pages/loyalty-program#rivo\" title=\"https://www.jacksonvaughn.com/pages/loyalty-program#rivo\">sign up</a> to create your account and start earning rewards!</p>"
           }
         },
         "faq_DdE6C3": {
           "type": "faq",
           "settings": {
             "question": "How can I earn points?",
-            "answer": "<p>Earn points by signing up, making purchases, and more! Check out the “Ways to Earn” section for details.</p>"
+            "answer": "<p>Earn points by <a href=\"https://www.jacksonvaughn.com/pages/loyalty-program#rivo\" title=\"https://www.jacksonvaughn.com/pages/loyalty-program#rivo\">signing up</a>, making purchases, and more! Check out the “Ways to Earn” section for details.</p>"
           }
         },
         "faq_Da8dBn": {
           "type": "faq",
           "settings": {
             "question": "How do I redeem my points?",
-            "answer": "<p>Log in, visit your dashboard, and visit the “Ways to Redeem” section to redeem your points for rewards.</p>"
+            "answer": "<p>Redeeming online and in-store is easy.<strong><br/><br/>To redeem online, </strong>make sure you're logged into your Jackson Vaughn account. At checkout, right before you add your card information, enter the amount of points you want to redeem and click the Apply button.<br/><br/><strong>To redeem in-store</strong>, all you have to do is give the store associate the email you used to create your Jackson Vaughn account and they'll handle the rest!</p>"
           }
         },
         "faq_HgECbF": {
@@ -443,6 +450,7 @@
       },
       "block_order": [
         "faq_xiajK3",
+        "faq_W7PaWp",
         "faq_Qy87jP",
         "faq_DdE6C3",
         "faq_Da8dBn",

@@ -125,7 +125,7 @@
           "type": "buy_buttons",
           "settings": {
             "show_dynamic_checkout": true,
-            "show_gift_card_recipient": false,
+            "show_gift_card_recipient": true,
             "show_payment_terms": true,
             "spacing_top": 0,
             "spacing_bottom": 0,
