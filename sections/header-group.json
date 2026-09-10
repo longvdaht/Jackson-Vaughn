@@ -120,7 +120,7 @@
           "settings": {
             "menu_custom": "test-menu-right",
             "show_wishlist": false,
-            "show_customer": false,
+            "show_customer": true,
             "show_search": true,
             "show_language_currency": false,
             "show_cart": true,
