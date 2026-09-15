@@ -3151,3 +3151,49 @@ quickshop-update-quantity.disabled {
         padding-left: calc((1920px - 1170px) / 2);
     }
 }
+
+/* Product Card Custom Review Rating */
+.card-review-wrapper {
+    display: block;
+    line-height: 1;
+}
+
+.card-review-custom {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: var(--font-body-size);
+    font-weight: var(--font-body-weight);
+    line-height: var(--body-line-height);
+    letter-spacing: var(--body-letter-spacing);
+    color: var(--product-title-color) !important;
+    text-decoration: none !important;
+    margin-bottom: 6px;
+    cursor: pointer;
+}
+
+.card-review-custom:hover {
+    color: var(--product-title-color-hover, var(--product-title-color)) !important;
+}
+
+.card-review-custom .card-review__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.card-review-custom .icon-star {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+    display: block;
+}
+
+.card-review-custom .card-review__text {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+

@@ -369,7 +369,7 @@
     "notification_background_color_hover": "#36402d",
     "custom_badge_color": "#ffffff",
     "custom_badge_bg": "#ffbb49",
-    "show_review": false,
+    "show_review": true,
     "checkout_logo_image": "shopify://shop_images/logo3.png",
     "checkout_logo_position": "center",
     "checkout_logo_size": "large",

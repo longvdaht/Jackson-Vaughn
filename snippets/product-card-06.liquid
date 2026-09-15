@@ -219,6 +219,10 @@
           </div>
         {%- endif -%}
 
+        {%- if settings.show_review -%}
+          {% render 'product-card-review', product_card_product: product_card_product %}
+        {%- endif -%}
+
         <h3 class="card__heading">
           <a
             class="card-title link-underline{% if settings.product_title_line_text != 'full' %} card-title-ellipsis{% endif %}{% if variant_selected != blank %} card-title-change{% endif %}"

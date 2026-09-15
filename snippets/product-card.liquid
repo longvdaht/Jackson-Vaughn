@@ -144,6 +144,9 @@
                         <div class="card-vendor"><span class="visually-hidden">{{ 'accessibility.vendor' | t }}</span>{{ product_card_product.vendor | link_to_vendor: class: 'vendor-text' }}</div>
                     </div>
                 {%- endif -%}
+                {%- if settings.show_review -%}
+                    {% render 'product-card-review', product_card_product: product_card_product %}
+                {%- endif -%}
                 <h3 class="card__heading"><a class="card-title link-underline{% if settings.product_title_line_text != 'full' %} card-title-ellipsis{% endif %}{% if variant_selected != blank %} card-title-change{% endif %}" href="{{ product_card_product.url }}" data-product-title="{{ product_card_product.title | escape }}" data-product-url="{{ product_card_product.url }}">{{ product_card_product.title | escape }}{% if variant_selected != blank %} <span data-change-title> {% unless settings.quick_shop_type == '2' %}{% if settings.style_text_color_varriant == '01' %}-{% endif %} {{ variant_selected }}{% endunless %}</span>{% endif %}</a></h3>
 
                 {% render 'product-card-summary', product: product_card_product, class: 'card-list__hidden' %}

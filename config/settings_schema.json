@@ -3573,6 +3573,12 @@
     },
     {
         "type": "checkbox",
+        "id": "show_review",
+        "label": "Show Review Rating",
+        "default": true
+    },
+    {
+        "type": "checkbox",
         "id": "show_price",
         "label": "t:settings_schema.product_card.settings.product_price.label__1",
         "default": true
