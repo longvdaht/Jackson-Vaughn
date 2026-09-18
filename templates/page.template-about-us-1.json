@@ -1010,7 +1010,7 @@
             "button_background_hover": "#727272",
             "button_background_gradient_hover": "",
             "btn_2_text": "Contact Us",
-            "link_btn_2": "shopify://pages/contact-us-1",
+            "link_btn_2": "shopify://pages/contact",
             "button_2_width": 215,
             "button_2_color": "#ffffff",
             "button_2_border": "#232323",
