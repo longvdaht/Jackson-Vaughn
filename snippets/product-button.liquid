@@ -1,14 +1,12 @@
 {%- liquid
     assign use_direct_checkout_button = section.settings.use_direct_checkout_button
     assign show_dynamic_checkout = block.settings.show_dynamic_checkout
-
     for tag in product.tags
         if tag == 'hide_shop_pay'
             assign show_dynamic_checkout = false
             break
         endif
     endfor
-
     assign atc_animation = block.settings.atc_animation
     assign atc_color = block.settings.atc_color
     assign atc_border_color = block.settings.atc_border_color
@@ -33,13 +31,10 @@
         assign gift_card_recipient_feature_active = true
       endif
     assign sticky_add_to_cart_always_mb = section.settings.enable_sticky_add_to_cart_always_mobile
-
-
     assign atc_text = 'products.product.add_to_cart' | t
     if block.settings.atc_text != blank
         assign atc_text = block.settings.atc_text
     endif
-
     # Compare-at price on the ATC button, rendered server-side so products WITHOUT
     # variants (no JS variant-change event) still show the strikethrough. For
     # products with variants, variants.js updates this on change to keep it in sync.
@@ -65,7 +60,7 @@
     {%- endif -%}
 {%- endcapture -%}
 <div class="productView-buttons">
-    {%- assign product_form_installment_id = 'product-form-installment-' | append: product.id -%}
+{%- assign product_form_installment_id = 'product-form-installment-' | append: product.id -%}
     {%- form 'product', product, id: product_form_installment_id, class: 'installment caption-large' -%}
         <input type="hidden" name="id" value="{{ current_variant.id }}">
         {%- if block.settings.show_payment_terms -%}
@@ -75,16 +70,9 @@
     {%- assign product_form_id = 'product-form-' | append: product.id -%}
     <product-form class="productView-form product-form{% if sticky_add_to_cart_always_mb %} always-on-mobile{% endif %}">
         {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
-            {%- comment -%}
-              The recipient fields have to live INSIDE this form. Both add-to-cart paths build
-              their payload from the form element itself (FormData in theme.js, serializeForm in
-              product-form.js), so fields rendered outside it never reach /cart/add and Shopify
-              falls back to emailing the gift card to the checkout email. Rendering here also
-              hands the snippet the real `form` object it needs for `form.errors`.
-            {%- endcomment -%}
-            {%- if gift_card_recipient_feature_active -%}
-                {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
-            {%- endif -%}
+           {%- if gift_card_recipient_feature_active -%}
+               {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
+           {%- endif -%}
             <div class="productView-group">
                 {%- if check_show_qty == 'show_qty_2' -%}
                     {%- if show_subtotal_text and subtotal_style == '1' -%}
@@ -102,7 +90,7 @@
                             endif
                         -%}
                         {% render 'product-quantity', current_variant: current_variant, check_hidden: check_hidden, qty_style: qty_style, quantity_stt: 1, product: product %}
-                    {%- endif -%}                    
+                    {%- endif -%}
                     <div class="productView-groupTop">
                         <div class="productView-action{% unless settings.show_wishlist %} productView-action-2{% endunless %}{% if settings.banner_animation == 'effect_fade_up' %} scroll-trigger animate--slide-in{% endif %}" style="--atc-color: {{ atc_color }};--atc-bg-color: {% if atc_bg_color_gradient != blank %}{{ atc_bg_color_gradient }}{% else %}{{ atc_bg_color }}{% endif %};--atc-border-color: {{ atc_border_color }};--atc-color-hover: {{ atc_color_hover }};--atc-bg-color-hover: {% if atc_bg_color_gradient_hover != blank %}{{ atc_bg_color_gradient_hover }}{% else %}{{ atc_bg_color_hover }}{% endif %};--atc-border-color-hover: {{ atc_border_color_hover }}">
                             <input type="hidden" name="id" value="{{ current_variant.id }}">
@@ -124,7 +112,6 @@
                                                 assign allowOutStockSale = false
                                                 endif
                                             -%}
-
                                             <button type="submit" name="add" data-btn-addToCart data-inventory-quantity="{{ current_variant.inventory_quantity }}" data-available="{{ allowOutStockSale }}" class="product-form__submit button button--primary an-{{ atc_animation }}{% if first_inventory == 0 %} button-text-change{% else %}{% if show_subtotal_text %} button-text-change{% endif %}{% endif %}{% if settings.animations_hover_elements == '3d-lift' or settings.animations_hover_elements == 'vertical-lift' %} button-not-animation{% endif %}" id="product-add-to-cart">
                                                 {%- if current_variant.available -%}
                                                     {%- if show_subtotal_text and subtotal_style == '2' -%}
@@ -177,7 +164,7 @@
                             </div>
                         {%- endif -%}
                         <div class="productView-groupItem">
-                            <div class="productView-payment" {% if settings.show_global_checkbox %} disabled="disabled"{% endif %} id="product-checkout-{{ product.id }}" style="--bin-color: {{ bin_color }};--bin-bg-color: {% if bin_bg_color_gradient != blank %}{{ bin_bg_color_gradient }}{% else %}{{ bin_bg_color }}{% endif %};--bin-border-color: {{ bin_border_color }};--bin-color-hover: {{ bin_color_hover }};--bin-bg-color-hover: {% if bin_bg_color_hover_gradient != blank %}{{ bin_bg_color_hover_gradient }}{% else %}{{ bin_bg_color_hover }}{% endif %};--bin-border-color-hover: {{ bin_border_color_hover }}"> 
+                            <div class="productView-payment" {% if settings.show_global_checkbox %} disabled="disabled"{% endif %} id="product-checkout-{{ product.id }}" style="--bin-color: {{ bin_color }};--bin-bg-color: {% if bin_bg_color_gradient != blank %}{{ bin_bg_color_gradient }}{% else %}{{ bin_bg_color }}{% endif %};--bin-border-color: {{ bin_border_color }};--bin-color-hover: {{ bin_color_hover }};--bin-bg-color-hover: {% if bin_bg_color_hover_gradient != blank %}{{ bin_bg_color_hover_gradient }}{% else %}{{ bin_bg_color_hover }}{% endif %};--bin-border-color-hover: {{ bin_border_color_hover }}">
                                 {{ form | payment_button }}
                             </div>
                         </div>
@@ -192,7 +179,6 @@
             {% render 'halo-notify-sold-out', id: product.id, id_form: form_id , current_variant: current_variant %}
         </div>
     {%- endif -%}
-
     {%- if atc_note != blank -%}
         <span class="productView-note"
               style="--atc-note-color: {{ atc_note_color }}">

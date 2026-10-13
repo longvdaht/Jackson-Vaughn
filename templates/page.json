@@ -99,6 +99,7 @@
       "block_order": [
         "special_img_J8LtaG"
       ],
+      "disabled": true,
       "custom_css": [
         ".banner-title,.collection-countdown {line-height: 1.3;}",
         ".des-countdown {letter-spacing: 0.5vw;}",
@@ -708,7 +709,6 @@
     },
     "main": {
       "type": "main-page",
-      "disabled": true,
       "custom_css": [],
       "settings": {}
     },

@@ -274,10 +274,9 @@
         },
         "20dae707-64c0-4ea3-a05e-561cae9836d8": {
           "type": "customer",
-          "disabled": true,
           "settings": {
             "icon": "1",
-            "color": "#232323"
+            "color": "#FCF9EF"
           }
         },
         "633f9dae-3f65-4bda-9ca8-9d3e231aaf9d": {

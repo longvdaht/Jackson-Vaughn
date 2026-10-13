@@ -90,11 +90,15 @@
       "block_order": [
         "rivo_loyalty_rewards_referrals_lp_header_zdChVQ"
       ],
+      "custom_css": [
+        "@media screen and (max-width: 600px) {.jv-hero-template--20403346407539__rivo_hero_RUzAi3 .jv-hero-stats {display: none; }}",
+        ".jv-hero-template--20403346407539__rivo_hero_RUzAi3 .rivo-hero-description {max-width: 100% !important;}"
+      ],
       "name": "Rivo: Hero",
       "settings": {
         "eyebrow": "",
         "lede_fallback": "",
-        "overlay_strength": 70,
+        "overlay_strength": 20,
         "min_height": 640,
         "mobile_image_height_v3": 300,
         "mobile_image_position_v2": "center center",

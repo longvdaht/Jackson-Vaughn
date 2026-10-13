@@ -145,6 +145,7 @@
     "enable_hover_video_product_items": false,
     "show_image_loading": true,
     "show_vendor": false,
+    "show_review": true,
     "display_item_size": true,
     "display_text_size": true,
     "display_text_color_title": false,
@@ -369,7 +370,6 @@
     "notification_background_color_hover": "#36402d",
     "custom_badge_color": "#ffffff",
     "custom_badge_bg": "#ffbb49",
-    "show_review": true,
     "checkout_logo_image": "shopify://shop_images/logo3.png",
     "checkout_logo_position": "center",
     "checkout_logo_size": "large",
@@ -770,11 +770,6 @@
       },
       "17676059084223943535": {
         "type": "shopify://apps/triplewhale/blocks/triple_pixel_snippet/483d496b-3f1a-4609-aea7-8eee3b6b7a2a",
-        "disabled": false,
-        "settings": {}
-      },
-      "6176556142592085346": {
-        "type": "shopify://apps/justuno-email-sms-pop-ups/blocks/star_rating/ea1f1a23-7069-4266-a6e1-df04f87c7e94",
         "disabled": false,
         "settings": {}
       },

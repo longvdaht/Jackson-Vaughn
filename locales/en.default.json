@@ -519,7 +519,7 @@
     "account": {
       "welcome": "Hi, {{ name }}",
       "title": "Account",
-      "my_account": "My Account",
+      "my_account": "MY ACCOUNT",
       "details": "Account details",
       "view_addresses": "View addresses",
       "return": "Return to Account Details"
@@ -565,7 +565,7 @@
     "create_account": "Create an Account",
     "log_out": "Log out",
     "hello": "Hello",
-    "my_account": "My Account",
+    "my_account": "MY ACCOUNT",
     "login_page": {
       "cancel": "Cancel",
       "create_account": "Create account",
