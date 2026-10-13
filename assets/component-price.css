@@ -65,7 +65,7 @@
 }
 
 .price-item .text{
-    display: none;
+    /* display: none; */
     vertical-align: middle;
     font-size: var(--font-body-size);
     font-weight: var(--font-weight-normal);
