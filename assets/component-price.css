@@ -58,6 +58,8 @@
     letter-spacing: var(--product-price-letter-spacing);
     font-weight: var(--product-price-font-weight);
     line-height: var(--product-price-line-height);
+    display: flex;
+    align-items: center;
 }
 
 .price__compare .price-item {
@@ -65,7 +67,7 @@
 }
 
 .price-item .text{
-    display: none;
+    /* display: none; */
     vertical-align: middle;
     font-size: var(--font-body-size);
     font-weight: var(--font-weight-normal);
@@ -73,6 +75,10 @@
     letter-spacing: 0;
     line-height: var(--product-price-line-height);
     margin: -2px 10px 0 0;
+}
+
+.price--on-sale .price__sale .price-item .text {
+    display: none;
 }
 
 .style-arrows-7 .price-item .text{

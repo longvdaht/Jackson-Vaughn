@@ -24,6 +24,10 @@
     border-radius: 10px;
 }
 
+.short-des__wrapper span * {
+    margin: 0;
+}
+
 .card-link {
     position: absolute;
     top: 0;
