@@ -748,6 +748,11 @@
     },
     "content_for_index": [],
     "blocks": {
+      "2153490007123654574": {
+        "type": "shopify://apps/consentmo-gdpr/blocks/gdpr_cookie_consent/4fbe573f-a377-4fea-9801-3ee0858cae41",
+        "disabled": false,
+        "settings": {}
+      },
       "14952540001915115444": {
         "type": "shopify://apps/upcart-cart-drawer/blocks/app-embed/af3da5fb-f5f7-40ec-8273-41bf50059d4b",
         "disabled": false,
