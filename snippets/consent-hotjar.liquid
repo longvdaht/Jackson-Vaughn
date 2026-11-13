@@ -1,0 +1,47 @@
+{%- comment -%}
+  Hotjar: loads only after the visitor consents to Analytics (Shopify Customer Privacy API, synced with Consentmo).
+  Regions without a consent requirement: analyticsProcessingAllowed() returns true, so it loads immediately.
+  Regions requiring consent: waits for the visitorConsentCollected event.
+{%- endcomment -%}
+<script>
+  (function () {
+    var loaded = false;
+    function loadHotjar() {
+      if (loaded) return;
+      loaded = true;
+      (function (h, o, t, j, a, r) {
+        h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments); };
+        h._hjSettings = { hjid: 6521921, hjsv: 6 };
+        a = o.getElementsByTagName('head')[0];
+        r = o.createElement('script');
+        r.async = 1;
+        r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+        a.appendChild(r);
+      })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+    }
+
+    function analyticsAllowed() {
+      try {
+        return !!(window.Shopify && Shopify.customerPrivacy && Shopify.customerPrivacy.analyticsProcessingAllowed());
+      } catch (e) {
+        return false;
+      }
+    }
+
+    function check() {
+      if (analyticsAllowed()) loadHotjar();
+    }
+
+    document.addEventListener('visitorConsentCollected', check);
+    check();
+    document.addEventListener('DOMContentLoaded', check);
+    window.addEventListener('load', function () {
+      check();
+      var tries = 0;
+      var t = setInterval(function () {
+        check();
+        if (loaded || ++tries > 20) clearInterval(t);
+      }, 500);
+    });
+  })();
+</script>

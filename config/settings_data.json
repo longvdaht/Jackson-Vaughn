@@ -259,7 +259,7 @@
     "show_someone_purchase": false,
     "show_someone_purchase_mobile": false,
     "someone_purchase_position": "right",
-    "show_gdpr_cookie_consent": true,
+    "show_gdpr_cookie_consent": false,
     "gdpr_cookie_consent_type": "left",
     "gdpr_cookie_consent_btn_1_link": "https://policies.google.com/",
     "gdpr_cookie_consent_btn_2_text": "Accept",

@@ -1,0 +1,84 @@
+{%- comment -%}
+  Google Consent Mode v2 default state. Must render before GTM / gtag.
+  - Denied (opt-in): EEA, UK, CH, Brazil, Quebec + US: California, Pennsylvania, Florida.
+  - Granted (opt-out): all other regions.
+  Consentmo sends the 'consent update' once the visitor makes a choice.
+{%- endcomment -%}
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  // Default for all other regions
+  gtag('consent', 'default', {
+    ad_storage: 'granted',
+    analytics_storage: 'granted',
+    ad_user_data: 'granted',
+    ad_personalization: 'granted',
+    functionality_storage: 'granted',
+    personalization_storage: 'granted',
+    security_storage: 'granted'
+  });
+
+  // Regions that require explicit consent
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    analytics_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    functionality_storage: 'denied',
+    personalization_storage: 'denied',
+    security_storage: 'granted',
+    wait_for_update: 500,
+    region: [
+      'AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+      'IS','LI','NO','GB','CH','BR','CA-QC',
+      'US-CA','US-PA','US-FL'
+    ]
+  });
+
+  // Forward the visitor's Consentmo choice to Google as a Consent Mode update.
+  // Consentmo pushes {event:'consent_status', status:'accept_all'|'decline'|'allow', consentmoStatus}
+  // to dataLayer. consentmoStatus === 'default' means no choice has been made yet, so it is ignored.
+  (function () {
+    function readCookie(name) {
+      var m = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+      return m ? decodeURIComponent(m[1]) : '';
+    }
+
+    function applyConsent(e) {
+      if (!e || e.event !== 'consent_status' || e.consentmoStatus === 'default') return;
+
+      var analytics = false;
+      var marketing = false;
+      var status = String(e.status || '');
+
+      if (status === 'accept_all' || status === 'all_allowed') {
+        analytics = true;
+        marketing = true;
+      } else if (status !== 'decline') {
+        // Partial choice: Consentmo stores the DISABLED categories in this cookie.
+        var disabled = readCookie('cookieconsent_preferences_disabled').toLowerCase();
+        analytics = disabled.indexOf('analytic') === -1;
+        marketing = disabled.indexOf('marketing') === -1;
+      }
+
+      gtag('consent', 'update', {
+        analytics_storage: analytics ? 'granted' : 'denied',
+        ad_storage: marketing ? 'granted' : 'denied',
+        ad_user_data: marketing ? 'granted' : 'denied',
+        ad_personalization: marketing ? 'granted' : 'denied',
+        functionality_storage: 'granted',
+        personalization_storage: marketing ? 'granted' : 'denied'
+      });
+    }
+
+    for (var i = 0; i < dataLayer.length; i++) applyConsent(dataLayer[i]);
+
+    var originalPush = dataLayer.push;
+    dataLayer.push = function () {
+      var result = originalPush.apply(dataLayer, arguments);
+      for (var j = 0; j < arguments.length; j++) applyConsent(arguments[j]);
+      return result;
+    };
+  })();
+</script>
