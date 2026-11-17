@@ -1,0 +1,104 @@
+{%- comment -%}
+  Google Consent Mode v2 default state. Must render before GTM / gtag.
+  - Denied (opt-in): EEA, UK, CH, Brazil, Quebec + US: California, Pennsylvania, Florida.
+  - Granted (opt-out): all other regions.
+  Consentmo sends the 'consent update' once the visitor makes a choice.
+{%- endcomment -%}
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  // Default for all other regions
+  gtag('consent', 'default', {
+    ad_storage: 'granted',
+    analytics_storage: 'granted',
+    ad_user_data: 'granted',
+    ad_personalization: 'granted',
+    functionality_storage: 'granted',
+    personalization_storage: 'granted',
+    security_storage: 'granted'
+  });
+
+  // Regions that require explicit consent
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    analytics_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    functionality_storage: 'denied',
+    personalization_storage: 'denied',
+    security_storage: 'granted',
+    wait_for_update: 500,
+    region: [
+      'AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+      'IS','LI','NO','GB','CH','BR','CA-QC',
+      'US-CA','US-PA','US-FL'
+    ]
+  });
+
+  // Forward the visitor's Consentmo choice to Google as a Consent Mode update.
+  // Consentmo pushes {event:'consent_status', status, categories:[{necessary, analytics, marketing, functionality}]}
+  // to dataLayer. consentmoStatus is 'default' both on page load and after a click, so it cannot be used
+  // to tell them apart. Instead, the first consent_status event of a page view is the initial state and is
+  // skipped, unless a saved Consentmo cookie exists (returning visitor, so it reflects a real earlier choice).
+  (function () {
+    var firstEventHandled = false;
+
+    function readCookie(name) {
+      var m = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+      return m ? decodeURIComponent(m[1]) : '';
+    }
+
+    function hasSavedChoice() {
+      return document.cookie.split(';').some(function (c) {
+        return c.trim().indexOf('cookieconsent_status') === 0;
+      });
+    }
+
+    function applyConsent(e) {
+      if (!e || e.event !== 'consent_status') return;
+
+      var isFirst = !firstEventHandled;
+      firstEventHandled = true;
+      if (isFirst && !hasSavedChoice()) return;
+
+      var analytics = false;
+      var marketing = false;
+      var functionality = true;
+      var cats = e.categories && e.categories[0];
+      var status = String(e.status || '');
+
+      if (cats && typeof cats === 'object') {
+        analytics = !!cats.analytics;
+        marketing = !!cats.marketing;
+        functionality = cats.functionality !== false;
+      } else if (status === 'accept_all' || status === 'all_allowed') {
+        analytics = true;
+        marketing = true;
+      } else if (status !== 'decline') {
+        // Partial choice: Consentmo stores the DISABLED categories in this cookie.
+        var disabled = readCookie('cookieconsent_preferences_disabled').toLowerCase();
+        analytics = disabled.indexOf('analytic') === -1;
+        marketing = disabled.indexOf('marketing') === -1;
+      }
+
+      gtag('consent', 'update', {
+        analytics_storage: analytics ? 'granted' : 'denied',
+        ad_storage: marketing ? 'granted' : 'denied',
+        ad_user_data: marketing ? 'granted' : 'denied',
+        ad_personalization: marketing ? 'granted' : 'denied',
+        functionality_storage: functionality ? 'granted' : 'denied',
+        personalization_storage: marketing ? 'granted' : 'denied'
+      });
+    }
+
+    for (var i = 0; i < dataLayer.length; i++) applyConsent(dataLayer[i]);
+
+    var originalPush = dataLayer.push;
+    dataLayer.push = function () {
+      var result = originalPush.apply(dataLayer, arguments);
+      for (var j = 0; j < arguments.length; j++) applyConsent(arguments[j]);
+      return result;
+    };
+  })();
+</script>

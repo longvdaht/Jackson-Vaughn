@@ -6,15 +6,16 @@ class NewsletterPopup extends HTMLElement {
         this.timeToShow = parseInt(this.popup.getAttribute('data-delay'));
         this.expiresDate = this.popup.getAttribute('data-expire');
         if (this.getCookie('newsletter-popup') === ''){
-            var popup = this.popup;
+            // Wait for the visitor's cookie consent choice so the popup does not cover the consent banner.
+            this.whenConsentResolved(() => {
+                setTimeout(() => {
+                    document.body.classList.add('newsletter-show');
+                }, this.timeToShow);
 
-            setTimeout(function() {
-                document.body.classList.add('newsletter-show');
-            }, this.timeToShow);
-
-            setTimeout(() => {
-                document.body.classList.add('show-newsletter-image');
-            }, this.timeToShow + 700)
+                setTimeout(() => {
+                    document.body.classList.add('show-newsletter-image');
+                }, this.timeToShow + 700);
+            });
         } else {
             // this.deleteCookie('newsletter-popup');
         }
@@ -30,6 +31,38 @@ class NewsletterPopup extends HTMLElement {
             'submit',
             this.setClosePopup.bind(this)
         );
+    }
+
+    hasConsentChoice() {
+        // Consentmo stores the visitor's choice in a cookie named cookieconsent_status<suffix>.
+        return document.cookie.split(';').some((c) => c.trim().indexOf('cookieconsent_status') === 0);
+    }
+
+    isConsentBannerVisible() {
+        const banner = document.querySelector('[id*="consentmo" i], [class*="consentmo" i], [class*="cookie-bar" i], [class*="cc-window" i]');
+        if (!banner) return false;
+        const rect = banner.getBoundingClientRect();
+        return rect.width > 0 && rect.height > 0;
+    }
+
+    whenConsentResolved(callback) {
+        let done = false;
+        const run = () => {
+            if (done) return;
+            done = true;
+            clearInterval(timer);
+            callback();
+        };
+
+        // Visitor already chose, or just chose.
+        const timer = setInterval(() => {
+            if (this.hasConsentChoice()) run();
+        }, 300);
+
+        // No banner is shown for this visitor (region without a consent requirement): do not wait.
+        setTimeout(() => {
+            if (!this.hasConsentChoice() && !this.isConsentBannerVisible()) run();
+        }, 4000);
     }
 
     setCookie(cname, cvalue, exdays) {

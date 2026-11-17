@@ -66,7 +66,7 @@
     "product_title_line_height": 22,
     "product_title_letter_spacing": ".02em",
     "product_title_line_text": "2",
-    "product_price_font_size": 16,
+    "product_price_font_size": 14,
     "product_price_font_weight": "500",
     "product_price_letter_spacing": ".36px",
     "product_price_margin_bottom": 0,
@@ -259,7 +259,7 @@
     "show_someone_purchase": false,
     "show_someone_purchase_mobile": false,
     "someone_purchase_position": "right",
-    "show_gdpr_cookie_consent": true,
+    "show_gdpr_cookie_consent": false,
     "gdpr_cookie_consent_type": "left",
     "gdpr_cookie_consent_btn_1_link": "https://policies.google.com/",
     "gdpr_cookie_consent_btn_2_text": "Accept",
@@ -748,6 +748,11 @@
     },
     "content_for_index": [],
     "blocks": {
+      "2153490007123654574": {
+        "type": "shopify://apps/consentmo-gdpr/blocks/gdpr_cookie_consent/4fbe573f-a377-4fea-9801-3ee0858cae41",
+        "disabled": false,
+        "settings": {}
+      },
       "14952540001915115444": {
         "type": "shopify://apps/upcart-cart-drawer/blocks/app-embed/af3da5fb-f5f7-40ec-8273-41bf50059d4b",
         "disabled": false,
