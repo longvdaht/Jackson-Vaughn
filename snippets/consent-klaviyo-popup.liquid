@@ -1,0 +1,55 @@
+{%- comment -%}
+  Keep the Klaviyo sign-up popup (15% OFF) from covering the Consentmo cookie banner.
+  While the banner is on screen, the popup is hidden. It shows as usual once the visitor
+  has chosen, or immediately for visitors who are not shown a banner.
+
+  The Consentmo banner is rendered inside the shadow root of <csm-cookie-consent>
+  (element .isense-cc-window), so it is detected by looking inside that shadow root.
+{%- endcomment -%}
+<style>
+  html.csm-banner-open [data-kl-scroll-locking-modal="true"] {
+    display: none !important;
+  }
+
+  /* Klaviyo locks page scroll for its popup; keep the page scrollable while the popup is hidden */
+  html.csm-banner-open,
+  html.csm-banner-open body {
+    overflow: auto !important;
+  }
+</style>
+<script>
+  (function () {
+    var root = document.documentElement;
+    var bannerSeen = false;
+    var emptyChecks = 0;
+
+    function isBannerVisible() {
+      var hosts = document.querySelectorAll('csm-cookie-consent, .csm-cmp-root');
+      var roots = [document];
+      for (var i = 0; i < hosts.length; i++) {
+        if (hosts[i].shadowRoot) roots.push(hosts[i].shadowRoot);
+      }
+      for (var j = 0; j < roots.length; j++) {
+        var banner = roots[j].querySelector('.isense-cc-window');
+        if (banner) {
+          var rect = banner.getBoundingClientRect();
+          if (rect.width > 0 && rect.height > 0) return true;
+        }
+      }
+      return false;
+    }
+
+    var timer = setInterval(function () {
+      if (isBannerVisible()) {
+        bannerSeen = true;
+        root.classList.add('csm-banner-open');
+        return;
+      }
+
+      root.classList.remove('csm-banner-open');
+
+      // Stop once the banner has been shown and closed, or if no banner ever appears (about 60s).
+      if (bannerSeen || ++emptyChecks > 200) clearInterval(timer);
+    }, 300);
+  })();
+</script>
