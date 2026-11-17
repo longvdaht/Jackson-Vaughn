@@ -39,10 +39,20 @@ class NewsletterPopup extends HTMLElement {
     }
 
     isConsentBannerVisible() {
-        const banner = document.querySelector('[id*="consentmo" i], [class*="consentmo" i], [class*="cookie-bar" i], [class*="cc-window" i]');
-        if (!banner) return false;
-        const rect = banner.getBoundingClientRect();
-        return rect.width > 0 && rect.height > 0;
+        // The Consentmo banner is rendered inside the shadow root of <csm-cookie-consent>,
+        // so document.querySelector cannot see it directly.
+        const hosts = document.querySelectorAll('csm-cookie-consent, .csm-cmp-root');
+        const roots = [document];
+        hosts.forEach((host) => {
+            if (host.shadowRoot) roots.push(host.shadowRoot);
+        });
+
+        return roots.some((root) => {
+            const banner = root.querySelector('.isense-cc-window');
+            if (!banner) return false;
+            const rect = banner.getBoundingClientRect();
+            return rect.width > 0 && rect.height > 0;
+        });
     }
 
     whenConsentResolved(callback) {
