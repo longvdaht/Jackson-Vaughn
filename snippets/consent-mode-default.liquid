@@ -1,6 +1,6 @@
 {%- comment -%}
   Google Consent Mode v2 default state. Must render before GTM / gtag.
-  - Denied (opt-in): EEA, UK, CH, Brazil, Quebec + US: California, Pennsylvania, Florida.
+  - Denied (opt-in): EEA, UK, CH, Quebec + US: California, Pennsylvania, Florida.
   - Granted (opt-out): all other regions.
   Consentmo sends the 'consent update' once the visitor makes a choice.
 {%- endcomment -%}
@@ -31,7 +31,7 @@
     wait_for_update: 500,
     region: [
       'AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
-      'IS','LI','NO','GB','CH','BR','CA-QC',
+      'IS','LI','NO','GB','CH','CA-QC',
       'US-CA','US-PA','US-FL'
     ]
   });
