@@ -123,9 +123,8 @@
         },
         "custom_liquid_f9zt8H": {
           "type": "custom_liquid",
-          "disabled": true,
           "settings": {
-            "custom_liquid": "{%- if product.tags contains 'fall26_pre-order' -%}\n<div class=\"preorder_message\">\nPRE-ORDER | SHIPS WEEK OF SEPT. 28th\n</div>\n<input type=\"hidden\" name=\"__properties[Pre-Order]\" \n value=\"Ships the week of Sept 28th\">\n{%- endif -%}\n{% style %}\n.preorder_message {\n font-weight: 600;\n    padding-bottom: 25px;\n    text-align: center;\n    color: #be8938;\n    font-size: 1.18em;\n}\n.productView-moreItem:has(+ .preorder_message ){\npadding-bottom: 0 !important;\n}\n{% endstyle %}"
+            "custom_liquid": "{%- if product.tags contains 'midnight_mistletoe_pre-order' -%}\n<div class=\"preorder_message\">\nPRE-ORDER | SHIPS WEEK OF DEC. 7TH\n</div>\n<input type=\"hidden\" name=\"__properties[Pre-Order]\" \n value=\"Ships the week of Dec. 7th\">\n{%- endif -%}\n{% style %}\n.preorder_message {\n font-weight: 600;\n    padding-bottom: 25px;\n    text-align: center;\n    color: #be8938;\n    font-size: 1.18em;\n}\n.productView-moreItem:has(+ .preorder_message ){\npadding-bottom: 0 !important;\n}\n{% endstyle %}"
           }
         },
         "f1b31d90-1e43-4948-9fe3-97ba43f6fb34": {
