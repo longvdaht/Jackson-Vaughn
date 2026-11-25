@@ -26,9 +26,8 @@
         },
         "announcement_LMKKtB": {
           "type": "announcement",
-          "disabled": true,
           "settings": {
-            "text": "<p>ENJOY FREE SHIPPING ON ORDERS OVER $50</p>",
+            "text": "<p>PLEASE ALLOW EXTRA TIME FOR ORDER PROCESSING DURING THE HOLIDAY SEASON</p>",
             "btn_color": "#26292d",
             "btn_border_color": "#ffffff",
             "btn_bg_color": "#ffffff",
@@ -180,8 +179,8 @@
             "item": "Shop",
             "column": 4,
             "show_banner_1": true,
-            "banner_1": "shopify://shop_images/Untitled_design_5.jpg",
-            "banner_url_1": "shopify://collections/gilded-fall",
+            "banner_1": "shopify://shop_images/JV_261103_1n.jpg",
+            "banner_url_1": "shopify://products/folklore-limited-edition",
             "show_product": false,
             "product_title": "Featured Products",
             "product_collection": "oak-cliff-large"
@@ -195,8 +194,8 @@
             "item": "Gifts",
             "column": 3,
             "show_banner_1": true,
-            "banner_1": "shopify://shop_images/The_Perfect_Gift_For_Her_1.jpg",
-            "banner_url_1": "shopify://products/the-perfect-gift-for-her",
+            "banner_1": "shopify://shop_images/classicholidaycandlegiftset_5.jpg",
+            "banner_url_1": "shopify://collections/classic-holiday-candle-collection",
             "show_product": false,
             "product_title": "Featured Products",
             "product_collection": "texas-candle-large"
@@ -276,7 +275,7 @@
           "type": "customer",
           "settings": {
             "icon": "1",
-            "color": "#FCF9EF"
+            "color": "#fcf9ef"
           }
         },
         "633f9dae-3f65-4bda-9ca8-9d3e231aaf9d": {
